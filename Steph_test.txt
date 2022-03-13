@@ -1,7 +1,5 @@
 # Test document
 
-Here's a line or two
-
 Go team Double Espresso!!
 
-Just a little something to diff.
+Testing! ~Vanessa
