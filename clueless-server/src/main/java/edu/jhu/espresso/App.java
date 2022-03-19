@@ -12,13 +12,11 @@ public class App
 {
     public static void main( String[] args ) throws IOException
     {
-        ClueLessServer clueLessServer = new ClueLessServer();
+        MessageStub messageStub = new MessageStub();
+        messageStub.setMessage("Server message");
+        messageStub.setSomeData(false);
 
-        List<Client> clients = new ArrayList<>();
-        for (int i = 0; i < 6; i++)
-        {
-            clients.add(new Client("localhost", 8080));
-        }
+        ClueLessServer clueLessServer = new ClueLessServer();
 
         List<ClueLessClientHandler> clueLessClientHandlers = new ArrayList<>();
         for(int i = 0; i < 6; i++)
@@ -26,11 +24,7 @@ public class App
             clueLessClientHandlers.add(clueLessServer.accept());
         }
 
-        clients.forEach(client -> client.write("Hello"));
         clueLessClientHandlers.forEach(handler -> new Thread(handler).start());
-
-        clueLessClientHandlers.forEach(clueLessClientHandler -> clueLessClientHandler.getPrintWriter().println("Yeet"));
-
-        clients.forEach(Client::listen);
+        clueLessClientHandlers.forEach(clueLessClientHandler -> clueLessClientHandler.write(messageStub));
     }
 }

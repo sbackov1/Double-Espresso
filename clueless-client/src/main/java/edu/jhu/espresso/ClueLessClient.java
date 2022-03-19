@@ -9,7 +9,7 @@ import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.Socket;
 
-public class Client
+public class ClueLessClient
 {
     private static final ObjectMapper OBJECT_MAPPER = new ObjectMapper();
 
@@ -19,7 +19,7 @@ public class Client
     private final PrintWriter printWriter;
     private final BufferedReader input;
 
-    public Client(String host, int port)
+    public ClueLessClient(String host, int port)
     {
         this.host = host;
         this.port = port;

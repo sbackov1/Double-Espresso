@@ -1,5 +1,8 @@
 package edu.jhu.espresso;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -8,6 +11,8 @@ import java.net.Socket;
 
 public class ClueLessClientHandler implements Runnable
 {
+    private static final ObjectMapper OBJECT_MAPPER = new ObjectMapper();
+
     private static int NUM_HANDLERS = 0;
 
     private final PrintWriter printWriter;
@@ -30,8 +35,19 @@ public class ClueLessClientHandler implements Runnable
         try
         {
             System.out.println(bufferedReader.readLine());
-            System.out.println(handlerNumber);
         } catch (IOException e)
+        {
+            throw new IllegalStateException(e);
+        }
+    }
+
+    public void write(Object message)
+    {
+        try
+        {
+            printWriter.println(OBJECT_MAPPER.writeValueAsString(message));
+        }
+        catch (JsonProcessingException e)
         {
             throw new IllegalStateException(e);
         }
