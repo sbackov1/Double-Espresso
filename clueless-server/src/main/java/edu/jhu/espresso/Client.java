@@ -1,26 +1,28 @@
 package edu.jhu.espresso;
 
-import java.io.DataInputStream;
+import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.OutputStream;
+import java.io.InputStreamReader;
+import java.io.PrintWriter;
 import java.net.Socket;
-
-import static java.nio.charset.StandardCharsets.UTF_8;
 
 public class Client
 {
+    private final String host;
+    private final int port;
     private final Socket socket;
+    private final PrintWriter printWriter;
+    private final BufferedReader input;
 
-    public Client()
+    public Client(String host, int port)
     {
-        String host = "localhost";
-        int port = 8080;
+        this.host = host;
+        this.port = port;
         try
         {
-            DataInputStream in = new DataInputStream(System.in);
-            socket = new Socket(host, port);
-            OutputStream out = socket.getOutputStream();
-            out.write("Hello world".getBytes(UTF_8));
+            socket = new Socket(this.host, this.port);
+            printWriter = new PrintWriter(socket.getOutputStream(), true);
+            input = new BufferedReader(new InputStreamReader(socket.getInputStream()));
         }
         catch (IOException e)
         {
@@ -28,8 +30,20 @@ public class Client
         }
     }
 
-    public Socket getSocket()
+    public void write(String message)
     {
-        return socket;
+        printWriter.println(message);
+    }
+
+    public void listen()
+    {
+        try
+        {
+            System.out.println(input.readLine());
+        }
+        catch (IOException e)
+        {
+            throw new IllegalStateException(e);
+        }
     }
 }
