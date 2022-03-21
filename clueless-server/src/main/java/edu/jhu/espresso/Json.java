@@ -3,8 +3,6 @@ package edu.jhu.espresso;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.*;
 
-import java.nio.charset.StandardCharsets;
-
 public class Json {
 
     private static ObjectMapper objectMapper = getDefaultObjectMapper();
@@ -20,9 +18,10 @@ public class Json {
         return objectMapper.readTree(str);
     }
 
-    public static <A> A fromJson(JsonNode node, Class <A> someClass) throws JsonProcessingException {
+    public static <A> A fromJson(JsonNode node, Class<A> someClass) throws JsonProcessingException {
         return objectMapper.treeToValue(node, someClass);
     }
+
 
     public static JsonNode toJson(Object anObject) {
         return objectMapper.valueToTree(anObject);

@@ -5,9 +5,14 @@ public class Card {
     private String cardType;
     private String cardValue;
 
+    public Card(String cardType, String cardValue) {
+        this.cardType = cardType;
+        this.cardValue = cardValue;
+    }
+
     public Card() {
-        this.cardType = "Suspect";
-        this.cardValue = "Professor Plum";
+        this.cardType = "Weapon";
+        this.cardValue = "Candlestick";
     }
 
     public String getCardType() {
