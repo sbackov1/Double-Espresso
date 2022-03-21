@@ -19,7 +19,7 @@ public class Client {
         PrintWriter output = new PrintWriter(this.socket.getOutputStream(), true);
 
         connect(this.socket, output);
-        sendData(this.socket, input);
+        readData(this.socket, input);
         output.close();
         input.close();
     }
@@ -31,26 +31,31 @@ public class Client {
         PrintWriter output = new PrintWriter(this.socket.getOutputStream(), true);
 
         connect(this.socket, output);
-        sendData(this.socket, input);
+        readData(this.socket, input);
         output.close();
         input.close();
     }
 
-    public void sendData(Socket aSocket, BufferedReader in) throws IOException {
+    public void readData(Socket aSocket, BufferedReader in) throws IOException {
 
 
         //  BufferedReader in = new BufferedReader(new InputStreamReader( aSocket.getInputStream()));
+        System.out.println("Printing received message:\n");
         String readString = in.readLine();
         System.out.println(readString);
+
         String cardString = in.readLine();
-
-
         JsonNode cardNode = Json.parse(cardString);
         Card aCard = Json.fromJson(cardNode, Card.class);
-
+        System.out.println();
+        System.out.println("Printing received JSON String:\n");
         System.out.println(cardString);
+        System.out.println();
+
+        System.out.println("Printing received Object:\n");
         System.out.println(aCard.getCardType());
         System.out.println(aCard.getCardValue());
+        System.out.println();
         //in.close();
     }
 
@@ -63,11 +68,15 @@ public class Client {
         JsonNode cardNode = Json.toJson(sendCard);
 
         // PrintWriter out = new PrintWriter(aSocket.getOutputStream(), true);
+        System.out.println("Sending message and Object as JSON:\n");
+
+        System.out.println("Hello World");
         out.println("Hello World");
         String cardString = Json.jsonString(cardNode, false);
         System.out.println(Json.jsonString(cardNode, true));
 
         out.println(cardString);
+        System.out.println();
         //out.close();
 
     }
