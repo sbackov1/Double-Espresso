@@ -11,7 +11,7 @@ import java.net.Socket;
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
 
-public class ClueLessClientHandler implements Runnable
+public class ClueLessClientHandler
 {
     private static final ObjectMapper OBJECT_MAPPER = new ObjectMapper();
 
@@ -29,27 +29,6 @@ public class ClueLessClientHandler implements Runnable
         this.socket = socket;
         handlerNumber = NUM_HANDLERS;
         NUM_HANDLERS++;
-    }
-
-    @Override
-    public void run()
-    {
-        while (true)
-        {
-            try
-            {
-                bufferedReader.mark(1_000);
-                if(bufferedReader.readLine() != null)
-                {
-                    bufferedReader.reset();
-                    System.out.println("handler " + handlerNumber + " received " + OBJECT_MAPPER.readValue(bufferedReader.readLine(), MessageStub.class));
-                }
-            }
-            catch (IOException e)
-            {
-                throw new IllegalStateException(e);
-            }
-        }
     }
 
     private MessageStub waitForClientResponse()
