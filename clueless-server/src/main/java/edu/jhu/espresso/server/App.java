@@ -2,7 +2,11 @@ package edu.jhu.espresso.server;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
+import java.util.concurrent.CompletableFuture;
+import java.util.stream.Collectors;
 
 /**
  * Hello world!
@@ -20,28 +24,14 @@ public class App
             clueLessClientHandlers.add(clueLessServer.accept());
         }
 
-        List<Thread> handlerThreads = new ArrayList<>();
+        ClueLessServerProtocol clueLessServerProtocol = new ClueLessServerProtocol(clueLessClientHandlers);
 
-        clueLessClientHandlers.forEach(handler -> {
-            Thread handlerThread = new Thread(handler);
-            handlerThreads.add(handlerThread);
-            handlerThread.start();
-        });
-
-        int activePlayerIndex = 0;
         while(true)
         {
             try
             {
                 Thread.sleep(2500L);
-                ClueLessClientHandler activeHandler = clueLessClientHandlers.get(activePlayerIndex);
-                activeHandler.write(TurnIndicator.ACTIVE_PLAYER, "Valid moves");
-
-                clueLessClientHandlers.stream()
-                        .filter(handler -> handler != activeHandler)
-                        .forEach(handler -> handler.write(TurnIndicator.WAITING_PLAYER, ""));
-
-                activePlayerIndex = (activePlayerIndex + 1) % clueLessClientHandlers.size();
+                clueLessServerProtocol.runTurn();
             }
             catch (InterruptedException e)
             {

@@ -1,18 +1,21 @@
 package edu.jhu.espresso.server;
 
-public final class MessageStub
-{
-    private String message;
-    private TurnIndicator turnIndicator;
+import java.util.List;
 
-    public String getMessage()
+public final class MessageStub implements Comparable<MessageStub>
+{
+    private List<String> validMoves;
+    private TurnIndicator turnIndicator;
+    private int handlerNumber;
+
+    public List<String> getValidMoves()
     {
-        return message;
+        return validMoves;
     }
 
-    public void setMessage(String message)
+    public void setValidMoves(List<String> validMoves)
     {
-        this.message = message;
+        this.validMoves = validMoves;
     }
 
     public TurnIndicator getTurnIndicator()
@@ -25,6 +28,16 @@ public final class MessageStub
         this.turnIndicator = turnIndicator;
     }
 
+    public int getHandlerNumber()
+    {
+        return handlerNumber;
+    }
+
+    public void setHandlerNumber(int handlerNumber)
+    {
+        this.handlerNumber = handlerNumber;
+    }
+
     @Override
     public boolean equals(Object o)
     {
@@ -33,15 +46,17 @@ public final class MessageStub
 
         MessageStub that = (MessageStub) o;
 
-        if (message != null ? !message.equals(that.message) : that.message != null) return false;
+        if (handlerNumber != that.handlerNumber) return false;
+        if (validMoves != null ? !validMoves.equals(that.validMoves) : that.validMoves != null) return false;
         return turnIndicator == that.turnIndicator;
     }
 
     @Override
     public int hashCode()
     {
-        int result = message != null ? message.hashCode() : 0;
+        int result = validMoves != null ? validMoves.hashCode() : 0;
         result = 31 * result + (turnIndicator != null ? turnIndicator.hashCode() : 0);
+        result = 31 * result + handlerNumber;
         return result;
     }
 
@@ -49,8 +64,15 @@ public final class MessageStub
     public String toString()
     {
         return "MessageStub{" +
-                "message='" + message + '\'' +
-                ", someData=" + turnIndicator +
+                "validMoves=" + validMoves +
+                ", turnIndicator=" + turnIndicator +
+                ", handlerNumber=" + handlerNumber +
                 '}';
+    }
+
+    @Override
+    public int compareTo(MessageStub o)
+    {
+        return Integer.compare(handlerNumber, o.handlerNumber);
     }
 }

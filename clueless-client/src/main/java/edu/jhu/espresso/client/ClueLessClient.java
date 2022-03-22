@@ -8,7 +8,6 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.Socket;
-import java.util.Collections;
 
 public class ClueLessClient implements Runnable
 {
@@ -63,7 +62,7 @@ public class ClueLessClient implements Runnable
                     if(messageStub.getTurnIndicator() == TurnIndicator.ACTIVE_PLAYER)
                     {
                         ActivePlayerProtocol activePlayerProtocol = new ActivePlayerProtocol(
-                                Collections.singletonList(messageStub.getMessage()),
+                                messageStub,
                                 this
                         );
                         activePlayerProtocol.execute();
@@ -71,7 +70,7 @@ public class ClueLessClient implements Runnable
                     else
                     {
                         WaitingPlayerProtocol waitingPlayerProtocol = new WaitingPlayerProtocol(
-                                Collections.singletonList(messageStub.getMessage()),
+                                messageStub,
                                 this
                         );
                         waitingPlayerProtocol.execute();

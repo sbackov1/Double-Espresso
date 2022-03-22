@@ -7,9 +7,6 @@ public class App
 {
     public static void main( String[] args )
     {
-        MessageStub messageStub = new MessageStub();
-        messageStub.setMessage("Client message");
-
         List<ClueLessClient> clients = new ArrayList<>();
         for (int i = 0; i < 6; i++)
         {

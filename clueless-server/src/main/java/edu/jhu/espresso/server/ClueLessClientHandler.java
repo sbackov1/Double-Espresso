@@ -9,6 +9,7 @@ import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.Socket;
 import java.util.List;
+import java.util.concurrent.CompletableFuture;
 
 public class ClueLessClientHandler implements Runnable
 {
@@ -20,7 +21,6 @@ public class ClueLessClientHandler implements Runnable
     private final BufferedReader bufferedReader;
     private final int handlerNumber;
     private final Socket socket;
-    private final MessageStub messageStub = new MessageStub();
 
     public ClueLessClientHandler(Socket socket) throws IOException
     {
@@ -29,9 +29,6 @@ public class ClueLessClientHandler implements Runnable
         this.socket = socket;
         handlerNumber = NUM_HANDLERS;
         NUM_HANDLERS++;
-
-        messageStub.setMessage("Client handler " + handlerNumber);
-        messageStub.setTurnIndicator(handlerNumber == 0 ? TurnIndicator.ACTIVE_PLAYER : TurnIndicator.WAITING_PLAYER);
     }
 
     @Override
@@ -55,19 +52,46 @@ public class ClueLessClientHandler implements Runnable
         }
     }
 
-    public void write(TurnIndicator turnIndicator, String message)
+    private MessageStub waitForClientResponse()
     {
+        MessageStub response = null;
+        while (response == null)
+        {
+            try
+            {
+                bufferedReader.mark(1_000);
+                if(bufferedReader.readLine() != null)
+                {
+                    bufferedReader.reset();
+                    response = OBJECT_MAPPER.readValue(bufferedReader.readLine(), MessageStub.class);
+                }
+            }
+            catch (IOException e)
+            {
+                throw new IllegalStateException(e);
+            }
+        }
+        return response;
+    }
+
+    public CompletableFuture<MessageStub> write(TurnIndicator turnIndicator, List<String> validMoves)
+    {
+        CompletableFuture<MessageStub> response;
         try
         {
             MessageStub messageStub = new MessageStub();
-            messageStub.setMessage(message);
+            messageStub.setValidMoves(validMoves);
             messageStub.setTurnIndicator(turnIndicator);
+            messageStub.setHandlerNumber(handlerNumber);
             printWriter.println(OBJECT_MAPPER.writeValueAsString(messageStub));
+            response = CompletableFuture.supplyAsync(this::waitForClientResponse);
         }
         catch (JsonProcessingException e)
         {
             throw new IllegalStateException(e);
         }
+
+        return response;
     }
 
     public PrintWriter getPrintWriter()

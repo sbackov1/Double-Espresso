@@ -1,23 +1,33 @@
 package edu.jhu.espresso.client;
 
-import java.util.List;
+import java.util.Random;
 
 public class WaitingPlayerProtocol
 {
     private final ClueLessClient client;
-    private final List<String> validMoves;
+    private final MessageStub messageStub;
 
-    public WaitingPlayerProtocol(List<String> validMoves, ClueLessClient client)
+    public WaitingPlayerProtocol(MessageStub messageStub, ClueLessClient client)
     {
         this.client = client;
-        this.validMoves = validMoves;
+        this.messageStub = messageStub;
     }
 
     public void execute()
     {
-        MessageStub messageStub = new MessageStub();
-        messageStub.setMessage(validMoves.get(0));
-        messageStub.setTurnIndicator(TurnIndicator.WAITING_PLAYER);
-        client.write(messageStub);
+        try
+        {
+            Thread.sleep(Math.abs(new Random().nextInt()) % 10);
+        }
+        catch (InterruptedException e)
+        {
+            throw new IllegalStateException(e);
+        }
+
+        MessageStub response = new MessageStub();
+        response.setValidMoves(messageStub.getValidMoves());
+        response.setHandlerNumber(messageStub.getHandlerNumber());
+        response.setTurnIndicator(TurnIndicator.WAITING_PLAYER);
+        client.write(response);
     }
 }
