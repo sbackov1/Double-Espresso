@@ -1,4 +1,4 @@
-package edu.jhu.espresso;
+package edu.jhu.espresso.client;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -9,7 +9,6 @@ public class App
     {
         MessageStub messageStub = new MessageStub();
         messageStub.setMessage("Client message");
-        messageStub.setSomeData(true);
 
         List<ClueLessClient> clients = new ArrayList<>();
         for (int i = 0; i < 6; i++)
@@ -17,7 +16,7 @@ public class App
             clients.add(new ClueLessClient("localhost", 8080));
         }
 
-        clients.forEach(client -> client.write(messageStub));
-        clients.forEach(ClueLessClient::listen);
+//        clients.forEach(client -> client.write(messageStub));
+        clients.forEach(client -> new Thread(client).start());
     }
 }

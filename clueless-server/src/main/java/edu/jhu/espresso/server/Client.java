@@ -1,4 +1,4 @@
-package edu.jhu.espresso;
+package edu.jhu.espresso.server;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -9,7 +9,7 @@ import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.Socket;
 
-public class ClueLessClient
+public class Client
 {
     private static final ObjectMapper OBJECT_MAPPER = new ObjectMapper();
 
@@ -19,7 +19,7 @@ public class ClueLessClient
     private final PrintWriter printWriter;
     private final BufferedReader input;
 
-    public ClueLessClient(String host, int port)
+    public Client(String host, int port)
     {
         this.host = host;
         this.port = port;

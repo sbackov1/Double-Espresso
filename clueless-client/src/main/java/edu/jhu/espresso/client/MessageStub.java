@@ -1,9 +1,9 @@
-package edu.jhu.espresso;
+package edu.jhu.espresso.client;
 
 public final class MessageStub
 {
     private String message;
-    private boolean someData;
+    private TurnIndicator turnIndicator;
 
     public String getMessage()
     {
@@ -15,14 +15,14 @@ public final class MessageStub
         this.message = message;
     }
 
-    public boolean isSomeData()
+    public TurnIndicator getTurnIndicator()
     {
-        return someData;
+        return turnIndicator;
     }
 
-    public void setSomeData(boolean someData)
+    public void setTurnIndicator(TurnIndicator turnIndicator)
     {
-        this.someData = someData;
+        this.turnIndicator = turnIndicator;
     }
 
     @Override
@@ -33,15 +33,15 @@ public final class MessageStub
 
         MessageStub that = (MessageStub) o;
 
-        if (someData != that.someData) return false;
-        return message != null ? message.equals(that.message) : that.message == null;
+        if (message != null ? !message.equals(that.message) : that.message != null) return false;
+        return turnIndicator == that.turnIndicator;
     }
 
     @Override
     public int hashCode()
     {
         int result = message != null ? message.hashCode() : 0;
-        result = 31 * result + (someData ? 1 : 0);
+        result = 31 * result + (turnIndicator != null ? turnIndicator.hashCode() : 0);
         return result;
     }
 
@@ -50,7 +50,7 @@ public final class MessageStub
     {
         return "MessageStub{" +
                 "message='" + message + '\'' +
-                ", someData=" + someData +
+                ", someData=" + turnIndicator +
                 '}';
     }
 }

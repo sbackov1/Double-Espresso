@@ -1,4 +1,4 @@
-package edu.jhu.espresso;
+package edu.jhu.espresso.server;
 
 import java.io.IOException;
 import java.net.ServerSocket;
