@@ -11,9 +11,6 @@ import java.net.InetAddress;
 import java.net.ServerSocket;
 import java.net.Socket;
 
-import static edu.jhu.espresso.SocketUtils.readMessage;
-import static edu.jhu.espresso.SocketUtils.writeMessage;
-
 
 public class CluelessClientHandler implements Runnable {
    // private static final ObjectMapper OBJECT_MAPPER = new ObjectMapper();
@@ -47,8 +44,8 @@ public class CluelessClientHandler implements Runnable {
     {
         try
         {
-            readMessage(this.socket, getBufferedReader());
-            writeMessage(this.socket, getPrintWriter(), clientMessage );
+            SocketUtils.readMessage(this.socket, getBufferedReader());
+            SocketUtils.writeMessage(this.socket, getPrintWriter(), clientMessage );
 
 
         } catch (IOException e)

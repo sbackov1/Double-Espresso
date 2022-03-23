@@ -7,6 +7,8 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.net.Socket;
 
+import static edu.jhu.espresso.Json.fromJson;
+
 public class SocketUtils {
 
     public static void readMessage(Socket aSocket, BufferedReader in) throws IOException {
@@ -17,7 +19,7 @@ public class SocketUtils {
 
         String messageString = in.readLine();
         JsonNode messageNode = Json.parse(messageString);
-        Card aCard = Json.fromJson(messageNode, Card.class);
+        Card aCard = fromJson(messageNode, Card.class);
         System.out.println();
         System.out.println("Printing received JSON String:\n");
         System.out.println(messageString);

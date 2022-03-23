@@ -8,9 +8,6 @@ import java.util.ArrayList;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-import static edu.jhu.espresso.SocketUtils.writeMessage;
-import static edu.jhu.espresso.SocketUtils.readMessage;
-
 public class Server {
     private final ServerSocket serverSocket;
     private final int LISTEN_PORT = 8080;

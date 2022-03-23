@@ -5,7 +5,7 @@ import com.fasterxml.jackson.databind.*;
 
 public class Json {
 
-    private static ObjectMapper objectMapper = getDefaultObjectMapper();
+    private static final ObjectMapper objectMapper = getDefaultObjectMapper();
 
     private static ObjectMapper getDefaultObjectMapper() {
         ObjectMapper defaultObjectMapper = new ObjectMapper();
