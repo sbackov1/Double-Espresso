@@ -1,8 +1,8 @@
-package edu.jhu.espresso.server;
+package edu.jhu.espresso.server.domain;
 
 import java.util.List;
 
-public final class MessageStub implements Comparable<MessageStub>
+public final class MoveOptions implements Comparable<MoveOptions>
 {
     private List<String> validMoves;
     private TurnIndicator turnIndicator;
@@ -44,7 +44,7 @@ public final class MessageStub implements Comparable<MessageStub>
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        MessageStub that = (MessageStub) o;
+        MoveOptions that = (MoveOptions) o;
 
         if (handlerNumber != that.handlerNumber) return false;
         if (validMoves != null ? !validMoves.equals(that.validMoves) : that.validMoves != null) return false;
@@ -71,7 +71,7 @@ public final class MessageStub implements Comparable<MessageStub>
     }
 
     @Override
-    public int compareTo(MessageStub o)
+    public int compareTo(MoveOptions o)
     {
         return Integer.compare(handlerNumber, o.handlerNumber);
     }

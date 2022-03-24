@@ -20,14 +20,14 @@ public class App
             clueLessClientHandlers.add(clueLessServer.accept());
         }
 
-        ClueLessServerProtocol clueLessServerProtocol = new ClueLessServerProtocol(clueLessClientHandlers);
+        ClueLessServerProtocolStub clueLessServerProtocolStub = new ClueLessServerProtocolStub(clueLessClientHandlers);
 
         while(true)
         {
             try
             {
                 Thread.sleep(2500L);
-                clueLessServerProtocol.runTurn();
+                clueLessServerProtocolStub.runTurn();
             }
             catch (InterruptedException e)
             {

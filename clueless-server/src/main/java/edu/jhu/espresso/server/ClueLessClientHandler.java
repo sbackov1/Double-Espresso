@@ -2,6 +2,8 @@ package edu.jhu.espresso.server;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import edu.jhu.espresso.server.domain.MoveOptions;
+import edu.jhu.espresso.server.domain.TurnIndicator;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -31,9 +33,9 @@ public class ClueLessClientHandler
         NUM_HANDLERS++;
     }
 
-    private MessageStub waitForClientResponse()
+    private <T> T waitForClientResponse(Class<T> clazz)
     {
-        MessageStub response = null;
+        T response = null;
         while (response == null)
         {
             try
@@ -42,7 +44,7 @@ public class ClueLessClientHandler
                 if(bufferedReader.readLine() != null)
                 {
                     bufferedReader.reset();
-                    response = OBJECT_MAPPER.readValue(bufferedReader.readLine(), MessageStub.class);
+                    response = OBJECT_MAPPER.readValue(bufferedReader.readLine(), clazz);
                 }
             }
             catch (IOException e)
@@ -53,17 +55,13 @@ public class ClueLessClientHandler
         return response;
     }
 
-    public CompletableFuture<MessageStub> write(TurnIndicator turnIndicator, List<String> validMoves)
+    public <I,O> CompletableFuture<O> write(I input, Class<O> responseClass)
     {
-        CompletableFuture<MessageStub> response;
+        CompletableFuture<O> response;
         try
         {
-            MessageStub messageStub = new MessageStub();
-            messageStub.setValidMoves(validMoves);
-            messageStub.setTurnIndicator(turnIndicator);
-            messageStub.setHandlerNumber(handlerNumber);
-            printWriter.println(OBJECT_MAPPER.writeValueAsString(messageStub));
-            response = CompletableFuture.supplyAsync(this::waitForClientResponse);
+            printWriter.println(OBJECT_MAPPER.writeValueAsString(input));
+            response = CompletableFuture.supplyAsync(() -> waitForClientResponse(responseClass));
         }
         catch (JsonProcessingException e)
         {

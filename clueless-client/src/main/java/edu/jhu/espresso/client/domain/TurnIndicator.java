@@ -1,4 +1,4 @@
-package edu.jhu.espresso.server;
+package edu.jhu.espresso.client.domain;
 
 public enum TurnIndicator
 {
