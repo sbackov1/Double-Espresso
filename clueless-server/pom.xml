@@ -5,11 +5,12 @@
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>edu.jhu.espresso</groupId>
-  <artifactId>clueless-client</artifactId>
+  <artifactId>clueless-server</artifactId>
   <version>skeletal-demo</version>
 
-  <name>clueless-client</name>
-  <url>https://github.com/sbackov1/Double-Espresso/clueless-client</url>
+  <name>clueless-server</name>
+  <!-- FIXME change it to the project's website -->
+  <url>http://www.example.com</url>
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -18,7 +19,6 @@
   </properties>
 
   <dependencies>
-
     <dependency>
       <groupId>org.junit.jupiter</groupId>
       <artifactId>junit-jupiter-engine</artifactId>
@@ -96,7 +96,7 @@
               <archive>
                 <manifest>
                   <mainClass>
-                    edu.jhu.espresso.client.App
+                    edu.jhu.espresso.server.App
                   </mainClass>
                 </manifest>
               </archive>
