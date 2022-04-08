@@ -30,10 +30,10 @@ public class ClueLessServerProtocolStub
                 .filter(handler -> !handler.equals(activePlayerHandler))
                 .collect(Collectors.toList());
 
-        CompletableFuture<TurnStart> activeResponseFuture = activePlayerHandler.write(ACTIVE_PLAYER_TURN, TurnStart.class);
+        CompletableFuture<TurnStart> activeResponseFuture = activePlayerHandler.writeAsync(ACTIVE_PLAYER_TURN, TurnStart.class);
 
         List<CompletableFuture<TurnStart>> waitingResponseFutures = waitingPlayers.stream()
-                .map(handler -> handler.write(WAITING_PLAYER_TURN, TurnStart.class))
+                .map(handler -> handler.writeAsync(WAITING_PLAYER_TURN, TurnStart.class))
                 .collect(Collectors.toList());
 
         TurnStart activeResponse = activeResponseFuture.join();
@@ -46,23 +46,27 @@ public class ClueLessServerProtocolStub
 
         System.out.println();
 
-        MoveOptions moveChoice = activePlayerHandler.write(
-                stubMoveOptions(),
-                MoveOptions.class
-        ).join();
-
-        System.out.println("player chooses " + moveChoice);
-
-        Suggestion suggestionChoice = activePlayerHandler.write(
-                stubSuggestion(),
-                Suggestion.class
-        ).join();
-
-        System.out.println("player makes suggestion " + suggestionChoice);
-
-        Accusation accusationChoice = activePlayerHandler.write(
-                stubAccusation(),
-                Accusation.class
+        Accusation accusationChoice = CompletableFuture.supplyAsync(
+                () -> activePlayerHandler.write(
+                        stubMoveOptions(),
+                        MoveOptions.class
+                )
+        ).thenApplyAsync(
+                moveOptions -> {
+                    System.out.println(moveOptions);
+                    return activePlayerHandler.write(
+                            stubSuggestion(),
+                            Suggestion.class
+                    );
+                }
+        ).thenApplyAsync(
+                suggestion -> {
+                    System.out.println(suggestion);
+                    return activePlayerHandler.write(
+                            stubAccusation(),
+                            Accusation.class
+                    );
+                }
         ).join();
 
         System.out.println("player makes accusation " + accusationChoice);

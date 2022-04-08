@@ -2,15 +2,12 @@ package edu.jhu.espresso.server;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import edu.jhu.espresso.server.domain.MoveOptions;
-import edu.jhu.espresso.server.domain.TurnIndicator;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.Socket;
-import java.util.List;
 import java.util.concurrent.CompletableFuture;
 
 public class ClueLessClientHandler
@@ -55,13 +52,18 @@ public class ClueLessClientHandler
         return response;
     }
 
-    public <I,O> CompletableFuture<O> write(I input, Class<O> responseClass)
+    public <I,O> CompletableFuture<O> writeAsync(I input, Class<O> responseClass)
     {
-        CompletableFuture<O> response;
+        return CompletableFuture.supplyAsync(() -> write(input, responseClass));
+    }
+
+    public <I,O> O write(I input, Class<O> responseClass)
+    {
+        O response;
         try
         {
             printWriter.println(OBJECT_MAPPER.writeValueAsString(input));
-            response = CompletableFuture.supplyAsync(() -> waitForClientResponse(responseClass));
+            response = waitForClientResponse(responseClass);
         }
         catch (JsonProcessingException e)
         {
