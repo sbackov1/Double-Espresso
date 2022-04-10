@@ -5,7 +5,7 @@ public final class Accusation
     private AccusationStatus accusationStatus;
     private Weapon weapon;
     private Room room;
-    private Character character;
+    private CharacterNames characterNames;
 
     public AccusationStatus getAccusationStatus()
     {
@@ -37,14 +37,14 @@ public final class Accusation
         this.room = room;
     }
 
-    public Character getCharacter()
+    public CharacterNames getCharacter()
     {
-        return character;
+        return characterNames;
     }
 
-    public void setCharacter(Character character)
+    public void setCharacter(CharacterNames characterNames)
     {
-        this.character = character;
+        this.characterNames = characterNames;
     }
 
     @Override
@@ -54,7 +54,7 @@ public final class Accusation
                 "accusationStatus=" + accusationStatus +
                 ", weapon=" + weapon +
                 ", room=" + room +
-                ", character=" + character +
+                ", character=" + characterNames +
                 '}';
     }
 }

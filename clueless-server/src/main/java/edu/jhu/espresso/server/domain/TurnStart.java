@@ -31,12 +31,11 @@ public class TurnStart
         turnStart.setTurnIndicator(turnIndicator);
 
         GameState gameState = new GameState();
-        gameState.getCharacterPositions().put(Character.MISS_SCARLET, Room.BILLIARD_ROOM);
-        gameState.getCharacterPositions().put(Character.COLONEL_MUSTARD, Room.STUDY);
-        gameState.getCharacterPositions().put(Character.PROFESSOR_PLUM, Room.CONSERVATORY);
-        gameState.getCharacterPositions().put(Character.MR_GREEN, Room.DINING_ROOM);
-        gameState.getCharacterPositions().put(Character.MRS_PEACOCK, Room.CELLAR);
-        gameState.getCharacterPositions().put(Character.MRS_WHITE, Room.BALLROOM);
+        gameState.getCharacterPositions().put(CharacterNames.MISS_SCARLET, RoomNames.BILLIARD_ROOM);
+        gameState.getCharacterPositions().put(CharacterNames.COLONEL_MUSTARD, RoomNames.STUDY);
+        gameState.getCharacterPositions().put(CharacterNames.PROFESSOR_PLUM, RoomNames.CONSERVATORY);
+        gameState.getCharacterPositions().put(CharacterNames.MR_GREEN, RoomNames.DINING_ROOM);
+        gameState.getCharacterPositions().put(CharacterNames.MRS_WHITE, RoomNames.BALLROOM);
 
         turnStart.setGameState(gameState);
 

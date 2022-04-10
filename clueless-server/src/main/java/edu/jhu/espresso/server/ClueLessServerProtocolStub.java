@@ -79,7 +79,7 @@ public class ClueLessServerProtocolStub
     private MoveOptions stubMoveOptions()
     {
         MoveOptions moveOptions = new MoveOptions();
-        moveOptions.setValidMoves(new ArrayList<>(Arrays.asList("hallway", Room.BALLROOM.name(), Room.CELLAR.name())));
+        moveOptions.setValidMoves(new ArrayList<>(Arrays.asList("hallway", RoomNames.BALLROOM.name(), RoomNames.STUDY.name())));
         moveOptions.setTurnIndicator(TurnIndicator.ACTIVE_PLAYER);
         return moveOptions;
     }

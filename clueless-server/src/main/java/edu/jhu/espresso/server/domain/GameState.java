@@ -4,16 +4,16 @@ import java.util.*;
 
 public final class GameState
 {
-    private List<Room> rooms = Arrays.asList(Room.values());
+    private List<RoomNames> rooms = Arrays.asList(RoomNames.values());
     private List<String> hallways = Collections.emptyList();
-    private Map<Character, Room> characterPositions = new EnumMap<>(Character.class);
+    private Map<CharacterNames, RoomNames> characterPositions = new EnumMap<CharacterNames, RoomNames>(CharacterNames.class);
 
-    public List<Room> getRooms()
+    public List<RoomNames> getRooms()
     {
         return rooms;
     }
 
-    public void setRooms(List<Room> rooms)
+    public void setRooms(List<RoomNames> rooms)
     {
         this.rooms = rooms;
     }
@@ -28,12 +28,12 @@ public final class GameState
         this.hallways = hallways;
     }
 
-    public Map<Character, Room> getCharacterPositions()
+    public Map<CharacterNames, RoomNames> getCharacterPositions()
     {
         return characterPositions;
     }
 
-    public void setCharacterPositions(Map<Character, Room> characterPositions)
+    public void setCharacterPositions(Map<CharacterNames, RoomNames> characterPositions)
     {
         this.characterPositions = characterPositions;
     }
