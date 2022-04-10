@@ -75,4 +75,16 @@ public final class MoveOptions implements Comparable<MoveOptions>
     {
         return Integer.compare(handlerNumber, o.handlerNumber);
     }
+
+    public void mainMoveMenu()
+    {
+        Menu moveMenu = new Menu();
+        moveMenu.setTitle("*** Movement Menu ***");
+
+        for(String validMove : this.validMoves)
+        {
+            moveMenu.addItem(new MenuItem(validMove, this, "setValidMoves", "ValidMoves.valueOf(validMoves)"));
+        }
+        moveMenu.execute();
+    }
 }
