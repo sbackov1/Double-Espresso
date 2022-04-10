@@ -6,8 +6,9 @@ public class MoveDriver {
 
     public static void main(String[] args) {
         ArrayList<String> ValidMoves = new ArrayList<>();
-        ValidMoves.add("BALLROOM");
-        ValidMoves.add("KITCHEN");
+        ValidMoves.add("HALLWAY5");
+        ValidMoves.add("HALLWAY6");
+        ValidMoves.add("HALLWAY11");
 
         MoveOptions moveOptions = new MoveOptions();
 
