@@ -79,6 +79,21 @@ public final class Accusation
         this.character = character;
     }
 
+    public void setCharacterString(String characterString) {
+        this.character = Character.valueOf(characterString);
+        System.out.println("\n" + this.character + " was selected.");
+    }
+
+    public void setRoomString(String roomString) {
+        this.room = Room.valueOf(roomString);
+        System.out.println("\n" + this.room + " was selected.");
+    }
+
+    public void setWeaponString(String weaponString) {
+        this.weapon = Weapon.valueOf(weaponString);
+        System.out.println("\n" + this.weapon + " was selected.");
+    }
+
 
 
     @Override
@@ -92,6 +107,13 @@ public final class Accusation
                 '}';
     }
 
+    public void printToString(){
+
+        this.accusationStatus = AccusationStatus.MAKING_ACCUSATION;
+        String output = toString();
+        System.out.println("\n" + output + " is the message to be transmitted.");
+}
+
 
 
     public void mainAccMenu () {
@@ -101,8 +123,8 @@ public final class Accusation
         accMenu.addItem(new MenuItem("Select Character", this, "selectCharacter"));
         accMenu.addItem(new MenuItem("Select Room", this, "selectRoom"));
         accMenu.addItem(new MenuItem("Select Weapon", this, "selectWeapon"));
-        accMenu.addItem(new MenuItem("Finalize Accusation and Check Case File", this, "makeAccusation"));
-        accMenu.setExitItem(new MenuItem("Cancel Accusation"));
+        accMenu.addItem(new MenuItem("Finalize Accusation and Check Case File", this, "printToString", null));
+        //accMenu.setExitItem(new MenuItem("Cancel Accusation"));
         //cancel.setExitItem(true);
        // accMenu.addItem(cancel);
 
@@ -118,7 +140,7 @@ public final class Accusation
 
         for (String validCharacter : this.validCharacters) {
 
-            accMenu.addItem(new MenuItem(validCharacter,this, "setCharacter", "Character.valueOf(validCharacter)"));
+            accMenu.addItem(new MenuItem(validCharacter,this, "setCharacterString", validCharacter));
         }
         //accMenu.addItem(new MenuItem("Back"));
         accMenu.execute();
@@ -131,7 +153,8 @@ public final class Accusation
 
         for (String validRoom : this.validRooms) {
 
-            accMenu.addItem(new MenuItem(validRoom,this, "setRoom(Room.valueOf(validRoom))"));
+            accMenu.addItem(new MenuItem(validRoom,this, "setRoomString", validRoom));
+
         }
         //accMenu.addItem(new MenuItem("Back"));
         accMenu.execute();
@@ -145,7 +168,8 @@ public final class Accusation
 
         for (String validWeapon : this.validWeapons) {
 
-            accMenu.addItem(new MenuItem(validWeapon,this, "setWeapon(Weapon.valueOf(validWeapon))"));
+            accMenu.addItem(new MenuItem(validWeapon,this, "setWeaponString", validWeapon));
+
         }
         //accMenu.addItem(new MenuItem("Back"));
         accMenu.execute();

@@ -39,9 +39,9 @@ public class Menu {
             this.isRootMenu = true; // let this instance know it's a root menu
             this.setTitle("Menu");
 
-            if (this.exitItem == null) {
+            //if (this.exitItem == null) {
                 this.exitItem = new MenuItem("Exit"); // A root menu will exit from the program
-            }
+           // }
         }
         else {
             this.setTitle("Sub Menu");

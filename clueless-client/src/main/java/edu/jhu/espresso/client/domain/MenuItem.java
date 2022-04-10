@@ -49,7 +49,7 @@ public class MenuItem {
      * This method is called by a parent Menu when the option that this MenuItem is
      * associated with has been selected. It will attempt to create a Method object
      * provided the method exists, and it will then attempt to invoke it. This
-     * approach eliminates the need for a selection process in Menu as each MenuIeem
+     * approach eliminates the need for a selection process in Menu as each MenuItem
      * can invoke itself.
      */
     void invoke() {
@@ -57,15 +57,15 @@ public class MenuItem {
 
         try {
             Method method;
-            System.out.println(obj.getClass().getName());
-            if (parameters == null) {
+
+            if (this.parameters == null) {
                 method = obj.getClass().getMethod(target);
-                System.out.println(method.getName());
                 method.invoke(obj);
             }
-            else
-                method = obj.getClass().getMethod(target);
+            else {
+                method = obj.getClass().getMethod(target, String.class);
                 method.invoke(obj, parameters);
+            }
         }
         catch (Exception ex) { ex.printStackTrace(); }
     }
