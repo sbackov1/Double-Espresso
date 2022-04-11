@@ -90,7 +90,7 @@ public final class Suggestion {
     public void mainSugMenu () {
 
         Menu sugMenu = new Menu();
-        sugMenu.setTitle("*** Accusation Menu ***");
+        sugMenu.setTitle("*** Suggestion Menu ***");
         sugMenu.addItem(new MenuItem("Select Character", this, "selectCharacter"));
         sugMenu.addItem(new MenuItem("Select Weapon", this, "selectWeapon"));
         sugMenu.addItem(new MenuItem("Finalize Suggestion and Check Players", this, "printToString", null));
