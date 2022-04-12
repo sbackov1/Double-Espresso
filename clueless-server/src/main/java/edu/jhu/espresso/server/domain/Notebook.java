@@ -24,6 +24,12 @@ public class Notebook {
         handCards.add(c);
         }
 
+    //Returns all cards in a notebook which can disprove the current suggestion.  If none are present, it returns null.
+    public ArrayList<Card> canDisproveSuggestion (ArrayList<Card> suggestionCards){
+        suggestionCards.retainAll(this.handCards);
+        return suggestionCards;
+    }
+
     public ArrayList<Card> getHandCards() {
         return handCards;
     }

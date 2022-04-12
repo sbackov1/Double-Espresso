@@ -8,25 +8,25 @@ public class CardDeck {
         private ArrayList<Card> cardsListCopy;
 
         public CardDeck() {
-                ArrayList<Card> cardsList = new ArrayList<Card>();
+                this.cardsList = new ArrayList<Card>();
 
                 //Add room cards
                 for (RoomNames rooms : RoomNames.values()) {
-                        cardsList.add(new RoomCard(rooms.name()));
+                        this.cardsList.add(new RoomCard(rooms.name()));
                 }
 
                 //Add character cards
                 for (CharacterNames cn : CharacterNames.values()) {
-                        cardsList.add(new CharacterCard(cn.name()));
+                        this.cardsList.add(new CharacterCard(cn.name()));
                 }
 
                 //Add weapon cards
                 for (Weapon wp : Weapon.values()) {
-                        cardsList.add(new WeaponCard(wp.name()));
+                        this.cardsList.add(new WeaponCard(wp.name()));
                 }
 
                 //Create a copy to deal from
-                ArrayList<Card> cardsListCopy = (ArrayList<Card>) cardsList.clone();
+                this.cardsListCopy = (ArrayList<Card>) cardsList.clone();
         }
 
         //dealRandomCard returns random card and removes it from the deck.
