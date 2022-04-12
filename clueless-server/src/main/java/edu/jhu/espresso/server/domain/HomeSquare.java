@@ -1,9 +1,12 @@
 package edu.jhu.espresso.server.domain;
 
-public class HomeSquare {
+import java.util.ArrayList;
+
+public class HomeSquare implements Location {
 
     private String adjacentHallway;
-    private CharacterNames character;
+    private final CharacterNames character;
+    private String locationName;
 
     public HomeSquare(CharacterNames Ch){
         this.character = Ch;
@@ -11,16 +14,28 @@ public class HomeSquare {
         switch(Ch) {
             case PROFESSOR_PLUM:
                 this.adjacentHallway =  "H7";
+                this.locationName = "PROFESSOR_PLUM_HS";
+                break;
             case MRS_PEACOCK:
                 this.adjacentHallway = "H10";
+                this.locationName = "MRS_PEACOCK_HS";
+                break;
             case MR_GREEN:
                 this.adjacentHallway = "H5";
+                this.locationName = "MR_GREEN_HS";
+                break;
             case MRS_WHITE:
                 this.adjacentHallway = "H6";
+                this.locationName = "MRS_WHITE_HS";
+                break;
             case COLONEL_MUSTARD:
                 this.adjacentHallway = "H9";
+                this.locationName = "COLONEL_MUSTARD_HS";
+                break;
             case MISS_SCARLET:
                 this.adjacentHallway = "H2";
+                this.locationName = "MISS_SCARLETT_HS";
+                break;
         }
     }
 
@@ -32,6 +47,8 @@ public class HomeSquare {
         return character;
     }
 
-
-
+    @Override
+    public ArrayList<String> getPossibleDestinations() {
+        return null;
+    }
 }

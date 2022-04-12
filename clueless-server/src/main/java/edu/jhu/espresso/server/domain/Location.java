@@ -4,12 +4,11 @@ import java.util.ArrayList;
 
 public interface Location {
 
-    final String locationName = null;
+    String locationName = null;
     boolean isFull = false;
-    ArrayList<String> possibleDestinations = new ArrayList<>();
+    ArrayList<Location> possibleDestinations = new ArrayList<>();
 
-   // public ArrayList<String> getPossibleDestinations(Location);
-
-    }
+    public ArrayList<String> getPossibleDestinations();
+}
 
 
