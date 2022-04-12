@@ -87,6 +87,7 @@ public final class Accusation
     public void setRoomString(String roomString) {
         this.room = Room.valueOf(roomString);
         System.out.println("\n" + this.room + " was selected.");
+
     }
 
     public void setWeaponString(String weaponString) {
