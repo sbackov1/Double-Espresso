@@ -2,17 +2,17 @@ package edu.jhu.espresso.client.domain;
 
 public class TurnStart
 {
-    private TurnIndicator turnIndicator;
+    private ClueLessProtocolType clueLessProtocolType;
     private GameState gameState;
 
-    public TurnIndicator getTurnIndicator()
+    public ClueLessProtocolType getProtocolType()
     {
-        return turnIndicator;
+        return clueLessProtocolType;
     }
 
-    public void setTurnIndicator(TurnIndicator turnIndicator)
+    public void setTurnIndicator(ClueLessProtocolType clueLessProtocolType)
     {
-        this.turnIndicator = turnIndicator;
+        this.clueLessProtocolType = clueLessProtocolType;
     }
 
     public GameState getGameState()
@@ -23,14 +23,5 @@ public class TurnStart
     public void setGameState(GameState gameState)
     {
         this.gameState = gameState;
-    }
-
-    @Override
-    public String toString()
-    {
-        return "TurnStart{" +
-                "turnIndicator=" + turnIndicator +
-                ", gameState=" + gameState +
-                '}';
     }
 }

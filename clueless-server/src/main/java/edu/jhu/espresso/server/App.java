@@ -1,7 +1,11 @@
 package edu.jhu.espresso.server;
 
+import edu.jhu.espresso.server.domain.Game;
+import edu.jhu.espresso.server.protocol.ClueLessServerGameProtocol;
+
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -20,14 +24,16 @@ public class App
             clueLessClientHandlers.add(clueLessServer.accept());
         }
 
-        ClueLessServerProtocolStub clueLessServerProtocolStub = new ClueLessServerProtocolStub(clueLessClientHandlers);
+        Game game = new Game(0, new ArrayList<>());
+
+        ClueLessServerGameProtocol clueLessServerGameProtocol = new ClueLessServerGameProtocol(clueLessClientHandlers, game);
 
         while(true)
         {
             try
             {
                 Thread.sleep(2500L);
-                clueLessServerProtocolStub.runTurn();
+                clueLessServerGameProtocol.playGame();
             }
             catch (InterruptedException e)
             {

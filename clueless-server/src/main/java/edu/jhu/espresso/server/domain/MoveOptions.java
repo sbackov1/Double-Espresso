@@ -5,7 +5,7 @@ import java.util.List;
 public final class MoveOptions implements Comparable<MoveOptions>
 {
     private List<String> validMoves;
-    private TurnIndicator turnIndicator;
+    private ClueLessProtocolType clueLessProtocolType;
     private int handlerNumber;
 
     public List<String> getValidMoves()
@@ -18,14 +18,14 @@ public final class MoveOptions implements Comparable<MoveOptions>
         this.validMoves = validMoves;
     }
 
-    public TurnIndicator getTurnIndicator()
+    public ClueLessProtocolType getTurnIndicator()
     {
-        return turnIndicator;
+        return clueLessProtocolType;
     }
 
-    public void setTurnIndicator(TurnIndicator turnIndicator)
+    public void setTurnIndicator(ClueLessProtocolType clueLessProtocolType)
     {
-        this.turnIndicator = turnIndicator;
+        this.clueLessProtocolType = clueLessProtocolType;
     }
 
     public int getHandlerNumber()
@@ -48,14 +48,14 @@ public final class MoveOptions implements Comparable<MoveOptions>
 
         if (handlerNumber != that.handlerNumber) return false;
         if (validMoves != null ? !validMoves.equals(that.validMoves) : that.validMoves != null) return false;
-        return turnIndicator == that.turnIndicator;
+        return clueLessProtocolType == that.clueLessProtocolType;
     }
 
     @Override
     public int hashCode()
     {
         int result = validMoves != null ? validMoves.hashCode() : 0;
-        result = 31 * result + (turnIndicator != null ? turnIndicator.hashCode() : 0);
+        result = 31 * result + (clueLessProtocolType != null ? clueLessProtocolType.hashCode() : 0);
         result = 31 * result + handlerNumber;
         return result;
     }
@@ -65,7 +65,7 @@ public final class MoveOptions implements Comparable<MoveOptions>
     {
         return "MessageStub{" +
                 "validMoves=" + validMoves +
-                ", turnIndicator=" + turnIndicator +
+                ", turnIndicator=" + clueLessProtocolType +
                 ", handlerNumber=" + handlerNumber +
                 '}';
     }

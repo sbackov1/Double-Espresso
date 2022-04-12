@@ -1,12 +1,11 @@
-package edu.jhu.espresso.client;
+package edu.jhu.espresso.client.protocol;
 
-import edu.jhu.espresso.client.domain.MoveOptions;
-import edu.jhu.espresso.client.domain.TurnIndicator;
-import edu.jhu.espresso.client.domain.TurnStart;
+import edu.jhu.espresso.client.ClueLessClient;
+import edu.jhu.espresso.client.domain.GameState;
 
 import java.util.Random;
 
-public class WaitingPlayerProtocolStub
+class WaitingPlayerProtocolStub implements ClueLessProtocol
 {
     private final ClueLessClient client;
 
@@ -15,7 +14,7 @@ public class WaitingPlayerProtocolStub
         this.client = client;
     }
 
-    public void execute(TurnStart turnStart)
+    public void execute(GameState gameState)
     {
         try
         {
@@ -25,7 +24,5 @@ public class WaitingPlayerProtocolStub
         {
             throw new IllegalStateException(e);
         }
-        System.out.println("player acknowledging waiting status");
-        client.write(turnStart);
     }
 }

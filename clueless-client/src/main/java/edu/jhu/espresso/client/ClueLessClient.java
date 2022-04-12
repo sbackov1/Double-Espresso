@@ -2,8 +2,8 @@ package edu.jhu.espresso.client;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import edu.jhu.espresso.client.domain.TurnIndicator;
 import edu.jhu.espresso.client.domain.TurnStart;
+import edu.jhu.espresso.client.protocol.ProtocolFactory;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -15,6 +15,7 @@ import java.util.concurrent.CompletableFuture;
 public class ClueLessClient implements Runnable
 {
     private static final ObjectMapper OBJECT_MAPPER = new ObjectMapper();
+    private static final ProtocolFactory PROTOCOL_FACTORY = new ProtocolFactory();
 
     private final String host;
     private final int port;
@@ -62,16 +63,11 @@ public class ClueLessClient implements Runnable
                 {
                     bufferedReader.reset();
                     TurnStart turnStart = OBJECT_MAPPER.readValue(bufferedReader.readLine(), TurnStart.class);
-                    if(turnStart.getTurnIndicator() == TurnIndicator.ACTIVE_PLAYER)
-                    {
-                        ActivePlayerProtocolStub activePlayerProtocolStub = new ActivePlayerProtocolStub(this);
-                        activePlayerProtocolStub.execute(turnStart);
-                    }
-                    else
-                    {
-                        WaitingPlayerProtocolStub waitingPlayerProtocolStub = new WaitingPlayerProtocolStub(this);
-                        waitingPlayerProtocolStub.execute(turnStart);
-                    }
+
+                    PROTOCOL_FACTORY.determineNextProtocol(
+                            turnStart.getProtocolType(),
+                            this
+                    ).execute(turnStart.getGameState());
                 }
             }
             catch (IOException e)

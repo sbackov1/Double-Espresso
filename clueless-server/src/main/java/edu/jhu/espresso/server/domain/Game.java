@@ -28,6 +28,11 @@ public class Game {
         return gameBoard;
     }
 
+    public boolean isOver()
+    {
+        return false;
+    }
+
     public ArrayList<Player> getPlayerList() {
         return playerList;
     }
@@ -48,6 +53,11 @@ public class Game {
     GameBoard gb = new GameBoard();
     Game thisGame = new Game(1, playerList);
     int x = 0;
+    }
+
+    public void applyMoveChoice(MoveChoice moveChoice)
+    {
+
     }
 }
 

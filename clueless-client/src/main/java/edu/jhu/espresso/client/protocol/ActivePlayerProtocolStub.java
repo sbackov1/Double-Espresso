@@ -1,11 +1,12 @@
-package edu.jhu.espresso.client;
+package edu.jhu.espresso.client.protocol;
 
+import edu.jhu.espresso.client.ClueLessClient;
 import edu.jhu.espresso.client.domain.*;
 import edu.jhu.espresso.client.domain.Character;
 
 import java.util.Collections;
 
-public class ActivePlayerProtocolStub
+class ActivePlayerProtocolStub implements ClueLessProtocol
 {
     private final ClueLessClient client;
 
@@ -14,10 +15,9 @@ public class ActivePlayerProtocolStub
         this.client = client;
     }
 
-    public void execute(TurnStart turnStart)
+    @Override
+    public void execute(GameState gameState)
     {
-        client.write(turnStart);
-
         MoveOptions moveOptions = client.waitForResponse(MoveOptions.class);
         sleep(1000);
         client.write(makeMoveChoice(moveOptions));
@@ -61,7 +61,7 @@ public class ActivePlayerProtocolStub
         System.out.println();
         MoveOptions moveOptions = new MoveOptions();
         moveOptions.setValidMoves(Collections.singletonList(options.getValidMoves().get(0)));
-        moveOptions.setTurnIndicator(TurnIndicator.ACTIVE_PLAYER);
+        moveOptions.setTurnIndicator(ClueLessProtocolType.ACTIVE_PLAYER);
         return moveOptions;
     }
 

@@ -1,60 +1,37 @@
 package edu.jhu.espresso.server.domain;
 
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import edu.jhu.espresso.server.domain.builder.AccusationBuilder;
+
+import java.util.Objects;
+import java.util.Optional;
+
+@JsonDeserialize(builder = AccusationBuilder.class)
 public final class Accusation
 {
-    private AccusationStatus accusationStatus;
-    private Weapon weapon;
-    private Room room;
-    private CharacterNames characterNames;
+    private final AccusationStatus accusationStatus;
+    private final GameBoard gameBoard;
+    private final CaseDetails caseDetails;
+
+    public Accusation(AccusationStatus accusationStatus, GameBoard gameBoard, CaseDetails caseDetails)
+    {
+        this.accusationStatus = Objects.requireNonNull(accusationStatus);
+        this.gameBoard = Objects.requireNonNull(gameBoard);
+        this.caseDetails = caseDetails;
+    }
 
     public AccusationStatus getAccusationStatus()
     {
         return accusationStatus;
     }
 
-    public void setAccusationStatus(AccusationStatus accusationStatus)
+    public Optional<CaseDetails> getCaseDetails()
     {
-        this.accusationStatus = accusationStatus;
+        return Optional.ofNullable(caseDetails);
     }
 
-    public Weapon getWeapon()
+    public GameBoard getGameBoard()
     {
-        return weapon;
-    }
-
-    public void setWeapon(Weapon weapon)
-    {
-        this.weapon = weapon;
-    }
-
-    public Room getRoom()
-    {
-        return room;
-    }
-
-    public void setRoom(Room room)
-    {
-        this.room = room;
-    }
-
-    public CharacterNames getCharacter()
-    {
-        return characterNames;
-    }
-
-    public void setCharacter(CharacterNames characterNames)
-    {
-        this.characterNames = characterNames;
-    }
-
-    @Override
-    public String toString()
-    {
-        return "Accusation{" +
-                "accusationStatus=" + accusationStatus +
-                ", weapon=" + weapon +
-                ", room=" + room +
-                ", character=" + characterNames +
-                '}';
+        return gameBoard;
     }
 }

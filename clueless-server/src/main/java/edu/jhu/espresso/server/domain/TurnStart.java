@@ -1,53 +1,27 @@
 package edu.jhu.espresso.server.domain;
 
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import edu.jhu.espresso.server.domain.builder.TurnStartBuilder;
+
+@JsonDeserialize(builder = TurnStartBuilder.class)
 public class TurnStart
 {
-    private TurnIndicator turnIndicator;
-    private GameState gameState;
+    private final ClueLessProtocolType clueLessProtocolType;
+    private final GameBoard gameBoard;
 
-    public TurnIndicator getTurnIndicator()
+    public TurnStart(ClueLessProtocolType clueLessProtocolType, GameBoard gameBoard)
     {
-        return turnIndicator;
+        this.clueLessProtocolType = clueLessProtocolType;
+        this.gameBoard = gameBoard;
     }
 
-    public void setTurnIndicator(TurnIndicator turnIndicator)
+    public ClueLessProtocolType getClueLessProtocolType()
     {
-        this.turnIndicator = turnIndicator;
+        return clueLessProtocolType;
     }
 
-    public GameState getGameState()
+    public GameBoard getGameBoard()
     {
-        return gameState;
-    }
-
-    public void setGameState(GameState gameState)
-    {
-        this.gameState = gameState;
-    }
-
-    public static TurnStart fromIndicator(TurnIndicator turnIndicator)
-    {
-        TurnStart turnStart = new TurnStart();
-        turnStart.setTurnIndicator(turnIndicator);
-
-        GameState gameState = new GameState();
-        gameState.getCharacterPositions().put(CharacterNames.MISS_SCARLET, RoomNames.BILLIARD_ROOM);
-        gameState.getCharacterPositions().put(CharacterNames.COLONEL_MUSTARD, RoomNames.STUDY);
-        gameState.getCharacterPositions().put(CharacterNames.PROFESSOR_PLUM, RoomNames.CONSERVATORY);
-        gameState.getCharacterPositions().put(CharacterNames.MR_GREEN, RoomNames.DINING_ROOM);
-        gameState.getCharacterPositions().put(CharacterNames.MRS_WHITE, RoomNames.BALLROOM);
-
-        turnStart.setGameState(gameState);
-
-        return turnStart;
-    }
-
-    @Override
-    public String toString()
-    {
-        return "TurnStart{" +
-                "turnIndicator=" + turnIndicator +
-                ", gameState=" + gameState +
-                '}';
+        return gameBoard;
     }
 }

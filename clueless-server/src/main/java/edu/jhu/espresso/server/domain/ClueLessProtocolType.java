@@ -1,6 +1,6 @@
-package edu.jhu.espresso.client.domain;
+package edu.jhu.espresso.server.domain;
 
-public enum TurnIndicator
+public enum ClueLessProtocolType
 {
     ACTIVE_PLAYER,
     WAITING_PLAYER,

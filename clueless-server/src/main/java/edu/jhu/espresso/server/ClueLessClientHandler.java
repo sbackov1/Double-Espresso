@@ -52,12 +52,7 @@ public class ClueLessClientHandler
         return response;
     }
 
-    public <I,O> CompletableFuture<O> writeAsync(I input, Class<O> responseClass)
-    {
-        return CompletableFuture.supplyAsync(() -> writeInstanceAndExpectTypeResponse(input, responseClass));
-    }
-
-    public <I,O> O writeInstanceAndExpectTypeResponse(I input, Class<O> responseClass)
+    public <I,O> O writeInstanceAndExpectType(I input, Class<O> responseClass)
     {
         O response;
         try
@@ -71,6 +66,11 @@ public class ClueLessClientHandler
         }
 
         return response;
+    }
+
+    public <I,O> CompletableFuture<O> asyncWriteInstanceAndExpectType(I input, Class<O> responseClass)
+    {
+        return CompletableFuture.supplyAsync(() -> writeInstanceAndExpectType(input, responseClass));
     }
 
     public PrintWriter getPrintWriter()
