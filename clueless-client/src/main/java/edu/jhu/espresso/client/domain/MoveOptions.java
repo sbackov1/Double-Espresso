@@ -5,6 +5,7 @@ import java.util.List;
 public final class MoveOptions implements Comparable<MoveOptions>
 {
     private List<String> validMoves;
+    private Location location;
     private TurnIndicator turnIndicator;
     private int handlerNumber;
 
@@ -74,5 +75,44 @@ public final class MoveOptions implements Comparable<MoveOptions>
     public int compareTo(MoveOptions o)
     {
         return Integer.compare(handlerNumber, o.handlerNumber);
+    }
+
+    public String toString2()
+    {
+        return "Movement{" +
+                "Move to=" + location + 
+                '}';
+    }
+
+    public void printToString()
+    {
+        String output = toString2();
+        System.out.println("\n" + output + " is the message to be transmitted.");
+    }
+
+    public void mainMoveMenu()
+    {
+        Menu moveMenu = new Menu();
+        moveMenu.setTitle("*** Movement Menu ***");
+
+        for(String validMove : this.validMoves)
+        {
+            moveMenu.addItem(new MenuItem(validMove, this, "setMoveString", validMove));
+        }
+        moveMenu.addItem(new MenuItem("Confirm Movement, Move Character", this, "printToString", null));
+
+        moveMenu.execute();
+    }
+
+    public void setMove(Location location)
+    {
+        this.location = location;
+    }
+
+    public void setMoveString(String moveString)
+    {
+        this.location = Location.valueOf(moveString);
+        System.out.println("\n" + this.location + " was selected.");
+
     }
 }
