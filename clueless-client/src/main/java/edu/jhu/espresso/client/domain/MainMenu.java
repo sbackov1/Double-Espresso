@@ -7,6 +7,10 @@ public class MainMenu {
 
     ArrayList<String> legalMoves = new ArrayList<>();
 
+    MoveOptions moveOptions = new MoveOptions();
+    Suggestion suggestion = new Suggestion();
+    Accusation accusation = new Accusation();
+
     public List<String> getLegalMoves()
     {
         return legalMoves;
@@ -34,7 +38,6 @@ public class MainMenu {
         ValidMoves.add("HALLWAY5");
         ValidMoves.add("HALLWAY6");
         ValidMoves.add("HALLWAY11");
-        MoveOptions moveOptions = new MoveOptions();
         moveOptions.setValidMoves(ValidMoves);
         moveOptions.mainMoveMenu();
     }
@@ -48,8 +51,6 @@ public class MainMenu {
         ArrayList<String> validWeapons = new ArrayList<>();
         validWeapons.add("REVOLVER");
         validWeapons.add("WRENCH");
-
-        Suggestion suggestion = new Suggestion();
 
         suggestion.setValidCharacters(validChars);
         suggestion.setValidWeapons(validWeapons);
@@ -70,8 +71,6 @@ public class MainMenu {
         ArrayList<String> validWeapons = new ArrayList<>();
         validWeapons.add("REVOLVER");
         validWeapons.add("WRENCH");
-
-        Accusation accusation = new Accusation();
 
         accusation.setValidCharacters(validChars);
         accusation.setValidRooms(validRooms);

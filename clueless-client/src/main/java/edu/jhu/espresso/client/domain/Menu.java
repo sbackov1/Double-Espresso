@@ -15,13 +15,13 @@ import java.util.List;
 public class Menu {
     private static BufferedReader in;
     private static Menu rootMenu;
+    private static Menu mainSubMenu;
     private List<MenuItem> itemList;
-
-
 
     private MenuItem exitItem;
     private String title;
     private boolean isRootMenu;
+    private boolean isMainSubMenu;
 
     /*
      * The default constructor is used to create a new instance of Menu. If it is the first
@@ -42,6 +42,12 @@ public class Menu {
             //if (this.exitItem == null) {
                 this.exitItem = new MenuItem("Exit"); // A root menu will exit from the program
            // }
+        }
+        else if(Menu.mainSubMenu == null) {
+            Menu.mainSubMenu = this;
+            this.isMainSubMenu = true;
+            this.setTitle("Main Sub Menu");
+            this.exitItem = new MenuItem("Back"); // A sub menu will go back one level
         }
         else {
             this.setTitle("Sub Menu");
@@ -69,8 +75,8 @@ public class Menu {
             this.print();
             item = this.getUserInput();
             item.invoke();
-            //if (!this.isRootMenu)
-            //    break;
+            if (!this.isRootMenu && !this.isMainSubMenu)    // temporary fix
+                break;
         }
         while(!item.isExitItem());
     }
