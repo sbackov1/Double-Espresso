@@ -47,14 +47,14 @@ public class ClueLessServerProtocolStub
         System.out.println();
 
         Accusation accusationChoice = CompletableFuture.supplyAsync(
-                () -> activePlayerHandler.write(
+                () -> activePlayerHandler.writeInstanceAndExpectTypeResponse(
                         stubMoveOptions(),
                         MoveOptions.class
                 )
         ).thenApplyAsync(
                 moveOptions -> {
                     System.out.println(moveOptions);
-                    return activePlayerHandler.write(
+                    return activePlayerHandler.writeInstanceAndExpectTypeResponse(
                             stubSuggestion(),
                             Suggestion.class
                     );
@@ -62,7 +62,7 @@ public class ClueLessServerProtocolStub
         ).thenApplyAsync(
                 suggestion -> {
                     System.out.println(suggestion);
-                    return activePlayerHandler.write(
+                    return activePlayerHandler.writeInstanceAndExpectTypeResponse(
                             stubAccusation(),
                             Accusation.class
                     );

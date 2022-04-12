@@ -54,10 +54,10 @@ public class ClueLessClientHandler
 
     public <I,O> CompletableFuture<O> writeAsync(I input, Class<O> responseClass)
     {
-        return CompletableFuture.supplyAsync(() -> write(input, responseClass));
+        return CompletableFuture.supplyAsync(() -> writeInstanceAndExpectTypeResponse(input, responseClass));
     }
 
-    public <I,O> O write(I input, Class<O> responseClass)
+    public <I,O> O writeInstanceAndExpectTypeResponse(I input, Class<O> responseClass)
     {
         O response;
         try
