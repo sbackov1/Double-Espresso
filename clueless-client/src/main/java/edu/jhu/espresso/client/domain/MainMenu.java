@@ -5,7 +5,9 @@ import java.util.List;
 
 public class MainMenu {
 
+    Menu mainMenu = new Menu();
     ArrayList<String> legalMoves = new ArrayList<>();
+    private static Menu mainSubMenu;
 
     MoveOptions moveOptions = new MoveOptions();
     Suggestion suggestion = new Suggestion();
@@ -23,7 +25,6 @@ public class MainMenu {
 
     public void mainMenu ()
     {
-        Menu mainMenu = new Menu();
         mainMenu.setTitle("*** Possible Actions ***");
         mainMenu.addItem(new MenuItem("Move Character", this, "moveCharacter"));
         mainMenu.addItem(new MenuItem("Make Suggestion", this, "makeSuggestion"));
@@ -39,6 +40,7 @@ public class MainMenu {
         ValidMoves.add("HALLWAY6");
         ValidMoves.add("HALLWAY11");
         moveOptions.setValidMoves(ValidMoves);
+        mainMenu.setMainSubMenu(moveOptions.mainMoveMenu());
         moveOptions.mainMoveMenu();
     }
 
@@ -54,7 +56,7 @@ public class MainMenu {
 
         suggestion.setValidCharacters(validChars);
         suggestion.setValidWeapons(validWeapons);
-
+        mainMenu.setMainSubMenu(suggestion.mainSugMenu());
         suggestion.mainSugMenu();
     }
 
@@ -75,6 +77,8 @@ public class MainMenu {
         accusation.setValidCharacters(validChars);
         accusation.setValidRooms(validRooms);
         accusation.setValidWeapons(validWeapons);
+
+        mainMenu.setMainSubMenu(accusation.mainAccMenu());
 
         accusation.mainAccMenu();
     }

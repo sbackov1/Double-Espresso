@@ -117,7 +117,7 @@ public final class Accusation
 
 
 
-    public void mainAccMenu () {
+    public Menu mainAccMenu () {
 
         Menu accMenu = new Menu();
         accMenu.setTitle("*** Accusation Menu ***");
@@ -129,10 +129,10 @@ public final class Accusation
         //cancel.setExitItem(true);
        // accMenu.addItem(cancel);
 
-
         //cancel.setExitItem(true);
 
         accMenu.execute();
+        return accMenu;
     }
 
     public void selectCharacter() {
