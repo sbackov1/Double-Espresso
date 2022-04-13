@@ -16,7 +16,7 @@ public class Menu {
     private static BufferedReader in;
     private static Menu rootMenu;
     private static Menu mainSubMenu;
-    private List<MenuItem> itemList;
+    private final List<MenuItem> itemList;
 
     private MenuItem exitItem;
     private String title;
@@ -31,7 +31,7 @@ public class Menu {
      * their exit calls will bring execution back one level in the menu structure.
      */
     public Menu() {
-        this.itemList = new ArrayList<MenuItem>();
+        this.itemList = new ArrayList<>();
 
         if (Menu.rootMenu == null) {
             Menu.in = new BufferedReader(new InputStreamReader(System.in)); // create the input stream
@@ -56,6 +56,10 @@ public class Menu {
         this.exitItem.setExitItem(true); // Let the MenuItem know that it is the exit item for this menu
     }
 
+    public void setMainSubMenu(Menu mainSubMenu)
+    {
+        this.mainSubMenu = mainSubMenu;
+    }
     /*
      * This method adds a MenuItem to the menu. The first item added will be '1' in the
      * selection order, the next will be '2' and so on, up until the exit item which will
@@ -70,7 +74,7 @@ public class Menu {
      * return from 'this' menu.
      */
     public void execute() {
-        MenuItem item = null;
+        MenuItem item;
         do {
             this.print();
             item = this.getUserInput();
@@ -130,7 +134,7 @@ public class Menu {
 
         sb.append("\n");
 
-        if (this.title.equals("") == false)
+        if (!this.title.equals(""))
             sb.append(this.title + "\n");
 
         for (int i = 0; i < this.itemList.size(); i++)
@@ -139,7 +143,7 @@ public class Menu {
         sb.append("\n" + getExitIndex() + "... " + exitItem.getLabel());
         sb.append("\n> ");
 
-        System.out.print(sb.toString());
+        System.out.print(sb);
     }
 
     /* Use this method to change the menu title. */
