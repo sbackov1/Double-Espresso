@@ -90,7 +90,7 @@ public final class MoveOptions implements Comparable<MoveOptions>
         System.out.println("\n" + output + " is the message to be transmitted.");
     }
 
-    public Menu mainMoveMenu()
+    public void mainMoveMenu()
     {
         Menu moveMenu = new Menu();
         moveMenu.setTitle("*** Movement Menu ***");
@@ -102,7 +102,6 @@ public final class MoveOptions implements Comparable<MoveOptions>
         moveMenu.addItem(new MenuItem("Confirm Movement, Move Character", this, "printToString", null));
 
         moveMenu.execute();
-        return moveMenu;
     }
 
     public void setMove(Location location)

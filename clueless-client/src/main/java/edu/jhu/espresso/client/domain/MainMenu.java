@@ -40,7 +40,6 @@ public class MainMenu {
         ValidMoves.add("HALLWAY6");
         ValidMoves.add("HALLWAY11");
         moveOptions.setValidMoves(ValidMoves);
-        mainMenu.setMainSubMenu(moveOptions.mainMoveMenu());
         moveOptions.mainMoveMenu();
     }
 
@@ -56,7 +55,6 @@ public class MainMenu {
 
         suggestion.setValidCharacters(validChars);
         suggestion.setValidWeapons(validWeapons);
-       // mainMenu.setMainSubMenu(suggestion.mainSugMenu());
         suggestion.mainSugMenu();
     }
 
@@ -77,9 +75,6 @@ public class MainMenu {
         accusation.setValidCharacters(validChars);
         accusation.setValidRooms(validRooms);
         accusation.setValidWeapons(validWeapons);
-
-        mainMenu.setMainSubMenu(accusation.mainAccMenu());
-
         accusation.mainAccMenu();
     }
 
