@@ -1,14 +1,20 @@
 package edu.jhu.espresso.server.domain.builder;
 
-import edu.jhu.espresso.server.domain.Accusation;
-import edu.jhu.espresso.server.domain.AccusationStatus;
-import edu.jhu.espresso.server.domain.CaseDetails;
-import edu.jhu.espresso.server.domain.GameBoard;
+import edu.jhu.espresso.server.domain.*;
+import edu.jhu.espresso.server.domain.Character;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public final class AccusationBuilder
 {
     private AccusationStatus accusationStatus;
-    private GameBoard gameBoard;
+    private Weapon weapon;
+    private RoomNames roomNames;
+    private Character character;
+    private List<String> validCharacters;
+    private List<String> validRooms;
+    private List<String> validWeapons;
     private CaseDetails caseDetails;
 
     private AccusationBuilder()
@@ -26,9 +32,39 @@ public final class AccusationBuilder
         return this;
     }
 
-    public AccusationBuilder withGameBoard(GameBoard gameBoard)
+    public AccusationBuilder withWeapon(Weapon weapon)
     {
-        this.gameBoard = gameBoard;
+        this.weapon = weapon;
+        return this;
+    }
+
+    public AccusationBuilder withRoomNames(RoomNames roomNames)
+    {
+        this.roomNames = roomNames;
+        return this;
+    }
+
+    public AccusationBuilder withCharacter(Character character)
+    {
+        this.character = character;
+        return this;
+    }
+
+    public AccusationBuilder withValidCharacters(List<String> validCharacters)
+    {
+        this.validCharacters = validCharacters;
+        return this;
+    }
+
+    public AccusationBuilder withValidRooms(List<String> validRooms)
+    {
+        this.validRooms = validRooms;
+        return this;
+    }
+
+    public AccusationBuilder withValidWeapons(List<String> validWeapons)
+    {
+        this.validWeapons = validWeapons;
         return this;
     }
 
@@ -40,6 +76,6 @@ public final class AccusationBuilder
 
     public Accusation build()
     {
-        return new Accusation(accusationStatus, gameBoard, caseDetails);
+        return new Accusation(accusationStatus, weapon, roomNames, character, validCharacters, validRooms, validWeapons, caseDetails);
     }
 }

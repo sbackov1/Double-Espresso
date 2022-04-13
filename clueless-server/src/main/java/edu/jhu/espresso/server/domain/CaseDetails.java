@@ -7,10 +7,10 @@ import edu.jhu.espresso.server.domain.builder.CaseDetailsBuilder;
 public class CaseDetails
 {
     private final Weapon weapon;
-    private final Room room;
+    private final RoomNames room;
     private final CharacterNames characterNames;
 
-    public CaseDetails(Weapon weapon, Room room, CharacterNames characterNames)
+    public CaseDetails(Weapon weapon, RoomNames room, CharacterNames characterNames)
     {
         this.weapon = weapon;
         this.room = room;
@@ -22,7 +22,7 @@ public class CaseDetails
         return weapon;
     }
 
-    public Room getRoom()
+    public RoomNames getRoom()
     {
         return room;
     }

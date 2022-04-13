@@ -1,7 +1,11 @@
 package edu.jhu.espresso.client;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import edu.jhu.espresso.client.domain.CharacterNames;
+import edu.jhu.espresso.client.domain.GameBoard;
+import edu.jhu.espresso.client.domain.LocationNames;
 import edu.jhu.espresso.client.domain.TurnStart;
 import edu.jhu.espresso.client.protocol.ProtocolFactory;
 
@@ -10,6 +14,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.Socket;
+import java.util.EnumMap;
 import java.util.concurrent.CompletableFuture;
 
 public class ClueLessClient implements Runnable
@@ -64,10 +69,19 @@ public class ClueLessClient implements Runnable
                     bufferedReader.reset();
                     TurnStart turnStart = OBJECT_MAPPER.readValue(bufferedReader.readLine(), TurnStart.class);
 
+                    write(turnStart);
+
+                    TypeReference<EnumMap<CharacterNames, LocationNames>> gameStateType =
+                            new TypeReference<EnumMap<CharacterNames, LocationNames>>() {};
+
+                    EnumMap<CharacterNames, LocationNames> gameState = waitForResponse(gameStateType);
+
+                    GameBoard gameBoard = new GameBoard();
+
                     PROTOCOL_FACTORY.determineNextProtocol(
-                            turnStart.getProtocolType(),
+                            turnStart.getClueLessProtocolType(),
                             this
-                    ).execute(turnStart.getGameState());
+                    ).execute(gameBoard);
                 }
             }
             catch (IOException e)
@@ -89,6 +103,28 @@ public class ClueLessClient implements Runnable
                 {
                     bufferedReader.reset();
                     response = OBJECT_MAPPER.readValue(bufferedReader.readLine(), clazz);
+                }
+            }
+            catch (IOException e)
+            {
+                throw new IllegalStateException(e);
+            }
+        }
+        return response;
+    }
+
+    public <T> T waitForResponse(TypeReference<T> tTypeReference)
+    {
+        T response = null;
+        while (response == null)
+        {
+            try
+            {
+                bufferedReader.mark(1_000);
+                if(bufferedReader.readLine() != null)
+                {
+                    bufferedReader.reset();
+                    response = OBJECT_MAPPER.readValue(bufferedReader.readLine(), tTypeReference);
                 }
             }
             catch (IOException e)

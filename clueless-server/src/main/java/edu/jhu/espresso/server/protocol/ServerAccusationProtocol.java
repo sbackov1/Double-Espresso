@@ -23,6 +23,6 @@ public class ServerAccusationProtocol
 
     public void execute()
     {
-
+        System.out.println("Server accusation logic executes");
     }
 }

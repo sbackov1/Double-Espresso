@@ -3,25 +3,14 @@ package edu.jhu.espresso.client.domain;
 public class TurnStart
 {
     private ClueLessProtocolType clueLessProtocolType;
-    private GameState gameState;
 
-    public ClueLessProtocolType getProtocolType()
-    {
-        return clueLessProtocolType;
-    }
-
-    public void setTurnIndicator(ClueLessProtocolType clueLessProtocolType)
+    public void setClueLessProtocolType(ClueLessProtocolType clueLessProtocolType)
     {
         this.clueLessProtocolType = clueLessProtocolType;
     }
 
-    public GameState getGameState()
+    public ClueLessProtocolType getClueLessProtocolType()
     {
-        return gameState;
-    }
-
-    public void setGameState(GameState gameState)
-    {
-        this.gameState = gameState;
+        return clueLessProtocolType;
     }
 }

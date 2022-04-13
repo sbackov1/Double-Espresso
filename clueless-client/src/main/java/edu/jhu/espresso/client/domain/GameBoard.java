@@ -1,11 +1,14 @@
-package edu.jhu.espresso.server.domain;
+package edu.jhu.espresso.client.domain;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.EnumMap;
+import java.util.List;
 
-public class GameBoard {
-
+public class GameBoard
+{
     private ArrayList<Location> locationList;
-    private ArrayList<Room> roomList;
+    private List<Room> roomList;
     private EnumMap<CharacterNames, Location> characterLocationMap;
     private ArrayList<Hallway> hallwayList;
     private ArrayList<HomeSquare> homeSquareList;
@@ -97,6 +100,31 @@ public class GameBoard {
     public ArrayList<HomeSquare> getHomeSquareList()
     {
         return homeSquareList;
+    }
+
+    public void setLocationList(ArrayList<Location> locationList)
+    {
+        this.locationList = locationList;
+    }
+
+    public void setRoomList(List<Room> roomNamesList)
+    {
+        this.roomList = roomNamesList;
+    }
+
+    public void setCharacterLocationMap(EnumMap<CharacterNames, Location> characterLocationMap)
+    {
+        this.characterLocationMap = characterLocationMap;
+    }
+
+    public void setHallwayList(ArrayList<Hallway> hallwayList)
+    {
+        this.hallwayList = hallwayList;
+    }
+
+    public void setHomeSquareList(ArrayList<HomeSquare> homeSquareList)
+    {
+        this.homeSquareList = homeSquareList;
     }
 }
 

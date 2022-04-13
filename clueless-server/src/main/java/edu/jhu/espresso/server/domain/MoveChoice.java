@@ -2,15 +2,15 @@ package edu.jhu.espresso.server.domain;
 
 public class MoveChoice
 {
-    private final String move;
+    private LocationNames move;
 
-    public MoveChoice(String move)
-    {
-        this.move = move;
-    }
-
-    public String getMove()
+    public LocationNames getMove()
     {
         return move;
+    }
+
+    public void setMove(LocationNames move)
+    {
+        this.move = move;
     }
 }

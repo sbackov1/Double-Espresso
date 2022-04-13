@@ -1,6 +1,6 @@
-package edu.jhu.espresso.server.domain;
+package edu.jhu.espresso.client.domain;
 
-public enum Character
+public enum CharacterNames
 {
     PROFESSOR_PLUM,
     MRS_WHITE,

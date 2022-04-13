@@ -1,16 +1,13 @@
 package edu.jhu.espresso.server.domain.builder;
 
-import edu.jhu.espresso.server.domain.CharacterNames;
-import edu.jhu.espresso.server.domain.Room;
-import edu.jhu.espresso.server.domain.CaseDetails;
-import edu.jhu.espresso.server.domain.Weapon;
+import edu.jhu.espresso.server.domain.*;
 
 import java.util.Objects;
 
 public final class CaseDetailsBuilder
 {
     private Weapon weapon;
-    private Room room;
+    private RoomNames room;
     private CharacterNames characterNames;
 
     private CaseDetailsBuilder()
@@ -28,7 +25,7 @@ public final class CaseDetailsBuilder
         return this;
     }
 
-    public CaseDetailsBuilder withRoom(Room room)
+    public CaseDetailsBuilder withRoom(RoomNames room)
     {
         this.room = room;
         return this;

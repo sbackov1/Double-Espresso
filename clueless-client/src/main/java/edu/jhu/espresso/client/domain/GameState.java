@@ -6,18 +6,18 @@ import java.util.Map;
 
 public final class GameState
 {
-    private List<Room> rooms;
+    private List<RoomNames> roomNames;
     private List<String> hallways;
-    private Map<Character, Room> characterPositions = new EnumMap<>(Character.class);
+    private Map<Character, RoomNames> characterPositions = new EnumMap<>(Character.class);
 
-    public List<Room> getRooms()
+    public List<RoomNames> getRooms()
     {
-        return rooms;
+        return roomNames;
     }
 
-    public void setRooms(List<Room> rooms)
+    public void setRooms(List<RoomNames> roomNames)
     {
-        this.rooms = rooms;
+        this.roomNames = roomNames;
     }
 
     public List<String> getHallways()
@@ -30,12 +30,12 @@ public final class GameState
         this.hallways = hallways;
     }
 
-    public Map<Character, Room> getCharacterPositions()
+    public Map<Character, RoomNames> getCharacterPositions()
     {
         return characterPositions;
     }
 
-    public void setCharacterPositions(Map<Character, Room> characterPositions)
+    public void setCharacterPositions(Map<Character, RoomNames> characterPositions)
     {
         this.characterPositions = characterPositions;
     }
@@ -44,7 +44,7 @@ public final class GameState
     public String toString()
     {
         return "GameState{" +
-                "rooms=" + rooms +
+                "rooms=" + roomNames +
                 ", hallways=" + hallways +
                 ", characterPositions=" + characterPositions +
                 '}';

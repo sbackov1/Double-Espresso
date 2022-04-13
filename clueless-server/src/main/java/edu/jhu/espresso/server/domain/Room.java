@@ -1,6 +1,10 @@
 package edu.jhu.espresso.server.domain;
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
+import com.fasterxml.jackson.annotation.JsonTypeName;
+
 import java.util.*;
 
+@JsonTypeName("Room")
 public class Room implements Location {
     private final String LocationName;
     private final boolean isFull;

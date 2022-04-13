@@ -1,27 +1,21 @@
 package edu.jhu.espresso.client.domain;
 
-public enum Location
+import com.fasterxml.jackson.annotation.JsonSubTypes;
+
+import java.util.ArrayList;
+
+@JsonSubTypes({
+        @JsonSubTypes.Type(value = Hallway.class, name = "Hallway"),
+        @JsonSubTypes.Type(value = Room.class, name = "Room"),
+        @JsonSubTypes.Type(value = HomeSquare.class, name = "HomeSquare")
+})
+public interface Location
 {
-    KITCHEN,
-    HALL,
-    BALLROOM,
-    CONSERVATORY,
-    DINING_ROOM,
-    CELLAR,
-    BILLIARD_ROOM,
-    LIBRARY,
-    LOUNGE,
-    STUDY,
-    HALLWAY1,
-    HALLWAY2,
-    HALLWAY3,
-    HALLWAY4,
-    HALLWAY5,
-    HALLWAY6,
-    HALLWAY7,
-    HALLWAY8,
-    HALLWAY9,
-    HALLWAY10,
-    HALLWAY11,
-    HALLWAY12
+    String locationName = null;
+    boolean isFull = false;
+    ArrayList<Location> possibleDestinations = new ArrayList<>();
+
+    public ArrayList<String> getPossibleDestinations();
 }
+
+

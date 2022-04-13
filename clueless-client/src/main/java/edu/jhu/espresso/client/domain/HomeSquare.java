@@ -1,12 +1,10 @@
-package edu.jhu.espresso.server.domain;
+package edu.jhu.espresso.client.domain;
 
-import com.fasterxml.jackson.annotation.JsonTypeId;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
-import com.fasterxml.jackson.annotation.JsonTypeName;
 
 import java.util.ArrayList;
 
-@JsonTypeName("HomeSquare")
+@JsonTypeInfo(use = JsonTypeInfo.Id.NAME)
 public class HomeSquare implements Location {
 
     private String adjacentHallway;

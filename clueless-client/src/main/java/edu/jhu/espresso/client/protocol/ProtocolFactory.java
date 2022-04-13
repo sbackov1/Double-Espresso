@@ -11,10 +11,10 @@ public class ProtocolFactory
         switch (clueLessProtocolType)
         {
             case ACTIVE_PLAYER:
-                protocol = new ActivePlayerProtocolStub(client);
+                protocol = new ActivePlayerProtocol(client);
                 break;
             case WAITING_PLAYER:
-                protocol = new WaitingPlayerProtocolStub(client);
+                protocol = new WaitingPlayerProtocol(client);
                 break;
             case ACCUSATION:
                 protocol = new ClientAccusationProtocol(client);

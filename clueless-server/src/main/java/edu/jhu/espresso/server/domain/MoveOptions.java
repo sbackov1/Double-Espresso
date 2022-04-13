@@ -4,16 +4,16 @@ import java.util.List;
 
 public final class MoveOptions implements Comparable<MoveOptions>
 {
-    private List<String> validMoves;
+    private List<LocationNames> validMoves;
     private ClueLessProtocolType clueLessProtocolType;
     private int handlerNumber;
 
-    public List<String> getValidMoves()
+    public List<LocationNames> getValidMoves()
     {
         return validMoves;
     }
 
-    public void setValidMoves(List<String> validMoves)
+    public void setValidMoves(List<LocationNames> validMoves)
     {
         this.validMoves = validMoves;
     }

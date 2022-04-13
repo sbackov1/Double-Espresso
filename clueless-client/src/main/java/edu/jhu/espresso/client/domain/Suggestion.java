@@ -5,19 +5,11 @@ import java.util.ArrayList;
 public final class Suggestion {
     private SuggestionStatus suggestionStatus;
     private Weapon weapon;
-    private Room room;
+    private RoomNames roomNames;
     private Character character;
-
+    private CaseDetails caseDetails;
     private ArrayList<String> validCharacters;
     private ArrayList<String> validWeapons;
-
-    public SuggestionStatus getSuggestionAction() {
-        return suggestionStatus;
-    }
-
-    public void setSuggestionAction(SuggestionStatus suggestionStatus) {
-        this.suggestionStatus = suggestionStatus;
-    }
 
     public ArrayList<String> getValidCharacters() {
         return validCharacters;
@@ -43,14 +35,6 @@ public final class Suggestion {
         this.weapon = weapon;
     }
 
-    public Room getRoom() {
-        return room;
-    }
-
-    public void setRoom(Room room) {
-        this.room = room;
-    }
-
     public Character getCharacter() {
         return character;
     }
@@ -69,13 +53,42 @@ public final class Suggestion {
         System.out.println("\n" + this.weapon + " was selected.");
     }
 
+    public SuggestionStatus getSuggestionStatus()
+    {
+        return suggestionStatus;
+    }
+
+    public void setSuggestionStatus(SuggestionStatus suggestionStatus)
+    {
+        this.suggestionStatus = suggestionStatus;
+    }
+
+    public RoomNames getRoomNames()
+    {
+        return roomNames;
+    }
+
+    public void setRoomNames(RoomNames roomNames)
+    {
+        this.roomNames = roomNames;
+    }
+
+    public CaseDetails getCaseDetails()
+    {
+        return caseDetails;
+    }
+
+    public void setCaseDetails(CaseDetails caseDetails)
+    {
+        this.caseDetails = caseDetails;
+    }
 
     @Override
     public String toString() {
         return "Suggestion{" +
                 "suggestionStatus=" + suggestionStatus +
                 ", weapon=" + weapon +
-                ", room=" + room +
+                ", room=" + roomNames +
                 ", character=" + character +
                 '}';
     }

@@ -19,7 +19,7 @@ public class App
         ClueLessServer clueLessServer = new ClueLessServer();
 
         List<ClueLessClientHandler> clueLessClientHandlers = new ArrayList<>();
-        for(int i = 0; i < 6; i++)
+        for(int i = 0; i < 2; i++)
         {
             clueLessClientHandlers.add(clueLessServer.accept());
         }

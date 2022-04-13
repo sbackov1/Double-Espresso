@@ -4,17 +4,17 @@ import java.util.List;
 
 public final class MoveOptions implements Comparable<MoveOptions>
 {
-    private List<String> validMoves;
-    private Location location;
+    private List<LocationNames> validMoves;
+    private LocationNames location;
     private ClueLessProtocolType clueLessProtocolType;
     private int handlerNumber;
 
-    public List<String> getValidMoves()
+    public List<LocationNames> getValidMoves()
     {
         return validMoves;
     }
 
-    public void setValidMoves(List<String> validMoves)
+    public void setValidMoves(List<LocationNames> validMoves)
     {
         this.validMoves = validMoves;
     }
@@ -37,6 +37,11 @@ public final class MoveOptions implements Comparable<MoveOptions>
     public void setHandlerNumber(int handlerNumber)
     {
         this.handlerNumber = handlerNumber;
+    }
+
+    public LocationNames getLocation()
+    {
+        return location;
     }
 
     @Override
@@ -95,23 +100,23 @@ public final class MoveOptions implements Comparable<MoveOptions>
         Menu moveMenu = new Menu();
         moveMenu.setTitle("*** Movement Menu ***");
 
-        for(String validMove : this.validMoves)
+        for(LocationNames validMove : this.validMoves)
         {
-            moveMenu.addItem(new MenuItem(validMove, this, "setMoveString", validMove));
+            moveMenu.addItem(new MenuItem(validMove.name(), this, "setMoveString", validMove.name()));
         }
         moveMenu.addItem(new MenuItem("Confirm Movement, Move Character", this, "printToString", null));
 
         moveMenu.execute();
     }
 
-    public void setMove(Location location)
+    public void setMove(LocationNames location)
     {
         this.location = location;
     }
 
     public void setMoveString(String moveString)
     {
-        this.location = Location.valueOf(moveString);
+        this.location = LocationNames.valueOf(moveString);
         System.out.println("\n" + this.location + " was selected.");
 
     }

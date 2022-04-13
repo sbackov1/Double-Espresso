@@ -1,20 +1,21 @@
 package edu.jhu.espresso.client.protocol;
 
 import edu.jhu.espresso.client.ClueLessClient;
-import edu.jhu.espresso.client.domain.GameState;
+import edu.jhu.espresso.client.domain.GameBoard;
 
 import java.util.Random;
 
-class WaitingPlayerProtocolStub implements ClueLessProtocol
+class WaitingPlayerProtocol implements ClueLessProtocol
 {
     private final ClueLessClient client;
 
-    public WaitingPlayerProtocolStub(ClueLessClient client)
+    public WaitingPlayerProtocol(ClueLessClient client)
     {
         this.client = client;
     }
 
-    public void execute(GameState gameState)
+    @Override
+    public void execute(GameBoard gameBoard)
     {
         try
         {

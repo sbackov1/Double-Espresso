@@ -4,7 +4,6 @@ import edu.jhu.espresso.server.ClueLessClientHandler;
 import edu.jhu.espresso.server.domain.*;
 import edu.jhu.espresso.server.domain.builder.AccusationBuilder;
 import edu.jhu.espresso.server.domain.builder.SuggestionBuilder;
-import edu.jhu.espresso.server.domain.builder.TurnStartBuilder;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -32,6 +31,9 @@ public class ClueLessTurnProtocol
     {
         notifyPlayersOfStatus();
 
+        activePlayerHandler.write(game.getLocations());
+        waitingPlayers.forEach(waiter -> waiter.write(game.getLocations()));
+
         MoveChoice moveChoice = activePlayerHandler.writeInstanceAndExpectType(
                 determineValidMoveOptions(game.getGameBoard()),
                 MoveChoice.class
@@ -46,7 +48,7 @@ public class ClueLessTurnProtocol
 
         if(suggestion.getSuggestionStatus() == SuggestionStatus.MAKING_SUGGESTION)
         {
-            new SuggestionTestimonyProtocol(waitingPlayers, suggestion).execute();
+            new SuggestionTestimonyProtocol(waitingPlayers, suggestion, game).execute();
         }
 
         Accusation accusation = activePlayerHandler.writeInstanceAndExpectType(
@@ -59,16 +61,16 @@ public class ClueLessTurnProtocol
             new ServerAccusationProtocol(activePlayerHandler, waitingPlayers, accusation).execute();
         }
 
+        System.out.println("Moving to the next player");
+        System.out.println();
+
         return game.isOver();
     }
 
     private void notifyPlayersOfStatus()
     {
-        TurnStartBuilder builder = TurnStartBuilder.aTurnStart()
-                .withGameBoard(game.getGameBoard());
-
-        TurnStart activePlayerTurnStart = builder.withClueLessProtocolType(ClueLessProtocolType.ACTIVE_PLAYER).build();
-        TurnStart waitingPlayerTurnStart = builder.withClueLessProtocolType(ClueLessProtocolType.WAITING_PLAYER).build();
+        TurnStart activePlayerTurnStart = new TurnStart(ClueLessProtocolType.ACTIVE_PLAYER);
+        TurnStart waitingPlayerTurnStart = new TurnStart(ClueLessProtocolType.WAITING_PLAYER);
 
         CompletableFuture<TurnStart> activeResponseFuture = activePlayerHandler.asyncWriteInstanceAndExpectType(
                 activePlayerTurnStart,
@@ -86,7 +88,7 @@ public class ClueLessTurnProtocol
     private MoveOptions determineValidMoveOptions(GameBoard gameBoard)
     {
         MoveOptions moveOptions = new MoveOptions();
-        moveOptions.setValidMoves(new ArrayList<>(Arrays.asList("hallway", RoomNames.BALLROOM.name(), RoomNames.STUDY.name())));
+        moveOptions.setValidMoves(new ArrayList<>(Arrays.asList(LocationNames.HALLWAY1, LocationNames.BALLROOM, LocationNames.STUDY)));
         moveOptions.setTurnIndicator(ClueLessProtocolType.ACTIVE_PLAYER);
         return moveOptions;
     }
@@ -96,6 +98,8 @@ public class ClueLessTurnProtocol
         return SuggestionBuilder.aSuggestion()
                 .withSuggestionStatus(SuggestionStatus.OFFER_SUGGESTION)
                 .withGameBoard(game.getGameBoard())
+                .withValidCharacters(Arrays.asList(CharacterNames.COLONEL_MUSTARD.name(), CharacterNames.MRS_PEACOCK.name(), CharacterNames.MR_GREEN.name()))
+                .withValidWeapons(Arrays.asList(Weapon.CANDLESTICK.name(), Weapon.DAGGER.name(), Weapon.REVOLVER.name()))
                 .build();
     }
 
@@ -103,7 +107,9 @@ public class ClueLessTurnProtocol
     {
         return AccusationBuilder.anAccusation()
                 .withAccusationStatus(AccusationStatus.OFFER_ACCUSATION)
-                .withGameBoard(game.getGameBoard())
+                .withValidRooms(Arrays.asList(RoomNames.BILLIARD_ROOM.name(), RoomNames.BALLROOM.name()))
+                .withValidCharacters(Arrays.asList(CharacterNames.COLONEL_MUSTARD.name(), CharacterNames.MRS_PEACOCK.name(), CharacterNames.MR_GREEN.name()))
+                .withValidWeapons(Arrays.asList(Weapon.CANDLESTICK.name(), Weapon.DAGGER.name(), Weapon.REVOLVER.name()))
                 .build();
     }
 }

@@ -34,10 +34,10 @@ public class MainMenu {
 
     public void moveCharacter()
     {
-        ArrayList<String> ValidMoves = new ArrayList<>();
-        ValidMoves.add("HALLWAY5");
-        ValidMoves.add("HALLWAY6");
-        ValidMoves.add("HALLWAY11");
+        ArrayList<LocationNames> ValidMoves = new ArrayList<>();
+        ValidMoves.add(LocationNames.HALLWAY5);
+        ValidMoves.add(LocationNames.HALLWAY6);
+        ValidMoves.add(LocationNames.HALLWAY11);
         moveOptions.setValidMoves(ValidMoves);
         moveOptions.mainMoveMenu();
     }

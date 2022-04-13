@@ -48,5 +48,15 @@ public class Game {
     {
 
     }
+
+    public Map<CharacterNames, LocationNames> getLocations()
+    {
+        EnumMap<CharacterNames, LocationNames> map = new EnumMap<>(CharacterNames.class);
+        map.put(CharacterNames.MISS_SCARLET, LocationNames.HALLWAY4);
+        map.put(CharacterNames.PROFESSOR_PLUM, LocationNames.CONSERVATORY);
+        map.put(CharacterNames.MRS_PEACOCK, LocationNames.STUDY);
+        map.put(CharacterNames.COLONEL_MUSTARD, LocationNames.CELLAR);
+        return map;
+    }
 }
 

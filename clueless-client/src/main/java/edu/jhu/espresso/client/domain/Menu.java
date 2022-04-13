@@ -110,9 +110,6 @@ public class Menu {
             if (option == this.getExitIndex()) {
                 item = exitItem;
 
-                // If 'this' menu is the root menu, close the input stream
-                if (this.isRootMenu)
-                    Menu.in.close();
             }
             else item = itemList.get(option - 1); // -1 as itemList(0) -> item 1 in printed menu
         }

@@ -5,39 +5,36 @@ import java.util.ArrayList;
 public final class Accusation
 {
     private AccusationStatus accusationStatus;
+    private CaseDetails caseDetails;
     private Weapon weapon;
-    private Room room;
+    private RoomNames roomNames;
     private Character character;
 
     private ArrayList<String> validCharacters;
     private ArrayList<String> validRooms;
     private ArrayList<String> validWeapons;
 
-    public ArrayList<String> getValidCharacters() {
-        return validCharacters;
-    }
-
     public void setValidCharacters(ArrayList<String> validCharacters) {
         this.validCharacters = validCharacters;
-    }
-
-    public ArrayList<String> getValidRooms() {
-        return validRooms;
     }
 
     public void setValidRooms(ArrayList<String> validRooms) {
         this.validRooms = validRooms;
     }
 
-    public ArrayList<String> getValidWeapons() {
-        return validWeapons;
-    }
-
     public void setValidWeapons(ArrayList<String> validWeapons) {
         this.validWeapons = validWeapons;
     }
 
+    public CaseDetails getCaseDetails()
+    {
+        return caseDetails;
+    }
 
+    public void setCaseDetails(CaseDetails caseDetails)
+    {
+        this.caseDetails = caseDetails;
+    }
 
     public AccusationStatus getAccusationStatus()
     {
@@ -59,14 +56,14 @@ public final class Accusation
         this.weapon = weapon;
     }
 
-    public Room getRoom()
+    public RoomNames getRoomNames()
     {
-        return room;
+        return roomNames;
     }
 
-    public void setRoom(Room room)
+    public void setRoomNames(RoomNames roomNames)
     {
-        this.room = room;
+        this.roomNames = roomNames;
     }
 
     public Character getCharacter()
@@ -79,14 +76,29 @@ public final class Accusation
         this.character = character;
     }
 
+    public ArrayList<String> getValidCharacters()
+    {
+        return validCharacters;
+    }
+
+    public ArrayList<String> getValidRooms()
+    {
+        return validRooms;
+    }
+
+    public ArrayList<String> getValidWeapons()
+    {
+        return validWeapons;
+    }
+
     public void setCharacterString(String characterString) {
         this.character = Character.valueOf(characterString);
         System.out.println("\n" + this.character + " was selected.");
     }
 
     public void setRoomString(String roomString) {
-        this.room = Room.valueOf(roomString);
-        System.out.println("\n" + this.room + " was selected.");
+        this.roomNames = RoomNames.valueOf(roomString);
+        System.out.println("\n" + this.roomNames + " was selected.");
 
     }
 
@@ -103,7 +115,7 @@ public final class Accusation
         return "Accusation{" +
                 "accusationStatus=" + accusationStatus +
                 ", weapon=" + weapon +
-                ", room=" + room +
+                ", room=" + roomNames +
                 ", character=" + character +
                 '}';
     }

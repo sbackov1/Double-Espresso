@@ -1,15 +1,20 @@
 package edu.jhu.espresso.server.domain.builder;
 
-import edu.jhu.espresso.server.domain.CaseDetails;
-import edu.jhu.espresso.server.domain.GameBoard;
-import edu.jhu.espresso.server.domain.Suggestion;
-import edu.jhu.espresso.server.domain.SuggestionStatus;
+import edu.jhu.espresso.server.domain.*;
+import edu.jhu.espresso.server.domain.Character;
+
+import java.util.List;
 
 public final class SuggestionBuilder
 {
     private SuggestionStatus suggestionStatus;
+    private Weapon weapon;
+    private RoomNames roomNames;
+    private Character character;
     private GameBoard gameBoard;
     private CaseDetails caseDetails;
+    private List<String> validCharacters;
+    private List<String> validWeapons;
 
     private SuggestionBuilder()
     {
@@ -26,6 +31,24 @@ public final class SuggestionBuilder
         return this;
     }
 
+    public SuggestionBuilder withWeapon(Weapon weapon)
+    {
+        this.weapon = weapon;
+        return this;
+    }
+
+    public SuggestionBuilder withRoomNames(RoomNames roomNames)
+    {
+        this.roomNames = roomNames;
+        return this;
+    }
+
+    public SuggestionBuilder withCharacter(Character character)
+    {
+        this.character = character;
+        return this;
+    }
+
     public SuggestionBuilder withGameBoard(GameBoard gameBoard)
     {
         this.gameBoard = gameBoard;
@@ -38,8 +61,20 @@ public final class SuggestionBuilder
         return this;
     }
 
+    public SuggestionBuilder withValidCharacters(List<String> validCharacters)
+    {
+        this.validCharacters = validCharacters;
+        return this;
+    }
+
+    public SuggestionBuilder withValidWeapons(List<String> validWeapons)
+    {
+        this.validWeapons = validWeapons;
+        return this;
+    }
+
     public Suggestion build()
     {
-        return new Suggestion(suggestionStatus, gameBoard, caseDetails);
+        return new Suggestion(suggestionStatus, weapon, roomNames, character, gameBoard, caseDetails, validCharacters, validWeapons);
     }
 }

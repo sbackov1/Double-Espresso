@@ -73,6 +73,18 @@ public class ClueLessClientHandler
         return CompletableFuture.supplyAsync(() -> writeInstanceAndExpectType(input, responseClass));
     }
 
+    public void write(Object message)
+    {
+        try
+        {
+            printWriter.println(OBJECT_MAPPER.writeValueAsString(message));
+        }
+        catch (JsonProcessingException e)
+        {
+            throw new IllegalStateException(e);
+        }
+    }
+
     public PrintWriter getPrintWriter()
     {
         return printWriter;
