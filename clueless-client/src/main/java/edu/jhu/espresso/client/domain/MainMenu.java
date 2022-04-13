@@ -56,7 +56,7 @@ public class MainMenu {
 
         suggestion.setValidCharacters(validChars);
         suggestion.setValidWeapons(validWeapons);
-        mainMenu.setMainSubMenu(suggestion.mainSugMenu());
+       // mainMenu.setMainSubMenu(suggestion.mainSugMenu());
         suggestion.mainSugMenu();
     }
 

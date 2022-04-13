@@ -87,7 +87,7 @@ public final class Suggestion {
         System.out.println("\n" + output + " is the message to be transmitted.");
     }
 
-    public Menu mainSugMenu () {
+    public void mainSugMenu () {
 
         Menu sugMenu = new Menu();
         sugMenu.setTitle("*** Suggestion Menu ***");
@@ -96,7 +96,7 @@ public final class Suggestion {
         sugMenu.addItem(new MenuItem("Finalize Suggestion and Check Players", this, "printToString", null));
 
         sugMenu.execute();
-        return sugMenu;
+        //return sugMenu;
     }
 
     public void selectCharacter() {
