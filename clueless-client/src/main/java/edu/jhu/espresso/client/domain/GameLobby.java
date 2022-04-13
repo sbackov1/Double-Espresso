@@ -6,6 +6,12 @@ public class GameLobby {
 
     private ArrayList<String> characters;
     private Character character;
+
+    //private Player host;
+    //private ArrayList<Player> players;
+    private final String[] times = {"1", "2", "5"};
+
+    private boolean isHost = true;
     private int gameTimer;
 
     public ArrayList<String> getCharacters()
@@ -18,10 +24,16 @@ public class GameLobby {
         this.characters = characters;
     }
 
-    public void setHost()
+    /*public Player getHost()
     {
 
     }
+
+    public void setHost()
+    {
+
+    }*/
+
     public String toString()
     {
         return "Character{" +
@@ -38,14 +50,33 @@ public class GameLobby {
     public void LobbyMenu()
     {
         Menu lobby = new Menu();
-        lobby.setTitle("*** Select Your Character ***");
-
-        for (String validCharacter : this.characters)
+        lobby.setTitle("*** Game Lobby ***\nAvailable Characters");
+        for (String characterString : this.characters)
         {
-            lobby.addItem(new MenuItem(validCharacter, this, "setCharacterString", validCharacter));
+            lobby.addItem(new MenuItem(characterString, this, "setCharacterString", characterString));
         }
         lobby.addItem(new MenuItem("Confirm Character Selection", this, "printToString", null));
+
+        if(isHost == true)
+        {
+            lobby.addItem(new MenuItem("Set Turn Timer", this, "TimerMenu", null));
+            lobby.addItem(new MenuItem("Start Game", this, "startGame", null));
+        }
+
         lobby.execute();
+    }
+
+    public void TimerMenu()
+    {
+        Menu timeMenu = new Menu();
+        timeMenu.setTitle("*** Select Time (Minutes) ***");
+
+        for (String timerString : this.times)
+        {
+            timeMenu.addItem(new MenuItem(timerString, this, "setTurnTimerString", timerString));
+        }
+
+        timeMenu.execute();
     }
 
     private void setCharacter(Character character)
@@ -58,5 +89,23 @@ public class GameLobby {
         this.character = Character.valueOf(characterString);
         System.out.println("\n" + this.character + " was selected.");
 
+    }
+
+    public void setTurnTimer(int gameTimer)
+    {
+        this.gameTimer = gameTimer;
+    }
+
+    public void setTurnTimerString(String timerString)
+    {
+        this.gameTimer = Integer.parseInt(timerString);
+        System.out.println("\nThe current time limit for a turn is " + this.gameTimer + " minute(s).");
+    }
+
+    public void startGame()
+    {
+        // prevents host from starting game when not all players have chosen a character
+        // starts game if all players have chosen a character, adds dummy characters if needed
+        // closes game lobby menu
     }
 }

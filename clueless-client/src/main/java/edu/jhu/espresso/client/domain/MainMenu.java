@@ -7,7 +7,6 @@ public class MainMenu {
 
     Menu mainMenu = new Menu();
     ArrayList<String> legalMoves = new ArrayList<>();
-    private static Menu mainSubMenu;
 
     MoveOptions moveOptions = new MoveOptions();
     Suggestion suggestion = new Suggestion();

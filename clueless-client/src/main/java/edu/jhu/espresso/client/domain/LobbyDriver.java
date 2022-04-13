@@ -6,7 +6,7 @@ public class LobbyDriver {
 
     public static void main(String[] args)
     {
-        Lobby lobby = new Lobby();
+        GameLobby lobby = new GameLobby();
         ArrayList<String> characters = new ArrayList<>();
         characters.add("PROFESSOR_PLUM");
         characters.add("MRS_PEACOCK");
