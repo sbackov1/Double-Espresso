@@ -75,10 +75,14 @@ public class Menu {
             this.print();
             item = this.getUserInput();
             item.invoke();
-            if (!this.isRootMenu && !this.isMainSubMenu)    // temporary fix
+            if (!this.isRootMenu && !this.isMainSubMenu)   // temporary fix
+            {
                 break;
+            }
         }
         while(!item.isExitItem());
+        if (item.getTarget() == null)
+            mainSubMenu = null;
     }
 
     /* Menu uses this to know how to index the exit option. */

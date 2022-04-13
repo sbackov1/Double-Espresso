@@ -77,4 +77,6 @@ public class MenuItem {
     void setExitItem(boolean isExitItem) { this.isExitItem = isExitItem; }
 
     public String toString() { return getLabel(); }
+
+    public String getTarget() {return target;}
 }
