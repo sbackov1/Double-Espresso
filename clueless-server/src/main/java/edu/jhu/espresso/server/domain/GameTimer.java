@@ -5,9 +5,9 @@ public class GameTimer {
 
     private int turn;
     private int turnLength;
-    private ArrayList<Player> playerOrder;
+    //private ArrayList<Player> playerList;
     private Player activePlayer;
-    private int passivePlayerIndex;
+    private Player passivePlayer;
 
     public GameTimer(){
         turn = 0;
@@ -19,41 +19,50 @@ public class GameTimer {
 
         //Create a random order for players to play in.
         Collections.shuffle(playerList);
-        Collections.copy(this.playerOrder, playerList);
+
+        //Set next player for all players
+        for (int i = 0; i < playerList.size() - 1; i++){
+            playerList.get(i).setNextPlayer(playerList.get(i + 1));
+        }
+
+        //Set previous player for all players.
+        for (int i = 1; i < playerList.size(); i++){
+            playerList.get(i).setPreviousPlayer(playerList.get(i - 1));
+        }
+
+        //Set next and previous for last and first players.
+        playerList.get(playerList.size() - 1 ).setNextPlayer(playerList.get(0));
+        playerList.get(0).setPreviousPlayer(playerList.get(playerList.size() - 1));
 
         //Set active player to first in list.
-        this.activePlayer = this.playerOrder.get(0);
+        this.activePlayer = playerList.get(0);
+        this.passivePlayer = playerList.get(0);
         }
 
     //In this case, setActivePlayer returns player instead of "void".
-    //Would be sweet to make this a circular linked list.
-    public Player setNewActivePlayer(){
-        int currentActiveIndex = playerOrder.indexOf(activePlayer);
-        int newActiveIndex;
+    public void setNewActivePlayer(){
 
-        //If the current player is last in the list, go to beginning
-        if (playerOrder.size() == currentActiveIndex + 1){newActiveIndex = 0;}
-        else newActiveIndex = currentActiveIndex + 1;
+        //Set the passive player to the active player, then the first time getNextPassivePlayer is called it will return next player.
+        this.passivePlayer = this.activePlayer.getNextPlayer();
+        this.activePlayer = this.activePlayer.getNextPlayer();
 
-        //Set passive player index to activeplayer index
-        passivePlayerIndex = newActiveIndex;
-
-        return playerOrder.get(newActiveIndex);
     }
 
-    public Player getNextPassivePlayer(){
-        if(passivePlayerIndex + 1 == playerOrder.size()) {
-            passivePlayerIndex = 0;}
+    public Player setNextPassivePlayer(){
 
-        else{passivePlayerIndex += 1;}
+        return this.getPassivePlayer().getNextPlayer();
 
-        return playerOrder.get(passivePlayerIndex);
         }
+
+    public Player getPassivePlayer() {
+
+        return passivePlayer;
+
+    }
 
     public Player getActivePlayer(){
         return activePlayer;
     }
-
 
     public int getTurn() {
         return turn;

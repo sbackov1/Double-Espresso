@@ -1,6 +1,7 @@
 package edu.jhu.espresso.server.domain;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class HomeSquare implements Location {
 
@@ -49,6 +50,19 @@ public class HomeSquare implements Location {
 
     @Override
     public ArrayList<String> getPossibleDestinations() {
-        return null;
+        ArrayList<String> retList = new ArrayList<>();
+        retList.add(this.adjacentHallway);
+        return retList;
     }
+
+    @Override
+    public String getLocationName() {
+        return locationName;
+    }
+
+    @Override
+    public void setFull(boolean set){};
+
+    @Override
+    public boolean isFull(){return true;}
 }

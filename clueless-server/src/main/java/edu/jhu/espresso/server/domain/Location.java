@@ -9,6 +9,9 @@ public interface Location {
     ArrayList<Location> possibleDestinations = new ArrayList<>();
 
     public ArrayList<String> getPossibleDestinations();
+    public String getLocationName();
+    public boolean isFull();
+    public void setFull(boolean set);
 }
 
 

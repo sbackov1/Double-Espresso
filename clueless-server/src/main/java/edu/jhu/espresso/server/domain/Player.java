@@ -7,6 +7,9 @@ public class Player {
     private final int playerID;
     private final int gameID;
 
+    private Player nextPlayer;
+    private Player previousPlayer;
+
 
     public Player(int gID, int pID, Character ch) {
         this.playerID = pID;
@@ -15,8 +18,8 @@ public class Player {
         this.activeStatus = true;
     }
 
-    public void makeNotebook(Game game) {
-        this.notebook = new Notebook(game.getCardPlayer().getCardDeck());
+    public void makeNotebook(CardDeck c) {
+      this.notebook = new Notebook(c);
     }
 
     public Notebook getNotebook() {
@@ -27,7 +30,7 @@ public class Player {
         return character;
     }
 
-    public boolean isActiveStatus() {
+    public boolean getActiveStatus() {
         return activeStatus;
     }
 
@@ -37,5 +40,21 @@ public class Player {
 
     public void setActiveStatus(boolean activeStatus) {
         this.activeStatus = activeStatus;
+    }
+
+    public Player getNextPlayer() {
+        return nextPlayer;
+    }
+
+    public void setNextPlayer(Player nextPlayer) {
+        this.nextPlayer = nextPlayer;
+    }
+
+    public Player getPreviousPlayer() {
+        return previousPlayer;
+    }
+
+    public void setPreviousPlayer(Player previousPlayer) {
+        this.previousPlayer = previousPlayer;
     }
 }

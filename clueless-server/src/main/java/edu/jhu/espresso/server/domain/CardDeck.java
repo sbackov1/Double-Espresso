@@ -4,7 +4,7 @@ import java.math.*;
 
 public class CardDeck {
 
-        private ArrayList<Card> cardsList;
+        public ArrayList<Card> cardsList;
         private ArrayList<Card> cardsListCopy;
 
         public CardDeck() {
@@ -12,17 +12,17 @@ public class CardDeck {
 
                 //Add room cards
                 for (RoomNames rooms : RoomNames.values()) {
-                        this.cardsList.add(new RoomCard(rooms.name()));
+                        this.cardsList.add(new RoomCard(rooms));
                 }
 
                 //Add character cards
                 for (CharacterNames cn : CharacterNames.values()) {
-                        this.cardsList.add(new CharacterCard(cn.name()));
+                        this.cardsList.add(new CharacterCard(cn));
                 }
 
                 //Add weapon cards
                 for (Weapon wp : Weapon.values()) {
-                        this.cardsList.add(new WeaponCard(wp.name()));
+                        this.cardsList.add(new WeaponCard(wp));
                 }
 
                 //Create a copy to deal from
@@ -31,7 +31,7 @@ public class CardDeck {
 
         //dealRandomCard returns random card and removes it from the deck.
         public Card dealRandomCard() {
-                int number = (int) (Math.random() * cardsList.size());
+                int number = (int) (Math.random() * cardsListCopy.size());
                 Card retCard = cardsListCopy.get(number);
                 cardsListCopy.remove(number);
                 return retCard;
