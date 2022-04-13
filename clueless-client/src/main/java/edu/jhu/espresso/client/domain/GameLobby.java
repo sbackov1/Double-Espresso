@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 public class GameLobby {
 
+    Menu lobby = new Menu();
     private ArrayList<String> characters;
     private Character character;
 
@@ -34,6 +35,7 @@ public class GameLobby {
 
     }*/
 
+    @Override
     public String toString()
     {
         return "Character{" +
@@ -44,12 +46,18 @@ public class GameLobby {
     public void printToString()
     {
         String output = toString();
-        System.out.println("\nYou are " + character);
+        if (character == null)
+        {
+            System.out.println("\nPlease select a character.");
+        }
+        else
+        {
+            System.out.println("\nYou are " + character);
+        }
     }
 
     public void LobbyMenu()
     {
-        Menu lobby = new Menu();
         lobby.setTitle("*** Game Lobby ***\nAvailable Characters");
         for (String characterString : this.characters)
         {
@@ -62,7 +70,6 @@ public class GameLobby {
             lobby.addItem(new MenuItem("Set Turn Timer", this, "TimerMenu", null));
             lobby.addItem(new MenuItem("Start Game", this, "startGame", null));
         }
-
         lobby.execute();
     }
 
@@ -79,12 +86,12 @@ public class GameLobby {
         timeMenu.execute();
     }
 
-    private void setCharacter(Character character)
+    public void setCharacter(Character character)
     {
         this.character = character;
     }
 
-    private void setCharacterString(String characterString)
+    public void setCharacterString(String characterString)
     {
         this.character = Character.valueOf(characterString);
         System.out.println("\n" + this.character + " was selected.");
