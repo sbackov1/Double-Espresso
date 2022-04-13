@@ -7,27 +7,31 @@ public class Notebook {
     private ArrayList<Card> knownCards;
     private ArrayList<Card> unknownCards;
 
-    public Notebook(CardDeck c) {
-        ArrayList<Card> unknownCards = c.getCardsList();
+    public Notebook(CardDeck cd) {
+        this.unknownCards = (ArrayList<Card>) cd.getCardsList().clone();
         //Generate blank arrayLists of cards for hand cards and known cards.
-        ArrayList<Card> handCards = new ArrayList<Card>();
-        ArrayList<Card> knownCards = new ArrayList<Card>();
+        this.handCards = new ArrayList<Card>();
+        this.knownCards = new ArrayList<Card>();
     }
 
     public void makeKnownCard(Card c){
-        unknownCards.remove(c);
-        knownCards.add(c);
+        this.unknownCards.remove(c);
+        this.knownCards.add(c);
         }
 
     public void makeHandCard(Card c){
-        unknownCards.remove(c);
-        handCards.add(c);
+        this.unknownCards.remove(c);
+        this.handCards.add(c);
         }
 
     //Returns all cards in a notebook which can disprove the current suggestion.  If none are present, it returns null.
     public ArrayList<Card> canDisproveSuggestion (ArrayList<Card> suggestionCards){
-        suggestionCards.retainAll(this.handCards);
-        return suggestionCards;
+
+        //Use the following if we can pass in the exact same object - not sure how it will work with getting object references from Server.
+        ArrayList<Card> retList = (ArrayList<Card>) suggestionCards.clone();
+        retList.retainAll(this.handCards);
+
+         return retList;
     }
 
     public ArrayList<Card> getHandCards() {

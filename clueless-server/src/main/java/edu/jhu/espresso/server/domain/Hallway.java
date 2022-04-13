@@ -18,29 +18,29 @@ public class Hallway implements Location {
 
         switch(name) {
             case "H1":
-                this.possibleDestinations = new ArrayList<String>(Arrays.asList("Study", "Hall"));
+                this.possibleDestinations = new ArrayList<String>(Arrays.asList("STUDY", "HALL"));
             case "H2":
-                this.possibleDestinations = new ArrayList<String>(Arrays.asList("Hall", "Lounge"));
+                this.possibleDestinations = new ArrayList<String>(Arrays.asList("HALL", "LOUNGE"));
             case "H3":
-                this.possibleDestinations = new ArrayList<String>(Arrays.asList("Library", "Billiard Room"));
+                this.possibleDestinations = new ArrayList<String>(Arrays.asList("LIBRARY", "BILLIARD_ROOM"));
             case "H4":
-                this.possibleDestinations = new ArrayList<String>(Arrays.asList("Billiard Room", "Dining Room"));
+                this.possibleDestinations = new ArrayList<String>(Arrays.asList("BILLIARD_ROOM", "DINING_ROOM"));
             case "H5":
-                this.possibleDestinations = new ArrayList<String>(Arrays.asList("Conservatory", "Ballroom"));
+                this.possibleDestinations = new ArrayList<String>(Arrays.asList("CONSERVATORY", "BALLROOM"));
             case "H6":
-                this.possibleDestinations = new ArrayList<String>(Arrays.asList("Ballroom", "Kitchen"));
+                this.possibleDestinations = new ArrayList<String>(Arrays.asList("BALLROOM", "KITCHEN"));
             case "H7":
-                this.possibleDestinations = new ArrayList<String>(Arrays.asList("Study", "Library"));
+                this.possibleDestinations = new ArrayList<String>(Arrays.asList("STUDY", "LIBRARY"));
             case "H8":
-                this.possibleDestinations = new ArrayList<String>(Arrays.asList("Hall", "Billiard Room"));
+                this.possibleDestinations = new ArrayList<String>(Arrays.asList("HALL", "BILLIARD_ROOM"));
             case "H9":
-                this.possibleDestinations = new ArrayList<String>(Arrays.asList("Lounge", "Dining Room"));
+                this.possibleDestinations = new ArrayList<String>(Arrays.asList("LOUNGE", "DINING_ROOM"));
             case "H10":
-                this.possibleDestinations = new ArrayList<String>(Arrays.asList("Library", "Conservatory"));
+                this.possibleDestinations = new ArrayList<String>(Arrays.asList("LIBRARY", "CONSERVATORY"));
             case "H11":
-                this.possibleDestinations = new ArrayList<String>(Arrays.asList("Billiard Room", "Ballroom"));
+                this.possibleDestinations = new ArrayList<String>(Arrays.asList("BILLIARD_ROOM", "BALLROOM"));
             case "H12":
-                this.possibleDestinations = new ArrayList<String>(Arrays.asList("Dining Room", "Kitchen"));
+                this.possibleDestinations = new ArrayList<String>(Arrays.asList("DINING_ROOM", "KITCHEN"));
         }
 
 

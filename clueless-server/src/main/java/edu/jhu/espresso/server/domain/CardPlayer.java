@@ -12,7 +12,7 @@ public class CardPlayer {
 
         //MAKE CASEFILE
         this.caseFile = new ArrayList<Card>();
-        //Use index 0-9 to get a room card, 9-14 for a random Character Card, 15-20 for a random Weapon Card, but account for one card being removed each time.
+        //Use index 0-8 to get a room card, 9-14 for a random Character Card, 15-20 for a random Weapon Card, but account for one card being removed each time.
         Card randomRoomCard = this.cardDeck.dealRandomCard(0,8 );
         Card randomCharacterCard = this.cardDeck.dealRandomCard(8,13 );
         Card randomWeaponCard = this.cardDeck.dealRandomCard(13,18 );
@@ -33,7 +33,7 @@ public class CardPlayer {
         for(int i = 0; i < commonCardNumber; i++) {
             Card thisCard = this.cardDeck.dealRandomCard();
             for (Player pl : playerList) {
-                pl.notebook.makeHandCard(thisCard);
+                pl.notebook.makeKnownCard(thisCard);
             }
         }
         //While cards are remaining, deal hands sequentially.
@@ -52,6 +52,8 @@ public class CardPlayer {
     public ArrayList<Card> getCaseFile() {
         return caseFile;
     }
+
+
 }
 
 

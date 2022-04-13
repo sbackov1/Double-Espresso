@@ -1,11 +1,14 @@
 package edu.jhu.espresso.server.domain;
 
-public enum Character
-{
-    PROFESSOR_PLUM,
-    MRS_WHITE,
-    MR_GREEN,
-    MRS_PEACOCK,
-    MISS_SCARLET,
-    COLONEL_MUSTARD
+public class Character {
+
+    private final String name;
+
+    public Character(CharacterNames name){
+        this.name = name.name();
+    }
+
+    public String getName() {
+        return name;
+    }
 }

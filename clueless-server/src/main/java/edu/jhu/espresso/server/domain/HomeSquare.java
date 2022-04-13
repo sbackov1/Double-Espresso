@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 @JsonTypeName("HomeSquare")
 public class HomeSquare implements Location {
@@ -54,6 +55,19 @@ public class HomeSquare implements Location {
 
     @Override
     public ArrayList<String> getPossibleDestinations() {
-        return null;
+        ArrayList<String> retList = new ArrayList<>();
+        retList.add(this.adjacentHallway);
+        return retList;
     }
+
+    @Override
+    public String getLocationName() {
+        return locationName;
+    }
+
+    @Override
+    public void setFull(boolean set){};
+
+    @Override
+    public boolean isFull(){return true;}
 }
