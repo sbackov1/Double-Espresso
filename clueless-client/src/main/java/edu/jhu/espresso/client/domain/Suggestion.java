@@ -96,6 +96,7 @@ public final class Suggestion {
         sugMenu.addItem(new MenuItem("Finalize Suggestion and Check Players", this, "printToString", null));
 
         sugMenu.execute();
+        //return sugMenu;
     }
 
     public void selectCharacter() {

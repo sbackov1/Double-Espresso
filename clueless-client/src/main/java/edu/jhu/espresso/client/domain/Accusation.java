@@ -129,7 +129,6 @@ public final class Accusation
         //cancel.setExitItem(true);
        // accMenu.addItem(cancel);
 
-
         //cancel.setExitItem(true);
 
         accMenu.execute();
