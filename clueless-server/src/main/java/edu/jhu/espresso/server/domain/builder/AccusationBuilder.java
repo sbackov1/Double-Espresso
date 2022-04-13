@@ -11,7 +11,7 @@ public final class AccusationBuilder
     private AccusationStatus accusationStatus;
     private Weapon weapon;
     private RoomNames roomNames;
-    private Character character;
+    private CharacterNames character;
     private List<String> validCharacters;
     private List<String> validRooms;
     private List<String> validWeapons;
@@ -44,7 +44,7 @@ public final class AccusationBuilder
         return this;
     }
 
-    public AccusationBuilder withCharacter(Character character)
+    public AccusationBuilder withCharacter(CharacterNames character)
     {
         this.character = character;
         return this;

@@ -12,7 +12,7 @@ public final class Suggestion
     private final SuggestionStatus suggestionStatus;
     private final Weapon weapon;
     private final RoomNames roomNames;
-    private final Character character;
+    private final CharacterNames character;
     private final CaseDetails caseDetails;
     private final List<String> validCharacters;
     private final List<String> validWeapons;
@@ -21,7 +21,7 @@ public final class Suggestion
             SuggestionStatus suggestionStatus,
             Weapon weapon,
             RoomNames roomNames,
-            Character character,
+            CharacterNames character,
             GameBoard gameBoard,
             CaseDetails caseDetails,
             List<String> validCharacters,
@@ -72,7 +72,7 @@ public final class Suggestion
         return roomNames;
     }
 
-    public Character getCharacter()
+    public CharacterNames getCharacter()
     {
         return character;
     }

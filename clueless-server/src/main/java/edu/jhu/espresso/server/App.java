@@ -1,11 +1,13 @@
 package edu.jhu.espresso.server;
 
+import edu.jhu.espresso.server.domain.Character;
+import edu.jhu.espresso.server.domain.CharacterNames;
 import edu.jhu.espresso.server.domain.Game;
+import edu.jhu.espresso.server.domain.Player;
 import edu.jhu.espresso.server.protocol.ClueLessServerGameProtocol;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 /**
@@ -19,12 +21,14 @@ public class App
         ClueLessServer clueLessServer = new ClueLessServer();
 
         List<ClueLessClientHandler> clueLessClientHandlers = new ArrayList<>();
-        for(int i = 0; i < 2; i++)
+        for(int i = 0; i < 6; i++)
         {
             clueLessClientHandlers.add(clueLessServer.accept());
         }
 
-        Game game = new Game(0, new ArrayList<>());
+        ArrayList<Player> players = new ArrayList<>();
+        players.add(new Player(0, 0, new Character(CharacterNames.PROFESSOR_PLUM)));
+        Game game = new Game(0, players);
 
         ClueLessServerGameProtocol clueLessServerGameProtocol = new ClueLessServerGameProtocol(clueLessClientHandlers, game);
 

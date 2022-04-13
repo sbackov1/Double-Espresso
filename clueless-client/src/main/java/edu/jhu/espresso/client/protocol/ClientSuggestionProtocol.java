@@ -6,6 +6,7 @@ import edu.jhu.espresso.client.domain.Suggestion;
 import edu.jhu.espresso.client.domain.SuggestionStatus;
 
 import java.util.Random;
+import java.util.function.Supplier;
 
 class ClientSuggestionProtocol implements ClueLessProtocol
 {
@@ -21,11 +22,24 @@ class ClientSuggestionProtocol implements ClueLessProtocol
     {
         Suggestion suggestion = client.waitForResponse(Suggestion.class);
         Random random = new Random();
-        suggestion.setSuggestionStatus(
-                random.nextInt() % 2 == 0 ?
-                        SuggestionStatus.PROVING_SUGGESTION_FALSE :
-                        SuggestionStatus.CANNOT_DISPROVE
-        );
+        Supplier<SuggestionStatus> testimony = random.nextInt() % 6 == 0 ?
+                this::proveFalse :
+                this::cannotProveFalse;
+
+        suggestion.setSuggestionStatus(testimony.get());
+
         client.write(suggestion);
+    }
+
+    public SuggestionStatus proveFalse()
+    {
+        System.out.println("Proving the suggestion false");
+        return SuggestionStatus.PROVING_SUGGESTION_FALSE;
+    }
+
+    public SuggestionStatus cannotProveFalse()
+    {
+        System.out.println("Cannot prove the suggestion false");
+        return SuggestionStatus.CANNOT_DISPROVE;
     }
 }

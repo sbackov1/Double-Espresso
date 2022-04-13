@@ -14,7 +14,7 @@ public final class Accusation
     private final AccusationStatus accusationStatus;
     private final Weapon weapon;
     private final RoomNames roomNames;
-    private final Character character;
+    private final CharacterNames character;
     private final List<String> validCharacters;
     private final List<String> validRooms;
     private final List<String> validWeapons;
@@ -25,7 +25,7 @@ public final class Accusation
             AccusationStatus accusationStatus,
             Weapon weapon,
             RoomNames roomNames,
-            Character character,
+            CharacterNames character,
             List<String> validCharacters,
             List<String> validRooms,
             List<String> validWeapons,
@@ -62,7 +62,7 @@ public final class Accusation
         return roomNames;
     }
 
-    public Character getCharacter()
+    public CharacterNames getCharacter()
     {
         return character;
     }

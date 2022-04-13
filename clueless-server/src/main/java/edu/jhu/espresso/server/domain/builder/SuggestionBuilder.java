@@ -10,7 +10,7 @@ public final class SuggestionBuilder
     private SuggestionStatus suggestionStatus;
     private Weapon weapon;
     private RoomNames roomNames;
-    private Character character;
+    private CharacterNames character;
     private GameBoard gameBoard;
     private CaseDetails caseDetails;
     private List<String> validCharacters;
@@ -43,7 +43,7 @@ public final class SuggestionBuilder
         return this;
     }
 
-    public SuggestionBuilder withCharacter(Character character)
+    public SuggestionBuilder withCharacter(CharacterNames character)
     {
         this.character = character;
         return this;

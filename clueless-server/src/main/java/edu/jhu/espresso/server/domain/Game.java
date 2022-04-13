@@ -44,8 +44,6 @@ public class Game {
         return gameTimer;
     }
 
-    public void applyMoveChoice(MoveChoice moveChoice)
-    {
     //Startgame creates notebooks, deals cards, and starts the turn of the first active player.
     public void startGame(){
         for (Player p : playerList){
@@ -96,9 +94,6 @@ public class Game {
 
     }
 
-
-    }
-
     public Map<CharacterNames, LocationNames> getLocations()
     {
         EnumMap<CharacterNames, LocationNames> map = new EnumMap<>(CharacterNames.class);
@@ -107,6 +102,11 @@ public class Game {
         map.put(CharacterNames.MRS_PEACOCK, LocationNames.STUDY);
         map.put(CharacterNames.COLONEL_MUSTARD, LocationNames.CELLAR);
         return map;
+    }
+
+    public void applyMoveChoice(MoveChoice moveChoice)
+    {
+
     }
 }
 
