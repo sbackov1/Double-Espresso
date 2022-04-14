@@ -7,11 +7,9 @@ public class GameLobby {
     Menu lobby = new Menu();
     private ArrayList<String> characters;
     private Character character;
-
-    //private Player host;
-    //private ArrayList<Player> players;
+    private Player host;
+    private ArrayList<Player> players;
     private final String[] times = {"1", "2", "5"};
-
     private boolean isHost = true;
     private int gameTimer;
 
@@ -25,15 +23,21 @@ public class GameLobby {
         this.characters = characters;
     }
 
-    /*public Player getHost()
+    public Player getHost()
     {
-
+        return host;
     }
 
-    public void setHost()
+    public void setHost(Player host)
     {
+        this.host = host;
+        this.isHost = true;
+    }
 
-    }*/
+    public void addPlayer(int clientID, Player player)
+    {
+        players.add(player);
+    }
 
     @Override
     public String toString()
@@ -62,7 +66,7 @@ public class GameLobby {
         lobby.addItem(new MenuItem("Character Selection", this, "CharacterMenu", null));
         lobby.addItem(new MenuItem("Confirm Character Selection", this, "printToString", null));
 
-        if(isHost == true)
+        if(this.isHost)
         {
             lobby.addItem(new MenuItem("Set Turn Timer", this, "TimerMenu", null));
             lobby.addItem(new MenuItem("Start Game", this, "startGame", null));
@@ -115,6 +119,11 @@ public class GameLobby {
     {
         this.gameTimer = Integer.parseInt(timerString);
         System.out.println("\nThe current time limit for a turn is " + this.gameTimer + " minute(s).");
+    }
+
+    public void addDummyPlayer(Character character)
+    {
+        DummyPlayer dummyPlayer = new DummyPlayer();
     }
 
     public void startGame()
