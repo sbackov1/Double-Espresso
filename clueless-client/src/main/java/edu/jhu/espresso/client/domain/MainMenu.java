@@ -7,7 +7,6 @@ public class MainMenu {
 
     Menu mainMenu = new Menu();
     ArrayList<String> legalMoves = new ArrayList<>();
-    private static Menu mainSubMenu;
 
     MoveOptions moveOptions = new MoveOptions();
     Suggestion suggestion = new Suggestion();
@@ -80,6 +79,11 @@ public class MainMenu {
 
     public void openNotebook()
     {
-        System.out.println("This is a placeholder for the player notebook.");
+        System.out.println("\n*** Notebook ***\n|Characters|");
+        // output character cards
+        System.out.println("\n|Weapons|");
+        // output weapon cards
+        System.out.println("\n|Rooms|");
+        // output room cards
     }
 }
