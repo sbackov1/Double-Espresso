@@ -1,5 +1,6 @@
 package edu.jhu.espresso.client.domain;
 
+
 public enum CharacterNames
 {
     PROFESSOR_PLUM,
@@ -7,5 +8,27 @@ public enum CharacterNames
     MR_GREEN,
     MRS_PEACOCK,
     MISS_SCARLET,
-    COLONEL_MUSTARD
+    COLONEL_MUSTARD;
+
+
+    public String toString() {
+
+        switch(this) {
+            case PROFESSOR_PLUM:
+                return "PROFESSOR_PLUM";
+            case MRS_WHITE:
+                return "MRS_WHITE";
+            case MR_GREEN:
+                return "MR_GREEN";
+            case MRS_PEACOCK:
+                return "MRS_PEACOCK";
+            case MISS_SCARLET:
+                return "MISS_SCARLET";
+            case COLONEL_MUSTARD:
+                return "COLONEL_MUSTARD";
+        }
+        return null;
+        }
 }
+
+
