@@ -39,7 +39,7 @@ public class GameLobby {
     public String toString()
     {
         return "Character{" +
-                "Chosen character=" + character +
+                "character=" + character +
                 '}';
     }
 
@@ -58,11 +58,8 @@ public class GameLobby {
 
     public void LobbyMenu()
     {
-        lobby.setTitle("*** Game Lobby ***\nAvailable Characters");
-        for (String characterString : this.characters)
-        {
-            lobby.addItem(new MenuItem(characterString, this, "setCharacterString", characterString));
-        }
+        lobby.setTitle("*** Game Lobby ***");
+        lobby.addItem(new MenuItem("Character Selection", this, "CharacterMenu", null));
         lobby.addItem(new MenuItem("Confirm Character Selection", this, "printToString", null));
 
         if(isHost == true)
@@ -71,6 +68,17 @@ public class GameLobby {
             lobby.addItem(new MenuItem("Start Game", this, "startGame", null));
         }
         lobby.execute();
+    }
+
+    public void CharacterMenu()
+    {
+        Menu charMenu = new Menu();
+        charMenu.setTitle("*** Select Character ***");
+        for (String characterString : this.characters)
+        {
+            charMenu.addItem(new MenuItem(characterString, this, "setCharacterString", characterString));
+        }
+        charMenu.execute();
     }
 
     public void TimerMenu()
