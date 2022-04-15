@@ -12,6 +12,20 @@ public class MainMenu {
     Suggestion suggestion = new Suggestion();
     Accusation accusation = new Accusation();
 
+    CardDeck deck = new CardDeck();
+    Notebook notebook = new Notebook(deck);
+
+    public void makeSampleNotebook () {
+
+        this.notebook.makeHandCard(new CharacterCard("PROFESSOR_PLUM"));
+        this.notebook.makeHandCard(new RoomCard("STUDY"));
+        this.notebook.makeHandCard(new WeaponCard("DAGGER"));
+
+        this.notebook.makeKnownCard(new CharacterCard("MISS_SCARLET"));
+        this.notebook.makeKnownCard(new RoomCard("BALLROOM"));
+        this.notebook.makeKnownCard(new WeaponCard("LEAD_PIPE"));
+    }
+
     public List<String> getLegalMoves()
     {
         return legalMoves;
@@ -79,11 +93,16 @@ public class MainMenu {
 
     public void openNotebook()
     {
-        System.out.println("\n*** Notebook ***\n|Characters|");
+        /* System.out.println("\n*** Notebook ***\n|Characters|");
         // output character cards
         System.out.println("\n|Weapons|");
         // output weapon cards
         System.out.println("\n|Rooms|");
         // output room cards
+
+         */
+
+        makeSampleNotebook();
+        System.out.println(notebook.toString());
     }
 }
