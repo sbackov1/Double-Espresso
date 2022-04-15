@@ -17,13 +17,19 @@ public class MainMenu {
 
     public void makeSampleNotebook () {
 
-        this.notebook.makeHandCard(new CharacterCard("PROFESSOR_PLUM"));
-        this.notebook.makeHandCard(new RoomCard("STUDY"));
-        this.notebook.makeHandCard(new WeaponCard("DAGGER"));
+        this.notebook.makeHandCard(deck.getCard(deck.getCardsList(),"PROFESSOR_PLUM" ));
+            //    new CharacterCard("PROFESSOR_PLUM"));
+        this.notebook.makeHandCard(deck.getCard(deck.getCardsList(),"STUDY" ));
+        this.notebook.makeHandCard(deck.getCard(deck.getCardsList(),"DAGGER" ));
+       // this.notebook.makeHandCard(new RoomCard("STUDY"));
+       // this.notebook.makeHandCard(new WeaponCard("DAGGER"));
 
-        this.notebook.makeKnownCard(new CharacterCard("MISS_SCARLET"));
-        this.notebook.makeKnownCard(new RoomCard("BALLROOM"));
-        this.notebook.makeKnownCard(new WeaponCard("LEAD_PIPE"));
+        this.notebook.makeKnownCard(deck.getCard(deck.getCardsList(),"MISS_SCARLET" ));
+        this.notebook.makeKnownCard(deck.getCard(deck.getCardsList(),"BALLROOM" ));
+        this.notebook.makeKnownCard(deck.getCard(deck.getCardsList(),"LEAD_PIPE" ));
+       // this.notebook.makeKnownCard(new CharacterCard("MISS_SCARLET"));
+        //this.notebook.makeKnownCard(new RoomCard("BALLROOM"));
+       // this.notebook.makeKnownCard(new WeaponCard("LEAD_PIPE"));
     }
 
     public List<String> getLegalMoves()
