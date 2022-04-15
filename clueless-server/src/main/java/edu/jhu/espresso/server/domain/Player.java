@@ -8,7 +8,6 @@ public class Player {
     private final int gameID;
 
     private Player nextPlayer;
-    private Player previousPlayer;
 
 
     public Player(int gID, int pID, Character ch) {
@@ -50,11 +49,5 @@ public class Player {
         this.nextPlayer = nextPlayer;
     }
 
-    public Player getPreviousPlayer() {
-        return previousPlayer;
-    }
 
-    public void setPreviousPlayer(Player previousPlayer) {
-        this.previousPlayer = previousPlayer;
-    }
 }

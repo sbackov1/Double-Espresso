@@ -55,14 +55,12 @@ public class Game {
     }
 
     //confirmAccusation returns true if accusation is accurate and false if not.
-    public boolean confirmAccusation(Player accuser, ArrayList<Card> Accusation){
+    public boolean confirmAccusation(ArrayList<Card> Accusation){
         boolean isTrue = Accusation.containsAll(this.getCardPlayer().getCaseFile());
         if (isTrue){return true;}
 
         //else set accuser to passive and replace them in the turn order.
         else {
-            accuser.getPreviousPlayer().setNextPlayer(accuser.getNextPlayer());
-            accuser.getNextPlayer().setPreviousPlayer(accuser.getPreviousPlayer());
             accuser.setActiveStatus(false);
             return false;
         }
