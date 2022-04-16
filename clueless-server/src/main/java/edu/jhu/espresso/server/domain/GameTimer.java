@@ -25,32 +25,31 @@ public class GameTimer {
             playerList.get(i).setNextPlayer(playerList.get(i + 1));
         }
 
-        //Set previous player for all players.
-        for (int i = 1; i < playerList.size(); i++){
-            playerList.get(i).setPreviousPlayer(playerList.get(i - 1));
-        }
-
         //Set next and previous for last and first players.
         playerList.get(playerList.size() - 1 ).setNextPlayer(playerList.get(0));
-        playerList.get(0).setPreviousPlayer(playerList.get(playerList.size() - 1));
 
         //Set active player to first in list.
         this.activePlayer = playerList.get(0);
         this.passivePlayer = playerList.get(0);
         }
 
-    //In this case, setActivePlayer returns player instead of "void".
+    //In this case, setActivePlayer sets the next active player to the next active player.  IF their activestatus is false, the method is called recursively until an active player is reached.
     public void setNewActivePlayer(){
 
         //Set the passive player to the active player, then the first time getNextPassivePlayer is called it will return next player.
         this.passivePlayer = this.activePlayer.getNextPlayer();
         this.activePlayer = this.activePlayer.getNextPlayer();
+        if(this.activePlayer.getActiveStatus() == false){
+            setNewActivePlayer();
+        }
 
     }
 
     public Player setNextPassivePlayer(){
 
-        return this.getPassivePlayer().getNextPlayer();
+        Player newPassivePlayer = null;
+        this.passivePlayer = newPassivePlayer;
+        return newPassivePlayer;
 
         }
 
