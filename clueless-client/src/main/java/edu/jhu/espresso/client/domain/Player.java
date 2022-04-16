@@ -1,9 +1,9 @@
 package edu.jhu.espresso.client.domain;
 
 public class Player {
-    private final Character character;
+    private CharacterNames character;
     private boolean activeStatus;
-    public Notebook notebook;
+    private Notebook notebook;
     private final int playerID;
     private final int gameID;
 
@@ -11,9 +11,8 @@ public class Player {
     private Player previousPlayer;
 
 
-    public Player(int gID, int pID, Character ch) {
+    public Player(int gID, int pID) {
         this.playerID = pID;
-        this.character = ch;
         this.gameID = gID;
         this.activeStatus = true;
     }
@@ -26,7 +25,7 @@ public class Player {
         return notebook;
     }
 
-    public Character getCharacter() {
+    public CharacterNames getCharacter() {
         return character;
     }
 
@@ -58,4 +57,8 @@ public class Player {
         this.previousPlayer = previousPlayer;
     }
 
+    public void setCharacter(CharacterNames character)
+    {
+        this.character = character;
+    }
 }

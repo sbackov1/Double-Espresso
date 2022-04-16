@@ -6,10 +6,11 @@ public final class Suggestion {
     private SuggestionStatus suggestionStatus;
     private Weapon weapon;
     private RoomNames roomNames;
-    private Character character;
+    private CharacterNames character;
     private CaseDetails caseDetails;
     private ArrayList<String> validCharacters;
     private ArrayList<String> validWeapons;
+    private String responseValue;
 
     public ArrayList<String> getValidCharacters() {
         return validCharacters;
@@ -35,16 +36,16 @@ public final class Suggestion {
         this.weapon = weapon;
     }
 
-    public Character getCharacter() {
+    public CharacterNames getCharacter() {
         return character;
     }
 
-    public void setCharacter(Character character) {
+    public void setCharacter(CharacterNames character) {
         this.character = character;
     }
 
     public void setCharacterString(String characterString) {
-        this.character = Character.valueOf(characterString);
+        this.character = CharacterNames.valueOf(characterString);
         System.out.println("\n" + this.character + " was selected.");
     }
 
@@ -134,6 +135,15 @@ public final class Suggestion {
 
         }
         sugMenu.execute();
+    }
 
+    public String getResponseValue()
+    {
+        return responseValue;
+    }
+
+    public void setResponseValue(String responseValue)
+    {
+        this.responseValue = responseValue;
     }
 }

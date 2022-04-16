@@ -40,7 +40,7 @@ public class HomeSquare implements Location {
                 break;
             case MISS_SCARLET:
                 this.adjacentHallway = "H2";
-                this.locationName = "MISS_SCARLETT_HS";
+                this.locationName = "MISS_SCARLET_HS";
                 break;
         }
     }

@@ -8,16 +8,9 @@ import org.apache.commons.lang3.EnumUtils;
 public class SuggestionResponse {
 
     private SuggestionStatus suggestionStatus;
-    private WeaponCard weaponCard;
-    private RoomCard roomCard;
-    private CharacterCard characterCard;
     private Card responseCard;
     private ArrayList<Card> validCards;
     private boolean selected = false;
-
-    //private CharacterNames character;
-   //private RoomNames roomNames;
-   //private Weapon weapon;
 
     public void setValidCards(ArrayList<Card> validCards) {
         this.validCards = validCards;
@@ -60,20 +53,9 @@ public class SuggestionResponse {
 
     public void setCantDisprove() {
         this.suggestionStatus = SuggestionStatus.CANNOT_DISPROVE;
-        this.characterCard = new CharacterCard("null");
-        this.roomCard = new RoomCard("null");
-        this.weaponCard = new WeaponCard("null");
         this.printToString();
     }
 
-    @Override
-    public String toString() {
-        return "Suggestion{" +
-                "suggestionStatus=" + suggestionStatus +
-                ", cardName=" + responseCard.getName() +
-                ", cardType=" + responseCard.getType() +
-                '}';
-    }
     public void printToString() {
 
         //this.suggestionStatus = SuggestionStatus.MAKING_SUGGESTION;
@@ -94,8 +76,6 @@ public class SuggestionResponse {
 }
 
     public void selectCard() {
-
-
             Menu sugMenu = new Menu();
             sugMenu.setTitle("*** Select Card ***");
 
@@ -107,9 +87,15 @@ public class SuggestionResponse {
 
             sugMenu.execute();
             //selected = true;
-
-
     }
 
+    public Card getResponseCard()
+    {
+        return responseCard;
+    }
 
+    public String getResponseValue()
+    {
+        return responseCard == null ? "" : responseCard.getName();
+    }
 }

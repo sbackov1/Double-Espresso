@@ -1,7 +1,6 @@
 package edu.jhu.espresso.server.domain.builder;
 
 import edu.jhu.espresso.server.domain.*;
-import edu.jhu.espresso.server.domain.Character;
 
 import java.util.List;
 
@@ -11,10 +10,10 @@ public final class SuggestionBuilder
     private Weapon weapon;
     private RoomNames roomNames;
     private CharacterNames character;
-    private GameBoard gameBoard;
     private CaseDetails caseDetails;
     private List<String> validCharacters;
     private List<String> validWeapons;
+    private String responseValue;
 
     private SuggestionBuilder()
     {
@@ -49,12 +48,6 @@ public final class SuggestionBuilder
         return this;
     }
 
-    public SuggestionBuilder withGameBoard(GameBoard gameBoard)
-    {
-        this.gameBoard = gameBoard;
-        return this;
-    }
-
     public SuggestionBuilder withCaseDetails(CaseDetails caseDetails)
     {
         this.caseDetails = caseDetails;
@@ -73,8 +66,14 @@ public final class SuggestionBuilder
         return this;
     }
 
+    public SuggestionBuilder withResponseValue(String responseValue)
+    {
+        this.responseValue = responseValue;
+        return this;
+    }
+
     public Suggestion build()
     {
-        return new Suggestion(suggestionStatus, weapon, roomNames, character, gameBoard, caseDetails, validCharacters, validWeapons);
+        return new Suggestion(suggestionStatus, weapon, roomNames, character, caseDetails, validCharacters, validWeapons, responseValue);
     }
 }

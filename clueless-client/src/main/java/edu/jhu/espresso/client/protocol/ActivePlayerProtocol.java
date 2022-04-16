@@ -13,18 +13,18 @@ class ActivePlayerProtocol implements ClueLessProtocol
     }
 
     @Override
-    public void execute(GameBoard gameBoard)
+    public void execute(TurnStart turnStart)
     {
         MoveOptions moveOptions = client.waitForResponse(MoveOptions.class);
-        sleep(1000);
         client.write(makeMoveChoice(moveOptions));
 
         Suggestion suggestion = client.waitForResponse(Suggestion.class);
-        sleep(500);
         client.write(makeSuggestionChoice(suggestion));
 
+        SuggestionTestimonyResponse response = client.waitForResponse(SuggestionTestimonyResponse.class);
+        updateNotebook(response);
+
         Accusation accusation = client.waitForResponse(Accusation.class);
-        sleep(1500);
         client.write(makeAccusationChoice(accusation));
     }
 
@@ -40,6 +40,16 @@ class ActivePlayerProtocol implements ClueLessProtocol
         options.mainSugMenu();
         options.setRoomNames(RoomNames.BILLIARD_ROOM);
         options.setSuggestionStatus(SuggestionStatus.MAKING_SUGGESTION);
+
+        CaseDetails caseDetails = new CaseDetails();
+        caseDetails.setRoom(RoomNames.BILLIARD_ROOM);
+        caseDetails.setCharacterNames(options.getCharacter());
+        caseDetails.setWeapon(options.getWeapon());
+        caseDetails.setCharacterNames(options.getCharacter());
+
+        options.setCaseDetails(
+                caseDetails
+        );
         return options;
     }
 
@@ -59,5 +69,10 @@ class ActivePlayerProtocol implements ClueLessProtocol
         {
             throw new IllegalStateException(e);
         }
+    }
+
+    private void updateNotebook(SuggestionTestimonyResponse response)
+    {
+        response.optionalResponse().ifPresent(value -> client.getPlayer().getNotebook().makeKnownCard(value));
     }
 }

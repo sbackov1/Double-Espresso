@@ -3,7 +3,7 @@ package edu.jhu.espresso.client.domain;
 public class CaseDetails
 {
     private Weapon weapon;
-    private Room room;
+    private RoomNames roomNames;
     private CharacterNames characterNames;
 
     public Weapon getWeapon()
@@ -11,9 +11,9 @@ public class CaseDetails
         return weapon;
     }
 
-    public Room getRoom()
+    public RoomNames getRoom()
     {
-        return room;
+        return roomNames;
     }
 
     public CharacterNames getCharacterNames()
@@ -26,9 +26,9 @@ public class CaseDetails
         this.weapon = weapon;
     }
 
-    public void setRoom(Room room)
+    public void setRoom(RoomNames room)
     {
-        this.room = room;
+        this.roomNames = room;
     }
 
     public void setCharacterNames(CharacterNames characterNames)
@@ -41,7 +41,7 @@ public class CaseDetails
     {
         return "Suggestion{" +
                 "weapon=" + weapon +
-                ", room=" + room +
+                ", room=" + roomNames +
                 ", characterNames=" + characterNames +
                 '}';
     }

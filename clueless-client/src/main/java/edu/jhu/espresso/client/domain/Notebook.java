@@ -14,6 +14,22 @@ public class Notebook {
         this.knownCards = new ArrayList<Card>();
     }
 
+    public void makeKnownCard(String cardName)
+    {
+        unknownCards.stream()
+                .filter(card -> card.getName().equals(cardName))
+                .findFirst()
+                .ifPresent(this::makeKnownCard);
+    }
+
+    public void makeHandCard(String cardName)
+    {
+        unknownCards.stream()
+                .filter(card -> card.getName().equals(cardName))
+                .findFirst()
+                .ifPresent(this::makeHandCard);
+    }
+
     public void makeKnownCard(Card c){
         this.unknownCards.remove(c);
         this.knownCards.add(c);
@@ -24,7 +40,6 @@ public class Notebook {
         this.handCards.add(c);
     }
 
-    //Returns all cards in a notebook which can disprove the current suggestion.  If none are present, it returns null.
     public ArrayList<Card> canDisproveSuggestion (ArrayList<Card> suggestionCards){
 
         //Use the following if we can pass in the exact same object - not sure how it will work with getting object references from Server.
@@ -49,15 +64,14 @@ public class Notebook {
     @Override
     public String toString() {
         return "\n*** Notebook ***\n" +
-                "HandCards:\n" +
+                "HandCards:" +
                 printCards(handCards) +
-                "\n" + "Known Cards:\n" +
-                printCards(knownCards) +
-                "\n" + "Unknown Cards:\n" +
-                printCards(unknownCards) +
-                "\n";
-
-
+                "\n" + "Known Cards:" +
+                printCards(knownCards);
+//                +
+//                "\n" + "Unknown Cards:\n" +
+//                printCards(unknownCards) +
+//                "\n";
     }
 
     public String printCards(ArrayList<Card> aCard) {

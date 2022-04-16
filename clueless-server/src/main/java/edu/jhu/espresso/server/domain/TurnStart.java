@@ -9,10 +9,14 @@ import java.util.Map;
 public class TurnStart
 {
     private final ClueLessProtocolType clueLessProtocolType;
+    private final Map<CharacterNames, LocationNames> locationNamesMap;
+    private final String announcement;
 
-    public TurnStart(ClueLessProtocolType clueLessProtocolType)
+    public TurnStart(ClueLessProtocolType clueLessProtocolType, Map<CharacterNames, LocationNames> locationNamesMap, String announcement)
     {
         this.clueLessProtocolType = clueLessProtocolType;
+        this.locationNamesMap = locationNamesMap;
+        this.announcement = announcement;
     }
 
     public ClueLessProtocolType getClueLessProtocolType()
@@ -20,4 +24,13 @@ public class TurnStart
         return clueLessProtocolType;
     }
 
+    public Map<CharacterNames, LocationNames> getLocationNamesMap()
+    {
+        return locationNamesMap;
+    }
+
+    public String getAnnouncement()
+    {
+        return announcement;
+    }
 }

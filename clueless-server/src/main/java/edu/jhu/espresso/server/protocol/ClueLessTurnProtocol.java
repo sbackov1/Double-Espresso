@@ -1,29 +1,26 @@
 package edu.jhu.espresso.server.protocol;
 
-import edu.jhu.espresso.server.ClueLessClientHandler;
 import edu.jhu.espresso.server.domain.*;
 import edu.jhu.espresso.server.domain.builder.AccusationBuilder;
 import edu.jhu.espresso.server.domain.builder.SuggestionBuilder;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 import java.util.concurrent.CompletableFuture;
 import java.util.stream.Collectors;
 
 public class ClueLessTurnProtocol
 {
     private final Game game;
-    private final List<ClueLessClientHandler> waitingPlayers;
-    private final ClueLessClientHandler activePlayerHandler;
+    private final List<Player> waitingPlayers;
+    private final Player activePlayer;
 
     public ClueLessTurnProtocol(
-            List<ClueLessClientHandler> waitingPlayers,
-            ClueLessClientHandler activePlayerHandler,
+            List<Player> waitingPlayers,
+            Player activePlayer,
             Game game
     ) {
         this.waitingPlayers = waitingPlayers;
-        this.activePlayerHandler = activePlayerHandler;
+        this.activePlayer = activePlayer;
         this.game = game;
     }
 
@@ -31,48 +28,46 @@ public class ClueLessTurnProtocol
     {
         notifyPlayersOfStatus();
 
-        activePlayerHandler.write(game.getLocations());
-        waitingPlayers.forEach(waiter -> waiter.write(game.getLocations()));
-
-        MoveChoice moveChoice = activePlayerHandler.writeInstanceAndExpectType(
+        MoveChoice moveChoice = activePlayer.writeInstanceAndExpectType(
                 determineValidMoveOptions(game.getGameBoard()),
                 MoveChoice.class
         );
 
-        game.applyMoveChoice(moveChoice);
+        game.applyMoveChoice(moveChoice, activePlayer.getCharacter().getName());
 
-        Suggestion suggestion = activePlayerHandler.writeInstanceAndExpectType(
+        Suggestion suggestion = activePlayer.writeInstanceAndExpectType(
                 buildOfferSuggestionMessage(),
                 Suggestion.class
         );
 
         if(suggestion.getSuggestionStatus() == SuggestionStatus.MAKING_SUGGESTION)
         {
-            new SuggestionTestimonyProtocol(waitingPlayers, suggestion, game).execute();
+            launchSuggestionTestimony(suggestion);
         }
 
-        Accusation accusation = activePlayerHandler.writeInstanceAndExpectType(
+        Accusation accusation = activePlayer.writeInstanceAndExpectType(
                 buildOfferAccusationMessage(),
                 Accusation.class
         );
 
         if(accusation.getAccusationStatus() == AccusationStatus.MAKING_ACCUSATION)
         {
-            new ServerAccusationProtocol(activePlayerHandler, waitingPlayers, accusation).execute();
+            new ServerAccusationProtocol(activePlayer, waitingPlayers, accusation, game).execute();
         }
 
         System.out.println("Moving to the next player");
         System.out.println();
 
-        return game.isOver();
+        return !game.isOver();
     }
 
     private void notifyPlayersOfStatus()
     {
-        TurnStart activePlayerTurnStart = new TurnStart(ClueLessProtocolType.ACTIVE_PLAYER);
-        TurnStart waitingPlayerTurnStart = new TurnStart(ClueLessProtocolType.WAITING_PLAYER);
+        Map<CharacterNames, LocationNames> locationNamesMap = game.getLocations();
+        TurnStart activePlayerTurnStart = new TurnStart(ClueLessProtocolType.ACTIVE_PLAYER, locationNamesMap, "");
+        TurnStart waitingPlayerTurnStart = new TurnStart(ClueLessProtocolType.WAITING_PLAYER, locationNamesMap, "");
 
-        CompletableFuture<TurnStart> activeResponseFuture = activePlayerHandler.asyncWriteInstanceAndExpectType(
+        CompletableFuture<TurnStart> activeResponseFuture = activePlayer.asyncWriteInstanceAndExpectType(
                 activePlayerTurnStart,
                 TurnStart.class
         );
@@ -88,18 +83,31 @@ public class ClueLessTurnProtocol
     private MoveOptions determineValidMoveOptions(GameBoard gameBoard)
     {
         MoveOptions moveOptions = new MoveOptions();
-        moveOptions.setValidMoves(new ArrayList<>(Arrays.asList(LocationNames.HALLWAY1, LocationNames.BALLROOM, LocationNames.STUDY)));
+        ArrayList<Location> legalMoveLocations = gameBoard.getLegalMoves(activePlayer.getCharacter().getName());
+        List<LocationNames> locationNames = legalMoveLocations.stream()
+                .map(Location::getLocationName)
+                .map(LocationNames::fromStringName)
+                .collect(Collectors.toList());
+
+        moveOptions.setValidMoves(locationNames);
         moveOptions.setTurnIndicator(ClueLessProtocolType.ACTIVE_PLAYER);
         return moveOptions;
     }
 
     private Suggestion buildOfferSuggestionMessage()
     {
+        List<String> validCharacters = Arrays.stream(CharacterNames.values())
+                .map(Enum::name)
+                .collect(Collectors.toList());
+
+        List<String> validWeapons = Arrays.stream(Weapon.values())
+                .map(Enum::name)
+                .collect(Collectors.toList());
+
         return SuggestionBuilder.aSuggestion()
                 .withSuggestionStatus(SuggestionStatus.OFFER_SUGGESTION)
-                .withGameBoard(game.getGameBoard())
-                .withValidCharacters(Arrays.asList(CharacterNames.COLONEL_MUSTARD.name(), CharacterNames.MRS_PEACOCK.name(), CharacterNames.MR_GREEN.name()))
-                .withValidWeapons(Arrays.asList(Weapon.CANDLESTICK.name(), Weapon.DAGGER.name(), Weapon.REVOLVER.name()))
+                .withValidCharacters(validCharacters)
+                .withValidWeapons(validWeapons)
                 .build();
     }
 
@@ -111,5 +119,26 @@ public class ClueLessTurnProtocol
                 .withValidCharacters(Arrays.asList(CharacterNames.COLONEL_MUSTARD.name(), CharacterNames.MRS_PEACOCK.name(), CharacterNames.MR_GREEN.name()))
                 .withValidWeapons(Arrays.asList(Weapon.CANDLESTICK.name(), Weapon.DAGGER.name(), Weapon.REVOLVER.name()))
                 .build();
+    }
+
+    private void launchSuggestionTestimony(Suggestion suggestion)
+    {
+        String character = Optional.ofNullable(suggestion.getCharacter()).map(Enum::name).orElse("");
+        String room = Optional.ofNullable(suggestion.getRoomNames()).map(Enum::name).orElse("");
+        String weapon = Optional.ofNullable(suggestion.getWeapon()).map(Enum::name).orElse("");
+
+        if(suggestion.getCharacter() != null && suggestion.getRoomNames() != null)
+        {
+            game.getGameBoard().moveCharacter(suggestion.getCharacter(), Location.fromRoomNames(suggestion.getRoomNames()));
+        }
+
+        ClueLessServerGameProtocol.broadcast(
+                game,
+                activePlayer.getCharacter().getName() + " suggested " + character + " in the " + room +
+                        " with the " + weapon,
+                waitingPlayers
+        );
+
+        new SuggestionTestimonyProtocol(waitingPlayers, activePlayer, suggestion, game).execute();
     }
 }

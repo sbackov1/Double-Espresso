@@ -16,7 +16,7 @@ public class Game {
         playerList = playerListy;
         this.gameBoard = new GameBoard();
         gameTimer = new GameTimer(1, playerListy);
-        }
+    }
 
 
     public int getGameID() {
@@ -56,14 +56,7 @@ public class Game {
 
     //confirmAccusation returns true if accusation is accurate and false if not.
     public boolean confirmAccusation(ArrayList<Card> Accusation){
-        boolean isTrue = Accusation.containsAll(this.getCardPlayer().getCaseFile());
-        if (isTrue){return true;}
-
-        //else set accuser to passive and replace them in the turn order.
-        else {
-            accuser.setActiveStatus(false);
-            return false;
-        }
+        return Accusation.containsAll(cardPlayer.getCaseFile());
     }
 
 
@@ -94,17 +87,12 @@ public class Game {
 
     public Map<CharacterNames, LocationNames> getLocations()
     {
-        EnumMap<CharacterNames, LocationNames> map = new EnumMap<>(CharacterNames.class);
-        map.put(CharacterNames.MISS_SCARLET, LocationNames.HALLWAY4);
-        map.put(CharacterNames.PROFESSOR_PLUM, LocationNames.CONSERVATORY);
-        map.put(CharacterNames.MRS_PEACOCK, LocationNames.STUDY);
-        map.put(CharacterNames.COLONEL_MUSTARD, LocationNames.CELLAR);
-        return map;
+        return gameBoard.getLocationMappingNames();
     }
 
-    public void applyMoveChoice(MoveChoice moveChoice)
+    public void applyMoveChoice(MoveChoice moveChoice, CharacterNames characterNames)
     {
-
+        gameBoard.moveCharacter(characterNames, Location.fromLocationName(moveChoice.getMove()));
     }
 }
 

@@ -8,6 +8,7 @@ import edu.jhu.espresso.server.protocol.ClueLessServerGameProtocol;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -20,29 +21,18 @@ public class App
     {
         ClueLessServer clueLessServer = new ClueLessServer();
 
-        List<ClueLessClientHandler> clueLessClientHandlers = new ArrayList<>();
-        for(int i = 0; i < 6; i++)
-        {
-            clueLessClientHandlers.add(clueLessServer.accept());
-        }
+        List<CharacterNames> characterNames = new ArrayList<>(Arrays.asList(CharacterNames.values()));
 
         ArrayList<Player> players = new ArrayList<>();
-        players.add(new Player(0, 0, new Character(CharacterNames.PROFESSOR_PLUM)));
+        for(int i = 0; i < 6; i++)
+        {
+            ClueLessClientHandler handler = clueLessServer.accept();
+            players.add(new Player(0, i, new Character(characterNames.get(i)), handler));
+        }
+
         Game game = new Game(0, players);
 
-        ClueLessServerGameProtocol clueLessServerGameProtocol = new ClueLessServerGameProtocol(clueLessClientHandlers, game);
-
-        while(true)
-        {
-            try
-            {
-                Thread.sleep(2500L);
-                clueLessServerGameProtocol.playGame();
-            }
-            catch (InterruptedException e)
-            {
-                e.printStackTrace();
-            }
-        }
+        ClueLessServerGameProtocol clueLessServerGameProtocol = new ClueLessServerGameProtocol(players, game);
+        clueLessServerGameProtocol.playGame();
     }
 }

@@ -1,28 +1,59 @@
 package edu.jhu.espresso.server.protocol;
 
-import edu.jhu.espresso.server.ClueLessClientHandler;
 import edu.jhu.espresso.server.domain.Accusation;
+import edu.jhu.espresso.server.domain.Card;
+import edu.jhu.espresso.server.domain.Game;
+import edu.jhu.espresso.server.domain.Player;
 
+import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class ServerAccusationProtocol
 {
-    private final ClueLessClientHandler activePlayerHandler;
-    private final List<ClueLessClientHandler> waitingPlayerHandlers;
+    private final Player activePlayerHandler;
+    private final List<Player> waitingPlayerHandlers;
     private final Accusation accusation;
+    private final Game game;
 
     public ServerAccusationProtocol(
-            ClueLessClientHandler activePlayerHandler,
-            List<ClueLessClientHandler> waitingPlayerHandlers,
-            Accusation accusation
+            Player activePlayerHandler,
+            List<Player> waitingPlayerHandlers,
+            Accusation accusation,
+            Game game
     ) {
         this.activePlayerHandler = activePlayerHandler;
         this.waitingPlayerHandlers = waitingPlayerHandlers;
         this.accusation = accusation;
+        this.game = game;
     }
 
     public void execute()
     {
-        System.out.println("Server accusation logic executes");
+        ArrayList<Card> caseCards = game.getCardPlayer().getCaseFile();
+        List<String> names = caseCards.stream()
+                .map(Card::getName)
+                .collect(Collectors.toList());
+
+        if(names.contains(accusation.getRoomNames().name()) &&
+                names.contains(accusation.getCharacter().name()) &&
+                names.contains(accusation.getWeapon().name()))
+        {
+            ClueLessServerGameProtocol.broadcast(
+                                game,
+                    activePlayerHandler.getCharacter().getName() + " wins!",
+                    waitingPlayerHandlers
+            );
+            System.exit(0);
+        }
+        else
+        {
+            ClueLessServerGameProtocol.broadcast(
+                    game,
+                    activePlayerHandler.getCharacter().getName() + " has made an incorrect accusation!",
+                    waitingPlayerHandlers
+            );
+        }
     }
 }

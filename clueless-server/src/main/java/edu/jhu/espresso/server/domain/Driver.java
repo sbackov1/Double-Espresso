@@ -23,8 +23,8 @@ public class Driver {
 
         Character Professor_Plum = new Character(PROFESSOR_PLUM);
         Character Colonel_Mustard= new Character(COLONEL_MUSTARD);
-        Player jim = new Player(1,  1, Professor_Plum);
-        Player jon = new Player( 1, 3, Colonel_Mustard);
+        Player jim = new Player(1,  1, Professor_Plum, null);
+        Player jon = new Player( 1, 3, Colonel_Mustard, null);
         ArrayList<Player> playerList = new ArrayList<Player>();
         playerList.add(jim);
         playerList.add(jon);
@@ -62,14 +62,14 @@ public class Driver {
 
         //Player makes a true accusation.
         ArrayList<Card> trueAccusation = thisGame.getCardPlayer().getCaseFile();
-        boolean trueAccusationResult = thisGame.confirmAccusation(jim, trueAccusation);
+        boolean trueAccusationResult = thisGame.confirmAccusation(trueAccusation);
 
         //Player makes a false accusation.
         ArrayList<Card> falseAccusation = new ArrayList<Card>();
         falseAccusation.add(thisGame.getGameTimer().getActivePlayer().getNextPlayer().getNotebook().getHandCards().get(0));
         falseAccusation.add(new WeaponCard(Weapon.LEAD_PIPE));
         falseAccusation.add(new RoomCard(RoomNames.BALLROOM));
-        boolean falseAccusationResult = thisGame.confirmAccusation(jim, falseAccusation);
+        boolean falseAccusationResult = thisGame.confirmAccusation(falseAccusation);
 
         int x = 0;
 

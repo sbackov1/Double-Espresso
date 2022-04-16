@@ -18,7 +18,7 @@ public class GameTimer {
         turn = 0;
 
         //Create a random order for players to play in.
-        Collections.shuffle(playerList);
+//        Collections.shuffle(playerList);
 
         //Set next player for all players
         for (int i = 0; i < playerList.size() - 1; i++){

@@ -1,8 +1,9 @@
 package edu.jhu.espresso.server.domain;
-import com.fasterxml.jackson.annotation.JsonTypeInfo;
+
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
 
 @JsonTypeName("Room")
 public class Room implements Location {

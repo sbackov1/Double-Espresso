@@ -1,5 +1,7 @@
 package edu.jhu.espresso.server.domain;
 
+import java.util.Optional;
+
 public interface Card {
 
     final String name = null;
@@ -7,4 +9,7 @@ public interface Card {
 
     public String getName();
 
+    Optional<RoomNames> getRoomName();
+    Optional<Weapon> getWeapon();
+    Optional<CharacterNames> getCharacterName();
 }

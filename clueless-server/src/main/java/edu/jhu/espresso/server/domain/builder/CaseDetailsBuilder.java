@@ -14,7 +14,7 @@ public final class CaseDetailsBuilder
     {
     }
 
-    public static CaseDetailsBuilder aSuggestion()
+    public static CaseDetailsBuilder aCaseDetails()
     {
         return new CaseDetailsBuilder();
     }

@@ -16,16 +16,17 @@ public final class Suggestion
     private final CaseDetails caseDetails;
     private final List<String> validCharacters;
     private final List<String> validWeapons;
+    private final String responseValue;
 
     public Suggestion(
             SuggestionStatus suggestionStatus,
             Weapon weapon,
             RoomNames roomNames,
             CharacterNames character,
-            GameBoard gameBoard,
             CaseDetails caseDetails,
             List<String> validCharacters,
-            List<String> validWeapons
+            List<String> validWeapons,
+            String responseValue
     ) {
         this.suggestionStatus = Objects.requireNonNull(suggestionStatus);
         this.weapon = weapon;
@@ -34,6 +35,7 @@ public final class Suggestion
         this.caseDetails = caseDetails;
         this.validCharacters = validCharacters;
         this.validWeapons = validWeapons;
+        this.responseValue = responseValue;
     }
 
     public SuggestionStatus getSuggestionStatus()
@@ -45,12 +47,6 @@ public final class Suggestion
     {
         return caseDetails;
     }
-
-//    public GameBoard getGameBoard()
-//    {
-//        return gameBoard;
-//    }
-
 
     public List<String> getValidCharacters()
     {
@@ -75,5 +71,10 @@ public final class Suggestion
     public CharacterNames getCharacter()
     {
         return character;
+    }
+
+    public String getResponseValue()
+    {
+        return responseValue;
     }
 }

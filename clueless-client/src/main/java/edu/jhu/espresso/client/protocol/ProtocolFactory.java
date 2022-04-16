@@ -20,7 +20,10 @@ public class ProtocolFactory
                 protocol = new ClientAccusationProtocol(client);
                 break;
             case SUGGESTION:
-                protocol = new ClientSuggestionProtocol(client);
+                protocol = new ClientSuggestionTestimonyProtocol(client);
+                break;
+            case INFORMATIONAL:
+                protocol = new InformationalProtocol();
                 break;
             default:
                 throw new IllegalArgumentException(clueLessProtocolType + " not supported!");

@@ -5,5 +5,6 @@ public enum ClueLessProtocolType
     ACTIVE_PLAYER,
     WAITING_PLAYER,
     SUGGESTION,
-    ACCUSATION
+    ACCUSATION,
+    INFORMATIONAL
 }

@@ -2,6 +2,8 @@ package edu.jhu.espresso.client.protocol;
 
 import edu.jhu.espresso.client.ClueLessClient;
 import edu.jhu.espresso.client.domain.GameBoard;
+import edu.jhu.espresso.client.domain.Player;
+import edu.jhu.espresso.client.domain.TurnStart;
 
 import java.util.Random;
 
@@ -15,15 +17,7 @@ class WaitingPlayerProtocol implements ClueLessProtocol
     }
 
     @Override
-    public void execute(GameBoard gameBoard)
+    public void execute(TurnStart turnStart)
     {
-        try
-        {
-            Thread.sleep(Math.abs(new Random().nextInt()) % 10);
-        }
-        catch (InterruptedException e)
-        {
-            throw new IllegalStateException(e);
-        }
     }
 }

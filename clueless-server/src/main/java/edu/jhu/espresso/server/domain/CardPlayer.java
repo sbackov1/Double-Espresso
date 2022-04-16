@@ -21,11 +21,14 @@ public class CardPlayer {
         this.caseFile.add(randomRoomCard);
         this.caseFile.add(randomWeaponCard);
 
+        for(Card card : caseFile)
+        {
+            System.out.println(card.getName());
+        }
     }
 
-
     //DealCards finds the number of shared cards, shows them to all players, and generates a random hand for each player
-    public void dealCards(ArrayList<Player> playerList){
+    public void dealCards(List<Player> playerList){
         int numPlayers = playerList.size();
         int commonCardNumber = 18 % numPlayers;
 

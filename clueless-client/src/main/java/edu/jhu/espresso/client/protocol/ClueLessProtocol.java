@@ -1,6 +1,7 @@
 package edu.jhu.espresso.client.protocol;
 
 import edu.jhu.espresso.client.domain.GameBoard;
+import edu.jhu.espresso.client.domain.TurnStart;
 
 /**
  * represents some protocol the client will run on a game state, presumably
@@ -9,5 +10,5 @@ import edu.jhu.espresso.client.domain.GameBoard;
 @FunctionalInterface
 public interface ClueLessProtocol
 {
-    void execute(GameBoard gameBoard);
+    void execute(TurnStart turnStart);
 }
