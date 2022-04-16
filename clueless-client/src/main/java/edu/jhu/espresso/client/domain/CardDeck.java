@@ -51,4 +51,13 @@ public class CardDeck {
         public ArrayList<Card> getCardsListCopy() {
                 return cardsListCopy;
         }
+
+        public Card getCard(ArrayList<Card> someCards, String name) {
+
+                for (Card card : someCards) {
+                        if (card.getName().equals(name)) { return card; }
+                }
+                return null;
+        }
+
 }

@@ -45,4 +45,29 @@ public class Notebook {
     public ArrayList<Card> getUnknownCards() {
         return unknownCards;
     }
+
+    @Override
+    public String toString() {
+        return "\n*** Notebook ***\n" +
+                "HandCards:\n" +
+                printCards(handCards) +
+                "\n" + "Known Cards:\n" +
+                printCards(knownCards) +
+                "\n" + "Unknown Cards:\n" +
+                printCards(unknownCards) +
+                "\n";
+
+
+    }
+
+    public String printCards(ArrayList<Card> aCard) {
+
+        String returnString = "";
+
+        for (Card cards : aCard) {
+            returnString += "\n" + cards.getType() + ": " + cards.getName();
+        }
+        returnString += "\n";
+        return returnString;
+    }
 }
