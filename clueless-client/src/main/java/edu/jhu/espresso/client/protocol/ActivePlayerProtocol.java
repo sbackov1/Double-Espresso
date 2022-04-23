@@ -15,6 +15,8 @@ class ActivePlayerProtocol implements ClueLessProtocol
     @Override
     public void execute(TurnStart turnStart)
     {
+        //Rewrite this - get all options and then select.
+
         MoveOptions moveOptions = client.waitForResponse(MoveOptions.class);
         client.write(makeMoveChoice(moveOptions));
 

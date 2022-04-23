@@ -121,11 +121,6 @@ public class GameLobby {
         System.out.println("\nThe current time limit for a turn is " + this.gameTimer + " minute(s).");
     }
 
-    public void addDummyPlayer(Character character)
-    {
-        DummyPlayer dummyPlayer = new DummyPlayer();
-    }
-
     public void startGame()
     {
         // prevents host from starting game when not all players have chosen a character

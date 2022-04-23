@@ -15,6 +15,10 @@ public class MainMenu {
     CardDeck deck = new CardDeck();
     Notebook notebook = new Notebook(deck);
 
+    private boolean moveIsPossible;
+
+    private boolean suggestionIsPossible;
+
     public void makeSampleNotebook () {
 
         this.notebook.makeHandCard(deck.getCard(deck.getCardsList(),"PROFESSOR_PLUM" ));
@@ -45,8 +49,15 @@ public class MainMenu {
     public void mainMenu ()
     {
         mainMenu.setTitle("*** Possible Actions ***");
-        mainMenu.addItem(new MenuItem("Move Character", this, "moveCharacter"));
-        mainMenu.addItem(new MenuItem("Make Suggestion", this, "makeSuggestion"));
+
+        if(moveIsPossible) {
+            mainMenu.addItem(new MenuItem("Move Character", this, "moveCharacter"));
+        }
+
+        if(suggestionIsPossible) {
+            mainMenu.addItem(new MenuItem("Make Suggestion", this, "makeSuggestion"));
+        }
+
         mainMenu.addItem(new MenuItem("Make Accusation", this, "makeAccusation"));
         mainMenu.addItem(new MenuItem("View Notebook", this, "openNotebook"));
         mainMenu.execute();
@@ -111,4 +122,20 @@ public class MainMenu {
         makeSampleNotebook();
         System.out.println(notebook.toString());
     }
+    public boolean isMoveIsPossible() {
+        return moveIsPossible;
+    }
+
+    public void setMoveIsPossible(boolean moveIsPossible) {
+        this.moveIsPossible = moveIsPossible;
+    }
+
+    public boolean isSuggestionIsPossible() {
+        return suggestionIsPossible;
+    }
+
+    public void setSuggestionIsPossible(boolean suggestionIsPossible) {
+        this.suggestionIsPossible = suggestionIsPossible;
+    }
+
 }

@@ -26,7 +26,12 @@ public class ClueLessTurnProtocol
 
     public boolean executeTurn()
     {
+
+        //Need to have sequence exist here.
         notifyPlayersOfStatus();
+
+        //Send and recieve options to activeplayer.
+
 
         MoveChoice moveChoice = activePlayer.writeInstanceAndExpectType(
                 determineValidMoveOptions(game.getGameBoard()),
