@@ -3,18 +3,24 @@ package edu.jhu.espresso.client.protocol;
 import edu.jhu.espresso.client.ClueLessClient;
 import edu.jhu.espresso.client.domain.GameEvents.*;
 import edu.jhu.espresso.client.domain.GamePieces.CaseDetails;
+import edu.jhu.espresso.client.domain.GamePieces.CharacterNames;
 import edu.jhu.espresso.client.domain.GamePieces.LocationNames;
 import edu.jhu.espresso.client.domain.GamePieces.RoomNames;
 import edu.jhu.espresso.client.domain.Menus.Menu;
 import edu.jhu.espresso.client.domain.Menus.MenuItem;
+import java.util.HashMap.*;
 
 class ActivePlayerProtocol implements ClueLessProtocol
 {
     private final ClueLessClient client;
 
+    private MoveOptions moveOptions;
+
+    private TurnStart turnStart;
     private boolean canMove;
 
     private boolean canSuggest;
+    //private edu.jhu.espresso.client.domain.GameEvents.TurnStart turnStart;
 
     public ActivePlayerProtocol(ClueLessClient client)
     {
@@ -24,6 +30,11 @@ class ActivePlayerProtocol implements ClueLessProtocol
     @Override
     public void execute(TurnStart turnStart)
     {
+
+        this.turnStart = turnStart;
+        moveOptions = client.waitForResponse(MoveOptions.class);
+        this.validateCanMove();
+        this.validateCanSuggest();
         this.mainSelectionMenu();
 
     }
@@ -87,7 +98,6 @@ class ActivePlayerProtocol implements ClueLessProtocol
         selectionMenu.setTitle("*** Current Choices ***");
 
         if(canMove){
-            MoveOptions moveOptions = client.waitForResponse(MoveOptions.class);
             selectionMenu.addItem(new MenuItem("Make a Move", this, "goToMovementMenu"));
         }
 
@@ -95,10 +105,15 @@ class ActivePlayerProtocol implements ClueLessProtocol
             selectionMenu.addItem(new MenuItem("Make Suggestion", this, "goToSuggestionMenu"));
         }
 
-        selectionMenu.addItem(new MenuItem("MakeAccusation", this, "goToAccusationMenu"));
+        selectionMenu.addItem(new MenuItem("Make Accusation", this, "goToAccusationMenu"));
 
         selectionMenu.execute();
     }
+
+
+    /**
+     * goToSuggestionMenu, goToMovementMenu, and goToAccusationMenu create menus for their respective classes.
+     * */
 
     public void goToSuggestionMenu(){
         Suggestion suggestion = client.waitForResponse(Suggestion.class);
@@ -106,11 +121,15 @@ class ActivePlayerProtocol implements ClueLessProtocol
 
         SuggestionTestimonyResponse response = client.waitForResponse(SuggestionTestimonyResponse.class);
         updateNotebook(response);
+
+        canSuggest = false;
+
     }
 
     public void goToMovementMenu(){
         MoveOptions moveOptions = client.waitForResponse(MoveOptions.class);
         client.write(makeMoveChoice(moveOptions));
+        canMove = false;
     }
 
     public void goToAccusationMenu() {
@@ -118,4 +137,31 @@ class ActivePlayerProtocol implements ClueLessProtocol
         client.write(makeAccusationChoice(accusation));
     }
 
+    /*** The validateCanMove method determines whether the activePlayer can legally move.
+      */
+    public void validateCanMove(){
+        if (this.moveOptions.getValidMoves().size() == 0) {
+            this.canMove = false;
+        }
+        else this.canMove = true;
+        }
+
+    /**
+     * The validateCanSuggest method determines whether the activePlayer is in a room and can make a suggestion.
+    **/
+
+    public void validateCanSuggest(){
+        CharacterNames activeChar = this.client.getPlayer().getCharacter();
+        LocationNames locationName = this.turnStart.getLocationNamesMap().get(activeChar);
+        String locationType =  locationName.StringLocationTypeFromStringName();
+
+        if (locationType.equals("Room")) { canSuggest = true; }
+        else {canSuggest = false;}
+    }
+
+
 }
+
+
+
+

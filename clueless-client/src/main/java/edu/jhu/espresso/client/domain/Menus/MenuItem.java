@@ -1,6 +1,7 @@
 package edu.jhu.espresso.client.domain.Menus;
 
 import java.lang.reflect.Method;
+import edu.jhu.espresso.client.protocol.ActivePlayerProtocol;
 
 /*
  * MenuItem is used by a Menu object to map a menu option to a target method. With the
