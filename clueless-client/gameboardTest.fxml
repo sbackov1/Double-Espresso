@@ -9,20 +9,158 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Line?>
 <?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="594.0" prefWidth="785.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
    <right>
       <VBox prefHeight="439.0" prefWidth="139.0" style="-fx-background-color: #00000033;" BorderPane.alignment="CENTER">
          <children>
-            <VBox prefHeight="200.0" prefWidth="100.0">
-               <children>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Notebook">
-                     <VBox.margin>
-                        <Insets />
-                     </VBox.margin></Text>
-               </children></VBox>
+            <Text boundsType="LOGICAL_VERTICAL_CENTER" strokeType="OUTSIDE" strokeWidth="0.0" text="Notebook" textAlignment="CENTER" wrappingWidth="136.02093505859375">
+               <font>
+                  <Font name="Courier Bold" size="18.0" />
+               </font>
+               <VBox.margin>
+                  <Insets bottom="20.0" top="20.0" />
+               </VBox.margin>
+            </Text>
+            <Line endX="29.60321044921875" startX="-100.0">
+               <VBox.margin>
+                  <Insets left="5.0" right="5.0" />
+               </VBox.margin>
+            </Line>
+            <Text boundsType="LOGICAL_VERTICAL_CENTER" strokeType="OUTSIDE" strokeWidth="0.0" text="Colonel Mustard" textAlignment="CENTER" wrappingWidth="136.02093505859375">
+               <font>
+                  <Font name="Courier" size="13.0" />
+               </font>
+               <VBox.margin>
+                  <Insets top="20.0" />
+               </VBox.margin>
+            </Text>
+            <Text boundsType="LOGICAL_VERTICAL_CENTER" strokeType="OUTSIDE" strokeWidth="0.0" text="Miss Scarlett" textAlignment="CENTER" wrappingWidth="136.02093505859375">
+               <font>
+                  <Font name="Courier" size="13.0" />
+               </font>
+            </Text>
+            <Text boundsType="LOGICAL_VERTICAL_CENTER" strokeType="OUTSIDE" strokeWidth="0.0" text="Professor Plum" textAlignment="CENTER" wrappingWidth="136.02093505859375">
+               <font>
+                  <Font name="Courier" size="13.0" />
+               </font>
+            </Text>
+            <Text boundsType="LOGICAL_VERTICAL_CENTER" strokeType="OUTSIDE" strokeWidth="0.0" text="Mr. White" textAlignment="CENTER" wrappingWidth="136.02093505859375">
+               <font>
+                  <Font name="Courier" size="13.0" />
+               </font>
+            </Text>
+            <Text boundsType="LOGICAL_VERTICAL_CENTER" strokeType="OUTSIDE" strokeWidth="0.0" text="Mr. Green" textAlignment="CENTER" wrappingWidth="136.02093505859375">
+               <font>
+                  <Font name="Courier" size="13.0" />
+               </font>
+            </Text>
+            <Text boundsType="LOGICAL_VERTICAL_CENTER" strokeType="OUTSIDE" strokeWidth="0.0" text="Mrs. Peacock" textAlignment="CENTER" wrappingWidth="136.02093505859375">
+               <font>
+                  <Font name="Courier" size="13.0" />
+               </font>
+               <VBox.margin>
+                  <Insets bottom="20.0" />
+               </VBox.margin>
+            </Text>
+            <Line endX="29.60321044921875" startX="-100.0">
+               <VBox.margin>
+                  <Insets left="5.0" right="5.0" />
+               </VBox.margin>
+            </Line>
+            <Text boundsType="LOGICAL_VERTICAL_CENTER" strokeType="OUTSIDE" strokeWidth="0.0" text="Candlestick" textAlignment="CENTER" wrappingWidth="136.02093505859375">
+               <font>
+                  <Font name="Courier" size="13.0" />
+               </font>
+               <VBox.margin>
+                  <Insets top="20.0" />
+               </VBox.margin>
+            </Text>
+            <Text boundsType="LOGICAL_VERTICAL_CENTER" strokeType="OUTSIDE" strokeWidth="0.0" text="Rope" textAlignment="CENTER" wrappingWidth="136.02093505859375">
+               <font>
+                  <Font name="Courier" size="13.0" />
+               </font>
+            </Text>
+            <Text boundsType="LOGICAL_VERTICAL_CENTER" strokeType="OUTSIDE" strokeWidth="0.0" text="Dagger" textAlignment="CENTER" wrappingWidth="136.02093505859375">
+               <font>
+                  <Font name="Courier" size="13.0" />
+               </font>
+            </Text>
+            <Text boundsType="LOGICAL_VERTICAL_CENTER" strokeType="OUTSIDE" strokeWidth="0.0" text="Revolver" textAlignment="CENTER" wrappingWidth="136.02093505859375">
+               <font>
+                  <Font name="Courier" size="13.0" />
+               </font>
+            </Text>
+            <Text boundsType="LOGICAL_VERTICAL_CENTER" strokeType="OUTSIDE" strokeWidth="0.0" text="Wrench" textAlignment="CENTER" wrappingWidth="136.02093505859375">
+               <font>
+                  <Font name="Courier" size="13.0" />
+               </font>
+            </Text>
+            <Text boundsType="LOGICAL_VERTICAL_CENTER" strokeType="OUTSIDE" strokeWidth="0.0" text="Lead Pipe" textAlignment="CENTER" wrappingWidth="136.02093505859375">
+               <font>
+                  <Font name="Courier" size="13.0" />
+               </font>
+               <VBox.margin>
+                  <Insets bottom="20.0" />
+               </VBox.margin>
+            </Text>
+            <Line endX="29.60321044921875" startX="-100.0">
+               <VBox.margin>
+                  <Insets left="5.0" right="5.0" />
+               </VBox.margin>
+            </Line>
+            <Text boundsType="LOGICAL_VERTICAL_CENTER" strokeType="OUTSIDE" strokeWidth="0.0" text="Study" textAlignment="CENTER" wrappingWidth="136.02093505859375">
+               <font>
+                  <Font name="Courier" size="13.0" />
+               </font>
+               <VBox.margin>
+                  <Insets top="20.0" />
+               </VBox.margin>
+            </Text>
+            <Text boundsType="LOGICAL_VERTICAL_CENTER" strokeType="OUTSIDE" strokeWidth="0.0" text="Hall" textAlignment="CENTER" wrappingWidth="136.02093505859375">
+               <font>
+                  <Font name="Courier" size="13.0" />
+               </font>
+            </Text>
+            <Text boundsType="LOGICAL_VERTICAL_CENTER" strokeType="OUTSIDE" strokeWidth="0.0" text="Lounge" textAlignment="CENTER" wrappingWidth="136.02093505859375">
+               <font>
+                  <Font name="Courier" size="13.0" />
+               </font>
+            </Text>
+            <Text boundsType="LOGICAL_VERTICAL_CENTER" strokeType="OUTSIDE" strokeWidth="0.0" text="Library" textAlignment="CENTER" wrappingWidth="136.02093505859375">
+               <font>
+                  <Font name="Courier" size="13.0" />
+               </font>
+            </Text>
+            <Text boundsType="LOGICAL_VERTICAL_CENTER" strokeType="OUTSIDE" strokeWidth="0.0" text="Billard Room" textAlignment="CENTER" wrappingWidth="136.02093505859375">
+               <font>
+                  <Font name="Courier" size="13.0" />
+               </font>
+            </Text>
+            <Text boundsType="LOGICAL_VERTICAL_CENTER" strokeType="OUTSIDE" strokeWidth="0.0" text="Dining Room" textAlignment="CENTER" wrappingWidth="136.02093505859375">
+               <font>
+                  <Font name="Courier" size="13.0" />
+               </font>
+            </Text>
+            <Text boundsType="LOGICAL_VERTICAL_CENTER" strokeType="OUTSIDE" strokeWidth="0.0" text="Conservatory" textAlignment="CENTER" wrappingWidth="136.02093505859375">
+               <font>
+                  <Font name="Courier" size="13.0" />
+               </font>
+            </Text>
+            <Text boundsType="LOGICAL_VERTICAL_CENTER" strokeType="OUTSIDE" strokeWidth="0.0" text="Ballroom" textAlignment="CENTER" wrappingWidth="136.02093505859375">
+               <font>
+                  <Font name="Courier" size="13.0" />
+               </font>
+            </Text>
+            <Text boundsType="LOGICAL_VERTICAL_CENTER" strokeType="OUTSIDE" strokeWidth="0.0" text="Kitchen" textAlignment="CENTER" wrappingWidth="136.02093505859375">
+               <font>
+                  <Font name="Courier" size="13.0" />
+               </font>
+            </Text>
          </children>
       </VBox>
    </right>
@@ -30,7 +168,17 @@
       <HBox prefHeight="74.0" prefWidth="714.0" style="-fx-background-color: green;" BorderPane.alignment="CENTER" />
    </bottom>
    <left>
-      <VBox prefHeight="200.0" prefWidth="100.0" style="-fx-background-color: #00000033;" BorderPane.alignment="CENTER" />
+      <VBox prefHeight="200.0" prefWidth="100.0" style="-fx-background-color: #00000033;" BorderPane.alignment="CENTER">
+         <children>
+            <Text boundsType="LOGICAL_VERTICAL_CENTER" strokeType="OUTSIDE" strokeWidth="0.0" text="Players" textAlignment="CENTER" wrappingWidth="104.82566833496094">
+               <font>
+                  <Font name="Courier Bold" size="18.0" />
+               </font>
+               <VBox.margin>
+                  <Insets top="20.0" />
+               </VBox.margin>
+            </Text>
+         </children></VBox>
    </left>
    <center>
       <BorderPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: green;" BorderPane.alignment="CENTER">
@@ -79,6 +227,7 @@
                   <RowConstraints minHeight="10.0" prefHeight="15.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
+                  <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#eeff00" height="390.0" stroke="BLACK" strokeType="INSIDE" width="453.0" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="3" />
                   <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#a71fff" height="81.0" stroke="BLACK" strokeType="INSIDE" width="41.0" GridPane.columnIndex="5" GridPane.halignment="CENTER" GridPane.rowIndex="4" />
                   <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#a71fff" height="81.0" stroke="BLACK" strokeType="INSIDE" width="41.0" GridPane.columnIndex="5" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
                   <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#a71fff" height="81.0" stroke="BLACK" strokeType="INSIDE" width="41.0" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
@@ -100,21 +249,55 @@
                   <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#eee8c6" height="87.0" layoutX="10.0" layoutY="7.0" stroke="BLACK" strokeType="INSIDE" width="113.0" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="5" />
                   <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#eee8c6" height="87.0" layoutX="10.0" layoutY="7.0" stroke="BLACK" strokeType="INSIDE" width="113.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="5" />
                   <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#eee8c6" height="87.0" layoutX="10.0" layoutY="169.0" stroke="BLACK" strokeType="INSIDE" width="111.0" GridPane.columnIndex="5" GridPane.halignment="CENTER" GridPane.rowIndex="5" />
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Study" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Hall" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Lounge" GridPane.columnIndex="5" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Library" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="3" />
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Billard Room" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="3" />
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Dining Room" GridPane.columnIndex="5" GridPane.halignment="CENTER" GridPane.rowIndex="3" />
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Conservatory" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="5" />
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Ballroom" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="5" />
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Kitchen" GridPane.columnIndex="5" GridPane.halignment="CENTER" GridPane.rowIndex="5" />
-                  <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#eee8c6" height="33.0" stroke="BLACK" strokeType="INSIDE" width="33.0" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.valignment="BOTTOM" />
-                  <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#eee8c6" height="33.0" stroke="BLACK" strokeType="INSIDE" width="33.0" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="6" GridPane.valignment="TOP" />
-                  <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#eee8c6" height="33.0" stroke="BLACK" strokeType="INSIDE" width="33.0" GridPane.columnIndex="6" GridPane.rowIndex="2" />
-                  <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#eee8c6" height="33.0" stroke="BLACK" strokeType="INSIDE" width="33.0" GridPane.halignment="RIGHT" GridPane.rowIndex="4" />
-                  <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#eee8c6" height="33.0" stroke="BLACK" strokeType="INSIDE" width="33.0" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="6" GridPane.valignment="TOP" />
-                  <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#eee8c6" height="33.0" stroke="BLACK" strokeType="INSIDE" width="33.0" GridPane.halignment="RIGHT" GridPane.rowIndex="2" />
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Study" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1">
+                     <font>
+                        <Font name="Apple Chancery" size="13.0" />
+                     </font></Text>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Hall" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="1">
+                     <font>
+                        <Font name="Apple Chancery" size="13.0" />
+                     </font></Text>
+                  <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#5cbbff" height="33.0" stroke="BLACK" strokeType="INSIDE" width="33.0" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.valignment="BOTTOM" />
+                  <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#5cbbff" height="33.0" stroke="BLACK" strokeType="INSIDE" width="33.0" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="6" GridPane.valignment="TOP" />
+                  <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#5cbbff" height="33.0" stroke="BLACK" strokeType="INSIDE" width="33.0" GridPane.columnIndex="6" GridPane.rowIndex="2" />
+                  <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#5cbbff" height="33.0" stroke="BLACK" strokeType="INSIDE" width="33.0" GridPane.halignment="RIGHT" GridPane.rowIndex="4" />
+                  <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#5cbbff" height="33.0" stroke="BLACK" strokeType="INSIDE" width="33.0" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="6" GridPane.valignment="TOP" />
+                  <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#5cbbff" height="33.0" stroke="BLACK" strokeType="INSIDE" width="33.0" GridPane.halignment="RIGHT" GridPane.rowIndex="2" />
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Lounge" GridPane.columnIndex="5" GridPane.halignment="CENTER" GridPane.rowIndex="1">
+                     <font>
+                        <Font name="Apple Chancery" size="13.0" />
+                     </font>
+                  </Text>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Kitchen" GridPane.columnIndex="5" GridPane.halignment="CENTER" GridPane.rowIndex="5">
+                     <font>
+                        <Font name="Apple Chancery" size="13.0" />
+                     </font>
+                  </Text>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Ballroom" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="5">
+                     <font>
+                        <Font name="Apple Chancery" size="13.0" />
+                     </font>
+                  </Text>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Conservatory" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="5">
+                     <font>
+                        <Font name="Apple Chancery" size="13.0" />
+                     </font>
+                  </Text>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Dining Room" GridPane.columnIndex="5" GridPane.halignment="CENTER" GridPane.rowIndex="3">
+                     <font>
+                        <Font name="Apple Chancery" size="13.0" />
+                     </font>
+                  </Text>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Billard Room" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="3">
+                     <font>
+                        <Font name="Apple Chancery" size="13.0" />
+                     </font>
+                  </Text>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Library" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="3">
+                     <font>
+                        <Font name="Apple Chancery" size="13.0" />
+                     </font>
+                  </Text>
                </children>
             </GridPane>
          </center>
