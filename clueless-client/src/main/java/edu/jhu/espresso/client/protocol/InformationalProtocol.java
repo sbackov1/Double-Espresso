@@ -1,6 +1,6 @@
 package edu.jhu.espresso.client.protocol;
 
-import edu.jhu.espresso.client.domain.TurnStart;
+import edu.jhu.espresso.client.domain.GameEvents.TurnStart;
 
 public class InformationalProtocol implements ClueLessProtocol
 {

@@ -3,6 +3,8 @@ package edu.jhu.espresso.server.protocol;
 import edu.jhu.espresso.server.domain.*;
 import edu.jhu.espresso.server.domain.builder.AccusationBuilder;
 import edu.jhu.espresso.server.domain.builder.SuggestionBuilder;
+import edu.jhu.espresso.server.domain.gameEvents.*;
+import edu.jhu.espresso.server.domain.gamepieces.*;
 
 import java.util.*;
 import java.util.concurrent.CompletableFuture;

@@ -3,6 +3,11 @@ package edu.jhu.espresso.client.protocol;
 import edu.jhu.espresso.client.ClueLessClient;
 import edu.jhu.espresso.client.domain.ClueLessProtocolType;
 
+/**
+ * Protocol factory is responsible for finding the next protocol type for each player, whether active, waiting,
+ * accusation, suggestion, or informational.
+ * **/
+
 public class ProtocolFactory
 {
     public ClueLessProtocol determineNextProtocol(ClueLessProtocolType clueLessProtocolType, ClueLessClient client)

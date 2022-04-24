@@ -1,6 +1,6 @@
 package edu.jhu.espresso.server.domain.builder;
 
-import edu.jhu.espresso.server.domain.SuggestionTestimonyResponse;
+import edu.jhu.espresso.server.domain.gameEvents.SuggestionTestimonyResponse;
 
 public final class SuggestionTestimonyResponseBuilder
 {

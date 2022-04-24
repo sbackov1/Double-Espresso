@@ -1,8 +1,8 @@
 package edu.jhu.espresso.server.domain.builder;
 
-import edu.jhu.espresso.server.domain.CharacterNames;
+import edu.jhu.espresso.server.domain.gamepieces.CharacterNames;
 import edu.jhu.espresso.server.domain.ClueLessProtocolType;
-import edu.jhu.espresso.server.domain.LocationNames;
+import edu.jhu.espresso.server.domain.gamepieces.LocationNames;
 import edu.jhu.espresso.server.domain.TurnStart;
 
 import java.util.Map;

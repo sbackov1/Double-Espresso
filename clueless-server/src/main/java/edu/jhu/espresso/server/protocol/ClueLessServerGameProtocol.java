@@ -1,8 +1,9 @@
 package edu.jhu.espresso.server.protocol;
 
 import edu.jhu.espresso.server.domain.*;
-import edu.jhu.espresso.server.domain.builder.CaseDetailsBuilder;
 import edu.jhu.espresso.server.domain.builder.GameStartBuilder;
+import edu.jhu.espresso.server.domain.gameEvents.GameStart;
+import edu.jhu.espresso.server.domain.gamepieces.*;
 
 import java.util.ArrayList;
 import java.util.List;

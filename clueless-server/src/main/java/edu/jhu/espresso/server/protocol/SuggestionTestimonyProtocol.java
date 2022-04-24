@@ -2,6 +2,9 @@ package edu.jhu.espresso.server.protocol;
 
 import edu.jhu.espresso.server.domain.*;
 import edu.jhu.espresso.server.domain.builder.SuggestionTestimonyResponseBuilder;
+import edu.jhu.espresso.server.domain.gameEvents.Suggestion;
+import edu.jhu.espresso.server.domain.gameEvents.SuggestionStatus;
+import edu.jhu.espresso.server.domain.gamepieces.Player;
 
 import java.util.ArrayList;
 import java.util.List;

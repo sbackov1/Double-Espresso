@@ -1,10 +1,12 @@
 package edu.jhu.espresso.client;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import edu.jhu.espresso.client.domain.*;
-import edu.jhu.espresso.client.domain.Character;
+import edu.jhu.espresso.client.domain.GameEvents.GameStart;
+import edu.jhu.espresso.client.domain.GameEvents.TurnStart;
+import edu.jhu.espresso.client.domain.GamePieces.CardDeck;
+import edu.jhu.espresso.client.domain.GamePieces.CharacterNames;
+import edu.jhu.espresso.client.domain.GamePieces.Player;
 import edu.jhu.espresso.client.protocol.ProtocolFactory;
 
 import java.io.BufferedReader;

@@ -12,10 +12,13 @@
 
 package edu.jhu.espresso.server.domain;
 
+import edu.jhu.espresso.server.domain.gamepieces.*;
+import edu.jhu.espresso.server.domain.gamepieces.Character;
+
 import java.util.ArrayList;
 
-import static edu.jhu.espresso.server.domain.CharacterNames.COLONEL_MUSTARD;
-import static edu.jhu.espresso.server.domain.CharacterNames.PROFESSOR_PLUM;
+import static edu.jhu.espresso.server.domain.gamepieces.CharacterNames.COLONEL_MUSTARD;
+import static edu.jhu.espresso.server.domain.gamepieces.CharacterNames.PROFESSOR_PLUM;
 
 public class Driver {
 

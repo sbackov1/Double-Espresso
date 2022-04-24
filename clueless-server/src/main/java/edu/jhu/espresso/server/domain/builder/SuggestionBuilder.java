@@ -1,6 +1,11 @@
 package edu.jhu.espresso.server.domain.builder;
 
-import edu.jhu.espresso.server.domain.*;
+import edu.jhu.espresso.server.domain.gameEvents.Suggestion;
+import edu.jhu.espresso.server.domain.gameEvents.SuggestionStatus;
+import edu.jhu.espresso.server.domain.gamepieces.CaseDetails;
+import edu.jhu.espresso.server.domain.gamepieces.CharacterNames;
+import edu.jhu.espresso.server.domain.gamepieces.RoomNames;
+import edu.jhu.espresso.server.domain.gamepieces.Weapon;
 
 import java.util.List;
 

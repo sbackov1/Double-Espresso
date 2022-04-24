@@ -1,9 +1,7 @@
 package edu.jhu.espresso.client.protocol;
 
 import edu.jhu.espresso.client.ClueLessClient;
-import edu.jhu.espresso.client.domain.GameBoard;
-import edu.jhu.espresso.client.domain.Player;
-import edu.jhu.espresso.client.domain.TurnStart;
+import edu.jhu.espresso.client.domain.GameEvents.TurnStart;
 
 class ClientAccusationProtocol implements ClueLessProtocol
 {
