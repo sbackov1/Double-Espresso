@@ -28,6 +28,9 @@ public class ActivePlayerProtocolSelector {
     public static ActivePlayerProtocolSelector FromSuggestion(Suggestion sg) {
         return new ActivePlayerProtocolSelector(null, sg, null);
     }
+    public static ActivePlayerProtocolSelector EndTurn(Suggestion sg) {
+        return new ActivePlayerProtocolSelector(null, null, null);
+    }
 
 }
 

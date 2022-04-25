@@ -10,7 +10,7 @@ import edu.jhu.espresso.client.domain.Menus.Menu;
 import edu.jhu.espresso.client.domain.Menus.MenuItem;
 import java.util.HashMap.*;
 
-class ActivePlayerProtocol implements ClueLessProtocol
+public class ActivePlayerProtocol implements ClueLessProtocol
 {
     private final ClueLessClient client;
 
@@ -64,10 +64,10 @@ class ActivePlayerProtocol implements ClueLessProtocol
         return options;
     }
 
-    private MoveChoice makeMoveChoice(MoveOptions options)
+    private ActivePlayerProtocolSelector makeMoveChoice(MoveOptions options)
     {
         options.mainMoveMenu();
-        return new MoveChoice(options.getLocation());
+        return ActivePlayerProtocolSelector.FromMoveChoice(new MoveChoice(options.getLocation()));
     }
 
     private void sleep(int millis)
@@ -116,6 +116,7 @@ class ActivePlayerProtocol implements ClueLessProtocol
      * */
 
     public void goToSuggestionMenu(){
+
         Suggestion suggestion = client.waitForResponse(Suggestion.class);
         client.write(makeSuggestionChoice(suggestion));
 
@@ -127,7 +128,7 @@ class ActivePlayerProtocol implements ClueLessProtocol
     }
 
     public void goToMovementMenu(){
-        MoveOptions moveOptions = client.waitForResponse(MoveOptions.class);
+        //MoveOptions moveOptions = client.waitForResponse(MoveOptions.class);
         client.write(makeMoveChoice(moveOptions));
         canMove = false;
     }

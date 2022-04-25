@@ -127,6 +127,7 @@ public final class Suggestion {
         for (String validCharacter : this.validCharacters) {
 
             sugMenu.addItem(new MenuItem(validCharacter,this, "setCharacterString", validCharacter));
+
         }
         sugMenu.execute();
 

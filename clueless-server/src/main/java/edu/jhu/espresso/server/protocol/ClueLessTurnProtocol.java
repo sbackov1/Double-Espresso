@@ -29,33 +29,22 @@ public class ClueLessTurnProtocol
     public boolean executeTurn()
     {
         notifyPlayersOfStatus();
+        boolean endTurn = false;
 
-        MoveChoice moveChoice = activePlayer.writeInstanceAndExpectType(
-                determineValidMoveOptions(game.getGameBoard()),
-                MoveChoice.class
-        );
+        while(!endTurn) {
+            ActivePlayerProtocolSelector activePlayerChoice = activePlayer.writeInstanceAndExpectType(determineValidMoveOptions(game.getGameBoard()), ActivePlayerProtocolSelector.class);
 
-        game.applyMoveChoice(moveChoice, activePlayer.getCharacter().getName());
+            activePlayerChoice.getMoveChoice().ifPresent(moveChoice -> game.applyMoveChoice(moveChoice, activePlayer.getCharacter().getName()));
+            activePlayerChoice.getAccusation().ifPresent(accusation -> new ServerAccusationProtocol(activePlayer, waitingPlayers, accusation, game).execute());
+            activePlayerChoice.getSuggestion().ifPresent(this::launchSuggestionTestimony);
 
-        Suggestion suggestion = activePlayer.writeInstanceAndExpectType(
-                buildOfferSuggestionMessage(),
-                Suggestion.class
-        );
+            if (!activePlayerChoice.getMoveChoice().isPresent() && !activePlayerChoice.getSuggestion().isPresent() && !activePlayerChoice.getAccusation().isPresent()){
+                endTurn = true;
+            }
 
-        if(suggestion.getSuggestionStatus() == SuggestionStatus.MAKING_SUGGESTION)
-        {
-            launchSuggestionTestimony(suggestion);
         }
 
-        Accusation accusation = activePlayer.writeInstanceAndExpectType(
-                buildOfferAccusationMessage(),
-                Accusation.class
-        );
 
-        if(accusation.getAccusationStatus() == AccusationStatus.MAKING_ACCUSATION)
-        {
-            new ServerAccusationProtocol(activePlayer, waitingPlayers, accusation, game).execute();
-        }
 
         System.out.println("Moving to the next player");
         System.out.println();
