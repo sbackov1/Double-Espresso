@@ -1,45 +1,84 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ButtonBar?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.RadioButton?>
-<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="300.0" prefWidth="750.0" style="-fx-background-color: green;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.jhu.espresso.client.domain.Controller">
+<GridPane alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="364.0" prefWidth="1000.0" style="-fx-background-color: green;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+   <columnConstraints>
+      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+   </columnConstraints>
+   <rowConstraints>
+      <RowConstraints maxHeight="273.0" minHeight="10.0" prefHeight="86.0" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="273.0" minHeight="10.0" prefHeight="39.840301513671875" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="255.0" minHeight="0.0" prefHeight="34.88023376464844" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="127.0" minHeight="10.0" prefHeight="66.11976623535156" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="152.0" minHeight="10.0" prefHeight="40.33134460449219" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="152.0" minHeight="0.0" prefHeight="44.66865539550781" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="152.0" minHeight="10.0" prefHeight="83.88021850585938" vgrow="SOMETIMES" />
+   </rowConstraints>
    <children>
-      <ButtonBar layoutX="12.0" layoutY="110.0" prefHeight="35.0" prefWidth="721.0" AnchorPane.bottomAnchor="155.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="110.0">
+      <ButtonBar prefHeight="35.0" prefWidth="721.0" GridPane.halignment="CENTER" GridPane.rowIndex="3">
          <buttons>
-            <RadioButton mnemonicParsing="false" text="Colonel Mustard" textFill="WHITE" />
-            <RadioButton mnemonicParsing="false" text="Professor Plum" textFill="WHITE" />
-            <RadioButton maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="18.0" prefWidth="10.0" text="Mr. Green" textFill="WHITE" />
-            <RadioButton mnemonicParsing="false" text="Mrs. White" textFill="WHITE" />
-            <RadioButton mnemonicParsing="false" prefWidth="153.0" text="Mrs. Peacock" textFill="WHITE" />
+            <RadioButton maxWidth="140.0" mnemonicParsing="false" text="Colonel Mustard" textFill="WHITE" />
+            <RadioButton maxWidth="130.0" mnemonicParsing="false" text="Professor Plum" textFill="WHITE" />
+            <RadioButton maxHeight="-Infinity" maxWidth="110.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="18.0" prefWidth="10.0" text="Mr. Green" textFill="WHITE" />
+            <RadioButton maxWidth="110.0" mnemonicParsing="false" text="Mrs. White" textFill="WHITE" />
+            <RadioButton maxWidth="120.0" mnemonicParsing="false" prefWidth="153.0" text="Mrs. Peacock" textFill="WHITE" />
             <RadioButton mnemonicParsing="false" prefHeight="18.0" prefWidth="20.0" text="Miss Scarlett" textFill="WHITE" />
          </buttons>
+         <padding>
+            <Insets left="110.0" right="100.0" />
+         </padding>
       </ButtonBar>
-      <Label layoutX="319.0" layoutY="26.0" text="Suggestion Menu" textFill="WHITE" AnchorPane.bottomAnchor="248.0" AnchorPane.leftAnchor="300.0" AnchorPane.rightAnchor="300.0" AnchorPane.topAnchor="26.0">
+      <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Which character do you suggest committed the murder?" textAlignment="CENTER" wrappingWidth="383.93798828125" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
+      <ButtonBar minHeight="-Infinity" minWidth="-Infinity" prefHeight="0.0" prefWidth="992.0" GridPane.halignment="CENTER" GridPane.rowIndex="5">
+         <buttons>
+            <RadioButton maxWidth="120.0" mnemonicParsing="false" text="Revolver" textFill="WHITE" />
+            <RadioButton maxWidth="100.0" mnemonicParsing="false" text="Dagger" textFill="WHITE" />
+            <RadioButton maxWidth="120.0" mnemonicParsing="false" prefHeight="18.0" text="Lead Pipe" textFill="WHITE" />
+            <RadioButton maxHeight="-Infinity" maxWidth="100.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="18.0" prefWidth="50.0" text="Rope" textFill="WHITE" />
+            <RadioButton maxWidth="140.0" mnemonicParsing="false" prefWidth="153.0" text="Candlestick" textFill="WHITE" />
+            <RadioButton maxWidth="120.0" mnemonicParsing="false" prefHeight="18.0" prefWidth="20.0" text="Wrench" textFill="WHITE" />
+         </buttons>
+         <GridPane.margin>
+            <Insets />
+         </GridPane.margin>
+         <padding>
+            <Insets left="140.0" right="150.0" />
+         </padding>
+      </ButtonBar>
+      <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Which weapon do you suggest the murderer used?" textAlignment="CENTER" wrappingWidth="337.939453125" GridPane.halignment="CENTER" GridPane.rowIndex="4" />
+      <Label prefHeight="26.0" prefWidth="180.0" text="Suggestion Menu" textFill="WHITE" GridPane.halignment="CENTER">
          <font>
             <Font size="20.0" />
          </font>
+         <GridPane.margin>
+            <Insets left="30.0" />
+         </GridPane.margin>
       </Label>
-      <Text fill="WHITE" layoutX="38.0" layoutY="65.0" strokeType="OUTSIDE" strokeWidth="0.0" text="You are in the" AnchorPane.bottomAnchor="234.37890625" AnchorPane.leftAnchor="38.0" AnchorPane.rightAnchor="681.67333984375" AnchorPane.topAnchor="52.0" />
-      <Text fill="WHITE" layoutX="122.0" layoutY="65.0" strokeType="OUTSIDE" strokeWidth="0.0" text="&lt;ROOM&gt;" AnchorPane.bottomAnchor="235.63671875" AnchorPane.leftAnchor="122.0" AnchorPane.rightAnchor="618.35400390625" AnchorPane.topAnchor="52.431640625" />
-      <Text fill="WHITE" layoutX="38.0" layoutY="95.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Which character do you suggest committed the murder?" AnchorPane.bottomAnchor="206.068359375" AnchorPane.leftAnchor="38.0" AnchorPane.rightAnchor="702.35400390625" AnchorPane.topAnchor="82.0" />
-      <Text fill="WHITE" layoutX="38.0" layoutY="183.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Which weapon do you suggest the murderer used?" AnchorPane.bottomAnchor="118.068359375" AnchorPane.leftAnchor="37.73583984375" AnchorPane.rightAnchor="731.89599609375" AnchorPane.topAnchor="170.0" />
-      <ButtonBar layoutX="12.0" layoutY="200.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="761.0" AnchorPane.bottomAnchor="65.068359375" AnchorPane.leftAnchor="12.0" AnchorPane.rightAnchor="17.0" AnchorPane.topAnchor="200.0">
+      <ButtonBar prefHeight="89.0" prefWidth="1085.0" GridPane.rowIndex="6">
          <buttons>
-            <RadioButton mnemonicParsing="false" text="Revolver" textFill="WHITE" />
-            <RadioButton mnemonicParsing="false" text="Dagger" textFill="WHITE" />
-            <RadioButton mnemonicParsing="false" prefHeight="18.0" text="Lead Pipe" textFill="WHITE" />
-            <RadioButton maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="18.0" prefWidth="50.0" text="Rope" textFill="WHITE" />
-            <RadioButton mnemonicParsing="false" prefWidth="153.0" text="Candlestick" textFill="WHITE" />
-            <RadioButton mnemonicParsing="false" prefHeight="18.0" prefWidth="20.0" text="Wrench" textFill="WHITE" />
+            <Button contentDisplay="CENTER" mnemonicParsing="false" style="-fx-background-color: blue;" text="Make Suggestion" textFill="WHITE" translateX="-600.0" />
+            <Button mnemonicParsing="false" prefHeight="31.0" style="-fx-background-color: blue;" text="Cancel Suggestion" textFill="WHITE" translateX="-200.0" />
          </buttons>
       </ButtonBar>
-      <Button layoutX="87.0" layoutY="248.0" mnemonicParsing="false" style="-fx-background-color: blue;" text="Make Suggestion" textFill="WHITE" AnchorPane.bottomAnchor="25.0" AnchorPane.leftAnchor="87.0" AnchorPane.rightAnchor="542.0" AnchorPane.topAnchor="248.0" />
-      <Button layoutX="531.0" layoutY="247.0" mnemonicParsing="false" style="-fx-background-color: blue;" text="Cancel Suggestion" textFill="WHITE" AnchorPane.bottomAnchor="26.0" AnchorPane.leftAnchor="531.0" AnchorPane.rightAnchor="98.0" AnchorPane.topAnchor="247.0" />
+      <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="You are in the " GridPane.halignment="CENTER" GridPane.rowIndex="1">
+         <GridPane.margin>
+            <Insets right="70.0" />
+         </GridPane.margin>
+      </Text>
+      <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="&lt;Room&gt;" GridPane.halignment="CENTER" GridPane.rowIndex="1">
+         <GridPane.margin>
+            <Insets left="70.0" />
+         </GridPane.margin>
+      </Text>
    </children>
-</AnchorPane>
+</GridPane>
