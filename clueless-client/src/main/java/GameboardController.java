@@ -30,7 +30,16 @@ public class GameboardController {
 
     @FXML
     public void openAccusationWindow(ActionEvent event) {  // AccusationMenu2.fxml
-
+        Parent root;
+        try {
+            root = FXMLLoader.load(getClass().getClassLoader().getResource("AccusationMenu2.fxml"));
+            Stage stage = new Stage();
+            stage.setTitle("Clue-Less Accusation");
+            stage.setScene(new Scene(root, 1000, 364));
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @FXML

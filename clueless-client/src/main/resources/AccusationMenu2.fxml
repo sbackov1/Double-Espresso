@@ -11,7 +11,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<GridPane alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="378.0" prefWidth="1102.0" style="-fx-background-color: green;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+<GridPane alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="364.0" prefWidth="1000.0" style="-fx-background-color: green;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ControllerAccusation">
   <columnConstraints>
     <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
   </columnConstraints>
@@ -36,11 +36,11 @@
             <RadioButton fx:id="MISS_SCARLETT" mnemonicParsing="false" prefHeight="18.0" prefWidth="20.0" text="Miss Scarlett" textFill="WHITE" />
          </buttons>
          <padding>
-            <Insets left="150.0" right="100.0" />
+            <Insets left="100.0" right="100.0" />
          </padding>
       </ButtonBar>
       <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Which character do you suggest committed the murder?" GridPane.halignment="CENTER" GridPane.rowIndex="3" />
-      <ButtonBar minHeight="-Infinity" minWidth="-Infinity" prefHeight="0.0" prefWidth="992.0" GridPane.rowIndex="6">
+      <ButtonBar minHeight="-Infinity" minWidth="-Infinity" prefHeight="0.0" prefWidth="992.0" GridPane.halignment="CENTER" GridPane.rowIndex="6">
          <buttons>
             <RadioButton fx:id="REVOLVER" maxWidth="120.0" mnemonicParsing="false" text="Revolver" textFill="WHITE" />
             <RadioButton fx:id="DAGGER" maxWidth="100.0" mnemonicParsing="false" text="Dagger" textFill="WHITE" />
@@ -73,7 +73,7 @@
             <Insets />
          </GridPane.margin>
          <padding>
-            <Insets left="125.0" right="75.0" />
+            <Insets left="75.0" right="50.0" />
          </padding>
       </ButtonBar>
       <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="In which room did the murder take place?" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
@@ -87,8 +87,8 @@
       </Label>
       <ButtonBar prefHeight="47.0" prefWidth="939.0" GridPane.rowIndex="7">
         <buttons>
-            <Button contentDisplay="CENTER" mnemonicParsing="false" style="-fx-background-color: blue;" text="Make Accusation" textFill="WHITE" translateX="-600.0" />
-            <Button mnemonicParsing="false" prefHeight="31.0" style="-fx-background-color: blue;" text="Cancel Accusation" textFill="WHITE" translateX="-200.0" />
+            <Button fx:id="accuse" contentDisplay="CENTER" mnemonicParsing="false" onAction="#makeAccusation" style="-fx-background-color: blue;" text="Make Accusation" textFill="WHITE" translateX="-600.0" />
+            <Button fx:id="exit" mnemonicParsing="false" onAction="#cancelAccusation" prefHeight="31.0" style="-fx-background-color: blue;" text="Cancel Accusation" textFill="WHITE" translateX="-200.0" />
         </buttons>
       </ButtonBar>
    </children>
