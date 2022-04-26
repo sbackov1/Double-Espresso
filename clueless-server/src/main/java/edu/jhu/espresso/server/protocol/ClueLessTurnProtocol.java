@@ -16,6 +16,9 @@ public class ClueLessTurnProtocol
     private final List<Player> waitingPlayers;
     private final Player activePlayer;
 
+    public static boolean playerHasMoved;
+    public static boolean playerHasSuggested;
+
     public ClueLessTurnProtocol(
             List<Player> waitingPlayers,
             Player activePlayer,
@@ -30,13 +33,21 @@ public class ClueLessTurnProtocol
     {
         notifyPlayersOfStatus();
         boolean endTurn = false;
+        playerHasMoved = false;
+        playerHasSuggested = false;
 
         while(!endTurn) {
+
             ActivePlayerProtocolSelector activePlayerChoice = activePlayer.writeInstanceAndExpectType(determineValidMoveOptions(game.getGameBoard()), ActivePlayerProtocolSelector.class);
 
+            //Run through and get the move choice, and execute the command in the server.
             activePlayerChoice.getMoveChoice().ifPresent(moveChoice -> game.applyMoveChoice(moveChoice, activePlayer.getCharacter().getName()));
             activePlayerChoice.getAccusation().ifPresent(accusation -> new ServerAccusationProtocol(activePlayer, waitingPlayers, accusation, game).execute());
             activePlayerChoice.getSuggestion().ifPresent(this::launchSuggestionTestimony);
+
+            //Set playerHasMoved or playerHasSuggested
+            if(activePlayerChoice.getMoveChoice().isPresent()){setPlayerHasMoved(true);}
+            if(activePlayerChoice.getSuggestion().isPresent()){setPlayerHasSuggested(true);}
 
             if (!activePlayerChoice.getMoveChoice().isPresent() && !activePlayerChoice.getSuggestion().isPresent() && !activePlayerChoice.getAccusation().isPresent()){
                 endTurn = true;
@@ -131,5 +142,21 @@ public class ClueLessTurnProtocol
         );
 
         new SuggestionTestimonyProtocol(waitingPlayers, activePlayer, suggestion, game).execute();
+    }
+
+    public static boolean isPlayerHasMoved() {
+        return playerHasMoved;
+    }
+
+    public static void setPlayerHasMoved(boolean playerHasMoved) {
+        ClueLessTurnProtocol.playerHasMoved = playerHasMoved;
+    }
+
+    public static boolean isPlayerHasSuggested() {
+        return playerHasSuggested;
+    }
+
+    public static void setPlayerHasSuggested(boolean playerHasSuggested) {
+        ClueLessTurnProtocol.playerHasSuggested = playerHasSuggested;
     }
 }

@@ -8,6 +8,7 @@ import edu.jhu.espresso.client.domain.GamePieces.LocationNames;
 import edu.jhu.espresso.client.domain.GamePieces.RoomNames;
 import edu.jhu.espresso.client.domain.Menus.Menu;
 import edu.jhu.espresso.client.domain.Menus.MenuItem;
+import edu.jhu.espresso.server.protocol.ClueLessTurnProtocol;
 import java.util.HashMap.*;
 
 public class ActivePlayerProtocol implements ClueLessProtocol
@@ -141,7 +142,7 @@ public class ActivePlayerProtocol implements ClueLessProtocol
     /*** The validateCanMove method determines whether the activePlayer can legally move.
       */
     public void validateCanMove(){
-        if (this.moveOptions.getValidMoves().size() == 0) {
+        if (this.moveOptions.getValidMoves().size() == 0 || ClueLessTurnProtocol.isPlayerHasMoved()) {
             this.canMove = false;
         }
         else this.canMove = true;
@@ -156,7 +157,7 @@ public class ActivePlayerProtocol implements ClueLessProtocol
         LocationNames locationName = this.turnStart.getLocationNamesMap().get(activeChar);
         String locationType =  locationName.StringLocationTypeFromStringName();
 
-        if (locationType.equals("Room")) { canSuggest = true; }
+        if (locationType.equals("Room") && !ClueLessTurnProtocol.isPlayerHasSuggested()) { canSuggest = true; }
         else {canSuggest = false;}
     }
 
