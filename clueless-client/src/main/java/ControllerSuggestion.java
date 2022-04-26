@@ -3,6 +3,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.ToggleGroup;
+import javafx.stage.Stage;
 
 public class ControllerSuggestion {
 
@@ -56,7 +57,7 @@ public class ControllerSuggestion {
 
     @FXML
     void exitWindow(ActionEvent event) { // cancel suggestion action button
-
+        ((Stage)(((Button)event.getSource()).getScene().getWindow())).close();
     }
 
     @FXML

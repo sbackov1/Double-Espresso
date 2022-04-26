@@ -3,6 +3,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.ToggleGroup;
+import javafx.stage.Stage;
 
 public class ControllerDisprove {
 
@@ -81,7 +82,7 @@ public class ControllerDisprove {
 
     @FXML
     void pass(ActionEvent event) { // cannot disprove, next player
-        // akin to ending the player's turn
+        ((Stage)(((Button)event.getSource()).getScene().getWindow())).close();
     }
 
     @FXML
