@@ -5,13 +5,14 @@
 <?import javafx.scene.control.ButtonBar?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<GridPane alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="364.0" prefWidth="1000.0" style="-fx-background-color: green;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+<GridPane alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="364.0" prefWidth="1000.0" style="-fx-background-color: green;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ControllerDisprove">
    <columnConstraints>
       <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
    </columnConstraints>
@@ -27,12 +28,15 @@
       <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Select one card total to disprove the suggestion from any category" textAlignment="CENTER" wrappingWidth="383.93798828125" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
       <ButtonBar minHeight="-Infinity" minWidth="-Infinity" prefHeight="0.0" prefWidth="992.0" GridPane.halignment="CENTER" GridPane.rowIndex="3">
          <buttons>
-            <RadioButton maxWidth="120.0" mnemonicParsing="false" text="Revolver" textFill="WHITE" />
-            <RadioButton maxWidth="100.0" mnemonicParsing="false" text="Dagger" textFill="WHITE" />
-            <RadioButton maxWidth="120.0" mnemonicParsing="false" prefHeight="18.0" text="Lead Pipe" textFill="WHITE" />
-            <RadioButton maxHeight="-Infinity" maxWidth="100.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="18.0" prefWidth="50.0" text="Rope" textFill="WHITE" />
-            <RadioButton maxWidth="140.0" mnemonicParsing="false" prefWidth="153.0" text="Candlestick" textFill="WHITE" />
-            <RadioButton maxWidth="120.0" mnemonicParsing="false" prefHeight="18.0" prefWidth="20.0" text="Wrench" textFill="WHITE" />
+            <RadioButton maxWidth="120.0" mnemonicParsing="false" text="Revolver" textFill="WHITE">
+               <toggleGroup>
+                  <ToggleGroup fx:id="disproveGroup" />
+               </toggleGroup></RadioButton>
+            <RadioButton maxWidth="100.0" mnemonicParsing="false" text="Dagger" textFill="WHITE" toggleGroup="$disproveGroup" />
+            <RadioButton maxWidth="120.0" mnemonicParsing="false" prefHeight="18.0" text="Lead Pipe" textFill="WHITE" toggleGroup="$disproveGroup" />
+            <RadioButton maxHeight="-Infinity" maxWidth="100.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="18.0" prefWidth="50.0" text="Rope" textFill="WHITE" toggleGroup="$disproveGroup" />
+            <RadioButton maxWidth="140.0" mnemonicParsing="false" prefWidth="153.0" text="Candlestick" textFill="WHITE" toggleGroup="$disproveGroup" />
+            <RadioButton maxWidth="120.0" mnemonicParsing="false" prefHeight="18.0" prefWidth="20.0" text="Wrench" textFill="WHITE" toggleGroup="$disproveGroup" />
          </buttons>
          <GridPane.margin>
             <Insets />
@@ -51,12 +55,12 @@
       </Label>
       <ButtonBar prefHeight="35.0" prefWidth="721.0" GridPane.rowIndex="2">
          <buttons>
-            <RadioButton maxWidth="140.0" mnemonicParsing="false" text="Colonel Mustard" textFill="WHITE" />
-            <RadioButton maxWidth="130.0" mnemonicParsing="false" text="Professor Plum" textFill="WHITE" />
-            <RadioButton maxHeight="-Infinity" maxWidth="110.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="18.0" prefWidth="10.0" text="Mr. Green" textFill="WHITE" />
-            <RadioButton maxWidth="110.0" mnemonicParsing="false" text="Mrs. White" textFill="WHITE" />
-            <RadioButton maxWidth="120.0" mnemonicParsing="false" prefWidth="153.0" text="Mrs. Peacock" textFill="WHITE" />
-            <RadioButton mnemonicParsing="false" prefHeight="18.0" prefWidth="20.0" text="Miss Scarlett" textFill="WHITE" />
+            <RadioButton maxWidth="140.0" mnemonicParsing="false" text="Colonel Mustard" textFill="WHITE" toggleGroup="$disproveGroup" />
+            <RadioButton maxWidth="130.0" mnemonicParsing="false" text="Professor Plum" textFill="WHITE" toggleGroup="$disproveGroup" />
+            <RadioButton maxHeight="-Infinity" maxWidth="110.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="18.0" prefWidth="10.0" text="Mr. Green" textFill="WHITE" toggleGroup="$disproveGroup" />
+            <RadioButton maxWidth="110.0" mnemonicParsing="false" text="Mrs. White" textFill="WHITE" toggleGroup="$disproveGroup" />
+            <RadioButton maxWidth="120.0" mnemonicParsing="false" prefWidth="153.0" text="Mrs. Peacock" textFill="WHITE" toggleGroup="$disproveGroup" />
+            <RadioButton mnemonicParsing="false" prefHeight="18.0" prefWidth="20.0" text="Miss Scarlett" textFill="WHITE" toggleGroup="$disproveGroup" />
          </buttons>
          <padding>
             <Insets left="100.0" right="100.0" />
@@ -64,15 +68,15 @@
       </ButtonBar>
       <ButtonBar minHeight="-Infinity" minWidth="-Infinity" GridPane.rowIndex="4">
          <buttons>
-            <RadioButton maxWidth="90.0" mnemonicParsing="false" prefHeight="21.0" prefWidth="120.0" text="Kitchen" textFill="WHITE" />
-            <RadioButton maxWidth="60.0" minWidth="40.0" mnemonicParsing="false" prefHeight="21.0" prefWidth="60.0" text="Hall" textFill="WHITE" />
-            <RadioButton maxWidth="90.0" minWidth="-Infinity" mnemonicParsing="false" prefHeight="18.0" prefWidth="120.0" text="Ballroom" textFill="WHITE" />
-            <RadioButton maxHeight="-Infinity" maxWidth="110.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="18.0" prefWidth="120.0" text="Conservatory" textFill="WHITE" />
-            <RadioButton maxWidth="110.0" minWidth="-Infinity" mnemonicParsing="false" prefWidth="120.0" text="Dining Room" textFill="WHITE" />
-            <RadioButton maxWidth="110.0" minWidth="-Infinity" mnemonicParsing="false" prefHeight="18.0" prefWidth="120.0" text="Billiard Room" textFill="WHITE" />
-            <RadioButton layoutX="725.0" layoutY="136.0" maxWidth="80.0" minWidth="-Infinity" mnemonicParsing="false" prefHeight="21.0" prefWidth="120.0" text="Library" textFill="WHITE" />
-            <RadioButton layoutX="865.0" layoutY="136.0" maxWidth="80.0" mnemonicParsing="false" prefHeight="18.0" prefWidth="120.0" text="Lounge" textFill="WHITE" />
-            <RadioButton layoutX="884.0" layoutY="136.0" mnemonicParsing="false" prefHeight="21.0" text="Study" textFill="WHITE" />
+            <RadioButton maxWidth="90.0" mnemonicParsing="false" prefHeight="21.0" prefWidth="120.0" text="Kitchen" textFill="WHITE" toggleGroup="$disproveGroup" />
+            <RadioButton maxWidth="60.0" minWidth="40.0" mnemonicParsing="false" prefHeight="21.0" prefWidth="60.0" text="Hall" textFill="WHITE" toggleGroup="$disproveGroup" />
+            <RadioButton maxWidth="90.0" minWidth="-Infinity" mnemonicParsing="false" prefHeight="18.0" prefWidth="120.0" text="Ballroom" textFill="WHITE" toggleGroup="$disproveGroup" />
+            <RadioButton maxHeight="-Infinity" maxWidth="110.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="18.0" prefWidth="120.0" text="Conservatory" textFill="WHITE" toggleGroup="$disproveGroup" />
+            <RadioButton maxWidth="110.0" minWidth="-Infinity" mnemonicParsing="false" prefWidth="120.0" text="Dining Room" textFill="WHITE" toggleGroup="$disproveGroup" />
+            <RadioButton maxWidth="110.0" minWidth="-Infinity" mnemonicParsing="false" prefHeight="18.0" prefWidth="120.0" text="Billiard Room" textFill="WHITE" toggleGroup="$disproveGroup" />
+            <RadioButton layoutX="725.0" layoutY="136.0" maxWidth="80.0" minWidth="-Infinity" mnemonicParsing="false" prefHeight="21.0" prefWidth="120.0" text="Library" textFill="WHITE" toggleGroup="$disproveGroup" />
+            <RadioButton layoutX="865.0" layoutY="136.0" maxWidth="80.0" mnemonicParsing="false" prefHeight="18.0" prefWidth="120.0" text="Lounge" textFill="WHITE" toggleGroup="$disproveGroup" />
+            <RadioButton layoutX="884.0" layoutY="136.0" mnemonicParsing="false" prefHeight="21.0" text="Study" textFill="WHITE" toggleGroup="$disproveGroup" />
          </buttons>
          <padding>
             <Insets left="75.0" right="50.0" />
@@ -80,8 +84,8 @@
       </ButtonBar>
       <ButtonBar prefHeight="47.0" prefWidth="939.0" GridPane.rowIndex="5">
          <buttons>
-            <Button contentDisplay="CENTER" mnemonicParsing="false" style="-fx-background-color: blue;" text="Disprove Suggestion" textFill="WHITE" translateX="-600.0" />
-            <Button mnemonicParsing="false" prefHeight="31.0" style="-fx-background-color: blue;" text="Cannot Disprove" textFill="WHITE" translateX="-200.0" />
+            <Button fx:id="disprove" contentDisplay="CENTER" mnemonicParsing="false" onAction="#sendDisprove" style="-fx-background-color: blue;" text="Disprove Suggestion" textFill="WHITE" translateX="-600.0" />
+            <Button fx:id="cancelDisprove" mnemonicParsing="false" onAction="#pass" prefHeight="31.0" style="-fx-background-color: blue;" text="Cannot Disprove" textFill="WHITE" translateX="-200.0" />
          </buttons>
       </ButtonBar>
    </children>

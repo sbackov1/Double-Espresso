@@ -14,7 +14,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="594.0" prefWidth="785.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="594.0" prefWidth="785.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GameboardController">
    <right>
       <VBox prefHeight="439.0" prefWidth="139.0" style="-fx-background-color: #00000033;" BorderPane.alignment="CENTER">
          <children>
@@ -187,7 +187,7 @@
                <children>
                   <ButtonBar prefHeight="51.0" prefWidth="101.0">
                      <buttons>
-                        <Button minWidth="54.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="116.0" style="-fx-background-color: blue;" text="Leave Game" textFill="WHITE" />
+                        <Button fx:id="exit" minWidth="54.0" mnemonicParsing="false" onAction="#exitGame" prefHeight="31.0" prefWidth="116.0" style="-fx-background-color: blue;" text="Leave Game" textFill="WHITE" />
                      </buttons>
                   </ButtonBar>
                </children>
@@ -198,9 +198,9 @@
                <children>
                   <ButtonBar prefHeight="64.0" prefWidth="464.0">
                      <buttons>
-                        <Button mnemonicParsing="false" style="-fx-background-color: blue;" text="Make Suggestion" textFill="WHITE" />
-                        <Button mnemonicParsing="false" style="-fx-background-color: blue;" text="Make Accusation" textFill="WHITE" />
-                        <Button mnemonicParsing="false" style="-fx-background-color: blue;" text="Send Move" textFill="WHITE" />
+                        <Button fx:id="makeSuggestion" mnemonicParsing="false" onAction="#openSuggestionWindow" style="-fx-background-color: blue;" text="Make Suggestion" textFill="WHITE" />
+                        <Button fx:id="makeAccusation" mnemonicParsing="false" onAction="#openAccusationWindow" style="-fx-background-color: blue;" text="Make Accusation" textFill="WHITE" />
+                        <Button fx:id="move" mnemonicParsing="false" onAction="#sendMove" style="-fx-background-color: blue;" text="Send Move" textFill="WHITE" />
                      </buttons>
                   </ButtonBar>
                </children>
