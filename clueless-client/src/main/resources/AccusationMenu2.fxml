@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ButtonBar?>
 <?import javafx.scene.control.Label?>
@@ -9,7 +10,6 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
-
 
 <GridPane alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="378.0" prefWidth="1102.0" style="-fx-background-color: green;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
   <columnConstraints>
@@ -28,38 +28,53 @@
    <children>
       <ButtonBar prefHeight="35.0" prefWidth="721.0" GridPane.rowIndex="4">
          <buttons>
-            <RadioButton mnemonicParsing="false" text="Colonel Mustard" textFill="WHITE" />
-            <RadioButton mnemonicParsing="false" text="Professor Plum" textFill="WHITE" />
-            <RadioButton maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="18.0" prefWidth="10.0" text="Mr. Green" textFill="WHITE" />
-            <RadioButton mnemonicParsing="false" text="Mrs. White" textFill="WHITE" />
-            <RadioButton mnemonicParsing="false" prefWidth="153.0" text="Mrs. Peacock" textFill="WHITE" />
+            <RadioButton maxWidth="140.0" mnemonicParsing="false" text="Colonel Mustard" textFill="WHITE" />
+            <RadioButton maxWidth="130.0" mnemonicParsing="false" text="Professor Plum" textFill="WHITE" />
+            <RadioButton maxHeight="-Infinity" maxWidth="110.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="18.0" prefWidth="10.0" text="Mr. Green" textFill="WHITE" />
+            <RadioButton maxWidth="110.0" mnemonicParsing="false" text="Mrs. White" textFill="WHITE" />
+            <RadioButton maxWidth="120.0" mnemonicParsing="false" prefWidth="153.0" text="Mrs. Peacock" textFill="WHITE" />
             <RadioButton mnemonicParsing="false" prefHeight="18.0" prefWidth="20.0" text="Miss Scarlett" textFill="WHITE" />
          </buttons>
+         <padding>
+            <Insets left="150.0" right="100.0" />
+         </padding>
       </ButtonBar>
       <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Which character do you suggest committed the murder?" wrappingWidth="383.93798828125" GridPane.halignment="CENTER" GridPane.rowIndex="3" />
       <ButtonBar minHeight="-Infinity" minWidth="-Infinity" prefHeight="0.0" prefWidth="992.0" GridPane.rowIndex="6">
          <buttons>
-            <RadioButton mnemonicParsing="false" text="Revolver" textFill="WHITE" />
-            <RadioButton mnemonicParsing="false" text="Dagger" textFill="WHITE" />
-            <RadioButton mnemonicParsing="false" prefHeight="18.0" text="Lead Pipe" textFill="WHITE" />
-            <RadioButton maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="18.0" prefWidth="50.0" text="Rope" textFill="WHITE" />
-            <RadioButton mnemonicParsing="false" prefWidth="153.0" text="Candlestick" textFill="WHITE" />
-            <RadioButton mnemonicParsing="false" prefHeight="18.0" prefWidth="20.0" text="Wrench" textFill="WHITE" />
+            <RadioButton maxWidth="120.0" mnemonicParsing="false" text="Revolver" textFill="WHITE" />
+            <RadioButton maxWidth="100.0" mnemonicParsing="false" text="Dagger" textFill="WHITE" />
+            <RadioButton maxWidth="120.0" mnemonicParsing="false" prefHeight="18.0" text="Lead Pipe" textFill="WHITE" />
+            <RadioButton maxHeight="-Infinity" maxWidth="100.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="18.0" prefWidth="50.0" text="Rope" textFill="WHITE" />
+            <RadioButton maxWidth="120.0" mnemonicParsing="false" prefWidth="153.0" text="Candlestick" textFill="WHITE" />
+            <RadioButton maxWidth="120.0" mnemonicParsing="false" prefHeight="18.0" prefWidth="20.0" text="Wrench" textFill="WHITE" />
          </buttons>
+         <GridPane.margin>
+            <Insets />
+         </GridPane.margin>
+         <padding>
+            <Insets left="100.0" right="150.0" />
+         </padding>
       </ButtonBar>
       <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Which weapon do you suggest the murderer used?" wrappingWidth="337.939453125" GridPane.halignment="CENTER" GridPane.rowIndex="5" />
       <ButtonBar minHeight="-Infinity" minWidth="-Infinity" GridPane.rowIndex="2">
          <buttons>
-            <RadioButton maxWidth="116.0" mnemonicParsing="false" prefHeight="21.0" text="Kitchen" textFill="WHITE" />
-            <RadioButton maxWidth="50.0" minWidth="40.0" mnemonicParsing="false" prefHeight="21.0" text="Hall" textFill="WHITE" />
-            <RadioButton mnemonicParsing="false" prefHeight="18.0" text="Ballroom" textFill="WHITE" />
-            <RadioButton maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="18.0" prefWidth="50.0" text="Conservatory" textFill="WHITE" />
-            <RadioButton mnemonicParsing="false" prefWidth="153.0" text="Dining Room" textFill="WHITE" />
-            <RadioButton mnemonicParsing="false" prefHeight="18.0" prefWidth="20.0" text="Billiard Room" textFill="WHITE" />
-            <RadioButton layoutX="725.0" layoutY="136.0" maxWidth="50.0" minWidth="-Infinity" mnemonicParsing="false" prefHeight="21.0" prefWidth="15.0" text="Library" textFill="WHITE" />
-            <RadioButton layoutX="865.0" layoutY="136.0" mnemonicParsing="false" prefHeight="18.0" text="Lounge" textFill="WHITE" />
+            <RadioButton maxWidth="90.0" mnemonicParsing="false" prefHeight="21.0" prefWidth="120.0" text="Kitchen" textFill="WHITE" />
+            <RadioButton maxWidth="60.0" minWidth="40.0" mnemonicParsing="false" prefHeight="21.0" prefWidth="60.0" text="Hall" textFill="WHITE" />
+            <RadioButton maxWidth="90.0" minWidth="-Infinity" mnemonicParsing="false" prefHeight="18.0" prefWidth="120.0" text="Ballroom" textFill="WHITE" />
+            <RadioButton maxHeight="-Infinity" maxWidth="110.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="18.0" prefWidth="120.0" text="Conservatory" textFill="WHITE" />
+            <RadioButton maxWidth="110.0" minWidth="-Infinity" mnemonicParsing="false" prefWidth="120.0" text="Dining Room" textFill="WHITE" />
+            <RadioButton maxWidth="110.0" minWidth="-Infinity" mnemonicParsing="false" prefHeight="18.0" prefWidth="120.0" text="Billiard Room" textFill="WHITE" />
+            <RadioButton layoutX="725.0" layoutY="136.0" maxWidth="80.0" minWidth="-Infinity" mnemonicParsing="false" prefHeight="21.0" prefWidth="120.0" text="Library" textFill="WHITE" />
+            <RadioButton layoutX="865.0" layoutY="136.0" maxWidth="80.0" mnemonicParsing="false" prefHeight="18.0" prefWidth="120.0" text="Lounge" textFill="WHITE" />
             <RadioButton layoutX="884.0" layoutY="136.0" mnemonicParsing="false" prefHeight="21.0" text="Study" textFill="WHITE" />
          </buttons>
+         <GridPane.margin>
+            <Insets />
+         </GridPane.margin>
+         <padding>
+            <Insets left="125.0" right="100.0" />
+         </padding>
       </ButtonBar>
       <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="In which room did the murder take place?" wrappingWidth="383.93798828125" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
       <Label prefHeight="26.0" prefWidth="180.0" text="Accusation Menu" textFill="WHITE" GridPane.halignment="CENTER">
@@ -69,8 +84,8 @@
       </Label>
       <ButtonBar prefHeight="47.0" prefWidth="939.0" GridPane.rowIndex="7">
         <buttons>
-            <Button contentDisplay="CENTER" mnemonicParsing="false" style="-fx-background-color: blue;" text="Make Suggestion" textFill="WHITE" translateX="-600.0" />
-            <Button mnemonicParsing="false" prefHeight="31.0" style="-fx-background-color: blue;" text="Cancel Suggestion" textFill="WHITE" translateX="-200.0" />
+            <Button contentDisplay="CENTER" mnemonicParsing="false" style="-fx-background-color: blue;" text="Make Accusation" textFill="WHITE" translateX="-600.0" />
+            <Button mnemonicParsing="false" prefHeight="31.0" style="-fx-background-color: blue;" text="Cancel Accusation" textFill="WHITE" translateX="-200.0" />
         </buttons>
       </ButtonBar>
    </children>
