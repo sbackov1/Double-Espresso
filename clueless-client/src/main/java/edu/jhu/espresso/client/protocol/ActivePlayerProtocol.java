@@ -34,20 +34,18 @@ public class ActivePlayerProtocol implements ClueLessProtocol
 
         this.turnStart = turnStart;
         moveOptions = client.waitForResponse(MoveOptions.class);
-        this.validateCanMove();
-        this.validateCanSuggest();
         this.mainSelectionMenu();
 
     }
 
-    private Accusation makeAccusationChoice(Accusation options)
+    private ActivePlayerProtocolSelector makeAccusationChoice(Accusation options)
     {
         options.mainAccMenu();
         options.setAccusationStatus(AccusationStatus.MAKING_ACCUSATION);
-        return options;
+        return ActivePlayerProtocolSelector.FromAccusation(options);
     }
 
-    private Suggestion makeSuggestionChoice(Suggestion options)
+    private ActivePlayerProtocolSelector makeSuggestionChoice(Suggestion options)
     {
         options.mainSugMenu();
         options.setRoomNames(RoomNames.BILLIARD_ROOM);
@@ -62,7 +60,7 @@ public class ActivePlayerProtocol implements ClueLessProtocol
         options.setCaseDetails(
                 caseDetails
         );
-        return options;
+        return ActivePlayerProtocolSelector.FromSuggestion(options);
     }
 
     private ActivePlayerProtocolSelector makeMoveChoice(MoveOptions options)
@@ -137,28 +135,6 @@ public class ActivePlayerProtocol implements ClueLessProtocol
     public void goToAccusationMenu() {
         Accusation accusation = client.waitForResponse(Accusation.class);
         client.write(makeAccusationChoice(accusation));
-    }
-
-    /*** The validateCanMove method determines whether the activePlayer can legally move.
-      */
-    public void validateCanMove(){
-        if (this.moveOptions.getValidMoves().size() == 0 || ClueLessTurnProtocol.isPlayerHasMoved()) {
-            this.canMove = false;
-        }
-        else this.canMove = true;
-        }
-
-    /**
-     * The validateCanSuggest method determines whether the activePlayer is in a room and can make a suggestion.
-    **/
-
-    public void validateCanSuggest(){
-        CharacterNames activeChar = this.client.getPlayer().getCharacter();
-        LocationNames locationName = this.turnStart.getLocationNamesMap().get(activeChar);
-        String locationType =  locationName.StringLocationTypeFromStringName();
-
-        if (locationType.equals("Room") && !ClueLessTurnProtocol.isPlayerHasSuggested()) { canSuggest = true; }
-        else {canSuggest = false;}
     }
 
 

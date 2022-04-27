@@ -125,49 +125,4 @@ public enum LocationNames
         return result;
     }
 
-    public String StringLocationTypeFromStringName()
-    {
-        String result;
-        switch (this.name())
-        {
-            case "H1":
-            case "H2":
-            case "H3":
-            case "H4":
-            case "H5":
-            case "H6":
-            case "H7":
-            case "H8":
-            case "H9":
-            case "H10":
-            case "H11":
-            case "H12":
-                result = "Hallway";
-                break;
-            case "LOUNGE":
-            case "STUDY":
-            case "HALL":
-            case "LIBRARY":
-            case "BILLIARD_ROOM":
-            case "DINING_ROOM":
-            case "CONSERVATORY":
-            case "BALLROOM":
-            case "KITCHEN":
-            case "CELLAR":
-                result = "Room";
-                break;
-            case "PROFESSOR_PLUM_HS":
-            case "MRS_PEACOCK_HS":
-            case "MR_GREEN_HS":
-            case "MRS_WHITE_HS":
-            case "COLONEL_MUSTARD_HS":
-            case "MISS_SCARLET_HS":
-                result = "HomeSquare";
-                break;
-
-            default:
-                throw new IllegalArgumentException("Not a valid location name");
-        }
-        return result;
-    }
 }

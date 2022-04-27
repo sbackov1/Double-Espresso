@@ -11,8 +11,11 @@ public class Room implements Location {
     private final boolean isFull;
     private ArrayList<String> possibleDestinations;
 
+    private RoomNames roomName;
+
     public Room(RoomNames name){
         this.LocationName = name.name();
+        this.roomName = name;
         this.isFull = false;
 
         this.possibleDestinations = null;
@@ -63,7 +66,9 @@ public class Room implements Location {
         return possibleDestinations;
     }
 
-
+    public RoomNames getRoomName() {
+        return roomName;
+    }
 }
 
 

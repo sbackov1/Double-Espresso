@@ -2,6 +2,7 @@ package edu.jhu.espresso.server.protocol;
 
 import edu.jhu.espresso.server.domain.*;
 import edu.jhu.espresso.server.domain.builder.AccusationBuilder;
+import edu.jhu.espresso.server.domain.builder.ServerActivePlayerProtocolOffererBuilder;
 import edu.jhu.espresso.server.domain.builder.SuggestionBuilder;
 import edu.jhu.espresso.server.domain.gameEvents.*;
 import edu.jhu.espresso.server.domain.gamepieces.*;
@@ -16,8 +17,15 @@ public class ClueLessTurnProtocol
     private final List<Player> waitingPlayers;
     private final Player activePlayer;
 
-    public static boolean playerHasMoved;
-    public static boolean playerHasSuggested;
+    private MoveOptions moveOptions;
+
+    private boolean playerHasMoved;
+    private boolean playerHasSuggested;
+
+    private boolean canMove;
+    private boolean canSuggest;
+
+    private Location activePlayerLoc;
 
     public ClueLessTurnProtocol(
             List<Player> waitingPlayers,
@@ -27,14 +35,16 @@ public class ClueLessTurnProtocol
         this.waitingPlayers = waitingPlayers;
         this.activePlayer = activePlayer;
         this.game = game;
+        this.moveOptions = determineValidMoveOptions(game.getGameBoard());
+        activePlayerLoc = this.game.getGameBoard().getCharacterLocation(this.activePlayer.getCharacter().getName());
     }
 
     public boolean executeTurn()
     {
         notifyPlayersOfStatus();
         boolean endTurn = false;
-        playerHasMoved = false;
-        playerHasSuggested = false;
+        this.playerHasMoved = false;
+        this.playerHasSuggested = false;
 
         while(!endTurn) {
 
@@ -96,7 +106,7 @@ public class ClueLessTurnProtocol
         return moveOptions;
     }
 
-    private Suggestion buildOfferSuggestionMessage()
+   private Suggestion buildOfferSuggestionMessage()
     {
         List<String> validCharacters = Arrays.stream(CharacterNames.values())
                 .map(Enum::name)
@@ -106,17 +116,20 @@ public class ClueLessTurnProtocol
                 .map(Enum::name)
                 .collect(Collectors.toList());
 
+        Room thisRoom = (Room) activePlayerLoc;
         return SuggestionBuilder.aSuggestion()
-                .withSuggestionStatus(SuggestionStatus.OFFER_SUGGESTION)
+                //.withSuggestionStatus(SuggestionStatus.OFFER_SUGGESTION)
+                .withRoomNames(thisRoom.getRoomName())
                 .withValidCharacters(validCharacters)
                 .withValidWeapons(validWeapons)
                 .build();
     }
 
+    //TODO: Make smarter
     private Accusation buildOfferAccusationMessage()
     {
         return AccusationBuilder.anAccusation()
-                .withAccusationStatus(AccusationStatus.OFFER_ACCUSATION)
+                //.withAccusationStatus(AccusationStatus.OFFER_ACCUSATION)
                 .withValidRooms(Arrays.asList(RoomNames.BILLIARD_ROOM.name(), RoomNames.BALLROOM.name()))
                 .withValidCharacters(Arrays.asList(CharacterNames.COLONEL_MUSTARD.name(), CharacterNames.MRS_PEACOCK.name(), CharacterNames.MR_GREEN.name()))
                 .withValidWeapons(Arrays.asList(Weapon.CANDLESTICK.name(), Weapon.DAGGER.name(), Weapon.REVOLVER.name()))
@@ -144,19 +157,68 @@ public class ClueLessTurnProtocol
         new SuggestionTestimonyProtocol(waitingPlayers, activePlayer, suggestion, game).execute();
     }
 
-    public static boolean isPlayerHasMoved() {
+    public boolean isPlayerHasMoved() {
         return playerHasMoved;
     }
 
-    public static void setPlayerHasMoved(boolean playerHasMoved) {
-        ClueLessTurnProtocol.playerHasMoved = playerHasMoved;
+    public void setPlayerHasMoved(boolean playerHasMoved) {
+        this.playerHasMoved = playerHasMoved;
     }
 
-    public static boolean isPlayerHasSuggested() {
+    public boolean isPlayerHasSuggested() {
         return playerHasSuggested;
     }
 
-    public static void setPlayerHasSuggested(boolean playerHasSuggested) {
-        ClueLessTurnProtocol.playerHasSuggested = playerHasSuggested;
+    public void setPlayerHasSuggested(boolean playerHasSuggested) {
+        this.playerHasSuggested = playerHasSuggested;
     }
+
+    /*** The validateCanMove method determines whether the activePlayer can legally move.
+     */
+    public void validateCanMove(){
+        if (this.moveOptions.getValidMoves().size() == 0 || this.isPlayerHasMoved()) {
+            this.canMove = false;
+        }
+        else this.canMove = true;
+    }
+
+    /**
+     * The validateCanSuggest method determines whether the activePlayer is in a room and can make a suggestion.
+     **/
+
+    public void validateCanSuggest(){
+
+        String locationType =  LocationNames.StringLocationTypeFromStringName(activePlayerLoc.getLocationName());
+
+        if (locationType.equals("Room") && !this.isPlayerHasSuggested()) { canSuggest = true; }
+        else {canSuggest = false;}
+    }
+
+    /** createProtocolOfferer creates a protocol offerer using the validateCanSuggest(){}
+    **/
+    private ServerActivePlayerProtocolOfferer createProtocolOfferer(){
+        this.validateCanMove();
+        this.validateCanSuggest();
+
+        ServerActivePlayerProtocolOffererBuilder builder = ServerActivePlayerProtocolOffererBuilder.aServerActivePlayerProtocolOfferer();
+
+            if(canMove){
+                builder.withOfferMoveOptions(moveOptions);
+            }
+
+            //Add suggestion
+            if(canSuggest){
+                builder.withOfferSuggestion();
+            }
+
+            //Add accusation
+            builder.withOfferAccusation();
+
+
+
+
+    }
+
+
+
 }
