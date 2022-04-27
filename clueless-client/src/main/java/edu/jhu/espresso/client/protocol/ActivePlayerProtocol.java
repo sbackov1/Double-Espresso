@@ -15,12 +15,10 @@ public class ActivePlayerProtocol implements ClueLessProtocol
 {
     private final ClueLessClient client;
 
+    private ServerProtocolOfferInterpreter gameOptions;
     private MoveOptions moveOptions;
 
     private TurnStart turnStart;
-    private boolean canMove;
-
-    private boolean canSuggest;
     //private edu.jhu.espresso.client.domain.GameEvents.TurnStart turnStart;
 
     public ActivePlayerProtocol(ClueLessClient client)
@@ -33,7 +31,7 @@ public class ActivePlayerProtocol implements ClueLessProtocol
     {
 
         this.turnStart = turnStart;
-        moveOptions = client.waitForResponse(MoveOptions.class);
+        gameOptions = client.waitForResponse(ServerProtocolOfferInterpreter.class);
         this.mainSelectionMenu();
 
     }

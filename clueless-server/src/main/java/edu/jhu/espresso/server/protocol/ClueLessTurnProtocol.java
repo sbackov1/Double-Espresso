@@ -27,6 +27,10 @@ public class ClueLessTurnProtocol
 
     private Location activePlayerLoc;
 
+    List<String> validCharacters;
+
+    List<String> validWeapons;
+
     public ClueLessTurnProtocol(
             List<Player> waitingPlayers,
             Player activePlayer,
@@ -37,6 +41,12 @@ public class ClueLessTurnProtocol
         this.game = game;
         this.moveOptions = determineValidMoveOptions(game.getGameBoard());
         activePlayerLoc = this.game.getGameBoard().getCharacterLocation(this.activePlayer.getCharacter().getName());
+        validCharacters = Arrays.stream(CharacterNames.values())
+                .map(Enum::name)
+                .collect(Collectors.toList());
+        validWeapons = Arrays.stream(Weapon.values())
+                .map(Enum::name)
+                .collect(Collectors.toList());
     }
 
     public boolean executeTurn()
@@ -48,7 +58,7 @@ public class ClueLessTurnProtocol
 
         while(!endTurn) {
 
-            ActivePlayerProtocolSelector activePlayerChoice = activePlayer.writeInstanceAndExpectType(determineValidMoveOptions(game.getGameBoard()), ActivePlayerProtocolSelector.class);
+            ActivePlayerProtocolSelector activePlayerChoice = activePlayer.writeInstanceAndExpectType(createProtocolOfferer(), ActivePlayerProtocolSelector.class);
 
             //Run through and get the move choice, and execute the command in the server.
             activePlayerChoice.getMoveChoice().ifPresent(moveChoice -> game.applyMoveChoice(moveChoice, activePlayer.getCharacter().getName()));
@@ -108,15 +118,8 @@ public class ClueLessTurnProtocol
 
    private Suggestion buildOfferSuggestionMessage()
     {
-        List<String> validCharacters = Arrays.stream(CharacterNames.values())
-                .map(Enum::name)
-                .collect(Collectors.toList());
-
-        List<String> validWeapons = Arrays.stream(Weapon.values())
-                .map(Enum::name)
-                .collect(Collectors.toList());
-
         Room thisRoom = (Room) activePlayerLoc;
+
         return SuggestionBuilder.aSuggestion()
                 //.withSuggestionStatus(SuggestionStatus.OFFER_SUGGESTION)
                 .withRoomNames(thisRoom.getRoomName())
@@ -125,14 +128,18 @@ public class ClueLessTurnProtocol
                 .build();
     }
 
-    //TODO: Make smarter
     private Accusation buildOfferAccusationMessage()
     {
+        List<String> validRooms = Arrays.stream(RoomNames.values())
+                .map(Enum::name)
+                .collect(Collectors.toList());
+
+
         return AccusationBuilder.anAccusation()
                 //.withAccusationStatus(AccusationStatus.OFFER_ACCUSATION)
-                .withValidRooms(Arrays.asList(RoomNames.BILLIARD_ROOM.name(), RoomNames.BALLROOM.name()))
-                .withValidCharacters(Arrays.asList(CharacterNames.COLONEL_MUSTARD.name(), CharacterNames.MRS_PEACOCK.name(), CharacterNames.MR_GREEN.name()))
-                .withValidWeapons(Arrays.asList(Weapon.CANDLESTICK.name(), Weapon.DAGGER.name(), Weapon.REVOLVER.name()))
+                .withValidRooms(validRooms)
+                .withValidCharacters(validCharacters)
+                .withValidWeapons(validWeapons)
                 .build();
     }
 
@@ -200,23 +207,21 @@ public class ClueLessTurnProtocol
         this.validateCanMove();
         this.validateCanSuggest();
 
-        ServerActivePlayerProtocolOffererBuilder builder = ServerActivePlayerProtocolOffererBuilder.aServerActivePlayerProtocolOfferer();
+        ServerActivePlayerProtocolOffererBuilder offerBuilder = ServerActivePlayerProtocolOffererBuilder.aServerActivePlayerProtocolOfferer();
 
             if(canMove){
-                builder.withOfferMoveOptions(moveOptions);
+                offerBuilder.withOfferMoveOptions(moveOptions);
             }
 
             //Add suggestion
             if(canSuggest){
-                builder.withOfferSuggestion();
+                offerBuilder.withOfferSuggestion(this.buildOfferSuggestionMessage());
             }
 
             //Add accusation
-            builder.withOfferAccusation();
+            offerBuilder.withOfferAccusation(this.buildOfferAccusationMessage());
 
-
-
-
+    return offerBuilder.build();
     }
 
 
