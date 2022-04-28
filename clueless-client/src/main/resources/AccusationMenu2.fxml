@@ -5,6 +5,7 @@
 <?import javafx.scene.control.ButtonBar?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
@@ -28,12 +29,15 @@
    <children>
       <ButtonBar prefHeight="35.0" prefWidth="721.0" GridPane.rowIndex="4">
          <buttons>
-            <RadioButton fx:id="COLONEL_MUSTARD" maxWidth="140.0" mnemonicParsing="false" onAction="#mustardClicked" text="Colonel Mustard" textFill="WHITE" />
-            <RadioButton fx:id="PROFESSOR_PLUM" maxWidth="130.0" mnemonicParsing="false" onAction="#plumClicked" text="Professor Plum" textFill="WHITE" />
-            <RadioButton fx:id="MR_GREEN" maxHeight="-Infinity" maxWidth="110.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#greenClicked" prefHeight="18.0" prefWidth="10.0" text="Mr. Green" textFill="WHITE" />
-            <RadioButton fx:id="MRS_WHITE" maxWidth="110.0" mnemonicParsing="false" onAction="#whiteClicked" text="Mrs. White" textFill="WHITE" />
-            <RadioButton fx:id="MRS_PEACOCK" maxWidth="120.0" mnemonicParsing="false" onAction="#peacockClicked" prefWidth="153.0" text="Mrs. Peacock" textFill="WHITE" />
-            <RadioButton fx:id="MISS_SCARLET" mnemonicParsing="false" onAction="#scarletClicked" prefHeight="18.0" prefWidth="20.0" text="Miss Scarlet" textFill="WHITE" />
+            <RadioButton fx:id="COLONEL_MUSTARD" maxWidth="140.0" mnemonicParsing="false" onAction="#mustardClicked" text="Colonel Mustard" textFill="WHITE">
+               <toggleGroup>
+                  <ToggleGroup fx:id="charGroup" />
+               </toggleGroup></RadioButton>
+            <RadioButton fx:id="PROFESSOR_PLUM" maxWidth="130.0" mnemonicParsing="false" onAction="#plumClicked" text="Professor Plum" textFill="WHITE" toggleGroup="$charGroup" />
+            <RadioButton fx:id="MR_GREEN" maxHeight="-Infinity" maxWidth="110.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#greenClicked" prefHeight="18.0" prefWidth="10.0" text="Mr. Green" textFill="WHITE" toggleGroup="$charGroup" />
+            <RadioButton fx:id="MRS_WHITE" maxWidth="110.0" mnemonicParsing="false" onAction="#whiteClicked" text="Mrs. White" textFill="WHITE" toggleGroup="$charGroup" />
+            <RadioButton fx:id="MRS_PEACOCK" maxWidth="120.0" mnemonicParsing="false" onAction="#peacockClicked" prefWidth="153.0" text="Mrs. Peacock" textFill="WHITE" toggleGroup="$charGroup" />
+            <RadioButton fx:id="MISS_SCARLET" mnemonicParsing="false" onAction="#scarletClicked" prefHeight="18.0" prefWidth="20.0" text="Miss Scarlet" textFill="WHITE" toggleGroup="$charGroup" />
          </buttons>
          <padding>
             <Insets left="100.0" right="100.0" />
@@ -42,12 +46,15 @@
       <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Which character do you suggest committed the murder?" GridPane.halignment="CENTER" GridPane.rowIndex="3" />
       <ButtonBar minHeight="-Infinity" minWidth="-Infinity" prefHeight="0.0" prefWidth="992.0" GridPane.halignment="CENTER" GridPane.rowIndex="6">
          <buttons>
-            <RadioButton fx:id="REVOLVER" maxWidth="120.0" mnemonicParsing="false" onAction="#revolverClicked" text="Revolver" textFill="WHITE" />
-            <RadioButton fx:id="DAGGER" maxWidth="100.0" mnemonicParsing="false" onAction="#daggerClicked" text="Dagger" textFill="WHITE" />
-            <RadioButton fx:id="LEAD_PIPE" maxWidth="120.0" mnemonicParsing="false" onAction="#leadpipeClicked" prefHeight="18.0" text="Lead Pipe" textFill="WHITE" />
-            <RadioButton fx:id="ROPE" maxHeight="-Infinity" maxWidth="100.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#ropeClicked" prefHeight="18.0" prefWidth="50.0" text="Rope" textFill="WHITE" />
-            <RadioButton fx:id="CANDLESTICK" maxWidth="120.0" mnemonicParsing="false" onAction="#candlestickClicked" prefWidth="153.0" text="Candlestick" textFill="WHITE" />
-            <RadioButton fx:id="WRENCH" maxWidth="120.0" mnemonicParsing="false" onAction="#wrenchClicked" prefHeight="18.0" prefWidth="20.0" text="Wrench" textFill="WHITE" />
+            <RadioButton fx:id="REVOLVER" maxWidth="120.0" mnemonicParsing="false" onAction="#revolverClicked" text="Revolver" textFill="WHITE">
+               <toggleGroup>
+                  <ToggleGroup fx:id="weapGroup" />
+               </toggleGroup></RadioButton>
+            <RadioButton fx:id="DAGGER" maxWidth="100.0" mnemonicParsing="false" onAction="#daggerClicked" text="Dagger" textFill="WHITE" toggleGroup="$weapGroup" />
+            <RadioButton fx:id="LEAD_PIPE" maxWidth="120.0" mnemonicParsing="false" onAction="#leadpipeClicked" prefHeight="18.0" text="Lead Pipe" textFill="WHITE" toggleGroup="$weapGroup" />
+            <RadioButton fx:id="ROPE" maxHeight="-Infinity" maxWidth="100.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#ropeClicked" prefHeight="18.0" prefWidth="50.0" text="Rope" textFill="WHITE" toggleGroup="$weapGroup" />
+            <RadioButton fx:id="CANDLESTICK" maxWidth="120.0" mnemonicParsing="false" onAction="#candlestickClicked" prefWidth="153.0" text="Candlestick" textFill="WHITE" toggleGroup="$weapGroup" />
+            <RadioButton fx:id="WRENCH" maxWidth="120.0" mnemonicParsing="false" onAction="#wrenchClicked" prefHeight="18.0" prefWidth="20.0" text="Wrench" textFill="WHITE" toggleGroup="$weapGroup" />
          </buttons>
          <GridPane.margin>
             <Insets />
@@ -59,15 +66,18 @@
       <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Which weapon do you suggest the murderer used?" GridPane.halignment="CENTER" GridPane.rowIndex="5" />
       <ButtonBar minHeight="-Infinity" minWidth="-Infinity" GridPane.rowIndex="2">
          <buttons>
-            <RadioButton fx:id="KITCHEN" maxWidth="90.0" mnemonicParsing="false" onAction="#kitchenClicked" prefHeight="21.0" prefWidth="120.0" text="Kitchen" textFill="WHITE" />
-            <RadioButton fx:id="HALL" maxWidth="60.0" minWidth="40.0" mnemonicParsing="false" onAction="#hallClicked" prefHeight="21.0" prefWidth="60.0" text="Hall" textFill="WHITE" />
-            <RadioButton fx:id="BALLROOM" maxWidth="90.0" minWidth="-Infinity" mnemonicParsing="false" onAction="#ballroomClicked" prefHeight="18.0" prefWidth="120.0" text="Ballroom" textFill="WHITE" />
-            <RadioButton fx:id="CONSERVATORY" maxHeight="-Infinity" maxWidth="110.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#conservatoryClicked" prefHeight="18.0" prefWidth="120.0" text="Conservatory" textFill="WHITE" />
-            <RadioButton fx:id="DINING_ROOM" maxWidth="110.0" minWidth="-Infinity" mnemonicParsing="false" onAction="#diningClicked" prefWidth="120.0" text="Dining Room" textFill="WHITE" />
-            <RadioButton fx:id="BILLIARD_ROOM" maxWidth="110.0" minWidth="-Infinity" mnemonicParsing="false" onAction="#billardClicked" prefHeight="18.0" prefWidth="120.0" text="Billiard Room" textFill="WHITE" />
-            <RadioButton fx:id="LIBRARY" layoutX="725.0" layoutY="136.0" maxWidth="80.0" minWidth="-Infinity" mnemonicParsing="false" onAction="#libraryClicked" prefHeight="21.0" prefWidth="120.0" text="Library" textFill="WHITE" />
-            <RadioButton fx:id="LOUNGE" layoutX="865.0" layoutY="136.0" maxWidth="80.0" mnemonicParsing="false" onAction="#loungeClicked" prefHeight="18.0" prefWidth="120.0" text="Lounge" textFill="WHITE" />
-            <RadioButton fx:id="STUDY" layoutX="884.0" layoutY="136.0" mnemonicParsing="false" onAction="#studyClicked" prefHeight="21.0" text="Study" textFill="WHITE" />
+            <RadioButton fx:id="KITCHEN" maxWidth="90.0" mnemonicParsing="false" onAction="#kitchenClicked" prefHeight="21.0" prefWidth="120.0" text="Kitchen" textFill="WHITE">
+               <toggleGroup>
+                  <ToggleGroup fx:id="roomGroup" />
+               </toggleGroup></RadioButton>
+            <RadioButton fx:id="HALL" maxWidth="60.0" minWidth="40.0" mnemonicParsing="false" onAction="#hallClicked" prefHeight="21.0" prefWidth="60.0" text="Hall" textFill="WHITE" toggleGroup="$roomGroup" />
+            <RadioButton fx:id="BALLROOM" maxWidth="90.0" minWidth="-Infinity" mnemonicParsing="false" onAction="#ballroomClicked" prefHeight="18.0" prefWidth="120.0" text="Ballroom" textFill="WHITE" toggleGroup="$roomGroup" />
+            <RadioButton fx:id="CONSERVATORY" maxHeight="-Infinity" maxWidth="110.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#conservatoryClicked" prefHeight="18.0" prefWidth="120.0" text="Conservatory" textFill="WHITE" toggleGroup="$roomGroup" />
+            <RadioButton fx:id="DINING_ROOM" maxWidth="110.0" minWidth="-Infinity" mnemonicParsing="false" onAction="#diningClicked" prefWidth="120.0" text="Dining Room" textFill="WHITE" toggleGroup="$roomGroup" />
+            <RadioButton fx:id="BILLIARD_ROOM" maxWidth="110.0" minWidth="-Infinity" mnemonicParsing="false" onAction="#billardClicked" prefHeight="18.0" prefWidth="120.0" text="Billiard Room" textFill="WHITE" toggleGroup="$roomGroup" />
+            <RadioButton fx:id="LIBRARY" layoutX="725.0" layoutY="136.0" maxWidth="80.0" minWidth="-Infinity" mnemonicParsing="false" onAction="#libraryClicked" prefHeight="21.0" prefWidth="120.0" text="Library" textFill="WHITE" toggleGroup="$roomGroup" />
+            <RadioButton fx:id="LOUNGE" layoutX="865.0" layoutY="136.0" maxWidth="80.0" mnemonicParsing="false" onAction="#loungeClicked" prefHeight="18.0" prefWidth="120.0" text="Lounge" textFill="WHITE" toggleGroup="$roomGroup" />
+            <RadioButton fx:id="STUDY" layoutX="884.0" layoutY="136.0" mnemonicParsing="false" onAction="#studyClicked" prefHeight="21.0" text="Study" textFill="WHITE" toggleGroup="$roomGroup" />
          </buttons>
          <GridPane.margin>
             <Insets />

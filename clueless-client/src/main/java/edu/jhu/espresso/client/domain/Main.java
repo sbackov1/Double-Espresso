@@ -6,11 +6,9 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-import java.io.IOException;
-
 public class Main extends Application {
     @Override
-    public void start(Stage primaryStage) throws Exception, IOException {
+    public void start(Stage primaryStage) throws Exception {
         Parent root;
         root = FXMLLoader.load(getClass().getClassLoader().getResource("gameboardTest.fxml"));
         primaryStage.setTitle("Clue-Less");

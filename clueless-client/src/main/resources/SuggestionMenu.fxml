@@ -82,7 +82,7 @@
             <Insets right="70.0" />
          </GridPane.margin>
       </Text>
-      <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="&lt;Room&gt;" GridPane.halignment="CENTER" GridPane.rowIndex="1">
+      <Text fx:id="suggestRoom" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="&lt;Room&gt;" GridPane.halignment="CENTER" GridPane.rowIndex="1">
          <GridPane.margin>
             <Insets left="70.0" />
          </GridPane.margin>
