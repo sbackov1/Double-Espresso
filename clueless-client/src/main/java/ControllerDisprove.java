@@ -90,4 +90,110 @@ public class ControllerDisprove {
     void sendDisprove(ActionEvent event) { // show card to suggesting player
 
     }
+
+    @FXML
+    void ballroomClicked(ActionEvent event) {       // ROOM START
+
+    }
+
+    @FXML
+    void billardClicked(ActionEvent event) {
+
+    }
+
+    @FXML
+    void conservatoryClicked(ActionEvent event) {
+
+    }
+
+    @FXML
+    void diningClicked(ActionEvent event) {
+
+    }
+
+    @FXML
+    void hallClicked(ActionEvent event) {
+
+    }
+
+    @FXML
+    void kitchenClicked(ActionEvent event) {
+
+    }
+
+    @FXML
+    void libraryClicked(ActionEvent event) {
+
+    }
+
+    @FXML
+    void loungeClicked(ActionEvent event) {
+
+    }
+
+    @FXML
+    void studyClicked(ActionEvent event) {
+
+    }
+
+    @FXML
+    void greenClicked(ActionEvent event) {          // CHARACTER START
+
+    }
+
+    @FXML
+    void mustardClicked(ActionEvent event) {
+
+    }
+
+    @FXML
+    void peacockClicked(ActionEvent event) {
+
+    }
+
+    @FXML
+    void plumClicked(ActionEvent event) {
+
+    }
+
+    @FXML
+    void scarletClicked(ActionEvent event) {
+
+    }
+
+    @FXML
+    void whiteClicked(ActionEvent event) {
+
+    }
+
+    @FXML
+    void candlestickClicked(ActionEvent event) {   // WEAPON SELECT
+
+    }
+
+    @FXML
+    void daggerClicked(ActionEvent event) {
+
+    }
+
+    @FXML
+    void leadpipeClicked(ActionEvent event) {
+
+    }
+
+    @FXML
+    void revolverClicked(ActionEvent event) {
+
+    }
+
+    @FXML
+    void ropeClicked(ActionEvent event) {
+
+    }
+
+    @FXML
+    void wrenchClicked(ActionEvent event) {
+
+    }
+
 }
