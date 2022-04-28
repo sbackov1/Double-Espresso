@@ -19,4 +19,15 @@ public class ServerActivePlayerProtocolOfferer {
 
     public Optional<Accusation> getOfferAccusation(){return Optional.ofNullable(offerAccusation);}
 
+    public void setOfferMoveOptions(MoveOptions offerMoveOptions) {
+        this.offerMoveOptions = offerMoveOptions;
+    }
+
+    public void setOfferSuggestion(Suggestion offerSuggestion) {
+        this.offerSuggestion = offerSuggestion;
+    }
+
+    public void setOfferAccusation(Accusation offerAccusation) {
+        this.offerAccusation = offerAccusation;
+    }
 }

@@ -81,6 +81,7 @@ public class Menu {
             this.print();
             item = this.getUserInput();
             item.invoke();
+
             if (!this.isRootMenu && !this.isMainSubMenu)   // temporary fix
             {
                 break;

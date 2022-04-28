@@ -3,12 +3,16 @@ package edu.jhu.espresso.client.protocol;
 import edu.jhu.espresso.client.ClueLessClient;
 import edu.jhu.espresso.client.domain.GameEvents.*;
 import edu.jhu.espresso.client.domain.GamePieces.CaseDetails;
+import edu.jhu.espresso.client.domain.GamePieces.LocationNames;
 import edu.jhu.espresso.client.domain.GamePieces.RoomNames;
 import edu.jhu.espresso.client.domain.Menus.Menu;
 import edu.jhu.espresso.client.domain.Menus.MenuItem;
 import edu.jhu.espresso.client.domain.GameEvents.Accusation;
 import edu.jhu.espresso.client.domain.GameEvents.Suggestion;
 import edu.jhu.espresso.client.domain.GameEvents.MoveOptions;
+
+import java.util.ArrayList;
+import java.util.Collections;
 
 
 public class ActivePlayerProtocol implements ClueLessProtocol
@@ -33,10 +37,17 @@ public class ActivePlayerProtocol implements ClueLessProtocol
     {
 
         this.turnStart = turnStart;
+
+    while(true) {
         gameOptions = client.waitForResponse(ServerActivePlayerProtocolOfferer.class);
+
+        //Set canMove and canSuggest to false, they will be set to true during the unpackProtocolOffer method.
+        this.setCanSuggest(false);
+        this.setCanMove(false);
+
         this.unPackProtocolOffer(gameOptions);
         this.mainSelectionMenu();
-
+    }
     }
 
     private ActivePlayerProtocolSelector makeAccusationChoice(Accusation options)
@@ -107,6 +118,8 @@ public class ActivePlayerProtocol implements ClueLessProtocol
 
         selectionMenu.addItem(new MenuItem("Make Accusation", this, "goToAccusationMenu"));
 
+        selectionMenu.addItem(new MenuItem("End Turn", this, "EndTurn"));
+
         selectionMenu.execute();
     }
 
@@ -122,13 +135,10 @@ public class ActivePlayerProtocol implements ClueLessProtocol
         SuggestionTestimonyResponse response = client.waitForResponse(SuggestionTestimonyResponse.class);
         updateNotebook(response);
 
-        canSuggest = false;
-
     }
 
     public void goToMovementMenu(){
         client.write(makeMoveChoice(moveOptions));
-        canMove = false;
     }
 
     public void goToAccusationMenu() {
@@ -207,6 +217,16 @@ public class ActivePlayerProtocol implements ClueLessProtocol
         sp.getOfferAccusation().ifPresent(this::setAccusation);
 
     }
+
+    /**
+     * EndTurn signals to the server to end the turn by sending an ActivPlayerProtocolSelector object with three null fields.
+     *
+    ***/
+
+    public void EndTurn(){
+        client.write(new ActivePlayerProtocolSelector(null, null, null));
+    }
+
 
 }
 

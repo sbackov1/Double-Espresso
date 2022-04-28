@@ -12,9 +12,9 @@ public class ServerActivePlayerProtocolOfferer {
     private Accusation offerAccusation;
 
     public ServerActivePlayerProtocolOfferer(MoveOptions offerMoveOptions, Suggestion offerSuggestion, Accusation offerAccusation){
-        this.offerSuggestion = null;
-        this.offerMoveOptions = null;
-        this.offerAccusation = null;
+        this.offerSuggestion = offerSuggestion;
+        this.offerMoveOptions = offerMoveOptions;
+        this.offerAccusation = offerAccusation;
     }
 
     /**

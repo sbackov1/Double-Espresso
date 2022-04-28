@@ -84,7 +84,6 @@ public class ClueLessTurnProtocol
             if (!activePlayerChoice.getMoveChoice().isPresent() && !activePlayerChoice.getSuggestion().isPresent() && !activePlayerChoice.getAccusation().isPresent()){
                 endTurn = true;
             }
-
         }
 
 
