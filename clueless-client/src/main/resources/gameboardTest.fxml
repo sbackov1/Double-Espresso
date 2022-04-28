@@ -32,7 +32,7 @@
                   <Insets left="5.0" right="5.0" />
                </VBox.margin>
             </Line>
-            <Text boundsType="LOGICAL_VERTICAL_CENTER" lineSpacing="2.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Colonel Mustard" textAlignment="CENTER" wrappingWidth="136.02093505859375">
+            <Text fx:id="textMustard" boundsType="LOGICAL_VERTICAL_CENTER" lineSpacing="2.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Colonel Mustard" textAlignment="CENTER" wrappingWidth="136.02093505859375">
                <font>
                   <Font name="Courier" size="13.0" />
                </font>
@@ -40,27 +40,27 @@
                   <Insets top="20.0" />
                </VBox.margin>
             </Text>
-            <Text boundsType="LOGICAL_VERTICAL_CENTER" strokeType="OUTSIDE" strokeWidth="0.0" text="Miss Scarlet" textAlignment="CENTER" wrappingWidth="136.02093505859375">
+            <Text fx:id="textScarlet" boundsType="LOGICAL_VERTICAL_CENTER" strokeType="OUTSIDE" strokeWidth="0.0" text="Miss Scarlet" textAlignment="CENTER" wrappingWidth="136.02093505859375">
                <font>
                   <Font name="Courier" size="13.0" />
                </font>
             </Text>
-            <Text boundsType="LOGICAL_VERTICAL_CENTER" strokeType="OUTSIDE" strokeWidth="0.0" text="Professor Plum" textAlignment="CENTER" wrappingWidth="136.02093505859375">
+            <Text fx:id="textPlum" boundsType="LOGICAL_VERTICAL_CENTER" strokeType="OUTSIDE" strokeWidth="0.0" text="Professor Plum" textAlignment="CENTER" wrappingWidth="136.02093505859375">
                <font>
                   <Font name="Courier" size="13.0" />
                </font>
             </Text>
-            <Text boundsType="LOGICAL_VERTICAL_CENTER" strokeType="OUTSIDE" strokeWidth="0.0" text="Mr. White" textAlignment="CENTER" wrappingWidth="136.02093505859375">
+            <Text fx:id="textWhite" boundsType="LOGICAL_VERTICAL_CENTER" strokeType="OUTSIDE" strokeWidth="0.0" text="Mr. White" textAlignment="CENTER" wrappingWidth="136.02093505859375">
                <font>
                   <Font name="Courier" size="13.0" />
                </font>
             </Text>
-            <Text boundsType="LOGICAL_VERTICAL_CENTER" strokeType="OUTSIDE" strokeWidth="0.0" text="Mr. Green" textAlignment="CENTER" wrappingWidth="136.02093505859375">
+            <Text fx:id="textGreen" boundsType="LOGICAL_VERTICAL_CENTER" strokeType="OUTSIDE" strokeWidth="0.0" text="Mr. Green" textAlignment="CENTER" wrappingWidth="136.02093505859375">
                <font>
                   <Font name="Courier" size="13.0" />
                </font>
             </Text>
-            <Text boundsType="LOGICAL_VERTICAL_CENTER" strokeType="OUTSIDE" strokeWidth="0.0" text="Mrs. Peacock" textAlignment="CENTER" wrappingWidth="136.02093505859375">
+            <Text fx:id="textPeacock" boundsType="LOGICAL_VERTICAL_CENTER" strokeType="OUTSIDE" strokeWidth="0.0" text="Mrs. Peacock" textAlignment="CENTER" wrappingWidth="136.02093505859375">
                <font>
                   <Font name="Courier" size="13.0" />
                </font>
@@ -73,7 +73,7 @@
                   <Insets left="5.0" right="5.0" />
                </VBox.margin>
             </Line>
-            <Text boundsType="LOGICAL_VERTICAL_CENTER" strokeType="OUTSIDE" strokeWidth="0.0" text="Candlestick" textAlignment="CENTER" wrappingWidth="136.02093505859375">
+            <Text fx:id="textCandlestick" boundsType="LOGICAL_VERTICAL_CENTER" strokeType="OUTSIDE" strokeWidth="0.0" text="Candlestick" textAlignment="CENTER" wrappingWidth="136.02093505859375">
                <font>
                   <Font name="Courier" size="13.0" />
                </font>
@@ -81,27 +81,27 @@
                   <Insets top="20.0" />
                </VBox.margin>
             </Text>
-            <Text boundsType="LOGICAL_VERTICAL_CENTER" strokeType="OUTSIDE" strokeWidth="0.0" text="Rope" textAlignment="CENTER" wrappingWidth="136.02093505859375">
+            <Text fx:id="textRope" boundsType="LOGICAL_VERTICAL_CENTER" strokeType="OUTSIDE" strokeWidth="0.0" text="Rope" textAlignment="CENTER" wrappingWidth="136.02093505859375">
                <font>
                   <Font name="Courier" size="13.0" />
                </font>
             </Text>
-            <Text boundsType="LOGICAL_VERTICAL_CENTER" strokeType="OUTSIDE" strokeWidth="0.0" text="Dagger" textAlignment="CENTER" wrappingWidth="136.02093505859375">
+            <Text fx:id="textDagger" boundsType="LOGICAL_VERTICAL_CENTER" strokeType="OUTSIDE" strokeWidth="0.0" text="Dagger" textAlignment="CENTER" wrappingWidth="136.02093505859375">
                <font>
                   <Font name="Courier" size="13.0" />
                </font>
             </Text>
-            <Text boundsType="LOGICAL_VERTICAL_CENTER" strokeType="OUTSIDE" strokeWidth="0.0" text="Revolver" textAlignment="CENTER" wrappingWidth="136.02093505859375">
+            <Text fx:id="textRevolver" boundsType="LOGICAL_VERTICAL_CENTER" strokeType="OUTSIDE" strokeWidth="0.0" text="Revolver" textAlignment="CENTER" wrappingWidth="136.02093505859375">
                <font>
                   <Font name="Courier" size="13.0" />
                </font>
             </Text>
-            <Text boundsType="LOGICAL_VERTICAL_CENTER" strokeType="OUTSIDE" strokeWidth="0.0" text="Wrench" textAlignment="CENTER" wrappingWidth="136.02093505859375">
+            <Text fx:id="textWrench" boundsType="LOGICAL_VERTICAL_CENTER" strokeType="OUTSIDE" strokeWidth="0.0" text="Wrench" textAlignment="CENTER" wrappingWidth="136.02093505859375">
                <font>
                   <Font name="Courier" size="13.0" />
                </font>
             </Text>
-            <Text boundsType="LOGICAL_VERTICAL_CENTER" strokeType="OUTSIDE" strokeWidth="0.0" text="Lead Pipe" textAlignment="CENTER" wrappingWidth="136.02093505859375">
+            <Text fx:id="textLeadPipe" boundsType="LOGICAL_VERTICAL_CENTER" strokeType="OUTSIDE" strokeWidth="0.0" text="Lead Pipe" textAlignment="CENTER" wrappingWidth="136.02093505859375">
                <font>
                   <Font name="Courier" size="13.0" />
                </font>
@@ -114,7 +114,7 @@
                   <Insets left="5.0" right="5.0" />
                </VBox.margin>
             </Line>
-            <Text boundsType="LOGICAL_VERTICAL_CENTER" strokeType="OUTSIDE" strokeWidth="0.0" text="Study" textAlignment="CENTER" wrappingWidth="136.02093505859375">
+            <Text fx:id="textStudy" boundsType="LOGICAL_VERTICAL_CENTER" strokeType="OUTSIDE" strokeWidth="0.0" text="Study" textAlignment="CENTER" wrappingWidth="136.02093505859375">
                <font>
                   <Font name="Courier" size="13.0" />
                </font>
@@ -122,42 +122,42 @@
                   <Insets top="20.0" />
                </VBox.margin>
             </Text>
-            <Text boundsType="LOGICAL_VERTICAL_CENTER" strokeType="OUTSIDE" strokeWidth="0.0" text="Hall" textAlignment="CENTER" wrappingWidth="136.02093505859375">
+            <Text fx:id="textHall" boundsType="LOGICAL_VERTICAL_CENTER" strokeType="OUTSIDE" strokeWidth="0.0" text="Hall" textAlignment="CENTER" wrappingWidth="136.02093505859375">
                <font>
                   <Font name="Courier" size="13.0" />
                </font>
             </Text>
-            <Text boundsType="LOGICAL_VERTICAL_CENTER" strokeType="OUTSIDE" strokeWidth="0.0" text="Lounge" textAlignment="CENTER" wrappingWidth="136.02093505859375">
+            <Text fx:id="textLounge" boundsType="LOGICAL_VERTICAL_CENTER" strokeType="OUTSIDE" strokeWidth="0.0" text="Lounge" textAlignment="CENTER" wrappingWidth="136.02093505859375">
                <font>
                   <Font name="Courier" size="13.0" />
                </font>
             </Text>
-            <Text boundsType="LOGICAL_VERTICAL_CENTER" strokeType="OUTSIDE" strokeWidth="0.0" text="Library" textAlignment="CENTER" wrappingWidth="136.02093505859375">
+            <Text fx:id="textLibrary" boundsType="LOGICAL_VERTICAL_CENTER" strokeType="OUTSIDE" strokeWidth="0.0" text="Library" textAlignment="CENTER" wrappingWidth="136.02093505859375">
                <font>
                   <Font name="Courier" size="13.0" />
                </font>
             </Text>
-            <Text boundsType="LOGICAL_VERTICAL_CENTER" strokeType="OUTSIDE" strokeWidth="0.0" text="Billard Room" textAlignment="CENTER" wrappingWidth="136.02093505859375">
+            <Text fx:id="textBillard" boundsType="LOGICAL_VERTICAL_CENTER" strokeType="OUTSIDE" strokeWidth="0.0" text="Billard Room" textAlignment="CENTER" wrappingWidth="136.02093505859375">
                <font>
                   <Font name="Courier" size="13.0" />
                </font>
             </Text>
-            <Text boundsType="LOGICAL_VERTICAL_CENTER" strokeType="OUTSIDE" strokeWidth="0.0" text="Dining Room" textAlignment="CENTER" wrappingWidth="136.02093505859375">
+            <Text fx:id="textDining" boundsType="LOGICAL_VERTICAL_CENTER" strokeType="OUTSIDE" strokeWidth="0.0" text="Dining Room" textAlignment="CENTER" wrappingWidth="136.02093505859375">
                <font>
                   <Font name="Courier" size="13.0" />
                </font>
             </Text>
-            <Text boundsType="LOGICAL_VERTICAL_CENTER" strokeType="OUTSIDE" strokeWidth="0.0" text="Conservatory" textAlignment="CENTER" wrappingWidth="136.02093505859375">
+            <Text fx:id="textConservatory" boundsType="LOGICAL_VERTICAL_CENTER" strokeType="OUTSIDE" strokeWidth="0.0" text="Conservatory" textAlignment="CENTER" wrappingWidth="136.02093505859375">
                <font>
                   <Font name="Courier" size="13.0" />
                </font>
             </Text>
-            <Text boundsType="LOGICAL_VERTICAL_CENTER" strokeType="OUTSIDE" strokeWidth="0.0" text="Ballroom" textAlignment="CENTER" wrappingWidth="136.02093505859375">
+            <Text fx:id="textBallroom" boundsType="LOGICAL_VERTICAL_CENTER" strokeType="OUTSIDE" strokeWidth="0.0" text="Ballroom" textAlignment="CENTER" wrappingWidth="136.02093505859375">
                <font>
                   <Font name="Courier" size="13.0" />
                </font>
             </Text>
-            <Text boundsType="LOGICAL_VERTICAL_CENTER" strokeType="OUTSIDE" strokeWidth="0.0" text="Kitchen" textAlignment="CENTER" wrappingWidth="136.02093505859375">
+            <Text fx:id="textKitchen" boundsType="LOGICAL_VERTICAL_CENTER" strokeType="OUTSIDE" strokeWidth="0.0" text="Kitchen" textAlignment="CENTER" wrappingWidth="136.02093505859375">
                <font>
                   <Font name="Courier" size="13.0" />
                </font>

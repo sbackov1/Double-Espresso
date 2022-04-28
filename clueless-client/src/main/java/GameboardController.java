@@ -10,6 +10,7 @@ import javafx.scene.control.Button;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -51,6 +52,28 @@ public class GameboardController {
     @FXML private Rectangle H2;
     @FXML private Rectangle H1;
     @FXML private Rectangle H7;
+
+    @FXML private Text textMustard;
+    @FXML private Text textScarlet;
+    @FXML private Text textPlum;
+    @FXML private Text textWhite;
+    @FXML private Text textGreen;
+    @FXML private Text textPeacock;
+    @FXML private Text textCandlestick;
+    @FXML private Text textRope;
+    @FXML private Text textDagger;
+    @FXML private Text textRevolver;
+    @FXML private Text textWrench;
+    @FXML private Text textLeadPipe;
+    @FXML private Text textStudy;
+    @FXML private Text textHall;
+    @FXML private Text textLounge;
+    @FXML private Text textLibrary;
+    @FXML private Text textBillard;
+    @FXML private Text textDining;
+    @FXML private Text textConservatory;
+    @FXML private Text textBallroom;
+    @FXML private Text textKitchen;
 
     @FXML void ballroomClicked(MouseEvent event) {
         moveOptions.setMove(LocationNames.BALLROOM);
