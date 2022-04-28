@@ -60,7 +60,7 @@
             <RadioButton fx:id="MR_GREEN" maxHeight="-Infinity" maxWidth="110.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="18.0" prefWidth="10.0" text="Mr. Green" textFill="WHITE" toggleGroup="$disproveGroup" />
             <RadioButton fx:id="MRS_WHITE" maxWidth="110.0" mnemonicParsing="false" text="Mrs. White" textFill="WHITE" toggleGroup="$disproveGroup" />
             <RadioButton fx:id="MRS_PEACOCK" maxWidth="120.0" mnemonicParsing="false" prefWidth="153.0" text="Mrs. Peacock" textFill="WHITE" toggleGroup="$disproveGroup" />
-            <RadioButton fx:id="MISS_SCARLETT" mnemonicParsing="false" prefHeight="18.0" prefWidth="20.0" text="Miss Scarlett" textFill="WHITE" toggleGroup="$disproveGroup" />
+            <RadioButton fx:id="MISS_SCARLET" mnemonicParsing="false" prefHeight="18.0" prefWidth="20.0" text="Miss Scarlet" textFill="WHITE" toggleGroup="$disproveGroup" />
          </buttons>
          <padding>
             <Insets left="100.0" right="100.0" />

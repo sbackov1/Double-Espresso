@@ -22,7 +22,7 @@ public class ControllerAccusation {
     private RadioButton MRS_PEACOCK;
 
     @FXML
-    private RadioButton MISS_SCARLETT;
+    private RadioButton MISS_SCARLET;
 
     @FXML
     private RadioButton REVOLVER;
