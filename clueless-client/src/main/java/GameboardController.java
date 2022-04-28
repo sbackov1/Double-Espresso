@@ -1,3 +1,7 @@
+import edu.jhu.espresso.client.domain.Accusation;
+import edu.jhu.espresso.client.domain.LocationNames;
+import edu.jhu.espresso.client.domain.MoveOptions;
+import edu.jhu.espresso.client.domain.Suggestion;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -12,6 +16,7 @@ import javafx.stage.Stage;
 import java.io.IOException;
 
 public class GameboardController {
+    MoveOptions moveOptions = new MoveOptions();
 
     @FXML
     private Button exit;
@@ -108,106 +113,106 @@ public class GameboardController {
 
     @FXML
     void ballroomClicked(MouseEvent event) {
-
+        moveOptions.setMove(LocationNames.BALLROOM);
     }
 
     @FXML
     void billardClicked(MouseEvent event) {
-
+        moveOptions.setMove(LocationNames.BILLIARD_ROOM);
     }
 
     @FXML
     void conservatoryClicked(MouseEvent event) {
-
+        moveOptions.setMove(LocationNames.CONSERVATORY);
     }
 
     @FXML
     void diningClicked(MouseEvent event) {
-
+        moveOptions.setMove(LocationNames.DINING_ROOM);
     }
     @FXML
     void studyClicked(MouseEvent event) {
-
+        moveOptions.setMove(LocationNames.STUDY);
     }
 
     @FXML
     void hallClicked(MouseEvent event) {
-
+        moveOptions.setMove(LocationNames.HALL);
     }
 
     @FXML
     void kitchenClicked(MouseEvent event) {
-
+        moveOptions.setMove(LocationNames.KITCHEN);
     }
 
     @FXML
     void libraryClicked(MouseEvent event) {
-
+        moveOptions.setMove(LocationNames.LIBRARY);
     }
 
     @FXML
     void loungeClicked(MouseEvent event) {
-
+        moveOptions.setMove(LocationNames.LOUNGE);
     }
 
     @FXML
     void h1Clicked(MouseEvent event) {
-
+        moveOptions.setMove(LocationNames.HALLWAY1);
     }
 
     @FXML
     void h2Clicked(MouseEvent event) {
-
+        moveOptions.setMove(LocationNames.HALLWAY2);
     }
 
     @FXML
     void h3Clicked(MouseEvent event) {
-
+        moveOptions.setMove(LocationNames.HALLWAY3);
     }
 
     @FXML
     void h4Clicked(MouseEvent event) {
-
+        moveOptions.setMove(LocationNames.HALLWAY4);
     }
 
     @FXML
     void h5Clicked(MouseEvent event) {
-
+        moveOptions.setMove(LocationNames.HALLWAY5);
     }
 
     @FXML
     void h6Clicked(MouseEvent event) {
-
+        moveOptions.setMove(LocationNames.HALLWAY6);
     }
 
     @FXML
     void h7Clicked(MouseEvent event) {
-
+        moveOptions.setMove(LocationNames.HALLWAY7);
     }
 
     @FXML
     void h8Clicked(MouseEvent event) {
-
+        moveOptions.setMove(LocationNames.HALLWAY8);
     }
 
     @FXML
     void h9Clicked(MouseEvent event) {
-
+        moveOptions.setMove(LocationNames.HALLWAY9);
     }
 
     @FXML
     void h10Clicked(MouseEvent event) {
-
+        moveOptions.setMove(LocationNames.HALLWAY10);
     }
 
     @FXML
     void h11Clicked(MouseEvent event) {
-
+        moveOptions.setMove(LocationNames.HALLWAY11);
     }
 
     @FXML
     void h12Clicked(MouseEvent event) {
-
+        moveOptions.setMove(LocationNames.HALLWAY12);
     }
 
     @FXML
@@ -245,7 +250,7 @@ public class GameboardController {
 
     @FXML
     public void sendMove(ActionEvent event) {  // send move selected on gameboard to server
-
+        moveOptions.printToString();
     }
 
 }
