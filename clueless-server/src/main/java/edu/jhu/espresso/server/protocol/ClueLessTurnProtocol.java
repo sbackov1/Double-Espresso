@@ -17,7 +17,7 @@ public class ClueLessTurnProtocol
     private final List<Player> waitingPlayers;
     private final Player activePlayer;
 
-    private MoveOptions moveOptions;
+    private final MoveOptions moveOptions;
 
     private boolean playerHasMoved;
     private boolean playerHasSuggested;
@@ -40,10 +40,13 @@ public class ClueLessTurnProtocol
         this.activePlayer = activePlayer;
         this.game = game;
         this.moveOptions = determineValidMoveOptions(game.getGameBoard());
+
         activePlayerLoc = this.game.getGameBoard().getCharacterLocation(this.activePlayer.getCharacter().getName());
+
         validCharacters = Arrays.stream(CharacterNames.values())
                 .map(Enum::name)
                 .collect(Collectors.toList());
+
         validWeapons = Arrays.stream(Weapon.values())
                 .map(Enum::name)
                 .collect(Collectors.toList());
@@ -51,14 +54,23 @@ public class ClueLessTurnProtocol
 
     public boolean executeTurn()
     {
+
+
         notifyPlayersOfStatus();
+
         boolean endTurn = false;
+
         this.playerHasMoved = false;
         this.playerHasSuggested = false;
 
         while(!endTurn) {
 
-            ActivePlayerProtocolSelector activePlayerChoice = activePlayer.writeInstanceAndExpectType(createProtocolOfferer(), ActivePlayerProtocolSelector.class);
+            //Update the location so that the suggestion builder works properly.
+            activePlayerLoc = this.game.getGameBoard().getCharacterLocation(this.activePlayer.getCharacter().getName());
+
+            ServerActivePlayerProtocolOfferer gameOptions = this.createProtocolOfferer();
+
+            ActivePlayerProtocolSelector activePlayerChoice = activePlayer.writeInstanceAndExpectType(gameOptions, ActivePlayerProtocolSelector.class);
 
             //Run through and get the move choice, and execute the command in the server.
             activePlayerChoice.getMoveChoice().ifPresent(moveChoice -> game.applyMoveChoice(moveChoice, activePlayer.getCharacter().getName()));
@@ -136,7 +148,7 @@ public class ClueLessTurnProtocol
 
 
         return AccusationBuilder.anAccusation()
-                //.withAccusationStatus(AccusationStatus.OFFER_ACCUSATION)
+                .withAccusationStatus(AccusationStatus.OFFER_ACCUSATION)
                 .withValidRooms(validRooms)
                 .withValidCharacters(validCharacters)
                 .withValidWeapons(validWeapons)
@@ -183,10 +195,7 @@ public class ClueLessTurnProtocol
     /*** The validateCanMove method determines whether the activePlayer can legally move.
      */
     public void validateCanMove(){
-        if (this.moveOptions.getValidMoves().size() == 0 || this.isPlayerHasMoved()) {
-            this.canMove = false;
-        }
-        else this.canMove = true;
+        this.canMove = this.moveOptions.getValidMoves().size() != 0 && !this.isPlayerHasMoved();
     }
 
     /**
@@ -197,8 +206,7 @@ public class ClueLessTurnProtocol
 
         String locationType =  LocationNames.StringLocationTypeFromStringName(activePlayerLoc.getLocationName());
 
-        if (locationType.equals("Room") && !this.isPlayerHasSuggested()) { canSuggest = true; }
-        else {canSuggest = false;}
+        canSuggest = locationType.equals("Room") && !this.isPlayerHasSuggested();
     }
 
     /** createProtocolOfferer creates a protocol offerer using the validateCanSuggest(){}

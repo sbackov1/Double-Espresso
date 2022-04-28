@@ -1,14 +1,15 @@
 package edu.jhu.espresso.client.protocol;
 
-import edu.jhu.espresso.server.domain.gameEvents.Accusation;
-import edu.jhu.espresso.server.domain.gameEvents.MoveOptions;
-import edu.jhu.espresso.server.domain.gameEvents.Suggestion;
+import edu.jhu.espresso.client.domain.GameEvents.Accusation;
+import edu.jhu.espresso.client.domain.GameEvents.MoveOptions;
+import edu.jhu.espresso.client.domain.GameEvents.Suggestion;
 
 import java.util.Optional;
 
-public class ServerProtocolOfferInterpreter {
+public class ServerActivePlayerProtocolOfferer {
 
     private MoveOptions offerMoveOptions;
+
     private Suggestion offerSuggestion;
     private Accusation offerAccusation;
 

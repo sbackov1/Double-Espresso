@@ -3,21 +3,23 @@ package edu.jhu.espresso.client.protocol;
 import edu.jhu.espresso.client.ClueLessClient;
 import edu.jhu.espresso.client.domain.GameEvents.*;
 import edu.jhu.espresso.client.domain.GamePieces.CaseDetails;
-import edu.jhu.espresso.client.domain.GamePieces.CharacterNames;
-import edu.jhu.espresso.client.domain.GamePieces.LocationNames;
 import edu.jhu.espresso.client.domain.GamePieces.RoomNames;
 import edu.jhu.espresso.client.domain.Menus.Menu;
 import edu.jhu.espresso.client.domain.Menus.MenuItem;
-import edu.jhu.espresso.server.protocol.ClueLessTurnProtocol;
-import java.util.HashMap.*;
+import edu.jhu.espresso.client.domain.GameEvents.Accusation;
+import edu.jhu.espresso.client.domain.GameEvents.Suggestion;
+import edu.jhu.espresso.client.domain.GameEvents.MoveOptions;
+
 
 public class ActivePlayerProtocol implements ClueLessProtocol
 {
     private final ClueLessClient client;
-
-    private ServerProtocolOfferInterpreter gameOptions;
+    private ServerActivePlayerProtocolOfferer gameOptions;
+    private boolean canSuggest;
+    private boolean canMove;
+    private Suggestion suggestion;
+    private Accusation accusation;
     private MoveOptions moveOptions;
-
     private TurnStart turnStart;
     //private edu.jhu.espresso.client.domain.GameEvents.TurnStart turnStart;
 
@@ -31,7 +33,8 @@ public class ActivePlayerProtocol implements ClueLessProtocol
     {
 
         this.turnStart = turnStart;
-        gameOptions = client.waitForResponse(ServerProtocolOfferInterpreter.class);
+        gameOptions = client.waitForResponse(ServerActivePlayerProtocolOfferer.class);
+        this.unPackProtocolOffer(gameOptions);
         this.mainSelectionMenu();
 
     }
@@ -94,11 +97,11 @@ public class ActivePlayerProtocol implements ClueLessProtocol
         Menu selectionMenu = new Menu();
         selectionMenu.setTitle("*** Current Choices ***");
 
-        if(canMove){
+        if(isCanMove()){
             selectionMenu.addItem(new MenuItem("Make a Move", this, "goToMovementMenu"));
         }
 
-        if(canSuggest){
+        if(isCanSuggest()){
             selectionMenu.addItem(new MenuItem("Make Suggestion", this, "goToSuggestionMenu"));
         }
 
@@ -114,7 +117,6 @@ public class ActivePlayerProtocol implements ClueLessProtocol
 
     public void goToSuggestionMenu(){
 
-        Suggestion suggestion = client.waitForResponse(Suggestion.class);
         client.write(makeSuggestionChoice(suggestion));
 
         SuggestionTestimonyResponse response = client.waitForResponse(SuggestionTestimonyResponse.class);
@@ -125,16 +127,86 @@ public class ActivePlayerProtocol implements ClueLessProtocol
     }
 
     public void goToMovementMenu(){
-        //MoveOptions moveOptions = client.waitForResponse(MoveOptions.class);
         client.write(makeMoveChoice(moveOptions));
         canMove = false;
     }
 
     public void goToAccusationMenu() {
-        Accusation accusation = client.waitForResponse(Accusation.class);
         client.write(makeAccusationChoice(accusation));
     }
 
+
+    /**
+     * Getters and setters for instance fields
+     * **/
+    public boolean isCanSuggest() {
+        return canSuggest;
+    }
+
+    public void setCanSuggest(boolean canSuggest) {
+        this.canSuggest = canSuggest;
+    }
+
+    public boolean isCanMove() {
+        return canMove;
+    }
+
+    public void setCanMove(boolean canMove) {
+        this.canMove = canMove;
+    }
+
+    public Suggestion getSuggestion() {
+        return suggestion;
+    }
+
+    public void setSuggestion(Suggestion suggestion) {
+        this.suggestion = suggestion;
+    }
+
+    public Accusation getAccusation() {
+        return accusation;
+    }
+
+    public void setAccusation(Accusation accusation) {
+        this.accusation = accusation;
+    }
+
+    public MoveOptions getMoveOptions() {
+        return moveOptions;
+    }
+
+    public void setMoveOptions(MoveOptions moveOptions) {
+        this.moveOptions = moveOptions;
+    }
+
+    public TurnStart getTurnStart() {
+        return turnStart;
+    }
+
+    public void setTurnStart(TurnStart turnStart) {
+        this.turnStart = turnStart;
+    }
+
+    /**
+     * unpackProtocolOffer unpacks the protocol offer.  For each field, it sets the ActivPlayerProtocol instance field.  It also sets the
+     * instance boolean values for canMove and canSuggest.
+     * ***/
+    private void unPackProtocolOffer(ServerActivePlayerProtocolOfferer sp){
+
+        sp.getOfferMoveOptions().ifPresent(moveOptions -> {
+            this.moveOptions = moveOptions;
+            this.setMoveOptions(moveOptions);
+            this.setCanMove(true);
+        });
+
+        sp.getOfferSuggestion().ifPresent(suggestion -> {
+            this.setSuggestion(suggestion);
+            this.setCanSuggest(true);
+        });
+
+        sp.getOfferAccusation().ifPresent(this::setAccusation);
+
+    }
 
 }
 
