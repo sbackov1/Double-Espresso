@@ -5,13 +5,13 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 
 public class GameboardController {
-
 
     @FXML
     private Button exit;
@@ -24,6 +24,24 @@ public class GameboardController {
 
     @FXML
     private Button move;
+
+    @FXML
+    private Circle MISS_SCARLET;
+
+    @FXML
+    private Circle MRS_PEACOCK;
+
+    @FXML
+    private Circle PROFESSOR_PLUM;
+
+    @FXML
+    private Circle COLONEL_MUSTARD;
+
+    @FXML
+    private Circle MRS_WHITE;
+
+    @FXML
+    private Circle MR_GREEN;
 
     @FXML
     private Rectangle STUDY;

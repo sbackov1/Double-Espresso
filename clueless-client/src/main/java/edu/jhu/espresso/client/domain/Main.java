@@ -14,7 +14,7 @@ public class Main extends Application {
         Parent root;
         root = FXMLLoader.load(getClass().getClassLoader().getResource("gameboardTest.fxml"));
         primaryStage.setTitle("Clue-Less");
-        primaryStage.setScene(new Scene(root, 785, 594));
+        primaryStage.setScene(new Scene(root, 1000, 750));
         primaryStage.show();
     }
 

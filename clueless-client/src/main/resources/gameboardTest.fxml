@@ -9,16 +9,17 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Circle?>
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="594.0" prefWidth="785.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GameboardController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GameboardController">
    <right>
-      <VBox prefHeight="439.0" prefWidth="139.0" style="-fx-background-color: #00000033;" BorderPane.alignment="CENTER">
+      <VBox alignment="TOP_CENTER" prefHeight="439.0" prefWidth="139.0" spacing="8.0" style="-fx-background-color: #00000033;" BorderPane.alignment="CENTER">
          <children>
-            <Text boundsType="LOGICAL_VERTICAL_CENTER" strokeType="OUTSIDE" strokeWidth="0.0" text="Notebook" textAlignment="CENTER" wrappingWidth="136.02093505859375">
+            <Text boundsType="LOGICAL_VERTICAL_CENTER" lineSpacing="2.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Notebook" textAlignment="CENTER" wrappingWidth="136.02093505859375">
                <font>
                   <Font name="Courier Bold" size="18.0" />
                </font>
@@ -31,7 +32,7 @@
                   <Insets left="5.0" right="5.0" />
                </VBox.margin>
             </Line>
-            <Text boundsType="LOGICAL_VERTICAL_CENTER" strokeType="OUTSIDE" strokeWidth="0.0" text="Colonel Mustard" textAlignment="CENTER" wrappingWidth="136.02093505859375">
+            <Text boundsType="LOGICAL_VERTICAL_CENTER" lineSpacing="2.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Colonel Mustard" textAlignment="CENTER" wrappingWidth="136.02093505859375">
                <font>
                   <Font name="Courier" size="13.0" />
                </font>
@@ -39,7 +40,7 @@
                   <Insets top="20.0" />
                </VBox.margin>
             </Text>
-            <Text boundsType="LOGICAL_VERTICAL_CENTER" strokeType="OUTSIDE" strokeWidth="0.0" text="Miss Scarlett" textAlignment="CENTER" wrappingWidth="136.02093505859375">
+            <Text boundsType="LOGICAL_VERTICAL_CENTER" strokeType="OUTSIDE" strokeWidth="0.0" text="Miss Scarlet" textAlignment="CENTER" wrappingWidth="136.02093505859375">
                <font>
                   <Font name="Courier" size="13.0" />
                </font>
@@ -168,7 +169,7 @@
       <HBox prefHeight="74.0" prefWidth="714.0" style="-fx-background-color: green;" BorderPane.alignment="CENTER" />
    </bottom>
    <left>
-      <VBox prefHeight="200.0" prefWidth="100.0" style="-fx-background-color: #00000033;" BorderPane.alignment="CENTER">
+      <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" spacing="10.0" style="-fx-background-color: #00000033;" BorderPane.alignment="CENTER">
          <children>
             <Text boundsType="LOGICAL_VERTICAL_CENTER" strokeType="OUTSIDE" strokeWidth="0.0" text="Players" textAlignment="CENTER" wrappingWidth="104.82566833496094">
                <font>
@@ -196,12 +197,15 @@
          <bottom>
             <HBox prefHeight="64.0" prefWidth="475.0" BorderPane.alignment="CENTER">
                <children>
-                  <ButtonBar prefHeight="64.0" prefWidth="464.0">
+                  <ButtonBar prefHeight="64.0" prefWidth="464.0" HBox.hgrow="ALWAYS">
                      <buttons>
                         <Button fx:id="makeSuggestion" mnemonicParsing="false" onAction="#openSuggestionWindow" style="-fx-background-color: blue;" text="Make Suggestion" textFill="WHITE" />
                         <Button fx:id="makeAccusation" mnemonicParsing="false" onAction="#openAccusationWindow" style="-fx-background-color: blue;" text="Make Accusation" textFill="WHITE" />
                         <Button fx:id="move" mnemonicParsing="false" onAction="#sendMove" style="-fx-background-color: blue;" text="Send Move" textFill="WHITE" />
                      </buttons>
+                     <HBox.margin>
+                        <Insets left="180.0" right="190.0" />
+                     </HBox.margin>
                   </ButtonBar>
                </children>
             </HBox>
@@ -210,94 +214,100 @@
             <GridPane alignment="CENTER" BorderPane.alignment="CENTER">
               <columnConstraints>
                   <ColumnConstraints hgrow="ALWAYS" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="ALWAYS" minWidth="10.0" prefWidth="150.0" />
                   <ColumnConstraints hgrow="ALWAYS" minWidth="10.0" prefWidth="100.0" />
-                  <ColumnConstraints hgrow="ALWAYS" minWidth="10.0" prefWidth="100.0" />
-                  <ColumnConstraints hgrow="ALWAYS" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="ALWAYS" minWidth="10.0" prefWidth="150.0" />
                 <ColumnConstraints hgrow="ALWAYS" minWidth="10.0" prefWidth="100.0" />
-                <ColumnConstraints hgrow="ALWAYS" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints hgrow="ALWAYS" minWidth="10.0" prefWidth="150.0" />
                   <ColumnConstraints hgrow="ALWAYS" minWidth="10.0" prefWidth="100.0" />
               </columnConstraints>
               <rowConstraints>
                   <RowConstraints minHeight="10.0" prefHeight="15.0" vgrow="ALWAYS" />
+                  <RowConstraints minHeight="10.0" prefHeight="60.0" vgrow="ALWAYS" />
                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="ALWAYS" />
-                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="ALWAYS" />
+                <RowConstraints minHeight="10.0" prefHeight="60.0" vgrow="ALWAYS" />
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="ALWAYS" />
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="ALWAYS" />
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="ALWAYS" />
+                <RowConstraints minHeight="10.0" prefHeight="60.0" vgrow="ALWAYS" />
                   <RowConstraints minHeight="10.0" prefHeight="15.0" vgrow="ALWAYS" />
               </rowConstraints>
                <children>
-                  <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#eeff00" height="390.0" stroke="BLACK" strokeType="INSIDE" width="453.0" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.hgrow="SOMETIMES" GridPane.rowIndex="3" GridPane.vgrow="SOMETIMES" />
-                  <Rectangle fx:id="H12" accessibleRole="BUTTON" arcHeight="5.0" arcWidth="5.0" fill="#a71fff" height="81.0" onMouseClicked="#h12Clicked" stroke="BLACK" strokeType="INSIDE" width="41.0" GridPane.columnIndex="5" GridPane.halignment="CENTER" GridPane.rowIndex="4" />
-                  <Rectangle fx:id="H9" accessibleRole="BUTTON" arcHeight="5.0" arcWidth="5.0" fill="#a71fff" height="81.0" onMouseClicked="#h9Clicked" stroke="BLACK" strokeType="INSIDE" width="41.0" GridPane.columnIndex="5" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
-                  <Rectangle fx:id="H8" accessibleRole="BUTTON" arcHeight="5.0" arcWidth="5.0" fill="#a71fff" height="81.0" onMouseClicked="#h8Clicked" stroke="BLACK" strokeType="INSIDE" width="41.0" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
-                  <Rectangle fx:id="H10" accessibleRole="BUTTON" arcHeight="5.0" arcWidth="5.0" fill="#a71fff" height="81.0" onMouseClicked="#h10Clicked" stroke="BLACK" strokeType="INSIDE" width="41.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="4" />
-                  <Rectangle fx:id="H11" accessibleRole="BUTTON" arcHeight="5.0" arcWidth="5.0" fill="#a71fff" height="81.0" onMouseClicked="#h11Clicked" stroke="BLACK" strokeType="INSIDE" width="41.0" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="4" />
-                  <Rectangle fx:id="H6" accessibleRole="BUTTON" arcHeight="5.0" arcWidth="5.0" fill="#a71fff" height="40.0" onMouseClicked="#h6Clicked" stroke="BLACK" strokeType="INSIDE" width="111.0" GridPane.columnIndex="4" GridPane.rowIndex="5" />
-                  <Rectangle fx:id="H5" accessibleRole="BUTTON" arcHeight="5.0" arcWidth="5.0" fill="#a71fff" height="40.0" onMouseClicked="#h5Clicked" stroke="BLACK" strokeType="INSIDE" width="111.0" GridPane.columnIndex="2" GridPane.rowIndex="5" />
-                  <Rectangle fx:id="H4" accessibleRole="BUTTON" arcHeight="5.0" arcWidth="5.0" fill="#a71fff" height="40.0" onMouseClicked="#h4Clicked" stroke="BLACK" strokeType="INSIDE" width="111.0" GridPane.columnIndex="4" GridPane.rowIndex="3" />
-                  <Rectangle fx:id="H3" accessibleRole="BUTTON" arcHeight="5.0" arcWidth="5.0" fill="#a71fff" height="40.0" onMouseClicked="#h3Clicked" stroke="BLACK" strokeType="INSIDE" width="111.0" GridPane.columnIndex="2" GridPane.rowIndex="3" />
-                  <Rectangle fx:id="H2" accessibleRole="BUTTON" arcHeight="5.0" arcWidth="5.0" fill="#a71fff" height="40.0" onMouseClicked="#h2Clicked" stroke="BLACK" strokeType="INSIDE" width="111.0" GridPane.columnIndex="4" GridPane.rowIndex="1" />
-                  <Rectangle fx:id="H1" accessibleRole="BUTTON" arcHeight="5.0" arcWidth="5.0" fill="#a71fff" height="40.0" onMouseClicked="#h1Clicked" stroke="BLACK" strokeType="INSIDE" width="111.0" GridPane.columnIndex="2" GridPane.rowIndex="1" />
-                  <Rectangle fx:id="H7" accessibleRole="BUTTON" arcHeight="5.0" arcWidth="5.0" fill="#a71fff" height="81.0" onMouseClicked="#h7Clicked" stroke="BLACK" strokeType="INSIDE" width="41.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
-                  <Rectangle fx:id="STUDY" accessibleRole="BUTTON" arcHeight="5.0" arcWidth="5.0" fill="#eee8c6" height="87.0" onMouseClicked="#studyClicked" stroke="BLACK" strokeType="INSIDE" width="113.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
-                  <Rectangle fx:id="LOUNGE" accessibleRole="BUTTON" arcHeight="5.0" arcWidth="5.0" fill="#eee8c6" height="87.0" layoutX="10.0" layoutY="7.0" onMouseClicked="#loungeClicked" stroke="BLACK" strokeType="INSIDE" width="108.0" GridPane.columnIndex="5" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
-                  <Rectangle fx:id="HALL" accessibleRole="BUTTON" arcHeight="5.0" arcWidth="5.0" fill="#eee8c6" height="87.0" layoutX="229.0" layoutY="7.0" onMouseClicked="#hallClicked" stroke="BLACK" strokeType="INSIDE" width="113.0" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
-                  <Rectangle fx:id="LIBRARY" accessibleRole="BUTTON" arcHeight="5.0" arcWidth="5.0" fill="#eee8c6" height="87.0" layoutX="10.0" layoutY="7.0" onMouseClicked="#libraryClicked" stroke="BLACK" strokeType="INSIDE" width="113.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="3" />
-                  <Rectangle fx:id="BILLARD_ROOM" accessibleRole="BUTTON" arcHeight="5.0" arcWidth="5.0" fill="#eee8c6" height="87.0" layoutX="10.0" layoutY="7.0" onMouseClicked="#billardClicked" stroke="BLACK" strokeType="INSIDE" width="113.0" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="3" />
-                  <Rectangle fx:id="DINING_ROOM" accessibleRole="BUTTON" arcHeight="5.0" arcWidth="5.0" fill="#eee8c6" height="87.0" layoutX="10.0" layoutY="7.0" onMouseClicked="#diningClicked" stroke="BLACK" strokeType="INSIDE" width="111.0" GridPane.columnIndex="5" GridPane.halignment="CENTER" GridPane.rowIndex="3" />
-                  <Rectangle fx:id="BALLROOM" accessibleRole="BUTTON" arcHeight="5.0" arcWidth="5.0" fill="#eee8c6" height="87.0" layoutX="10.0" layoutY="7.0" onMouseClicked="#ballroomClicked" stroke="BLACK" strokeType="INSIDE" width="113.0" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="5" />
-                  <Rectangle fx:id="CONSERVATORY" accessibleRole="BUTTON" arcHeight="5.0" arcWidth="5.0" fill="#eee8c6" height="87.0" layoutX="10.0" layoutY="7.0" onMouseClicked="#conservatoryClicked" stroke="BLACK" strokeType="INSIDE" width="113.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="5" />
-                  <Rectangle fx:id="KITCHEN" accessibleRole="BUTTON" arcHeight="5.0" arcWidth="5.0" fill="#eee8c6" height="87.0" layoutX="10.0" layoutY="169.0" onMouseClicked="#kitchenClicked" stroke="BLACK" strokeType="INSIDE" width="111.0" GridPane.columnIndex="5" GridPane.halignment="CENTER" GridPane.rowIndex="5" />
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Study" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1">
+                  <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#eeff00" height="575.0" stroke="BLACK" strokeType="INSIDE" width="725.0" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.hgrow="SOMETIMES" GridPane.rowIndex="3" GridPane.vgrow="SOMETIMES" />
+                  <Rectangle fx:id="H12" accessibleRole="BUTTON" arcHeight="5.0" arcWidth="5.0" fill="#a71fff" height="90.0" onMouseClicked="#h12Clicked" stroke="BLACK" strokeType="INSIDE" width="50.0" GridPane.columnIndex="5" GridPane.halignment="CENTER" GridPane.rowIndex="4" />
+                  <Rectangle fx:id="H9" accessibleRole="BUTTON" arcHeight="5.0" arcWidth="5.0" fill="#a71fff" height="90.0" onMouseClicked="#h9Clicked" stroke="BLACK" strokeType="INSIDE" width="50.0" GridPane.columnIndex="5" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
+                  <Rectangle fx:id="H8" accessibleRole="BUTTON" arcHeight="5.0" arcWidth="5.0" fill="#a71fff" height="90.0" onMouseClicked="#h8Clicked" stroke="BLACK" strokeType="INSIDE" width="50.0" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
+                  <Rectangle fx:id="H10" accessibleRole="BUTTON" arcHeight="5.0" arcWidth="5.0" fill="#a71fff" height="90.0" onMouseClicked="#h10Clicked" stroke="BLACK" strokeType="INSIDE" width="50.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="4" />
+                  <Rectangle fx:id="H11" accessibleRole="BUTTON" arcHeight="5.0" arcWidth="5.0" fill="#a71fff" height="90.0" onMouseClicked="#h11Clicked" stroke="BLACK" strokeType="INSIDE" width="50.0" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="4" />
+                  <Rectangle fx:id="H6" accessibleRole="BUTTON" arcHeight="5.0" arcWidth="5.0" fill="#a71fff" height="50.0" onMouseClicked="#h6Clicked" stroke="BLACK" strokeType="INSIDE" width="110.0" GridPane.columnIndex="4" GridPane.rowIndex="5" />
+                  <Rectangle fx:id="H5" accessibleRole="BUTTON" arcHeight="5.0" arcWidth="5.0" fill="#a71fff" height="50.0" onMouseClicked="#h5Clicked" stroke="BLACK" strokeType="INSIDE" width="110.0" GridPane.columnIndex="2" GridPane.rowIndex="5" />
+                  <Rectangle fx:id="H4" accessibleRole="BUTTON" arcHeight="5.0" arcWidth="5.0" fill="#a71fff" height="50.0" onMouseClicked="#h4Clicked" stroke="BLACK" strokeType="INSIDE" width="110.0" GridPane.columnIndex="4" GridPane.rowIndex="3" />
+                  <Rectangle fx:id="H3" accessibleRole="BUTTON" arcHeight="5.0" arcWidth="5.0" fill="#a71fff" height="50.0" onMouseClicked="#h3Clicked" stroke="BLACK" strokeType="INSIDE" width="110.0" GridPane.columnIndex="2" GridPane.rowIndex="3" />
+                  <Rectangle fx:id="H2" accessibleRole="BUTTON" arcHeight="5.0" arcWidth="5.0" fill="#a71fff" height="50.0" onMouseClicked="#h2Clicked" stroke="BLACK" strokeType="INSIDE" width="110.0" GridPane.columnIndex="4" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1" GridPane.vgrow="ALWAYS" />
+                  <Rectangle fx:id="H1" accessibleRole="BUTTON" arcHeight="5.0" arcWidth="5.0" fill="#a71fff" height="50.0" onMouseClicked="#h1Clicked" stroke="BLACK" strokeType="INSIDE" width="110.0" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                  <Rectangle fx:id="H7" accessibleRole="BUTTON" arcHeight="5.0" arcWidth="5.0" fill="#a71fff" height="90.0" onMouseClicked="#h7Clicked" stroke="BLACK" strokeType="INSIDE" width="50.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
+                  <Rectangle fx:id="STUDY" accessibleRole="BUTTON" arcHeight="5.0" arcWidth="5.0" fill="#eee8c6" height="110.0" onMouseClicked="#studyClicked" stroke="BLACK" strokeType="INSIDE" width="150.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
+                  <Rectangle fx:id="LOUNGE" accessibleRole="BUTTON" arcHeight="5.0" arcWidth="5.0" fill="#eee8c6" height="110.0" layoutX="10.0" layoutY="7.0" onMouseClicked="#loungeClicked" stroke="BLACK" strokeType="INSIDE" width="150.0" GridPane.columnIndex="5" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
+                  <Rectangle fx:id="HALL" accessibleRole="BUTTON" arcHeight="5.0" arcWidth="5.0" fill="#eee8c6" height="110.0" layoutX="229.0" layoutY="7.0" onMouseClicked="#hallClicked" stroke="BLACK" strokeType="INSIDE" width="150.0" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
+                  <Rectangle fx:id="LIBRARY" accessibleRole="BUTTON" arcHeight="5.0" arcWidth="5.0" fill="#eee8c6" height="110.0" layoutX="10.0" layoutY="7.0" onMouseClicked="#libraryClicked" stroke="BLACK" strokeType="INSIDE" width="150.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="3" />
+                  <Rectangle fx:id="BILLARD_ROOM" accessibleRole="BUTTON" arcHeight="5.0" arcWidth="5.0" fill="#eee8c6" height="110.0" layoutX="10.0" layoutY="7.0" onMouseClicked="#billardClicked" stroke="BLACK" strokeType="INSIDE" width="150.0" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="3" />
+                  <Rectangle fx:id="DINING_ROOM" accessibleRole="BUTTON" arcHeight="5.0" arcWidth="5.0" fill="#eee8c6" height="110.0" layoutX="10.0" layoutY="7.0" onMouseClicked="#diningClicked" stroke="BLACK" strokeType="INSIDE" width="150.0" GridPane.columnIndex="5" GridPane.halignment="CENTER" GridPane.rowIndex="3" />
+                  <Rectangle fx:id="BALLROOM" accessibleRole="BUTTON" arcHeight="5.0" arcWidth="5.0" fill="#eee8c6" height="110.0" layoutX="10.0" layoutY="7.0" onMouseClicked="#ballroomClicked" stroke="BLACK" strokeType="INSIDE" width="150.0" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="5" />
+                  <Rectangle fx:id="CONSERVATORY" accessibleRole="BUTTON" arcHeight="5.0" arcWidth="5.0" fill="#eee8c6" height="110.0" layoutX="10.0" layoutY="7.0" onMouseClicked="#conservatoryClicked" stroke="BLACK" strokeType="INSIDE" width="150.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="5" />
+                  <Rectangle fx:id="KITCHEN" accessibleRole="BUTTON" arcHeight="5.0" arcWidth="5.0" fill="#eee8c6" height="110.0" layoutX="10.0" layoutY="169.0" onMouseClicked="#kitchenClicked" stroke="BLACK" strokeType="INSIDE" width="150.0" GridPane.columnIndex="5" GridPane.halignment="CENTER" GridPane.rowIndex="5" />
+                  <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#5cbbff" height="50.0" stroke="BLACK" strokeType="INSIDE" width="50.0" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
+                  <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#5cbbff" height="50.0" stroke="BLACK" strokeType="INSIDE" width="50.0" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="6" GridPane.valignment="CENTER" />
+                  <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#5cbbff" height="50.0" stroke="BLACK" strokeType="INSIDE" width="50.0" GridPane.columnIndex="6" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
+                  <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#5cbbff" height="50.0" stroke="BLACK" strokeType="INSIDE" width="50.0" GridPane.halignment="CENTER" GridPane.rowIndex="4" />
+                  <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#5cbbff" height="50.0" stroke="BLACK" strokeType="INSIDE" width="50.0" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="6" GridPane.valignment="CENTER" />
+                  <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#5cbbff" height="50.0" stroke="BLACK" strokeType="INSIDE" width="50.0" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
+                  <Circle fx:id="MISS_SCARLET" fill="#ff1f1f" radius="25.0" stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
+                  <Circle fx:id="MRS_PEACOCK" fill="#00a9f2" radius="25.0" stroke="BLACK" strokeType="INSIDE" GridPane.halignment="CENTER" GridPane.rowIndex="4" />
+                  <Circle fx:id="PROFESSOR_PLUM" fill="#e681ff" radius="25.0" stroke="BLACK" strokeType="INSIDE" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
+                  <Circle fx:id="COLONEL_MUSTARD" fill="#ffc300" radius="25.0" stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="6" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
+                  <Circle fx:id="MRS_WHITE" fill="WHITE" radius="25.0" stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="6" />
+                  <Circle fx:id="MR_GREEN" fill="#21ff2e" radius="25.0" stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="6" />
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Library" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="3">
                      <font>
-                        <Font name="Apple Chancery" size="13.0" />
-                     </font>
-                  </Text>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Hall" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="1">
-                     <font>
-                        <Font name="Apple Chancery" size="13.0" />
-                     </font>
-                  </Text>
-                  <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#5cbbff" height="33.0" stroke="BLACK" strokeType="INSIDE" width="33.0" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.valignment="BOTTOM" />
-                  <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#5cbbff" height="33.0" stroke="BLACK" strokeType="INSIDE" width="33.0" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="6" GridPane.valignment="TOP" />
-                  <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#5cbbff" height="33.0" stroke="BLACK" strokeType="INSIDE" width="33.0" GridPane.columnIndex="6" GridPane.rowIndex="2" />
-                  <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#5cbbff" height="33.0" stroke="BLACK" strokeType="INSIDE" width="33.0" GridPane.halignment="RIGHT" GridPane.rowIndex="4" />
-                  <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#5cbbff" height="33.0" stroke="BLACK" strokeType="INSIDE" width="33.0" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="6" GridPane.valignment="TOP" />
-                  <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#5cbbff" height="33.0" stroke="BLACK" strokeType="INSIDE" width="33.0" GridPane.halignment="RIGHT" GridPane.rowIndex="2" />
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Lounge" GridPane.columnIndex="5" GridPane.halignment="CENTER" GridPane.rowIndex="1">
-                     <font>
-                        <Font name="Apple Chancery" size="13.0" />
-                     </font>
-                  </Text>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Kitchen" GridPane.columnIndex="5" GridPane.halignment="CENTER" GridPane.rowIndex="5">
-                     <font>
-                        <Font name="Apple Chancery" size="13.0" />
-                     </font>
-                  </Text>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Ballroom" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="5">
-                     <font>
-                        <Font name="Apple Chancery" size="13.0" />
-                     </font>
-                  </Text>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Conservatory" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="5">
-                     <font>
-                        <Font name="Apple Chancery" size="13.0" />
-                     </font>
-                  </Text>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Dining Room" GridPane.columnIndex="5" GridPane.halignment="CENTER" GridPane.rowIndex="3">
-                     <font>
-                        <Font name="Apple Chancery" size="13.0" />
+                        <Font name="Times New Roman Bold" size="18.0" />
                      </font>
                   </Text>
                   <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Billard Room" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="3">
                      <font>
-                        <Font name="Apple Chancery" size="13.0" />
+                        <Font name="Times New Roman Bold" size="18.0" />
                      </font>
                   </Text>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Library" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="3">
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Dining Room" GridPane.columnIndex="5" GridPane.halignment="CENTER" GridPane.rowIndex="3">
                      <font>
-                        <Font name="Apple Chancery" size="13.0" />
+                        <Font name="Times New Roman Bold" size="18.0" />
+                     </font>
+                  </Text>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Lounge" GridPane.columnIndex="5" GridPane.halignment="CENTER" GridPane.rowIndex="1">
+                     <font>
+                        <Font name="Times New Roman Bold" size="18.0" />
+                     </font>
+                  </Text>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Hall" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="1">
+                     <font>
+                        <Font name="Times New Roman Bold" size="18.0" />
+                     </font>
+                  </Text>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Study" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1">
+                     <font>
+                        <Font name="Times New Roman Bold" size="18.0" />
+                     </font>
+                  </Text>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Conservatory" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="5">
+                     <font>
+                        <Font name="Times New Roman Bold" size="18.0" />
+                     </font>
+                  </Text>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Ballroom" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="5">
+                     <font>
+                        <Font name="Times New Roman Bold" size="18.0" />
+                     </font>
+                  </Text>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Kitchen" GridPane.columnIndex="5" GridPane.halignment="CENTER" GridPane.rowIndex="5">
+                     <font>
+                        <Font name="Times New Roman Bold" size="18.0" />
                      </font>
                   </Text>
                </children>
