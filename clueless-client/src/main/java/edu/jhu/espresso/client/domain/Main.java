@@ -7,6 +7,8 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 public class Main extends Application {
+
+
     @Override
     public void start(Stage primaryStage) throws Exception {
         Parent root;
@@ -16,7 +18,23 @@ public class Main extends Application {
         primaryStage.show();
     }
 
-    public static void main(String[] args) {
+
+
+    public static void main(String[] args)  {
+
         launch(args);
+
+        /*
+
+
+        int num = 1;
+        while (true){
+            makeSampleNotebook(num);
+            Thread.sleep(5000);
+            if (num > 1) { num = 1; }
+            else num++;
+
+         */
+        }
     }
-}
+

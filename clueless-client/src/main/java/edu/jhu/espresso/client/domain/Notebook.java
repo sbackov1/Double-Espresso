@@ -1,11 +1,20 @@
 package edu.jhu.espresso.client.domain;
 
 import java.util.ArrayList;
+import javafx.collections.ObservableList;
+import javafx.collections.ListChangeListener;
+import javafx.collections.FXCollections;
 
 public class Notebook {
     private ArrayList<Card> handCards;
     private ArrayList<Card> knownCards;
     private ArrayList<Card> unknownCards;
+
+    public ObservableList<Card> handObservable = FXCollections.observableList(handCards);
+    public ObservableList<Card> unknownObservable = FXCollections.observableList(unknownCards);
+    public ObservableList<Card> knownObservable = FXCollections.observableList(knownCards);
+
+    //private CardDeck deck = new CardDeck();
 
     public Notebook(CardDeck cd) {
         this.unknownCards = (ArrayList<Card>) cd.getCardsList().clone();
@@ -33,11 +42,17 @@ public class Notebook {
     public void makeKnownCard(Card c){
         this.unknownCards.remove(c);
         this.knownCards.add(c);
+
+        this.unknownObservable.remove(c);
+        this.knownObservable.add(c);
     }
 
     public void makeHandCard(Card c){
         this.unknownCards.remove(c);
         this.handCards.add(c);
+
+        this.unknownObservable.remove(c);
+        this.handObservable.add(c);
     }
 
     public ArrayList<Card> canDisproveSuggestion (ArrayList<Card> suggestionCards){
@@ -84,4 +99,8 @@ public class Notebook {
         returnString += "\n";
         return returnString;
     }
+
+
+
+
 }

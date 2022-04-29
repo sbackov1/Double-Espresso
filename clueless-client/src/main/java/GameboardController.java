@@ -1,5 +1,7 @@
+import edu.jhu.espresso.client.domain.CardDeck;
 import edu.jhu.espresso.client.domain.LocationNames;
 import edu.jhu.espresso.client.domain.MoveOptions;
+import edu.jhu.espresso.client.domain.Notebook;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -14,8 +16,11 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.util.Scanner;
 
-public class GameboardController {
+public class GameboardController extends Thread {
+
+  //  private boolean exit1 = false;
     MoveOptions moveOptions = new MoveOptions();
     //ControllerSuggestion control = new ControllerSuggestion();
 
@@ -160,8 +165,9 @@ public class GameboardController {
     }
 
     @FXML public void exitGame(ActionEvent event) {  // leave the game : will either exit program completely, or boot to foyer
-        Platform.exit();
+        run();
     }
+
 
     @FXML public void openAccusationWindow(ActionEvent event) {  // AccusationMenu2.fxml
         Parent root;
@@ -194,4 +200,66 @@ public class GameboardController {
         moveOptions.printToString();
     }
 
-}
+    /*
+    public void setKnownCard(){
+
+        textScarlet.textProperty().
+    }
+
+     */
+    public static void makeSampleNotebook(int num) {
+
+        CardDeck cd = new CardDeck();
+        Notebook notebook = new Notebook(cd);
+
+        switch (num) {
+
+            case 1:
+
+                notebook.makeHandCard(cd.getCard(cd.getCardsList(), "PROFESSOR_PLUM"));
+                notebook.makeHandCard(cd.getCard(cd.getCardsList(), "STUDY"));
+                notebook.makeHandCard(cd.getCard(cd.getCardsList(), "DAGGER"));
+
+                notebook.makeKnownCard(cd.getCard(cd.getCardsList(), "MISS_SCARLET"));
+                notebook.makeKnownCard(cd.getCard(cd.getCardsList(), "BALLROOM"));
+                notebook.makeKnownCard(cd.getCard(cd.getCardsList(), "LEAD_PIPE"));
+
+                System.out.println(notebook);
+                break;
+
+            case 2:
+
+                notebook.makeHandCard(cd.getCard(cd.getCardsList(), "MRS_WHITE"));
+                notebook.makeHandCard(cd.getCard(cd.getCardsList(), "HALL"));
+                notebook.makeHandCard(cd.getCard(cd.getCardsList(), "CANDLESTICK"));
+
+                notebook.makeKnownCard(cd.getCard(cd.getCardsList(), "COLONEL_MUSTARD"));
+                notebook.makeKnownCard(cd.getCard(cd.getCardsList(), "CONSERVATORY"));
+                notebook.makeKnownCard(cd.getCard(cd.getCardsList(), "WRENCH"));
+                System.out.println(notebook);
+                break;
+
+
+        }
+    }
+
+ /*
+    public void run() {
+
+        int num = 1;
+        for (int i = 0; i < 5; i++){
+            makeSampleNotebook(num);
+            try {
+                Thread.sleep(5000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            if (num > 1) {
+                num = 1;
+            } else num++;
+
+            }
+        }
+     */
+
+    }
