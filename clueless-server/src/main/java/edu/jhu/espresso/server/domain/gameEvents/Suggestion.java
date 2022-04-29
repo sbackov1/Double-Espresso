@@ -32,7 +32,7 @@ public final class Suggestion
             List<String> validWeapons,
             String responseValue
     ) {
-        this.suggestionStatus = Objects.requireNonNull(suggestionStatus);
+        this.suggestionStatus = suggestionStatus;
         this.weapon = weapon;
         this.roomNames = roomNames;
         this.character = character;

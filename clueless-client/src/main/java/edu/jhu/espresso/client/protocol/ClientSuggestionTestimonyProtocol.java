@@ -26,9 +26,11 @@ class ClientSuggestionTestimonyProtocol implements ClueLessProtocol
 
         ArrayList<Card> clientHandCards = client.getPlayer().getNotebook().getHandCards();
 
-        clientHandCards.retainAll(buildCardsFromCaseDetails(suggestion.getCaseDetails()));
+        ArrayList<Card> possibleDisproveCards = new ArrayList<>(clientHandCards);
 
-        suggestionResponse.setValidCards(clientHandCards);
+        possibleDisproveCards.retainAll(buildCardsFromCaseDetails(suggestion.getCaseDetails()));
+
+        suggestionResponse.setValidCards(possibleDisproveCards);
         suggestionResponse.mainSugMenu();
 
         suggestion.setSuggestionStatus(suggestionResponse.getSuggestionAction());

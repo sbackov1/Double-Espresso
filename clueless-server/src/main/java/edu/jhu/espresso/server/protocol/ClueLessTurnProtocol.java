@@ -132,7 +132,7 @@ public class ClueLessTurnProtocol
         Room thisRoom = (Room) activePlayerLoc;
 
         return SuggestionBuilder.aSuggestion()
-                //.withSuggestionStatus(SuggestionStatus.OFFER_SUGGESTION)
+                .withSuggestionStatus(SuggestionStatus.OFFER_SUGGESTION)
                 .withRoomNames(thisRoom.getRoomName())
                 .withValidCharacters(validCharacters)
                 .withValidWeapons(validWeapons)

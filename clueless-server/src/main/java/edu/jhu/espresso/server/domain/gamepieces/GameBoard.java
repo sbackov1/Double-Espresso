@@ -29,22 +29,6 @@ public class GameBoard
             this.stringLocationHashMap.put(rooms.name(), thisRoom);
         }
 
-        //Loop over Hallway Number and Create New Hallway, Add to List
-        /***this.hallwayList = new ArrayList<Hallway>();
-         Hallway H1 = new Hallway("H1");
-         Hallway H2 = new Hallway("H2");
-         Hallway H3 = new Hallway("H3");
-         Hallway H4 = new Hallway("H4");
-         Hallway H5 = new Hallway("H5");
-         Hallway H6 = new Hallway("H6");
-         Hallway H7 = new Hallway("H7");
-         Hallway H8 = new Hallway("H8");
-         Hallway H9 = new Hallway("H9");
-         Hallway H10 = new Hallway("H10");
-         Hallway H11 = new Hallway("H11");
-         Hallway H12 = new Hallway("H12");
-         Collections.addAll(this.hallwayList, H1, H2, H3, H4, H5, H6,H7, H8, H9, H10, H11, H12);
-         ***/
         this.hallwayList = new ArrayList<Hallway>();
         for (int i = 1; i < 13; i++)
         {
@@ -65,6 +49,13 @@ public class GameBoard
             this.homeSquareList.add(thisHomeSquare);
             this.characterLocationMap.put(cn, (Location) thisHomeSquare);
         }
+
+        this.moveCharacter(CharacterNames.COLONEL_MUSTARD, roomList.get(0));
+        this.moveCharacter(CharacterNames.MISS_SCARLET , roomList.get(1));
+        this.moveCharacter(CharacterNames.MR_GREEN , roomList.get(2));
+        this.moveCharacter(CharacterNames.MRS_PEACOCK, roomList.get(3));
+        this.moveCharacter(CharacterNames.MRS_WHITE , roomList.get(4));
+        this.moveCharacter(CharacterNames.PROFESSOR_PLUM , roomList.get(5));
 
     }
 

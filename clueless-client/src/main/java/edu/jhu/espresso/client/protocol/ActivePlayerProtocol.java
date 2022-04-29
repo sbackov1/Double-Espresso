@@ -25,6 +25,8 @@ public class ActivePlayerProtocol implements ClueLessProtocol
     private Accusation accusation;
     private MoveOptions moveOptions;
     private TurnStart turnStart;
+
+    private boolean endTurn;
     //private edu.jhu.espresso.client.domain.GameEvents.TurnStart turnStart;
 
     public ActivePlayerProtocol(ClueLessClient client)
@@ -37,8 +39,9 @@ public class ActivePlayerProtocol implements ClueLessProtocol
     {
 
         this.turnStart = turnStart;
+        this.endTurn = false;
 
-    while(true) {
+    while(!endTurn) {
         gameOptions = client.waitForResponse(ServerActivePlayerProtocolOfferer.class);
 
         //Set canMove and canSuggest to false, they will be set to true during the unpackProtocolOffer method.
@@ -204,7 +207,6 @@ public class ActivePlayerProtocol implements ClueLessProtocol
     private void unPackProtocolOffer(ServerActivePlayerProtocolOfferer sp){
 
         sp.getOfferMoveOptions().ifPresent(moveOptions -> {
-            this.moveOptions = moveOptions;
             this.setMoveOptions(moveOptions);
             this.setCanMove(true);
         });
@@ -224,6 +226,7 @@ public class ActivePlayerProtocol implements ClueLessProtocol
     ***/
 
     public void EndTurn(){
+        this.endTurn = true;
         client.write(new ActivePlayerProtocolSelector(null, null, null));
     }
 
