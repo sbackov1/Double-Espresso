@@ -36,7 +36,7 @@ public class ControllerSuggestion {
     @FXML private Button suggest;
     @FXML private Button cancelSuggestion;
 
-    @FXML private Text suggestRoom;
+    @FXML public Text suggestRoom;
 
     public void setSuggestText(String text) { // doesn't work, breaks it
         //suggestRoom = new Text();
