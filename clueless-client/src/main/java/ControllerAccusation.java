@@ -1,7 +1,5 @@
-import edu.jhu.espresso.client.domain.Accusation;
+import edu.jhu.espresso.client.domain.*;
 import edu.jhu.espresso.client.domain.Character;
-import edu.jhu.espresso.client.domain.RoomNames;
-import edu.jhu.espresso.client.domain.Weapon;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
