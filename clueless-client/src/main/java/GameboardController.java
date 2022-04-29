@@ -53,6 +53,13 @@ public class GameboardController {
     @FXML private Rectangle H1;
     @FXML private Rectangle H7;
 
+    @FXML private Rectangle HomeSquareMS;
+    @FXML private Rectangle HomeSquareMW;
+    @FXML private Rectangle HomeSquareCM;
+    @FXML private Rectangle HomeSquareMP;
+    @FXML private Rectangle HomeSquareMG;
+    @FXML private Rectangle HomeSquarePP;
+
     @FXML private Text textMustard;
     @FXML private Text textScarlet;
     @FXML private Text textPlum;
