@@ -35,4 +35,14 @@ public class App
         ClueLessServerGameProtocol clueLessServerGameProtocol = new ClueLessServerGameProtocol(players, game);
        clueLessServerGameProtocol.playGame();
     }
+
+    public static boolean log = true;
+
+    public static void logMessage(String message)
+    {
+        if(log)
+        {
+            System.out.println(message);
+        }
+    }
 }

@@ -2,6 +2,8 @@ package edu.jhu.espresso.client;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.sun.org.slf4j.internal.Logger;
+import com.sun.org.slf4j.internal.LoggerFactory;
 import edu.jhu.espresso.client.domain.GameEvents.GameStart;
 import edu.jhu.espresso.client.domain.GameEvents.TurnStart;
 import edu.jhu.espresso.client.domain.GamePieces.CardDeck;
@@ -14,6 +16,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.Socket;
+import java.time.LocalDateTime;
 import java.util.concurrent.CompletableFuture;
 
 public class ClueLessClient implements Runnable
@@ -50,7 +53,9 @@ public class ClueLessClient implements Runnable
     {
         try
         {
-            printWriter.println(OBJECT_MAPPER.writeValueAsString(message));
+            String messageString = OBJECT_MAPPER.writeValueAsString(message);
+            App.logMessage("Writing " + messageString + " at " + LocalDateTime.now());
+            printWriter.println(messageString);
         }
         catch (JsonProcessingException e)
         {
@@ -117,6 +122,7 @@ public class ClueLessClient implements Runnable
                 throw new IllegalStateException(e);
             }
         }
+        App.logMessage("Reading " + response + " at " + LocalDateTime.now());
         return response;
     }
 
