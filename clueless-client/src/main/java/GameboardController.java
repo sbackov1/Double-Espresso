@@ -10,6 +10,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.Pane;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
@@ -57,6 +58,13 @@ public class GameboardController extends Thread {
     @FXML private Rectangle H2;
     @FXML private Rectangle H1;
     @FXML private Rectangle H7;
+
+    @FXML private Rectangle HomeSquareMS;
+    @FXML private Rectangle HomeSquareMW;
+    @FXML private Rectangle HomeSquareCM;
+    @FXML private Rectangle HomeSquareMP;
+    @FXML private Rectangle HomeSquareMG;
+    @FXML private Rectangle HomeSquarePP;
 
     @FXML private Text textMustard;
     @FXML private Text textScarlet;
@@ -185,12 +193,17 @@ public class GameboardController extends Thread {
     @FXML public void openSuggestionWindow(ActionEvent event) {  // SuggestionMenu.fxml
         Parent root;
         try {
-            root = FXMLLoader.load(getClass().getClassLoader().getResource("SuggestionMenu.fxml"));
+            FXMLLoader fxml = new FXMLLoader();
+            fxml.setLocation(getClass().getResource("SuggestionMenu.fxml"));
+            Pane suggestionPane = fxml.load();
             Stage stage = new Stage();
             stage.setTitle("Clue-Less Suggestion");
-            stage.setScene(new Scene(root, 1000, 364));
+            stage.setScene(new Scene(suggestionPane, 1000, 364));
             stage.show();
-            //control.setSuggestText("this is a test!");
+            ControllerSuggestion suggest = fxml.getController();
+            String test = "Hi!";
+            suggest.suggestRoom.setText(test);
+            //suggest.setSuggestText("this is a test!");// Exception thown
         } catch (IOException e) {
             e.printStackTrace();
         }
