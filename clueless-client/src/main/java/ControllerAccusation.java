@@ -152,6 +152,7 @@ public class ControllerAccusation {
 
     @FXML
     void makeAccusation(ActionEvent event) {
+        // show case file to player
         accusation.printToString();
     }
 

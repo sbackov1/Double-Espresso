@@ -141,19 +141,16 @@ public class ControllerDisprove {
     @FXML
     void revolverClicked(ActionEvent event) {
         response.setCardString("REVOLVER");
-
     }
 
     @FXML
     void ropeClicked(ActionEvent event) {
         response.setCardString("ROPE");
-
     }
 
     @FXML
     void wrenchClicked(ActionEvent event) {
         response.setCardString("WRENCH");
-
     }
 
 }

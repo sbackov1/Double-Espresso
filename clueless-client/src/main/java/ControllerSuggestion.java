@@ -1,4 +1,5 @@
 import edu.jhu.espresso.client.domain.CharacterNames;
+import edu.jhu.espresso.client.domain.RoomNames;
 import edu.jhu.espresso.client.domain.Suggestion;
 import edu.jhu.espresso.client.domain.Weapon;
 import javafx.event.ActionEvent;
@@ -20,7 +21,6 @@ public class ControllerSuggestion {
     @FXML private ToggleGroup sugWeap1;
     @FXML private ToggleGroup sugChar1;
 
-    //For suggestions, no buttons should be restricted from selection. All choices are valid
     @FXML private RadioButton COLONEL_MUSTARD;
     @FXML private RadioButton PROFESSOR_PLUM;
     @FXML private RadioButton MR_GREEN;
@@ -38,8 +38,7 @@ public class ControllerSuggestion {
 
     @FXML public Text suggestRoom;
 
-    public void setSuggestText(String text) { // doesn't work, breaks it
-        //suggestRoom = new Text();
+    public void setSuggestText(String text) {  // Used in GameboardController to set room text of SuggestionMenu
         suggestRoom.setText("text");
     }
 
@@ -110,7 +109,8 @@ public class ControllerSuggestion {
 
     @FXML
     void sendSuggestion(ActionEvent event) { // confirm suggestion action button
-        // set suggested room to active player's current location
+
+        suggestion.setRoomNames(RoomNames.BALLROOM); // temporary, set location here with EnumMap
         suggestion.printToString();
         Parent root;        // TEMPORARY, to test Disprove Suggestion window
         try {
@@ -122,6 +122,7 @@ public class ControllerSuggestion {
         } catch (IOException e) {
             e.printStackTrace();
         }
+
     }
 
 }
