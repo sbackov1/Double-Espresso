@@ -23,7 +23,6 @@ public class GameboardController extends Thread {
 
   //  private boolean exit1 = false;
     MoveOptions moveOptions = new MoveOptions();
-    //ControllerSuggestion control = new ControllerSuggestion();
 
     @FXML private Button exit;
     @FXML private Button makeSuggestion;
@@ -203,7 +202,6 @@ public class GameboardController extends Thread {
             ControllerSuggestion suggest = fxml.getController();
             String test = "Hi!";
             suggest.suggestRoom.setText(test);
-            //suggest.setSuggestText("this is a test!");// Exception thown
         } catch (IOException e) {
             e.printStackTrace();
         }

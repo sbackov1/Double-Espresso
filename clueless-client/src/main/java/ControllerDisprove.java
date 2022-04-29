@@ -44,111 +44,115 @@ public class ControllerDisprove {
 
     @FXML
     void sendDisprove(ActionEvent event) { // show card to suggesting player
-
+        response.printToString();
     }
 
     @FXML
     void ballroomClicked(ActionEvent event) {       // ROOM START
-        //response.setCardString(String BALLROOM);
+        response.setCardString("BALLROOM");
     }
 
     @FXML
     void billardClicked(ActionEvent event) {
+        response.setCardString("BILLARD_ROOM");
 
     }
 
     @FXML
     void conservatoryClicked(ActionEvent event) {
-
+        response.setCardString("CONSERVATORY");
     }
 
     @FXML
     void diningClicked(ActionEvent event) {
-
+        response.setCardString("DINING_ROOM");
     }
 
     @FXML
     void hallClicked(ActionEvent event) {
-
+        response.setCardString("HALL");
     }
 
     @FXML
     void kitchenClicked(ActionEvent event) {
-
+        response.setCardString("KITCHEN");
     }
 
     @FXML
     void libraryClicked(ActionEvent event) {
-
+        response.setCardString("LIBRARY");
     }
 
     @FXML
     void loungeClicked(ActionEvent event) {
-
+        response.setCardString("LOUNGE");
     }
 
     @FXML
     void studyClicked(ActionEvent event) {
-
+        response.setCardString("STUDY");
     }
 
     @FXML
     void greenClicked(ActionEvent event) {          // CHARACTER START
-
+        response.setCardString("MR_GREEN");
     }
 
     @FXML
     void mustardClicked(ActionEvent event) {
-
+        response.setCardString("COLONEL_MUSTARD");
     }
 
     @FXML
     void peacockClicked(ActionEvent event) {
-
+        response.setCardString("MRS_PEACOCK");
     }
 
     @FXML
     void plumClicked(ActionEvent event) {
-
+        response.setCardString("PROFESSOR_PLUM");
     }
 
     @FXML
     void scarletClicked(ActionEvent event) {
-
+        response.setCardString("MISS_SCARLET");
     }
 
     @FXML
     void whiteClicked(ActionEvent event) {
-
+        response.setCardString("MRS_WHITE");
     }
 
     @FXML
     void candlestickClicked(ActionEvent event) {   // WEAPON SELECT
-
+        response.setCardString("CANDLESTICK");
     }
 
     @FXML
     void daggerClicked(ActionEvent event) {
-
+        response.setCardString("DAGGER");
     }
 
     @FXML
     void leadpipeClicked(ActionEvent event) {
-
+        response.setCardString("LEAD_PIPE");
     }
 
     @FXML
     void revolverClicked(ActionEvent event) {
+        response.setCardString("REVOLVER");
 
     }
 
     @FXML
     void ropeClicked(ActionEvent event) {
+        response.setCardString("ROPE");
 
     }
 
     @FXML
     void wrenchClicked(ActionEvent event) {
+        response.setCardString("WRENCH");
 
     }
 

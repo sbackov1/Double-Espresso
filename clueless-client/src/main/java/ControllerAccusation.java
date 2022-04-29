@@ -16,7 +16,6 @@ public class ControllerAccusation {
     @FXML private ToggleGroup roomGroup;
     @FXML private ToggleGroup weapGroup;
 
-    // For accusations, known and hand cards should be restricted from being chosen
     @FXML private RadioButton COLONEL_MUSTARD;
     @FXML private RadioButton PROFESSOR_PLUM;
     @FXML private RadioButton MR_GREEN;
@@ -40,11 +39,6 @@ public class ControllerAccusation {
     @FXML private RadioButton STUDY;
     @FXML private Button accuse;
     @FXML private Button exit;
-
-    public void initialize() {  // will set all valid choices
-
-
-    }
 
     @FXML
     void ballroomClicked(ActionEvent event) {
