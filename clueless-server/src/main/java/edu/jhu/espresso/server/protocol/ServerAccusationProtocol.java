@@ -53,6 +53,11 @@ public class ServerAccusationProtocol
                     activePlayerHandler.getCharacter().getName() + " has made an incorrect accusation!",
                     waitingPlayerHandlers
             );
+
+                    //Change active status to false.
+                    activePlayerHandler.setActiveStatus(false);
+
+
         }
     }
 }

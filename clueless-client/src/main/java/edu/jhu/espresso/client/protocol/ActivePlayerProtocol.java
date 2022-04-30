@@ -63,7 +63,7 @@ public class ActivePlayerProtocol implements ClueLessProtocol
     private ActivePlayerProtocolSelector makeSuggestionChoice(Suggestion options)
     {
         options.mainSugMenu();
-        options.setRoomNames(RoomNames.BILLIARD_ROOM);
+     //   options.setRoomNames(RoomNames.BILLIARD_ROOM);
         options.setSuggestionStatus(SuggestionStatus.MAKING_SUGGESTION);
 
         CaseDetails caseDetails = new CaseDetails();
@@ -146,6 +146,10 @@ public class ActivePlayerProtocol implements ClueLessProtocol
 
     public void goToAccusationMenu() {
         client.write(makeAccusationChoice(accusation));
+
+        //End the turn if you have made an accusation.
+        this.endTurn = true;
+
     }
 
 

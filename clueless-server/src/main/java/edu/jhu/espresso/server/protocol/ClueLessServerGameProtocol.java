@@ -36,7 +36,15 @@ public class ClueLessServerGameProtocol
                     .collect(Collectors.toList());
 
             playing = new ClueLessTurnProtocol(waitingPlayers, activePlayer, game).executeTurn();
-            activePlayerIndex = (activePlayerIndex + 1) % players.size();
+
+            //Increment active player index using do/while to skip inactive players.
+            do {
+                activePlayerIndex = (activePlayerIndex + 1) % players.size();
+            }
+            while(!players.get(activePlayerIndex).getActiveStatus());
+
+
+
         }
     }
 

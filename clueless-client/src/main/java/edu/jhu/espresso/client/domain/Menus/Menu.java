@@ -27,7 +27,7 @@ public class Menu {
 
     /*
      * The default constructor is used to create a new instance of Menu. If it is the first
-     * Menu object created it will be assigned the roll of Root Menu. A root menu will be
+     * Menu object created it will be assigned the role of Root Menu. A root menu will be
      * the entry and exit points to the program, and is responsible for creating and closing
      * the input stream. All subsequent menus will be created as non-root or sub menus and
      * their exit calls will bring execution back one level in the menu structure.
@@ -41,9 +41,9 @@ public class Menu {
             this.isRootMenu = true; // let this instance know it's a root menu
             this.setTitle("Menu");
 
-            //if (this.exitItem == null) {
+            if (this.exitItem == null) {
                 this.exitItem = new MenuItem("Exit"); // A root menu will exit from the program
-           // }
+            }
         }
         else if(Menu.mainSubMenu == null) {
             Menu.mainSubMenu = this;
@@ -82,12 +82,13 @@ public class Menu {
             item = this.getUserInput();
             item.invoke();
 
-            /***
+
             if (!this.isRootMenu && !this.isMainSubMenu)   // temporary fix
             {
+                mainSubMenu = null;
                 break;
             }
-             ***/
+
         }
         while(!item.isExitItem());
         if (item.getTarget() == null)

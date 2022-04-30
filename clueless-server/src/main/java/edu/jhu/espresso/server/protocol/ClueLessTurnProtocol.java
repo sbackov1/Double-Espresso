@@ -81,9 +81,17 @@ public class ClueLessTurnProtocol
             if(activePlayerChoice.getMoveChoice().isPresent()){setPlayerHasMoved(true);}
             if(activePlayerChoice.getSuggestion().isPresent()){setPlayerHasSuggested(true);}
 
+            //If player has made an accusation, end the current turn.
+            if (activePlayerChoice.getAccusation().isPresent()) {
+                endTurn = true;
+            }
+
+
             if (!activePlayerChoice.getMoveChoice().isPresent() && !activePlayerChoice.getSuggestion().isPresent() && !activePlayerChoice.getAccusation().isPresent()){
                 endTurn = true;
             }
+
+
         }
 
 

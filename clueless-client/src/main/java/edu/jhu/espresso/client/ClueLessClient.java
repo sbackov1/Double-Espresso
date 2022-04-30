@@ -56,6 +56,9 @@ public class ClueLessClient implements Runnable
             String messageString = OBJECT_MAPPER.writeValueAsString(message);
             App.logMessage("Writing " + messageString + " at " + LocalDateTime.now());
             printWriter.println(messageString);
+
+            //Add a menu kill switch here.
+
         }
         catch (JsonProcessingException e)
         {
