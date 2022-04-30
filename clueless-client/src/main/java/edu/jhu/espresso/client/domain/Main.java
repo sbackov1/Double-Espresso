@@ -16,14 +16,14 @@ public class Main extends Application {
         Pane gameBoardPane = fxmlLoader.load();
         Stage stage = new Stage();
         stage.setTitle("Clue-Less Suggestion");
-        stage.setScene(new Scene(gameBoardPane, 1000, 364));
+        stage.setScene(new Scene(gameBoardPane, 1000, 750));
         stage.show();
         GameboardController gameboardController = fxmlLoader.getController();
         gameboardController.initialize();
 
         Thread thread = new Thread(() -> {
             int num = 1;
-            for (int i = 0; i < 5; i++){
+            for (int i = 0; i < 2; i++) {
                 gameboardController.makeSampleNotebook(num);
                 try {
                     Thread.sleep(5000);
@@ -39,21 +39,8 @@ public class Main extends Application {
         thread.start();
     }
 
-    public static void main(String[] args)  {
-
+    public static void main(String[] args) {
         launch(args);
-
-        /*
-
-
-        int num = 1;
-        while (true){
-            makeSampleNotebook(num);
-            Thread.sleep(5000);
-            if (num > 1) { num = 1; }
-            else num++;
-
-         */
-        }
     }
+}
 

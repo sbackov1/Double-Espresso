@@ -16,6 +16,8 @@ import java.io.IOException;
 
 public class ControllerAccusation {
     Accusation accusation = new Accusation();
+    CaseDetails file = new CaseDetails(); // dummy case file
+    Player player = new Player(1, 1); // dummy player
 
     @FXML public ToggleGroup charGroup;
     @FXML public ToggleGroup roomGroup;
@@ -157,22 +159,31 @@ public class ControllerAccusation {
 
     @FXML
     void makeAccusation(ActionEvent event) {
+        file.setWeapon(Weapon.CANDLESTICK); // Dummy values
+        file.setRoom(RoomNames.LIBRARY);
+        file.setCharacterNames(CharacterNames.MRS_PEACOCK);
+        player.setCharacter(CharacterNames.MISS_SCARLET);
         // show case file to player
         // determine if accusation true
         // call either incorrectAcc() or correctAcc(), below is testing menus call correctly
         //correctAcc();
-        //incorrectAcc();
+        correctAcc();
         accusation.printToString();
+        ((Stage)(((Button)event.getSource()).getScene().getWindow())).close();
     }
 
     public void incorrectAcc() { // Shows LosingScreen.fxml
         try {
-            FXMLLoader fxml = new FXMLLoader(); // need to setTexts in accordance to CaseFile contents
-            fxml.setLocation(getClass().getResource("LosingScreen.fxml"));
+            FXMLLoader fxml = new FXMLLoader();
+            fxml.setLocation(getClass().getClassLoader().getResource("LosingScreen.fxml"));
             Pane losePane = fxml.load();
             Stage stage = new Stage();
             stage.setTitle("Clue-Less");
             stage.setScene(new Scene(losePane, 750, 600));
+            LosingScreenController lose = fxml.getController();
+            lose.setMurdererText(String.valueOf(file.getCharacterNames()));
+            lose.setMurderLocation(String.valueOf(file.getRoom()));
+            lose.setMurderWeapon(String.valueOf(file.getWeapon()));
             stage.show();
         } catch (IOException e) {
             e.printStackTrace();
@@ -181,12 +192,17 @@ public class ControllerAccusation {
 
     public void correctAcc() { // Shows WinningScreen.fxml
         try {
-            FXMLLoader fxml = new FXMLLoader(); // need to setTexts in accordance to CaseFile contents
-            fxml.setLocation(getClass().getResource("WinningScreen.fxml"));
+            FXMLLoader fxml = new FXMLLoader();
+            fxml.setLocation(getClass().getClassLoader().getResource("WinningScreen.fxml"));
             Pane winPane = fxml.load();
             Stage stage = new Stage();
             stage.setTitle("Clue-Less");
             stage.setScene(new Scene(winPane, 750, 750));
+            WinningScreenController win = fxml.getController();
+            win.setMurdererText(String.valueOf(file.getCharacterNames()));
+            win.setMurderLocation(String.valueOf(file.getRoom()));
+            win.setMurderWeapon(String.valueOf(file.getWeapon()));
+            win.setWinner(String.valueOf(player.getCharacter()));
             stage.show();
         } catch (IOException e) {
             e.printStackTrace();

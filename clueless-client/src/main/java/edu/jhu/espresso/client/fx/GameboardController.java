@@ -3,8 +3,6 @@ package edu.jhu.espresso.client.fx;
 import edu.jhu.espresso.client.domain.*;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.ReadOnlyObjectWrapper;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.collections.ObservableMap;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -26,7 +24,6 @@ public class GameboardController {
 
     private final CardDeck cd = new CardDeck();
     private final Notebook notebook = new Notebook(cd);
-
 
     private int columnIndex;
     private int rowIndex;
@@ -243,7 +240,7 @@ public class GameboardController {
     @FXML public void openAccusationWindow(ActionEvent event) {  // AccusationMenu2.fxml
         try {
             FXMLLoader fxml = new FXMLLoader();
-            fxml.setLocation(getClass().getResource("AccusationMenu2.fxml"));
+            fxml.setLocation(getClass().getClassLoader().getResource("AccusationMenu2.fxml"));
             Pane accusationPane = fxml.load();
             Stage stage = new Stage();
             stage.setTitle("Clue-Less Accusation");
@@ -257,7 +254,7 @@ public class GameboardController {
     @FXML public void openSuggestionWindow(ActionEvent event) {  // SuggestionMenu.fxml
         try {
             FXMLLoader fxml = new FXMLLoader();
-            fxml.setLocation(getClass().getResource("SuggestionMenu.fxml"));
+            fxml.setLocation(getClass().getClassLoader().getResource("SuggestionMenu.fxml"));
             Pane suggestionPane = fxml.load();
             Stage stage = new Stage();
             stage.setTitle("Clue-Less Suggestion");
@@ -266,9 +263,10 @@ public class GameboardController {
             ControllerSuggestion suggest = fxml.getController();
             String test = "IWHBYD";
             suggest.suggestRoom.setText(test);
-            columnIndex = GridPane.getColumnIndex(MISS_SCARLET);
-            rowIndex = GridPane.getRowIndex(MISS_SCARLET);
-            moveSuggested(MR_GREEN, columnIndex, rowIndex);
+            //suggest.setFXMLLoader(fxml);
+            //columnIndex = GridPane.getColumnIndex(MISS_SCARLET);
+            //rowIndex = GridPane.getRowIndex(MISS_SCARLET);
+            //moveSuggested(MR_GREEN, columnIndex, rowIndex);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -280,13 +278,6 @@ public class GameboardController {
         GridPane.setRowIndex(MISS_SCARLET, rowIndex);
     }
 
-    /*
-    public void setKnownCard(){
-
-        textScarlet.textProperty().
-    }
-
-     */
     public void makeSampleNotebook(int num) {
         scarletFontObservable.set(statusForCard(notebook, "MISS_SCARLET").getFont());
         switch (num) {

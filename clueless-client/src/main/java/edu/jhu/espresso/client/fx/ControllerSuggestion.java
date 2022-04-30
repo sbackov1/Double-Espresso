@@ -42,10 +42,19 @@ public class ControllerSuggestion {
     @FXML public Button cancelSuggestion;
 
     @FXML public Text suggestRoom;
+    private FXMLLoader fxmlLoader;
 
     public void setSuggestText(String text) {  // Used in edu.jhu.espresso.client.fx.GameboardController to set room text of SuggestionMenu
         suggestRoom.setText("text");
     }
+
+ /*   public void setFXMLLoader(FXMLLoader fxmlLoader) {
+        this.fxmlLoader = fxmlLoader;
+    }
+
+    public FXMLLoader getFXMLLoader() {
+        return fxmlLoader;
+    }*/
 
     @FXML
     void greenClicked(ActionEvent event) {
@@ -116,18 +125,20 @@ public class ControllerSuggestion {
     void sendSuggestion(ActionEvent event) { // confirm suggestion action button
         suggestion.setRoomNames(RoomNames.BALLROOM); // temporary, set location here with EnumMap
         suggestion.printToString();
+        //GameboardController board = getFXMLLoader().getController(); // throws NullPointerException
+        //getFXMLLoader().setLocation(getClass().getResource("gameboardTest.fxml"));
+        //columnIndex = GridPane.getColumnIndex(board.MISS_SCARLET);
+        //rowIndex = GridPane.getRowIndex(board.MISS_SCARLET);
+        //board.moveSuggested(board.MR_GREEN, columnIndex, rowIndex);
         try {
-            FXMLLoader fxml = new FXMLLoader();
-            fxml.setLocation(getClass().getResource("DisproveSuggestion.fxml"));
+            FXMLLoader fxml = new FXMLLoader(); // for DisproveSuggestion.fxml
+            fxml.setLocation(getClass().getClassLoader().getResource("DisproveSuggestion.fxml"));
             Pane disprovePane = fxml.load();
             Stage stage = new Stage();
             stage.setTitle("Clue-Less Suggestion");
             stage.setScene(new Scene(disprovePane, 1000, 364));
             stage.show();
-            GameboardController board = fxml.getController(); // throw NullPointerException but still runs?
-            columnIndex = GridPane.getColumnIndex(board.MISS_SCARLET);
-            rowIndex = GridPane.getRowIndex(board.MISS_SCARLET);
-            board.moveSuggested(board.MR_GREEN, columnIndex, rowIndex);
+            ((Stage)(((Button)event.getSource()).getScene().getWindow())).close();
         } catch (IOException e) {
             e.printStackTrace();
         }

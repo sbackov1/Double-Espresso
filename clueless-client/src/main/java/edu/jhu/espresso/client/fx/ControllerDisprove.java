@@ -11,32 +11,32 @@ import javafx.stage.Stage;
 public class ControllerDisprove {
     SuggestionResponse response = new SuggestionResponse();
 
-    @FXML private ToggleGroup disproveGroup;
+    @FXML public ToggleGroup disproveGroup;
 
     //only hand cards matching suggestion should be pickable for disproving suggestions
-    @FXML private RadioButton REVOLVER;
-    @FXML private RadioButton DAGGER;
-    @FXML private RadioButton LEAD_PIPE;
-    @FXML private RadioButton ROPE;
-    @FXML private RadioButton CANDLESTICK;
-    @FXML private RadioButton WRENCH;
-    @FXML private RadioButton COLONEL_MUSTARD;
-    @FXML private RadioButton PROFESSOR_PLUM;
-    @FXML private RadioButton MR_GREEN;
-    @FXML private RadioButton MRS_WHITE;
-    @FXML private RadioButton MRS_PEACOCK;
-    @FXML private RadioButton MISS_SCARLET;
-    @FXML private RadioButton KITCHEN;
-    @FXML private RadioButton HALL;
-    @FXML private RadioButton BALLROOM;
-    @FXML private RadioButton CONSERVATORY;
-    @FXML private RadioButton DINING_ROOM;
-    @FXML private RadioButton BILLARD_ROOM;
-    @FXML private RadioButton LIBRARY;
-    @FXML private RadioButton LOUNGE;
-    @FXML private RadioButton STUDY;
-    @FXML private Button disprove;
-    @FXML private Button cancelDisprove;
+    @FXML public RadioButton REVOLVER;
+    @FXML public RadioButton DAGGER;
+    @FXML public RadioButton LEAD_PIPE;
+    @FXML public RadioButton ROPE;
+    @FXML public RadioButton CANDLESTICK;
+    @FXML public RadioButton WRENCH;
+    @FXML public RadioButton COLONEL_MUSTARD;
+    @FXML public RadioButton PROFESSOR_PLUM;
+    @FXML public RadioButton MR_GREEN;
+    @FXML public RadioButton MRS_WHITE;
+    @FXML public RadioButton MRS_PEACOCK;
+    @FXML public RadioButton MISS_SCARLET;
+    @FXML public RadioButton KITCHEN;
+    @FXML public RadioButton HALL;
+    @FXML public RadioButton BALLROOM;
+    @FXML public RadioButton CONSERVATORY;
+    @FXML public RadioButton DINING_ROOM;
+    @FXML public RadioButton BILLARD_ROOM;
+    @FXML public RadioButton LIBRARY;
+    @FXML public RadioButton LOUNGE;
+    @FXML public RadioButton STUDY;
+    @FXML public Button disprove;
+    @FXML public Button cancelDisprove;
 
     @FXML
     void pass(ActionEvent event) { // cannot disprove, next player
@@ -46,7 +46,9 @@ public class ControllerDisprove {
 
     @FXML
     void sendDisprove(ActionEvent event) { // show card to suggesting player
+        //response.setCardString(String.valueOf(disproveGroup.getSelectedToggle()));
         response.printToString();
+        ((Stage)(((Button)event.getSource()).getScene().getWindow())).close();
     }
 
     @FXML
@@ -57,7 +59,6 @@ public class ControllerDisprove {
     @FXML
     void billardClicked(ActionEvent event) {
         response.setCardString("BILLARD_ROOM");
-
     }
 
     @FXML
