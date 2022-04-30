@@ -1,3 +1,5 @@
+package edu.jhu.espresso.client.fx;
+
 import javafx.fxml.FXML;
 import javafx.scene.text.Text;
 

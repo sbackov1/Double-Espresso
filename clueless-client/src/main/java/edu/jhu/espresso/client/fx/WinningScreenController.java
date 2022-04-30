@@ -1,12 +1,14 @@
+package edu.jhu.espresso.client.fx;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.text.Text;
-import javafx.stage.Stage;
 
-public class LosingScreenController {
+public class WinningScreenController {
 
-    @FXML public Button returnToGame;
+    @FXML public Text Winner;
+    @FXML public Button returnLobby;
     @FXML public Button returnFoyer;
     @FXML public Text murderer;
     @FXML public Text murderWeapon;
@@ -24,12 +26,15 @@ public class LosingScreenController {
         murderLocation.setText(room);
     }
 
-    @FXML void returnFoyer(ActionEvent event) {
-        // would exit game completely and return to the gameFoyer
-        // would operate the same way as Leave Game button in GameboardController
+    public void setWinner(String winner) {
+        Winner.setText(winner);
     }
 
-    @FXML void returnGame(ActionEvent event) {
-        ((Stage)(((Button)event.getSource()).getScene().getWindow())).close();
+    @FXML void goToFoyer(ActionEvent event) {
+
+    }
+
+    @FXML void goToLobby(ActionEvent event) {
+
     }
 }

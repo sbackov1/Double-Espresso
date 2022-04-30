@@ -1,26 +1,50 @@
 package edu.jhu.espresso.client.domain;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import javafx.collections.ObservableList;
 import javafx.collections.ListChangeListener;
 import javafx.collections.FXCollections;
+import javafx.collections.ObservableMap;
 
 public class Notebook {
     private ArrayList<Card> handCards;
     private ArrayList<Card> knownCards;
     private ArrayList<Card> unknownCards;
 
-    public ObservableList<Card> handObservable = FXCollections.observableList(handCards);
-    public ObservableList<Card> unknownObservable = FXCollections.observableList(unknownCards);
-    public ObservableList<Card> knownObservable = FXCollections.observableList(knownCards);
-
-    //private CardDeck deck = new CardDeck();
+    private ObservableMap<Card, CardNotebookStatus> cardNotebookStatusMap = FXCollections.observableMap(new HashMap<>());
 
     public Notebook(CardDeck cd) {
         this.unknownCards = (ArrayList<Card>) cd.getCardsList().clone();
         //Generate blank arrayLists of cards for hand cards and known cards.
         this.handCards = new ArrayList<Card>();
         this.knownCards = new ArrayList<Card>();
+
+        List<Card> allCards = new ArrayList<>(unknownCards);
+
+        allCards.forEach(card -> cardNotebookStatusMap.put(card, new CardNotebookStatus(NotebookStatus.UNKNOWN)));
+        updateCardNotebookStatuses();
+    }
+
+    private void updateCardNotebookStatuses()
+    {
+        for (Card card : handCards)
+        {
+            cardNotebookStatusMap.get(card).setNotebookStatus(NotebookStatus.HAND);
+        }
+
+        for (Card card : knownCards)
+        {
+            cardNotebookStatusMap.get(card).setNotebookStatus(NotebookStatus.KNOWN);
+        }
+
+        for (Card card : unknownCards)
+        {
+            cardNotebookStatusMap.get(card).setNotebookStatus(NotebookStatus.UNKNOWN);
+        }
     }
 
     public void makeKnownCard(String cardName)
@@ -29,6 +53,8 @@ public class Notebook {
                 .filter(card -> card.getName().equals(cardName))
                 .findFirst()
                 .ifPresent(this::makeKnownCard);
+
+        updateCardNotebookStatuses();
     }
 
     public void makeHandCard(String cardName)
@@ -37,22 +63,22 @@ public class Notebook {
                 .filter(card -> card.getName().equals(cardName))
                 .findFirst()
                 .ifPresent(this::makeHandCard);
+
+        updateCardNotebookStatuses();
     }
 
     public void makeKnownCard(Card c){
         this.unknownCards.remove(c);
         this.knownCards.add(c);
 
-        this.unknownObservable.remove(c);
-        this.knownObservable.add(c);
+        updateCardNotebookStatuses();
     }
 
     public void makeHandCard(Card c){
         this.unknownCards.remove(c);
         this.handCards.add(c);
 
-        this.unknownObservable.remove(c);
-        this.handObservable.add(c);
+        updateCardNotebookStatuses();
     }
 
     public ArrayList<Card> canDisproveSuggestion (ArrayList<Card> suggestionCards){
@@ -74,6 +100,11 @@ public class Notebook {
 
     public ArrayList<Card> getUnknownCards() {
         return unknownCards;
+    }
+
+    public ObservableMap<Card, CardNotebookStatus> getCardNotebookStatusMap()
+    {
+        return cardNotebookStatusMap;
     }
 
     @Override

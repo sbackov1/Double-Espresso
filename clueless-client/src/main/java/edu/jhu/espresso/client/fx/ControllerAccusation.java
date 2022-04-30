@@ -1,3 +1,5 @@
+package edu.jhu.espresso.client.fx;
+
 import edu.jhu.espresso.client.domain.*;
 import edu.jhu.espresso.client.domain.Character;
 import javafx.event.ActionEvent;

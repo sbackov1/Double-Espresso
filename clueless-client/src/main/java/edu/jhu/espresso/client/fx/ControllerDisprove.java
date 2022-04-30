@@ -1,3 +1,5 @@
+package edu.jhu.espresso.client.fx;
+
 import edu.jhu.espresso.client.domain.SuggestionResponse;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;

@@ -1,8 +1,11 @@
-import edu.jhu.espresso.client.domain.CardDeck;
-import edu.jhu.espresso.client.domain.LocationNames;
-import edu.jhu.espresso.client.domain.MoveOptions;
-import edu.jhu.espresso.client.domain.Notebook;
-import javafx.application.Platform;
+package edu.jhu.espresso.client.fx;
+
+import edu.jhu.espresso.client.domain.*;
+import javafx.beans.property.ObjectProperty;
+import javafx.beans.property.ReadOnlyObjectWrapper;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
+import javafx.collections.ObservableMap;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -13,15 +16,18 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
+import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 import java.io.IOException;
-import java.util.Scanner;
 
-public class GameboardController extends Thread {
+public class GameboardController {
 
-  //  private boolean exit1 = false;
+    private final CardDeck cd = new CardDeck();
+    private final Notebook notebook = new Notebook(cd);
+
+
     private int columnIndex;
     private int rowIndex;
     MoveOptions moveOptions = new MoveOptions();
@@ -90,6 +96,13 @@ public class GameboardController extends Thread {
     @FXML public Text textConservatory;
     @FXML public Text textBallroom;
     @FXML public Text textKitchen;
+
+    private final ObjectProperty<Font> scarletFontObservable = new ReadOnlyObjectWrapper<>(statusForCard(notebook, "MISS_SCARLET").getFont());
+
+    public void initialize()
+    {
+        textScarlet.fontProperty().bind(scarletFontObservable);
+    }
 
     public void moveSuggested(Circle character, int columnIndex, int rowIndex) {
         GridPane.setRowIndex(character, rowIndex);
@@ -224,7 +237,6 @@ public class GameboardController extends Thread {
 
     @FXML public void exitGame(ActionEvent event) {  // leave the game : will either exit program completely, or boot to foyer
         //Platform.exit();
-        run();
     }
 
 
@@ -275,20 +287,15 @@ public class GameboardController extends Thread {
     }
 
      */
-    public static void makeSampleNotebook(int num) {
-
-        CardDeck cd = new CardDeck();
-        Notebook notebook = new Notebook(cd);
-
+    public void makeSampleNotebook(int num) {
+        scarletFontObservable.set(statusForCard(notebook, "MISS_SCARLET").getFont());
         switch (num) {
-
             case 1:
 
                 notebook.makeHandCard(cd.getCard(cd.getCardsList(), "PROFESSOR_PLUM"));
                 notebook.makeHandCard(cd.getCard(cd.getCardsList(), "STUDY"));
                 notebook.makeHandCard(cd.getCard(cd.getCardsList(), "DAGGER"));
 
-                notebook.makeKnownCard(cd.getCard(cd.getCardsList(), "MISS_SCARLET"));
                 notebook.makeKnownCard(cd.getCard(cd.getCardsList(), "BALLROOM"));
                 notebook.makeKnownCard(cd.getCard(cd.getCardsList(), "LEAD_PIPE"));
 
@@ -301,6 +308,7 @@ public class GameboardController extends Thread {
                 notebook.makeHandCard(cd.getCard(cd.getCardsList(), "HALL"));
                 notebook.makeHandCard(cd.getCard(cd.getCardsList(), "CANDLESTICK"));
 
+                notebook.makeKnownCard(cd.getCard(cd.getCardsList(), "MISS_SCARLET"));
                 notebook.makeKnownCard(cd.getCard(cd.getCardsList(), "COLONEL_MUSTARD"));
                 notebook.makeKnownCard(cd.getCard(cd.getCardsList(), "CONSERVATORY"));
                 notebook.makeKnownCard(cd.getCard(cd.getCardsList(), "WRENCH"));
@@ -311,23 +319,15 @@ public class GameboardController extends Thread {
         }
     }
 
- /*
-    public void run() {
+    private CardNotebookStatus statusForCard(Notebook notebook, String cardName)
+    {
+        ObservableMap<Card, CardNotebookStatus> map = notebook.getCardNotebookStatusMap();
+        Card cardWithName = notebook.getCardNotebookStatusMap().keySet().stream()
+                .filter(card -> card.getName().equals(cardName))
+                .findFirst()
+                .orElseThrow(IllegalStateException::new);
 
-        int num = 1;
-        for (int i = 0; i < 5; i++){
-            makeSampleNotebook(num);
-            try {
-                Thread.sleep(5000);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-            if (num > 1) {
-                num = 1;
-            } else num++;
-
-            }
-        }
-     */
-
+        return map.get(cardWithName);
     }
+
+}

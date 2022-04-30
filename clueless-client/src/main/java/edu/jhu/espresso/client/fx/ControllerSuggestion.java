@@ -1,3 +1,5 @@
+package edu.jhu.espresso.client.fx;
+
 import edu.jhu.espresso.client.domain.CharacterNames;
 import edu.jhu.espresso.client.domain.RoomNames;
 import edu.jhu.espresso.client.domain.Suggestion;
@@ -41,7 +43,7 @@ public class ControllerSuggestion {
 
     @FXML public Text suggestRoom;
 
-    public void setSuggestText(String text) {  // Used in GameboardController to set room text of SuggestionMenu
+    public void setSuggestText(String text) {  // Used in edu.jhu.espresso.client.fx.GameboardController to set room text of SuggestionMenu
         suggestRoom.setText("text");
     }
 
