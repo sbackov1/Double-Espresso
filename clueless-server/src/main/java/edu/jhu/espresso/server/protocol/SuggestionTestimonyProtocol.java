@@ -4,11 +4,19 @@ import edu.jhu.espresso.server.domain.*;
 import edu.jhu.espresso.server.domain.builder.SuggestionTestimonyResponseBuilder;
 import edu.jhu.espresso.server.domain.gameEvents.Suggestion;
 import edu.jhu.espresso.server.domain.gameEvents.SuggestionStatus;
-import edu.jhu.espresso.server.domain.gamepieces.Player;
+import edu.jhu.espresso.server.domain.gamepieces.*;
+
+import edu.jhu.espresso.server.domain.gamepieces.CharacterCard;
+
+import edu.jhu.espresso.server.domain.builder.SuggestionBuilder;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
+
+import static edu.jhu.espresso.server.domain.gameEvents.SuggestionStatus.CANNOT_DISPROVE;
+import static edu.jhu.espresso.server.domain.gameEvents.SuggestionStatus.PROVING_SUGGESTION_FALSE;
 
 public class SuggestionTestimonyProtocol
 {
@@ -17,12 +25,17 @@ public class SuggestionTestimonyProtocol
     private final Suggestion suggestion;
     private final Game game;
 
+    private Suggestion response;
+    private Player currentWaitingPlayer;
+
     public SuggestionTestimonyProtocol(List<Player> waitingPlayers, Player activePlayer, Suggestion suggestion, Game game)
     {
         this.waitingPlayers = waitingPlayers;
         this.activePlayer = activePlayer;
         this.suggestion = suggestion;
         this.game = game;
+        this.currentWaitingPlayer = activePlayer.getNextPlayer();
+        this.response = new Suggestion();
     }
 
     public void execute()
@@ -30,21 +43,16 @@ public class SuggestionTestimonyProtocol
         System.out.println("Server suggestion logic executes");
         boolean suggestionDisproven = false;
         int playersAsked = 0;
-        Player currentWaitingPlayer = activePlayer.getNextPlayer();
+
 
         SuggestionTestimonyResponseBuilder suggestionTestimonyResponseBuilder = SuggestionTestimonyResponseBuilder.aSuggestionTestimonyResponse();
 
         while(!suggestionDisproven && playersAsked < waitingPlayers.size())
         {
-            currentWaitingPlayer.writeInstanceAndExpectType(
-                    new TurnStart(ClueLessProtocolType.SUGGESTION, game.getLocations(), ""),
-                    TurnStart.class
-            );
+            //Split into 2 methods: if player isActive and !isActive
 
-            Suggestion response = currentWaitingPlayer.writeInstanceAndExpectType(
-                    suggestion,
-                    Suggestion.class
-            );
+
+
 
             suggestionDisproven = response.getSuggestionStatus() == SuggestionStatus.PROVING_SUGGESTION_FALSE;
             if(suggestionDisproven)
@@ -94,4 +102,72 @@ public class SuggestionTestimonyProtocol
                 playersToNotify
         );
     }
+
+    private void activePlayerQuerySetsResponse(){
+        currentWaitingPlayer.writeInstanceAndExpectType(
+                new TurnStart(ClueLessProtocolType.SUGGESTION, game.getLocations(), ""),
+                TurnStart.class
+        );
+
+        this.response = currentWaitingPlayer.writeInstanceAndExpectType(
+                suggestion,
+                Suggestion.class
+        );
+
+    }
+
+/**
+ * inactivePlayerQuery checks whether any of the cards are present in the inactive player's hand.
+ * If one card is present, it returns a suggestion response with that type of card.
+ * If more than one is present, it randomly selects a card and uses that to respond to the query.
+ * **/
+
+    private Suggestion inactivePlayerQuery(){
+
+        SuggestionBuilder inactiveSuggestion = SuggestionBuilder.aSuggestion();
+
+        ArrayList<Card> playerHandCards = this.currentWaitingPlayer.getNotebook().getHandCards();
+        ArrayList<Card> possibleDisproveCards = new ArrayList<Card>(playerHandCards);
+
+        possibleDisproveCards.retainAll(buildCardsFromCaseDetails(suggestion));
+
+        if (possibleDisproveCards.size() == 0){
+            inactiveSuggestion.withSuggestionStatus(CANNOT_DISPROVE);
+        }
+
+        else if (possibleDisproveCards.size() == 1) {
+            inactiveSuggestion.withSuggestionStatus(PROVING_SUGGESTION_FALSE);
+            inactiveSuggestion.withResponseValue(possibleDisproveCards.get(0).getName());
+            return inactiveSuggestion.build();
+        }
+
+        else {
+            inactiveSuggestion.withSuggestionStatus(PROVING_SUGGESTION_FALSE);
+            int cardIndex = (int) Math.random() * (possibleDisproveCards.size() - 1);
+
+            inactiveSuggestion.withResponseValue(possibleDisproveCards.get(cardIndex).getName());
+
+        }
+
+
+
+    }
+
+    private ArrayList<Card> buildCardsFromCaseDetails(Suggestion suggestion)
+    {
+        CaseDetails caseDetails = suggestion.getCaseDetails();
+
+        RoomCard roomCard = new RoomCard(caseDetails.getRoom());
+        WeaponCard weaponCard = new WeaponCard(caseDetails.getWeapon());
+        CharacterCard characterCard = new CharacterCard(caseDetails.getCharacterNames());
+
+        return new ArrayList<>(
+                Arrays.asList(
+                        roomCard,
+                        weaponCard,
+                        characterCard
+                )
+        );
+    }
+
 }

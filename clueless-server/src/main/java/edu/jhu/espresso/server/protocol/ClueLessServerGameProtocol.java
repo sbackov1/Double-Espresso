@@ -43,8 +43,6 @@ public class ClueLessServerGameProtocol
             }
             while(!players.get(activePlayerIndex).getActiveStatus());
 
-
-
         }
     }
 

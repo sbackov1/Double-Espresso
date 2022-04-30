@@ -54,9 +54,8 @@ public class ServerAccusationProtocol
                     waitingPlayerHandlers
             );
 
-                    //Change active status to false.
-                    activePlayerHandler.setActiveStatus(false);
-
+            //Change active status to false.
+            activePlayerHandler.setActiveStatus(false);
 
         }
     }
