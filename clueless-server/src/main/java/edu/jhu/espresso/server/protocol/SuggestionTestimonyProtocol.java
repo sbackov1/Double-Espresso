@@ -24,8 +24,6 @@ public class SuggestionTestimonyProtocol
     private final Player activePlayer;
     private final Suggestion suggestion;
     private final Game game;
-
-    private Suggestion response;
     private Player currentWaitingPlayer;
 
     public SuggestionTestimonyProtocol(List<Player> waitingPlayers, Player activePlayer, Suggestion suggestion, Game game)
@@ -35,7 +33,6 @@ public class SuggestionTestimonyProtocol
         this.suggestion = suggestion;
         this.game = game;
         this.currentWaitingPlayer = activePlayer.getNextPlayer();
-        this.response = new Suggestion();
     }
 
     public void execute()
@@ -49,28 +46,21 @@ public class SuggestionTestimonyProtocol
 
         while(!suggestionDisproven && playersAsked < waitingPlayers.size())
         {
-            //Split into 2 methods: if player isActive and !isActive
+            Suggestion response;
+            if(this.currentWaitingPlayer.getActiveStatus()){ response = this.activePlayerQuery();}
 
+            else { response = this.inactivePlayerQuery();}
 
-
-
+            //set a boolean for whether the response is proven false or not.
             suggestionDisproven = response.getSuggestionStatus() == SuggestionStatus.PROVING_SUGGESTION_FALSE;
             if(suggestionDisproven)
             {
-                System.out.println("Suggestion has been disproven");
-                broadcastSuggestionResults(
-                        currentWaitingPlayer,
-                        currentWaitingPlayer.getCharacter().getName() + " has disproven the suggestion."
-                );
+                this.playerCanDisprove();
                 suggestionTestimonyResponseBuilder.withResponse(response.getResponseValue());
             }
             else
             {
-                System.out.println("Suggestion cannot be disproven");
-                broadcastSuggestionResults(
-                        currentWaitingPlayer,
-                        currentWaitingPlayer.getCharacter().getName() + " cannot prove the suggestion false"
-                );
+                this.playerCannotDisprove();
             }
             playersAsked++;
             currentWaitingPlayer = currentWaitingPlayer.getNextPlayer();
@@ -78,13 +68,7 @@ public class SuggestionTestimonyProtocol
 
         if(!suggestionDisproven)
         {
-            List<Player> allPlayers = new ArrayList<>();
-            allPlayers.addAll(waitingPlayers);
-            ClueLessServerGameProtocol.broadcast(
-                                game,
-                    "No one is able to disprove " + activePlayer.getCharacter().getName() + "'s suggestion",
-                    allPlayers
-            );
+            this.noOneCanDisprove();
         }
 
         activePlayer.write(suggestionTestimonyResponseBuilder.build());
@@ -103,13 +87,13 @@ public class SuggestionTestimonyProtocol
         );
     }
 
-    private void activePlayerQuerySetsResponse(){
+    private Suggestion activePlayerQuery(){
         currentWaitingPlayer.writeInstanceAndExpectType(
                 new TurnStart(ClueLessProtocolType.SUGGESTION, game.getLocations(), ""),
                 TurnStart.class
         );
 
-        this.response = currentWaitingPlayer.writeInstanceAndExpectType(
+        return currentWaitingPlayer.writeInstanceAndExpectType(
                 suggestion,
                 Suggestion.class
         );
@@ -127,12 +111,13 @@ public class SuggestionTestimonyProtocol
         SuggestionBuilder inactiveSuggestion = SuggestionBuilder.aSuggestion();
 
         ArrayList<Card> playerHandCards = this.currentWaitingPlayer.getNotebook().getHandCards();
-        ArrayList<Card> possibleDisproveCards = new ArrayList<Card>(playerHandCards);
+        ArrayList<Card> possibleDisproveCards = new ArrayList<>(playerHandCards);
 
         possibleDisproveCards.retainAll(buildCardsFromCaseDetails(suggestion));
 
         if (possibleDisproveCards.size() == 0){
             inactiveSuggestion.withSuggestionStatus(CANNOT_DISPROVE);
+            return inactiveSuggestion.build();
         }
 
         else if (possibleDisproveCards.size() == 1) {
@@ -143,14 +128,11 @@ public class SuggestionTestimonyProtocol
 
         else {
             inactiveSuggestion.withSuggestionStatus(PROVING_SUGGESTION_FALSE);
-            int cardIndex = (int) Math.random() * (possibleDisproveCards.size() - 1);
+            int cardIndex = (int) (Math.random() * (possibleDisproveCards.size() - 1));
 
             inactiveSuggestion.withResponseValue(possibleDisproveCards.get(cardIndex).getName());
-
+            return inactiveSuggestion.build();
         }
-
-
-
     }
 
     private ArrayList<Card> buildCardsFromCaseDetails(Suggestion suggestion)
@@ -169,5 +151,34 @@ public class SuggestionTestimonyProtocol
                 )
         );
     }
+
+    private void playerCannotDisprove(){
+        System.out.println("Suggestion cannot be disproven");
+        broadcastSuggestionResults(
+                currentWaitingPlayer,
+                currentWaitingPlayer.getCharacter().getName() + " cannot prove the suggestion false"
+        );
+    }
+
+    private void playerCanDisprove(){
+        System.out.println("Suggestion has been disproven");
+        broadcastSuggestionResults(
+                currentWaitingPlayer,
+                currentWaitingPlayer.getCharacter().getName() + " has disproven the suggestion."
+        );
+    }
+
+    private void noOneCanDisprove(){
+        List<Player> allPlayers = new ArrayList<>();
+        allPlayers.addAll(waitingPlayers);
+        ClueLessServerGameProtocol.broadcast(
+                game,
+                "No one is able to disprove " + activePlayer.getCharacter().getName() + "'s suggestion",
+                allPlayers
+        );
+    }
+
+
+
 
 }
