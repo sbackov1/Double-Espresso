@@ -5,11 +5,12 @@ import edu.jhu.espresso.client.domain.Weapon;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.ToggleGroup;
+import javafx.scene.layout.GridPane;
+import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
@@ -17,24 +18,26 @@ import java.io.IOException;
 
 public class ControllerSuggestion {
     Suggestion suggestion = new Suggestion();
+    private int columnIndex;
+    private int rowIndex;
 
-    @FXML private ToggleGroup sugWeap1;
-    @FXML private ToggleGroup sugChar1;
+    @FXML public ToggleGroup sugWeap1;
+    @FXML public ToggleGroup sugChar1;
 
-    @FXML private RadioButton COLONEL_MUSTARD;
-    @FXML private RadioButton PROFESSOR_PLUM;
-    @FXML private RadioButton MR_GREEN;
-    @FXML private RadioButton MRS_WHITE;
-    @FXML private RadioButton MRS_PEACOCK;
-    @FXML private RadioButton MISS_SCARLET;
-    @FXML private RadioButton REVOLVER;
-    @FXML private RadioButton DAGGER;
-    @FXML private RadioButton LEAD_PIPE;
-    @FXML private RadioButton ROPE;
-    @FXML private RadioButton CANDLESTICK;
-    @FXML private RadioButton WRENCH;
-    @FXML private Button suggest;
-    @FXML private Button cancelSuggestion;
+    @FXML public RadioButton COLONEL_MUSTARD;
+    @FXML public RadioButton PROFESSOR_PLUM;
+    @FXML public RadioButton MR_GREEN;
+    @FXML public RadioButton MRS_WHITE;
+    @FXML public RadioButton MRS_PEACOCK;
+    @FXML public RadioButton MISS_SCARLET;
+    @FXML public RadioButton REVOLVER;
+    @FXML public RadioButton DAGGER;
+    @FXML public RadioButton LEAD_PIPE;
+    @FXML public RadioButton ROPE;
+    @FXML public RadioButton CANDLESTICK;
+    @FXML public RadioButton WRENCH;
+    @FXML public Button suggest;
+    @FXML public Button cancelSuggestion;
 
     @FXML public Text suggestRoom;
 
@@ -109,16 +112,20 @@ public class ControllerSuggestion {
 
     @FXML
     void sendSuggestion(ActionEvent event) { // confirm suggestion action button
-
         suggestion.setRoomNames(RoomNames.BALLROOM); // temporary, set location here with EnumMap
         suggestion.printToString();
-        Parent root;        // TEMPORARY, to test Disprove Suggestion window
         try {
-            root = FXMLLoader.load(getClass().getClassLoader().getResource("DisproveSuggestion.fxml"));
+            FXMLLoader fxml = new FXMLLoader();
+            fxml.setLocation(getClass().getResource("DisproveSuggestion.fxml"));
+            Pane disprovePane = fxml.load();
             Stage stage = new Stage();
             stage.setTitle("Clue-Less Suggestion");
-            stage.setScene(new Scene(root, 1000, 364));
+            stage.setScene(new Scene(disprovePane, 1000, 364));
             stage.show();
+            GameboardController board = fxml.getController(); // throw NullPointerException but still runs?
+            columnIndex = GridPane.getColumnIndex(board.MISS_SCARLET);
+            rowIndex = GridPane.getRowIndex(board.MISS_SCARLET);
+            board.moveSuggested(board.MR_GREEN, columnIndex, rowIndex);
         } catch (IOException e) {
             e.printStackTrace();
         }

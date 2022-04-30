@@ -2,41 +2,46 @@ import edu.jhu.espresso.client.domain.*;
 import edu.jhu.espresso.client.domain.Character;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.ToggleGroup;
+import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
+
+import java.io.IOException;
 
 public class ControllerAccusation {
     Accusation accusation = new Accusation();
 
-    @FXML private ToggleGroup charGroup;
-    @FXML private ToggleGroup roomGroup;
-    @FXML private ToggleGroup weapGroup;
+    @FXML public ToggleGroup charGroup;
+    @FXML public ToggleGroup roomGroup;
+    @FXML public ToggleGroup weapGroup;
 
-    @FXML private RadioButton COLONEL_MUSTARD;
-    @FXML private RadioButton PROFESSOR_PLUM;
-    @FXML private RadioButton MR_GREEN;
-    @FXML private RadioButton MRS_WHITE;
-    @FXML private RadioButton MRS_PEACOCK;
-    @FXML private RadioButton MISS_SCARLET;
-    @FXML private RadioButton REVOLVER;
-    @FXML private RadioButton DAGGER;
-    @FXML private RadioButton LEAD_PIPE;
-    @FXML private RadioButton ROPE;
-    @FXML private RadioButton CANDLESTICK;
-    @FXML private RadioButton WRENCH;
-    @FXML private RadioButton KITCHEN;
-    @FXML private RadioButton HALL;
-    @FXML private RadioButton BALLROOM;
-    @FXML private RadioButton CONSERVATORY;
-    @FXML private RadioButton DINING_ROOM;
-    @FXML private RadioButton BILLIARD_ROOM;
-    @FXML private RadioButton LIBRARY;
-    @FXML private RadioButton LOUNGE;
-    @FXML private RadioButton STUDY;
-    @FXML private Button accuse;
-    @FXML private Button exit;
+    @FXML public RadioButton COLONEL_MUSTARD;
+    @FXML public RadioButton PROFESSOR_PLUM;
+    @FXML public RadioButton MR_GREEN;
+    @FXML public RadioButton MRS_WHITE;
+    @FXML public RadioButton MRS_PEACOCK;
+    @FXML public RadioButton MISS_SCARLET;
+    @FXML public RadioButton REVOLVER;
+    @FXML public RadioButton DAGGER;
+    @FXML public RadioButton LEAD_PIPE;
+    @FXML public RadioButton ROPE;
+    @FXML public RadioButton CANDLESTICK;
+    @FXML public RadioButton WRENCH;
+    @FXML public RadioButton KITCHEN;
+    @FXML public RadioButton HALL;
+    @FXML public RadioButton BALLROOM;
+    @FXML public RadioButton CONSERVATORY;
+    @FXML public RadioButton DINING_ROOM;
+    @FXML public RadioButton BILLIARD_ROOM;
+    @FXML public RadioButton LIBRARY;
+    @FXML public RadioButton LOUNGE;
+    @FXML public RadioButton STUDY;
+    @FXML public Button accuse;
+    @FXML public Button exit;
 
     @FXML
     void ballroomClicked(ActionEvent event) {
@@ -151,7 +156,39 @@ public class ControllerAccusation {
     @FXML
     void makeAccusation(ActionEvent event) {
         // show case file to player
+        // determine if accusation true
+        // call either incorrectAcc() or correctAcc(), below is testing menus call correctly
+        //correctAcc();
+        //incorrectAcc();
         accusation.printToString();
+    }
+
+    public void incorrectAcc() { // Shows LosingScreen.fxml
+        try {
+            FXMLLoader fxml = new FXMLLoader(); // need to setTexts in accordance to CaseFile contents
+            fxml.setLocation(getClass().getResource("LosingScreen.fxml"));
+            Pane losePane = fxml.load();
+            Stage stage = new Stage();
+            stage.setTitle("Clue-Less");
+            stage.setScene(new Scene(losePane, 750, 600));
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void correctAcc() { // Shows WinningScreen.fxml
+        try {
+            FXMLLoader fxml = new FXMLLoader(); // need to setTexts in accordance to CaseFile contents
+            fxml.setLocation(getClass().getResource("WinningScreen.fxml"));
+            Pane winPane = fxml.load();
+            Stage stage = new Stage();
+            stage.setTitle("Clue-Less");
+            stage.setScene(new Scene(winPane, 750, 750));
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
 }

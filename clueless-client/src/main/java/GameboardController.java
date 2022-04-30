@@ -6,7 +6,6 @@ import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.input.MouseEvent;
@@ -27,19 +26,19 @@ public class GameboardController extends Thread {
     private int rowIndex;
     MoveOptions moveOptions = new MoveOptions();
 
-    @FXML private GridPane gameBoard;
+    @FXML public GridPane gameBoard;
 
-    @FXML private Button exit;
-    @FXML private Button makeSuggestion;
-    @FXML private Button makeAccusation;
-    @FXML private Button move;
+    @FXML public Button exit;
+    @FXML public Button makeSuggestion;
+    @FXML public Button makeAccusation;
+    @FXML public Button move;
 
-    @FXML private Circle MISS_SCARLET;
-    @FXML private Circle MRS_PEACOCK;
-    @FXML private Circle PROFESSOR_PLUM;
-    @FXML private Circle COLONEL_MUSTARD;
-    @FXML private Circle MRS_WHITE;
-    @FXML private Circle MR_GREEN;
+    @FXML public Circle MISS_SCARLET;
+    @FXML public Circle MRS_PEACOCK;
+    @FXML public Circle PROFESSOR_PLUM;
+    @FXML public Circle COLONEL_MUSTARD;
+    @FXML public Circle MRS_WHITE;
+    @FXML public Circle MR_GREEN;
 
     @FXML private Rectangle STUDY;
     @FXML private Rectangle LOUNGE;
@@ -63,34 +62,39 @@ public class GameboardController extends Thread {
     @FXML private Rectangle H1;
     @FXML private Rectangle H7;
 
-    @FXML private Rectangle HomeSquareMS;
-    @FXML private Rectangle HomeSquareMW;
-    @FXML private Rectangle HomeSquareCM;
-    @FXML private Rectangle HomeSquareMP;
-    @FXML private Rectangle HomeSquareMG;
-    @FXML private Rectangle HomeSquarePP;
+    @FXML public Rectangle HomeSquareMS;
+    @FXML public Rectangle HomeSquareMW;
+    @FXML public Rectangle HomeSquareCM;
+    @FXML public Rectangle HomeSquareMP;
+    @FXML public Rectangle HomeSquareMG;
+    @FXML public Rectangle HomeSquarePP;
 
-    @FXML private Text textMustard;
-    @FXML private Text textScarlet;
-    @FXML private Text textPlum;
-    @FXML private Text textWhite;
-    @FXML private Text textGreen;
-    @FXML private Text textPeacock;
-    @FXML private Text textCandlestick;
-    @FXML private Text textRope;
-    @FXML private Text textDagger;
-    @FXML private Text textRevolver;
-    @FXML private Text textWrench;
-    @FXML private Text textLeadPipe;
-    @FXML private Text textStudy;
-    @FXML private Text textHall;
-    @FXML private Text textLounge;
-    @FXML private Text textLibrary;
-    @FXML private Text textBillard;
-    @FXML private Text textDining;
-    @FXML private Text textConservatory;
-    @FXML private Text textBallroom;
-    @FXML private Text textKitchen;
+    @FXML public Text textMustard;
+    @FXML public Text textScarlet;
+    @FXML public Text textPlum;
+    @FXML public Text textWhite;
+    @FXML public Text textGreen;
+    @FXML public Text textPeacock;
+    @FXML public Text textCandlestick;
+    @FXML public Text textRope;
+    @FXML public Text textDagger;
+    @FXML public Text textRevolver;
+    @FXML public Text textWrench;
+    @FXML public Text textLeadPipe;
+    @FXML public Text textStudy;
+    @FXML public Text textHall;
+    @FXML public Text textLounge;
+    @FXML public Text textLibrary;
+    @FXML public Text textBillard;
+    @FXML public Text textDining;
+    @FXML public Text textConservatory;
+    @FXML public Text textBallroom;
+    @FXML public Text textKitchen;
+
+    public void moveSuggested(Circle character, int columnIndex, int rowIndex) {
+        GridPane.setRowIndex(character, rowIndex);
+        GridPane.setColumnIndex(character, columnIndex);
+    }
 
     @FXML void ballroomClicked(MouseEvent event) {
         moveOptions.setMove(LocationNames.BALLROOM);
@@ -225,12 +229,13 @@ public class GameboardController extends Thread {
 
 
     @FXML public void openAccusationWindow(ActionEvent event) {  // AccusationMenu2.fxml
-        Parent root;
         try {
-            root = FXMLLoader.load(getClass().getClassLoader().getResource("AccusationMenu2.fxml"));
+            FXMLLoader fxml = new FXMLLoader();
+            fxml.setLocation(getClass().getResource("AccusationMenu2.fxml"));
+            Pane accusationPane = fxml.load();
             Stage stage = new Stage();
             stage.setTitle("Clue-Less Accusation");
-            stage.setScene(new Scene(root, 1000, 364));
+            stage.setScene(new Scene(accusationPane, 1000, 364));
             stage.show();
         } catch (IOException e) {
             e.printStackTrace();
@@ -238,7 +243,6 @@ public class GameboardController extends Thread {
     }
 
     @FXML public void openSuggestionWindow(ActionEvent event) {  // SuggestionMenu.fxml
-        Parent root;
         try {
             FXMLLoader fxml = new FXMLLoader();
             fxml.setLocation(getClass().getResource("SuggestionMenu.fxml"));
@@ -250,6 +254,9 @@ public class GameboardController extends Thread {
             ControllerSuggestion suggest = fxml.getController();
             String test = "IWHBYD";
             suggest.suggestRoom.setText(test);
+            columnIndex = GridPane.getColumnIndex(MISS_SCARLET);
+            rowIndex = GridPane.getRowIndex(MISS_SCARLET);
+            moveSuggested(MR_GREEN, columnIndex, rowIndex);
         } catch (IOException e) {
             e.printStackTrace();
         }
