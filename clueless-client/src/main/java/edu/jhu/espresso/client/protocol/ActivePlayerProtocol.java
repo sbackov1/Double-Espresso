@@ -63,11 +63,9 @@ public class ActivePlayerProtocol implements ClueLessProtocol
     private ActivePlayerProtocolSelector makeSuggestionChoice(Suggestion options)
     {
         options.mainSugMenu();
-     //   options.setRoomNames(RoomNames.BILLIARD_ROOM);
         options.setSuggestionStatus(SuggestionStatus.MAKING_SUGGESTION);
 
         CaseDetails caseDetails = new CaseDetails();
-        caseDetails.setRoom(RoomNames.BILLIARD_ROOM);
         caseDetails.setCharacterNames(options.getCharacter());
         caseDetails.setWeapon(options.getWeapon());
         caseDetails.setCharacterNames(options.getCharacter());
@@ -134,7 +132,6 @@ public class ActivePlayerProtocol implements ClueLessProtocol
     public void goToSuggestionMenu(){
 
         client.write(makeSuggestionChoice(suggestion));
-
         SuggestionTestimonyResponse response = client.waitForResponse(SuggestionTestimonyResponse.class);
         updateNotebook(response);
 

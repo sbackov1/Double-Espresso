@@ -2,8 +2,6 @@ package edu.jhu.espresso.client;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.sun.org.slf4j.internal.Logger;
-import com.sun.org.slf4j.internal.LoggerFactory;
 import edu.jhu.espresso.client.domain.GameEvents.GameStart;
 import edu.jhu.espresso.client.domain.GameEvents.TurnStart;
 import edu.jhu.espresso.client.domain.GamePieces.CardDeck;

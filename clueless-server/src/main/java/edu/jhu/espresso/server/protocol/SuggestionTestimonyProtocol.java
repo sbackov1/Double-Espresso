@@ -46,7 +46,9 @@ public class SuggestionTestimonyProtocol
 
         while(!suggestionDisproven && playersAsked < waitingPlayers.size())
         {
+
             Suggestion response;
+
             if(this.currentWaitingPlayer.getActiveStatus()){ response = this.activePlayerQuery();}
 
             else { response = this.inactivePlayerQuery();}
