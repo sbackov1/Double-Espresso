@@ -35,6 +35,7 @@ public class GameboardController {
     @FXML public Button makeSuggestion;
     @FXML public Button makeAccusation;
     @FXML public Button move;
+    @FXML public Button EndTurn;
 
     @FXML public Circle MISS_SCARLET;
     @FXML public Circle MRS_PEACOCK;
@@ -236,7 +237,6 @@ public class GameboardController {
         //Platform.exit();
     }
 
-
     @FXML public void openAccusationWindow(ActionEvent event) {  // AccusationMenu2.fxml
         try {
             FXMLLoader fxml = new FXMLLoader();
@@ -276,6 +276,10 @@ public class GameboardController {
         moveOptions.printToString();
         GridPane.setColumnIndex(MISS_SCARLET, columnIndex);
         GridPane.setRowIndex(MISS_SCARLET, rowIndex);
+    }
+
+    @FXML void endTurn(ActionEvent event) {
+
     }
 
     public void makeSampleNotebook(int num) {

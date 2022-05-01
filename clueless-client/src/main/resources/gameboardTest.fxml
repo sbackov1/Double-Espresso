@@ -208,9 +208,10 @@
                         <Button fx:id="makeSuggestion" mnemonicParsing="false" onAction="#openSuggestionWindow" style="-fx-background-color: blue;" text="Make Suggestion" textFill="WHITE" />
                         <Button fx:id="makeAccusation" mnemonicParsing="false" onAction="#openAccusationWindow" style="-fx-background-color: blue;" text="Make Accusation" textFill="WHITE" />
                         <Button fx:id="move" mnemonicParsing="false" onAction="#sendMove" style="-fx-background-color: blue;" text="Send Move" textFill="WHITE" />
+                        <Button fx:id="EndTurn" mnemonicParsing="false" onAction="#endTurn" style="-fx-background-color: blue;" text="End Turn" textFill="WHITE" />
                      </buttons>
                      <HBox.margin>
-                        <Insets left="180.0" right="190.0" />
+                        <Insets left="50.0" right="140.0" />
                      </HBox.margin>
                   </ButtonBar>
                </children>
