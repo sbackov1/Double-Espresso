@@ -167,7 +167,7 @@ public class ControllerAccusation {
         // determine if accusation true
         // call either incorrectAcc() or correctAcc(), below is testing menus call correctly
         //correctAcc();
-        correctAcc();
+        incorrectAcc();
         accusation.printToString();
         ((Stage)(((Button)event.getSource()).getScene().getWindow())).close();
     }

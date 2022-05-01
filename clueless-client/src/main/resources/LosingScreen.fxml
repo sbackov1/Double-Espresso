@@ -41,12 +41,7 @@
                         </Text>
                     </children>
                 </VBox>
-                <Button fx:id="returnToGame" mnemonicParsing="false" onAction="#returnGame" style="-fx-background-color: blue;" text="Return to Game" textFill="WHITE" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
-                    <font>
-                        <Font size="18.0" />
-                    </font>
-                </Button>
-                <Button fx:id="returnFoyer" mnemonicParsing="false" onAction="#returnFoyer" style="-fx-background-color: blue;" text="Return to Foyer" textFill="WHITE" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
+                <Button fx:id="returnToGame" mnemonicParsing="false" onAction="#returnGame" style="-fx-background-color: blue;" text="Return to Game" textFill="WHITE" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
                     <font>
                         <Font size="18.0" />
                     </font>

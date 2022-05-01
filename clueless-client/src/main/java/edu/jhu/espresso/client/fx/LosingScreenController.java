@@ -14,7 +14,6 @@ import java.io.IOException;
 public class LosingScreenController {
 
     @FXML public Button returnToGame;
-    @FXML public Button returnFoyer;
     @FXML public Text murderer;
     @FXML public Text murderWeapon;
     @FXML public Text murderLocation;
@@ -29,23 +28,6 @@ public class LosingScreenController {
 
     public void setMurderLocation(String room) {
         murderLocation.setText(room);
-    }
-
-    @FXML void returnFoyer(ActionEvent event) {
-        try {
-            FXMLLoader fxmlF = new FXMLLoader();
-            fxmlF.setLocation(getClass().getClassLoader().getResource("GameFoyer.fxml"));
-            Pane foyerPane = fxmlF.load();
-            Stage stage = new Stage();
-            stage.setTitle("Clue-Less Foyer");
-            stage.setScene(new Scene(foyerPane, 700, 364));
-            stage.show();
-        }
-        catch (IOException e) {
-            e.printStackTrace();
-        }
-        // would exit game completely and return to the gameFoyer
-        // would operate the same way as Leave Game button in edu.jhu.espresso.client.fx.GameboardController
     }
 
     @FXML void returnGame(ActionEvent event) {

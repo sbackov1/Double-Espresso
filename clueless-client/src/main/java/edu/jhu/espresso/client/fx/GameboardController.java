@@ -1,6 +1,7 @@
 package edu.jhu.espresso.client.fx;
 
 import edu.jhu.espresso.client.domain.*;
+import javafx.application.Platform;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.collections.ObservableMap;
@@ -12,6 +13,7 @@ import javafx.scene.control.Button;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
+import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
@@ -45,6 +47,7 @@ public class GameboardController {
     @FXML public Circle MRS_WHITE;
     @FXML public Circle MR_GREEN;
 
+    ArrayList<Rectangle> rooms = new ArrayList<>();
     @FXML private Rectangle STUDY;
     @FXML private Rectangle LOUNGE;
     @FXML private Rectangle HALL;
@@ -146,6 +149,14 @@ public class GameboardController {
 
     }
 
+
+    public void resetRooms() {
+        for(Rectangle room : rooms) {
+           room.setStroke(Color.BLACK);
+           room.setStrokeWidth(1);
+        }
+    }
+
     public void moveSuggested(Circle character, int columnIndex, int rowIndex) {
         GridPane.setRowIndex(character, rowIndex);
         GridPane.setColumnIndex(character, columnIndex);
@@ -155,130 +166,193 @@ public class GameboardController {
         moveOptions.setMove(LocationNames.BALLROOM);
         columnIndex = GridPane.getColumnIndex(BALLROOM);
         rowIndex = GridPane.getRowIndex(BALLROOM);
+        BALLROOM.setStrokeWidth(10);
+        BALLROOM.setStroke(Color.RED);
+        rooms.add(BALLROOM);
     }
 
     @FXML void billardClicked(MouseEvent event) {
         moveOptions.setMove(LocationNames.BILLIARD_ROOM);
         columnIndex = GridPane.getColumnIndex(BILLARD_ROOM);
         rowIndex = GridPane.getRowIndex(BILLARD_ROOM);
+        BILLARD_ROOM.setStrokeWidth(10);
+        BILLARD_ROOM.setStroke(Color.RED);
+        rooms.add(BILLARD_ROOM);
     }
 
     @FXML void conservatoryClicked(MouseEvent event) {
         moveOptions.setMove(LocationNames.CONSERVATORY);
         columnIndex = GridPane.getColumnIndex(CONSERVATORY);
         rowIndex = GridPane.getRowIndex(CONSERVATORY);
+        CONSERVATORY.setStrokeWidth(10);
+        CONSERVATORY.setStroke(Color.RED);
+        rooms.add(CONSERVATORY);
     }
 
     @FXML void diningClicked(MouseEvent event) {
         moveOptions.setMove(LocationNames.DINING_ROOM);
         columnIndex = GridPane.getColumnIndex(DINING_ROOM);
         rowIndex = GridPane.getRowIndex(DINING_ROOM);
+        DINING_ROOM.setStrokeWidth(10);
+        DINING_ROOM.setStroke(Color.RED);
+        rooms.add(DINING_ROOM);
     }
 
     @FXML void studyClicked(MouseEvent event) {
         moveOptions.setMove(LocationNames.STUDY);
         columnIndex = GridPane.getColumnIndex(STUDY);
         rowIndex = GridPane.getRowIndex(STUDY);
+        STUDY.setStrokeWidth(10);
+        STUDY.setStroke(Color.RED);
+        rooms.add(STUDY);
     }
 
     @FXML void hallClicked(MouseEvent event) {
         moveOptions.setMove(LocationNames.HALL);
         columnIndex = GridPane.getColumnIndex(HALL);
         rowIndex = GridPane.getRowIndex(HALL);
+        HALL.setStrokeWidth(10);
+        HALL.setStroke(Color.RED);
+        rooms.add(HALL);
     }
 
     @FXML void kitchenClicked(MouseEvent event) {
         moveOptions.setMove(LocationNames.KITCHEN);
         columnIndex = GridPane.getColumnIndex(KITCHEN);
         rowIndex = GridPane.getRowIndex(KITCHEN);
+        KITCHEN.setStrokeWidth(10);
+        KITCHEN.setStroke(Color.RED);
+        rooms.add(KITCHEN);
     }
 
     @FXML void libraryClicked(MouseEvent event) {
         moveOptions.setMove(LocationNames.LIBRARY);
         columnIndex = GridPane.getColumnIndex(LIBRARY);
         rowIndex = GridPane.getRowIndex(LIBRARY);
+        LIBRARY.setStrokeWidth(10);
+        LIBRARY.setStroke(Color.RED);
+        rooms.add(LIBRARY);
     }
 
     @FXML void loungeClicked(MouseEvent event) {
         moveOptions.setMove(LocationNames.LOUNGE);
         columnIndex = GridPane.getColumnIndex(LOUNGE);
         rowIndex = GridPane.getRowIndex(LOUNGE);
+        LOUNGE.setStrokeWidth(10);
+        LOUNGE.setStroke(Color.RED);
+        rooms.add(LOUNGE);
     }
 
     @FXML void h1Clicked(MouseEvent event) {
         moveOptions.setMove(LocationNames.HALLWAY1);
         columnIndex = GridPane.getColumnIndex(H1);
         rowIndex = GridPane.getRowIndex(H1);
+        H1.setStrokeWidth(10);
+        H1.setStroke(Color.RED);
+        rooms.add(H1);
     }
 
     @FXML void h2Clicked(MouseEvent event) {
         moveOptions.setMove(LocationNames.HALLWAY2);
         columnIndex = GridPane.getColumnIndex(H2);
         rowIndex = GridPane.getRowIndex(H2);
+        H2.setStrokeWidth(10);
+        H2.setStroke(Color.RED);
+        rooms.add(H2);
     }
 
     @FXML void h3Clicked(MouseEvent event) {
         moveOptions.setMove(LocationNames.HALLWAY3);
         columnIndex = GridPane.getColumnIndex(H3);
         rowIndex = GridPane.getRowIndex(H3);
+        H3.setStrokeWidth(10);
+        H3.setStroke(Color.RED);
+        rooms.add(H3);
     }
 
     @FXML void h4Clicked(MouseEvent event) {
         moveOptions.setMove(LocationNames.HALLWAY4);
         columnIndex = GridPane.getColumnIndex(H4);
         rowIndex = GridPane.getRowIndex(H4);
+        H4.setStrokeWidth(10);
+        H4.setStroke(Color.RED);
+        rooms.add(H4);
     }
 
     @FXML void h5Clicked(MouseEvent event) {
         moveOptions.setMove(LocationNames.HALLWAY5);
         columnIndex = GridPane.getColumnIndex(H5);
         rowIndex = GridPane.getRowIndex(H5);
+        H5.setStrokeWidth(10);
+        H5.setStroke(Color.RED);
+        rooms.add(H5);
     }
 
     @FXML void h6Clicked(MouseEvent event) {
         moveOptions.setMove(LocationNames.HALLWAY6);
         columnIndex = GridPane.getColumnIndex(H6);
         rowIndex = GridPane.getRowIndex(H6);
+        H6.setStrokeWidth(10);
+        H6.setStroke(Color.RED);
+        rooms.add(H6);
     }
 
     @FXML void h7Clicked(MouseEvent event) {
         moveOptions.setMove(LocationNames.HALLWAY7);
         columnIndex = GridPane.getColumnIndex(H7);
         rowIndex = GridPane.getRowIndex(H7);
+        H7.setStrokeWidth(10);
+        H7.setStroke(Color.RED);
+        rooms.add(H7);
     }
 
     @FXML void h8Clicked(MouseEvent event) {
         moveOptions.setMove(LocationNames.HALLWAY8);
         columnIndex = GridPane.getColumnIndex(H8);
         rowIndex = GridPane.getRowIndex(H8);
+        H8.setStrokeWidth(10);
+        H8.setStroke(Color.RED);
+        rooms.add(H8);
     }
 
     @FXML void h9Clicked(MouseEvent event) {
         moveOptions.setMove(LocationNames.HALLWAY9);
         columnIndex = GridPane.getColumnIndex(H9);
         rowIndex = GridPane.getRowIndex(H9);
+        H9.setStrokeWidth(10);
+        H9.setStroke(Color.RED);
+        rooms.add(H9);
     }
 
     @FXML void h10Clicked(MouseEvent event) {
         moveOptions.setMove(LocationNames.HALLWAY10);
         columnIndex = GridPane.getColumnIndex(H10);
         rowIndex = GridPane.getRowIndex(H10);
+        H10.setStrokeWidth(10);
+        H10.setStroke(Color.RED);
+        rooms.add(H10);
     }
 
     @FXML void h11Clicked(MouseEvent event) {
         moveOptions.setMove(LocationNames.HALLWAY11);
         columnIndex = GridPane.getColumnIndex(H11);
         rowIndex = GridPane.getRowIndex(H11);
+        H11.setStrokeWidth(10);
+        H11.setStroke(Color.RED);
+        rooms.add(H11);
     }
 
     @FXML void h12Clicked(MouseEvent event) {
         moveOptions.setMove(LocationNames.HALLWAY12);
         columnIndex = GridPane.getColumnIndex(H12);
         rowIndex = GridPane.getRowIndex(H12);
+        H12.setStrokeWidth(10);
+        H12.setStroke(Color.RED);
+        rooms.add(H12);
     }
 
     @FXML public void exitGame(ActionEvent event) {  // leave the game : will either exit program completely, or boot to foyer
-        //Platform.exit();
+        Platform.exit();
     }
 
     @FXML public void openAccusationWindow(ActionEvent event) {  // AccusationMenu2.fxml
@@ -320,6 +394,7 @@ public class GameboardController {
         moveOptions.printToString();
         GridPane.setColumnIndex(MISS_SCARLET, columnIndex);
         GridPane.setRowIndex(MISS_SCARLET, rowIndex);
+        resetRooms();
     }
 
     @FXML void endTurn(ActionEvent event) {
