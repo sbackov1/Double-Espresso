@@ -385,7 +385,8 @@ public class GameboardController {
             stage.show();
             ControllerSuggestion suggest = fxml.getController();
             String test = "IWHBYD";
-            suggest.suggestRoom.setText(test);
+           // suggest.suggestRoom.setText(test);
+            suggest.suggestRoom.setText("       " + String.valueOf(moveOptions.getLocation()));
             //suggest.setFXMLLoader(fxml);
             //columnIndex = GridPane.getColumnIndex(MISS_SCARLET);
             //rowIndex = GridPane.getRowIndex(MISS_SCARLET);
