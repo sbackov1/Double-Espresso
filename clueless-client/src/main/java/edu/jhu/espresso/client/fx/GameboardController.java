@@ -8,6 +8,8 @@ import javafx.collections.ObservableMap;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.HPos;
+import javafx.geometry.VPos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.input.MouseEvent;
@@ -19,6 +21,7 @@ import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import org.apache.commons.lang3.EnumUtils;
 
 import java.io.IOException;
 import java.util.*;
@@ -27,10 +30,12 @@ public class GameboardController {
 
     private final CardDeck cd = new CardDeck();
     private final Notebook notebook = new Notebook(cd);
-
+    private Player player = new Player(1, 1);
     private int columnIndex;
     private int rowIndex;
     MoveOptions moveOptions = new MoveOptions();
+    List<RoomNames> locationRooms = Arrays.asList(RoomNames.values());
+
 
     @FXML public GridPane gameBoard;
 
@@ -395,6 +400,20 @@ public class GameboardController {
         GridPane.setColumnIndex(MISS_SCARLET, columnIndex);
         GridPane.setRowIndex(MISS_SCARLET, rowIndex);
         resetRooms();
+
+        for(RoomNames location : locationRooms) {
+            if(EnumUtils.isValidEnum(RoomNames.class, String.valueOf(moveOptions.getLocation()))) {
+                if (location.equals(RoomNames.valueOf(String.valueOf(moveOptions.getLocation())))) {
+                    GridPane.setHalignment(MISS_SCARLET, HPos.LEFT);
+                    GridPane.setValignment(MISS_SCARLET, VPos.TOP);
+                }
+            }
+            else {
+                GridPane.setHalignment(MISS_SCARLET, HPos.CENTER);
+                GridPane.setValignment(MISS_SCARLET, VPos.CENTER);
+            }
+        }
+
     }
 
     @FXML void endTurn(ActionEvent event) {

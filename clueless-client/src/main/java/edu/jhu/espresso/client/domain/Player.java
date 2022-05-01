@@ -1,5 +1,7 @@
 package edu.jhu.espresso.client.domain;
 
+import javafx.scene.shape.Circle;
+
 public class Player {
     private CharacterNames character;
     private boolean activeStatus;
@@ -9,12 +11,21 @@ public class Player {
 
     private Player nextPlayer;
     private Player previousPlayer;
+    private Circle circle;
 
 
     public Player(int gID, int pID) {
         this.playerID = pID;
         this.gameID = gID;
         this.activeStatus = true;
+    }
+
+    public void setCircle(Circle circle) {
+        this.circle = circle;
+    }
+
+    public Circle getCircle() {
+        return circle;
     }
 
     public void makeNotebook(CardDeck c) {
