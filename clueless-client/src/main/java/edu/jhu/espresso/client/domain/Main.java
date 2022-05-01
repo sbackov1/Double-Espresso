@@ -23,7 +23,7 @@ public class Main extends Application {
 
         Thread thread = new Thread(() -> {
             int num = 1;
-            for (int i = 0; i < 2; i++) {
+            for (int i = 0; i < 5; i++) {
                 gameboardController.makeSampleNotebook(num);
                 try {
                     Thread.sleep(5000);

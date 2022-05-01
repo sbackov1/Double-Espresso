@@ -19,6 +19,7 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.util.*;
 
 public class GameboardController {
 
@@ -95,10 +96,32 @@ public class GameboardController {
     @FXML public Text textBallroom;
     @FXML public Text textKitchen;
 
+    private final ObjectProperty<Font> mustardFontObservable = new ReadOnlyObjectWrapper<>(statusForCard(notebook, "COLONEL_MUSTARD").getFont());
     private final ObjectProperty<Font> scarletFontObservable = new ReadOnlyObjectWrapper<>(statusForCard(notebook, "MISS_SCARLET").getFont());
+    private final ObjectProperty<Font> plumFontObservable = new ReadOnlyObjectWrapper<>(statusForCard(notebook, "PROFESSOR_PLUM").getFont());
+    private final ObjectProperty<Font> whiteFontObservable = new ReadOnlyObjectWrapper<>(statusForCard(notebook, "MRS_WHITE").getFont());
+    private final ObjectProperty<Font> greenFontObservable = new ReadOnlyObjectWrapper<>(statusForCard(notebook, "MR_GREEN").getFont());
+    private final ObjectProperty<Font> peacockFontObservable = new ReadOnlyObjectWrapper<>(statusForCard(notebook, "MRS_PEACOCK").getFont());
+    private final ObjectProperty<Font> candlestickFontObservable = new ReadOnlyObjectWrapper<>(statusForCard(notebook, "CANDLESTICK").getFont());
+    private final ObjectProperty<Font> ropeFontObservable = new ReadOnlyObjectWrapper<>(statusForCard(notebook, "ROPE").getFont());
+    private final ObjectProperty<Font> daggerFontObservable = new ReadOnlyObjectWrapper<>(statusForCard(notebook, "DAGGER").getFont());
+    private final ObjectProperty<Font> revolverFontObservable = new ReadOnlyObjectWrapper<>(statusForCard(notebook, "REVOLVER").getFont());
+    private final ObjectProperty<Font> wrenchFontObservable = new ReadOnlyObjectWrapper<>(statusForCard(notebook, "WRENCH").getFont());
+    private final ObjectProperty<Font> leadPipeFontObservable = new ReadOnlyObjectWrapper<>(statusForCard(notebook, "LEAD_PIPE").getFont());
+    private final ObjectProperty<Font> studyFontObservable = new ReadOnlyObjectWrapper<>(statusForCard(notebook, "STUDY").getFont());
+    private final ObjectProperty<Font> hallFontObservable = new ReadOnlyObjectWrapper<>(statusForCard(notebook, "HALL").getFont());
+    private final ObjectProperty<Font> loungeFontObservable = new ReadOnlyObjectWrapper<>(statusForCard(notebook, "LOUNGE").getFont());
+    private final ObjectProperty<Font> libraryFontObservable = new ReadOnlyObjectWrapper<>(statusForCard(notebook, "LIBRARY").getFont());
+    private final ObjectProperty<Font> billiardRoomFontObservable = new ReadOnlyObjectWrapper<>(statusForCard(notebook, "BILLIARD_ROOM").getFont());
+    private final ObjectProperty<Font> diningRoomFontObservable = new ReadOnlyObjectWrapper<>(statusForCard(notebook, "DINING_ROOM").getFont());
+    private final ObjectProperty<Font> conservatoryFontObservable = new ReadOnlyObjectWrapper<>(statusForCard(notebook, "CONSERVATORY").getFont());
+    private final ObjectProperty<Font> ballRoomFontObservable = new ReadOnlyObjectWrapper<>(statusForCard(notebook, "BALLROOM").getFont());
+    private final ObjectProperty<Font> kitchenFontObservable = new ReadOnlyObjectWrapper<>(statusForCard(notebook, "KITCHEN").getFont());
+
 
     public void initialize()
     {
+
         textScarlet.fontProperty().bind(scarletFontObservable);
     }
 
