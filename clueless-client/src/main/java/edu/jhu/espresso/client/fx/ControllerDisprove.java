@@ -31,7 +31,7 @@ public class ControllerDisprove {
     @FXML public RadioButton BALLROOM;
     @FXML public RadioButton CONSERVATORY;
     @FXML public RadioButton DINING_ROOM;
-    @FXML public RadioButton BILLARD_ROOM;
+    @FXML public RadioButton BILLIARD_ROOM;
     @FXML public RadioButton LIBRARY;
     @FXML public RadioButton LOUNGE;
     @FXML public RadioButton STUDY;
@@ -58,7 +58,7 @@ public class ControllerDisprove {
 
     @FXML
     void billardClicked(ActionEvent event) {
-        response.setCardString("BILLARD_ROOM");
+        response.setCardString("BILLIARD_ROOM");
     }
 
     @FXML
