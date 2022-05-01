@@ -121,8 +121,29 @@ public class GameboardController {
 
     public void initialize()
     {
-
+        textMustard.fontProperty().bind(mustardFontObservable);
         textScarlet.fontProperty().bind(scarletFontObservable);
+        textPlum.fontProperty().bind(plumFontObservable);
+        textWhite.fontProperty().bind(whiteFontObservable);
+        textGreen.fontProperty().bind(greenFontObservable);
+        textPeacock.fontProperty().bind(peacockFontObservable);
+        textCandlestick.fontProperty().bind(candlestickFontObservable);
+        textRope.fontProperty().bind(ropeFontObservable);
+        textDagger.fontProperty().bind(daggerFontObservable);
+        textRevolver.fontProperty().bind(revolverFontObservable);
+        textWrench.fontProperty().bind(wrenchFontObservable);
+        textLeadPipe.fontProperty().bind(leadPipeFontObservable);
+        textStudy.fontProperty().bind(studyFontObservable);
+        textHall.fontProperty().bind(hallFontObservable);
+        textLounge.fontProperty().bind(loungeFontObservable);
+        textLibrary.fontProperty().bind(libraryFontObservable);
+        textBillard.fontProperty().bind(billiardRoomFontObservable);
+        textDining.fontProperty().bind(diningRoomFontObservable);
+        textConservatory.fontProperty().bind(conservatoryFontObservable);
+        textBallroom.fontProperty().bind(ballRoomFontObservable);
+        textKitchen.fontProperty().bind(kitchenFontObservable);
+
+
     }
 
     public void moveSuggested(Circle character, int columnIndex, int rowIndex) {
@@ -306,7 +327,28 @@ public class GameboardController {
     }
 
     public void makeSampleNotebook(int num) {
+        mustardFontObservable.set(statusForCard(notebook, "COLONEL_MUSTARD").getFont());
         scarletFontObservable.set(statusForCard(notebook, "MISS_SCARLET").getFont());
+        plumFontObservable.set(statusForCard(notebook, "PROFESSOR_PLUM").getFont());
+        whiteFontObservable.set(statusForCard(notebook, "MRS_WHITE").getFont());
+        greenFontObservable.set(statusForCard(notebook, "MR_GREEN").getFont());
+        peacockFontObservable.set(statusForCard(notebook, "MRS_PEACOCK").getFont());
+        candlestickFontObservable.set(statusForCard(notebook, "CANDLESTICK").getFont());
+        daggerFontObservable.set(statusForCard(notebook, "DAGGER").getFont());
+        revolverFontObservable.set(statusForCard(notebook, "REVOLVER").getFont());
+        leadPipeFontObservable.set(statusForCard(notebook, "LEAD_PIPE").getFont());
+        ropeFontObservable.set(statusForCard(notebook, "ROPE").getFont());
+        wrenchFontObservable.set(statusForCard(notebook, "WRENCH").getFont());
+        studyFontObservable.set(statusForCard(notebook, "STUDY").getFont());
+        libraryFontObservable.set(statusForCard(notebook, "LIBRARY").getFont());
+        hallFontObservable.set(statusForCard(notebook, "HALL").getFont());
+        conservatoryFontObservable.set(statusForCard(notebook, "CONSERVATORY").getFont());
+        diningRoomFontObservable.set(statusForCard(notebook, "DINING_ROOM").getFont());
+        ballRoomFontObservable.set(statusForCard(notebook, "BALLROOM").getFont());
+        loungeFontObservable.set(statusForCard(notebook, "LOUNGE").getFont());
+        kitchenFontObservable.set(statusForCard(notebook, "KITCHEN").getFont());
+        billiardRoomFontObservable.set(statusForCard(notebook, "BILLIARD_ROOM").getFont());
+
         switch (num) {
             case 1:
 
@@ -343,7 +385,7 @@ public class GameboardController {
         Card cardWithName = notebook.getCardNotebookStatusMap().keySet().stream()
                 .filter(card -> card.getName().equals(cardName))
                 .findFirst()
-                .orElseThrow(IllegalStateException::new);
+                .orElseThrow(IllegalStateException::new); // called
 
         return map.get(cardWithName);
     }

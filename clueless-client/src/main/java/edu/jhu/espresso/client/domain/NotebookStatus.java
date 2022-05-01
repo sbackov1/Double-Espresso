@@ -11,10 +11,10 @@ public enum NotebookStatus
     HAND;
 
     private final int size = 13;
-    private final String fontName = "Courier";
+    private final String fontName = "Times New Roman";
     private final Font handFont = Font.font(fontName, FontWeight.BOLD, FontPosture.REGULAR, size);
     private final Font knownFont = Font.font(fontName, FontWeight.NORMAL, FontPosture.ITALIC, size);
-    private final Font unknownFont = Font.font(fontName, FontWeight.BOLD, FontPosture.REGULAR, size);
+    private final Font unknownFont = Font.font(fontName, FontWeight.NORMAL, FontPosture.REGULAR, size);
 
     public Font toFont()
     {
