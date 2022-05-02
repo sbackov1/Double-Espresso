@@ -72,20 +72,95 @@ public class ControllerDisprove {
             buttons.add(radioButton);
         }*/
 
-        for(RadioButton rb : buttons) {
+        for(AllCardEnums enums : allCards) {
             System.out.println("loop one");
+
+            returnRadioButton(String.valueOf(enums)).setDisable(true);
             for(Card card : validCards) {
                 System.out.println("loop two");
-                if(card.getName().equals(String.valueOf(rb.getId()))) {
+                if(card.getName().equals(String.valueOf(enums))) {
                     System.out.println("if statement");
-                    rb.setDisable(false);
+                    returnRadioButton(String.valueOf(enums)).setDisable(false);
                 }
-                else {
-                    System.out.println("else statement");
-                    rb.setDisable(true);
+
                 }
             }
         }
+
+
+    public RadioButton returnRadioButton(String rb){
+
+        RadioButton btn;
+        switch (rb) {
+
+            case "PROFESSOR_PLUM":
+                btn = PROFESSOR_PLUM;
+                break;
+            case "MRS_WHITE":
+                btn = MRS_WHITE;
+                break;
+            case "MR_GREEN":
+                btn = MR_GREEN;
+                break;
+            case "MRS_PEACOCK":
+                btn = MRS_PEACOCK;
+                break;
+            case "MISS_SCARLET":
+                btn = MISS_SCARLET;
+                break;
+            case "COLONEL_MUSTARD":
+                btn = COLONEL_MUSTARD;
+                break;
+            case "KITCHEN":
+                btn = KITCHEN;
+                break;
+            case "HALL":
+                btn = HALL;
+                break;
+            case "BALLROOM":
+                btn = BALLROOM;
+                break;
+            case "CONSERVATORY":
+                btn = CONSERVATORY;
+                break;
+            case "DINING_ROOM":
+                btn = DINING_ROOM;
+                break;
+            case "BILLIARD_ROOM":
+                btn = BILLIARD_ROOM;
+                break;
+            case "LIBRARY":
+                btn = LIBRARY;
+                break;
+            case "LOUNGE":
+                btn = LOUNGE;
+                break;
+            case "STUDY":
+                btn = STUDY;
+                break;
+            case "REVOLVER":
+                btn = REVOLVER;
+                break;
+            case "DAGGER":
+                btn = DAGGER;
+                break;
+            case "LEAD_PIPE":
+                btn = LEAD_PIPE;
+                break;
+            case "ROPE":
+                btn = ROPE;
+                break;
+            case "CANDLESTICK":
+                btn = CANDLESTICK;
+                break;
+            case "WRENCH":
+                btn = WRENCH;
+                break;
+            default:
+                throw new IllegalArgumentException(this + "not mapped to button");
+        }
+
+        return btn;
     }
 
     @FXML
