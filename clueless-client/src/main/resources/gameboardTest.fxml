@@ -225,8 +225,8 @@
                      <buttons>
                         <Button fx:id="makeAccusation" mnemonicParsing="false" onAction="#openAccusationWindow" prefHeight="31.0" style="-fx-background-color: blue;" text="Make Accusation" textFill="WHITE" />
                         <Button fx:id="move" mnemonicParsing="false" onAction="#sendMove" prefHeight="31.0" style="-fx-background-color: blue;" text="Send Move" textFill="WHITE" />
-                        <Button fx:id="EndTurn" mnemonicParsing="false" onAction="#endTurn" prefHeight="31.0" prefWidth="198.0" style="-fx-background-color: blue;" text="End Turn" textFill="WHITE" />
                         <Button fx:id="makeSuggestion" maxHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#openSuggestionWindow" prefHeight="31.0" prefWidth="234.0" style="-fx-background-color: blue;" text="Make Suggestion" textFill="WHITE" />
+                        <Button fx:id="EndTurn" mnemonicParsing="false" onAction="#endTurn" prefHeight="31.0" prefWidth="198.0" style="-fx-background-color: blue;" text="End Turn" textFill="WHITE" />
                      </buttons>
                      <HBox.margin>
                         <Insets left="50.0" right="140.0" />
