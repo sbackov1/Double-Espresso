@@ -130,19 +130,6 @@ public class ControllerSuggestion {
         //columnIndex = GridPane.getColumnIndex(board.MISS_SCARLET);
         //rowIndex = GridPane.getRowIndex(board.MISS_SCARLET);
         //board.moveSuggested(board.MR_GREEN, columnIndex, rowIndex);
-        try {
-            FXMLLoader fxml = new FXMLLoader(); // for DisproveSuggestion.fxml
-            fxml.setLocation(getClass().getClassLoader().getResource("DisproveSuggestion.fxml"));
-            Pane disprovePane = fxml.load();
-            Stage stage = new Stage();
-            stage.setTitle("Clue-Less Suggestion");
-            stage.setScene(new Scene(disprovePane, 1000, 364));
-            stage.show();
-            ((Stage)(((Button)event.getSource()).getScene().getWindow())).close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
     }
 
 }

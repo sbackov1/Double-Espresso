@@ -154,6 +154,21 @@ public class GameboardController {
 
     }
 
+    public void disprove() {
+        try {
+            FXMLLoader fxml = new FXMLLoader(); // for DisproveSuggestion.fxml
+            fxml.setLocation(getClass().getClassLoader().getResource("DisproveSuggestion.fxml"));
+            Pane disprovePane = fxml.load();
+            Stage stage = new Stage();
+            stage.setTitle("Clue-Less Suggestion");
+            stage.setScene(new Scene(disprovePane, 1000, 364));
+            stage.show();
+            //((Stage)(((Button)event.getSource()).getScene().getWindow())).close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
 
     public void resetRooms() {
         for(Rectangle room : rooms) {
@@ -418,7 +433,21 @@ public class GameboardController {
     }
 
     @FXML void endTurn(ActionEvent event) {
-
+        // drop a method in endTurn to end active player turn
+        try {
+            FXMLLoader fxml = new FXMLLoader(); // for DisproveSuggestion.fxml
+            fxml.setLocation(getClass().getClassLoader().getResource("DisproveSuggestion.fxml"));
+            Pane disprovePane = fxml.load();
+            Stage stage = new Stage();
+            stage.setTitle("Clue-Less Suggestion");
+            stage.setScene(new Scene(disprovePane, 1000, 364));
+            stage.show();
+            ControllerDisprove disprove = fxml.getController();
+            disprove.activeCards();
+            //((Stage)(((Button)event.getSource()).getScene().getWindow())).close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     public void makeSampleNotebook(int num) {

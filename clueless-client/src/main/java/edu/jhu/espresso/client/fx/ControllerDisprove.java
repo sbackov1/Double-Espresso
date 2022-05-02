@@ -1,12 +1,18 @@
 package edu.jhu.espresso.client.fx;
 
-import edu.jhu.espresso.client.domain.SuggestionResponse;
+import edu.jhu.espresso.client.domain.*;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.RadioButton;
+import javafx.scene.control.Toggle;
 import javafx.scene.control.ToggleGroup;
 import javafx.stage.Stage;
+import org.apache.commons.lang3.EnumUtils;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 public class ControllerDisprove {
     SuggestionResponse response = new SuggestionResponse();
@@ -14,6 +20,9 @@ public class ControllerDisprove {
     @FXML public ToggleGroup disproveGroup;
 
     //only hand cards matching suggestion should be pickable for disproving suggestions
+    ArrayList<RadioButton> buttons = new ArrayList<>();
+    List<AllCardEnums> allCards = Arrays.asList(AllCardEnums.values());
+
     @FXML public RadioButton REVOLVER;
     @FXML public RadioButton DAGGER;
     @FXML public RadioButton LEAD_PIPE;
@@ -49,6 +58,34 @@ public class ControllerDisprove {
         //response.setCardString(String.valueOf(disproveGroup.getSelectedToggle()));
         response.printToString();
         ((Stage)(((Button)event.getSource()).getScene().getWindow())).close();
+    }
+    private final CardDeck cd = new CardDeck();
+    public void activeCards() {
+        ArrayList<Card> validCards = new ArrayList<>();
+        validCards.add(cd.getCard(cd.getCardsList(), "PROFESSOR_PLUM"));
+        validCards.add(cd.getCard(cd.getCardsList(), "DAGGER"));
+        validCards.add(cd.getCard(cd.getCardsList(), "MISS_SCARLET"));
+        response.setValidCards(validCards);
+      /*  for(AllCardEnums cardEnums : allCards) {
+            RadioButton radioButton = new RadioButton();
+            radioButton.setId(String.valueOf(cardEnums));
+            buttons.add(radioButton);
+        }*/
+
+        for(RadioButton rb : buttons) {
+            System.out.println("loop one");
+            for(Card card : validCards) {
+                System.out.println("loop two");
+                if(card.getName().equals(String.valueOf(rb.getId()))) {
+                    System.out.println("if statement");
+                    rb.setDisable(false);
+                }
+                else {
+                    System.out.println("else statement");
+                    rb.setDisable(true);
+                }
+            }
+        }
     }
 
     @FXML
