@@ -73,13 +73,13 @@ public class ControllerDisprove {
         }*/
 
         for(AllCardEnums enums : allCards) {
-            System.out.println("loop one");
+            //System.out.println("loop one");
 
             returnRadioButton(String.valueOf(enums)).setDisable(true);
             for(Card card : validCards) {
-                System.out.println("loop two");
+                //System.out.println("loop two");
                 if(card.getName().equals(String.valueOf(enums))) {
-                    System.out.println("if statement");
+                    //System.out.println("if statement");
                     returnRadioButton(String.valueOf(enums)).setDisable(false);
                 }
 
