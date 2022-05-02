@@ -17,7 +17,7 @@
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.jhu.espresso.client.fx.GameboardController">
    <right>
-      <VBox alignment="TOP_CENTER" prefHeight="676.0" prefWidth="240.0" spacing="4.0" style="-fx-background-color: #00000033;" BorderPane.alignment="CENTER">
+      <VBox alignment="TOP_CENTER" prefHeight="676.0" prefWidth="215.0" spacing="4.0" style="-fx-background-color: #00000033;" BorderPane.alignment="CENTER">
          <children>
             <Text boundsType="LOGICAL_VERTICAL_CENTER" lineSpacing="2.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Notebook" textAlignment="CENTER" wrappingWidth="136.02093505859375">
                <font>
@@ -166,12 +166,12 @@
       </VBox>
    </right>
    <bottom>
-      <HBox prefHeight="74.0" prefWidth="714.0" style="-fx-background-color: green;" BorderPane.alignment="CENTER" />
+      <HBox prefHeight="74.0" prefWidth="680.0" style="-fx-background-color: green;" BorderPane.alignment="CENTER" />
    </bottom>
    <left>
-      <VBox alignment="TOP_CENTER" prefHeight="676.0" prefWidth="206.0" spacing="10.0" style="-fx-background-color: #00000033;" BorderPane.alignment="CENTER">
+      <VBox alignment="TOP_CENTER" prefHeight="676.0" prefWidth="215.0" spacing="10.0" style="-fx-background-color: #00000033;" BorderPane.alignment="CENTER">
          <children>
-            <Text boundsType="LOGICAL_VERTICAL_CENTER" strokeType="OUTSIDE" strokeWidth="0.0" text="Players" textAlignment="CENTER" wrappingWidth="104.82566833496094">
+            <Text boundsType="LOGICAL_VERTICAL_CENTER" strokeType="OUTSIDE" strokeWidth="0.0" text="Players" wrappingWidth="104.82566833496094">
                <font>
                   <Font name="Times New Roman Bold" size="24.0" />
                </font>
@@ -179,7 +179,7 @@
                   <Insets top="20.0" />
                </VBox.margin>
             </Text>
-            <Text fx:id="player1" strokeType="OUTSIDE" strokeWidth="0.0" text="Text">
+            <Text fx:id="player1" accessibleRole="IMAGE_VIEW" strokeType="OUTSIDE" strokeWidth="0.0" text="Text">
                <font>
                   <Font name="Times New Roman" size="15.0" />
                </font></Text>
@@ -208,25 +208,25 @@
    <center>
       <BorderPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: green;" BorderPane.alignment="CENTER">
          <top>
-            <HBox prefHeight="51.0" prefWidth="475.0" BorderPane.alignment="CENTER">
+            <HBox prefHeight="51.0" prefWidth="817.0" BorderPane.alignment="CENTER">
                <children>
-                  <ButtonBar prefHeight="51.0" prefWidth="101.0">
+                  <ButtonBar prefHeight="51.0" prefWidth="119.0">
                      <buttons>
-                        <Button fx:id="exit" minWidth="54.0" mnemonicParsing="false" onAction="#exitGame" prefHeight="31.0" prefWidth="116.0" style="-fx-background-color: blue;" text="Leave Game" textFill="WHITE" />
+                        <Button fx:id="exit" minWidth="-Infinity" mnemonicParsing="false" onAction="#exitGame" prefHeight="31.0" prefWidth="124.0" style="-fx-background-color: blue;" text="Leave Game" textFill="WHITE" />
                      </buttons>
                   </ButtonBar>
                </children>
             </HBox>
          </top>
          <bottom>
-            <HBox prefHeight="64.0" prefWidth="475.0" BorderPane.alignment="CENTER">
+            <HBox prefHeight="64.0" prefWidth="490.0" BorderPane.alignment="CENTER">
                <children>
-                  <ButtonBar prefHeight="64.0" prefWidth="464.0" HBox.hgrow="ALWAYS">
+                  <ButtonBar maxWidth="-Infinity" minWidth="-Infinity" prefHeight="64.0" prefWidth="612.0" HBox.hgrow="ALWAYS">
                      <buttons>
-                        <Button fx:id="makeSuggestion" mnemonicParsing="false" onAction="#openSuggestionWindow" style="-fx-background-color: blue;" text="Make Suggestion" textFill="WHITE" />
-                        <Button fx:id="makeAccusation" mnemonicParsing="false" onAction="#openAccusationWindow" style="-fx-background-color: blue;" text="Make Accusation" textFill="WHITE" />
+                        <Button fx:id="makeAccusation" mnemonicParsing="false" onAction="#openAccusationWindow" prefHeight="31.0" style="-fx-background-color: blue;" text="Make Accusation" textFill="WHITE" />
                         <Button fx:id="move" mnemonicParsing="false" onAction="#sendMove" style="-fx-background-color: blue;" text="Send Move" textFill="WHITE" />
-                        <Button fx:id="EndTurn" mnemonicParsing="false" onAction="#endTurn" style="-fx-background-color: blue;" text="End Turn" textFill="WHITE" />
+                        <Button fx:id="EndTurn" mnemonicParsing="false" onAction="#endTurn" prefHeight="31.0" prefWidth="198.0" style="-fx-background-color: blue;" text="End Turn" textFill="WHITE" />
+                        <Button fx:id="makeSuggestion" maxHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#openSuggestionWindow" prefHeight="31.0" prefWidth="234.0" style="-fx-background-color: blue;" text="Make Suggestion" textFill="WHITE" />
                      </buttons>
                      <HBox.margin>
                         <Insets left="50.0" right="140.0" />
@@ -236,7 +236,7 @@
             </HBox>
          </bottom>
          <center>
-            <GridPane fx:id="gameBoard" alignment="CENTER" BorderPane.alignment="CENTER">
+            <GridPane fx:id="gameBoard" alignment="CENTER" prefHeight="561.0" prefWidth="725.0" BorderPane.alignment="CENTER">
               <columnConstraints>
                   <ColumnConstraints hgrow="ALWAYS" minWidth="10.0" prefWidth="100.0" />
                   <ColumnConstraints hgrow="ALWAYS" minWidth="10.0" prefWidth="150.0" />
@@ -256,7 +256,7 @@
                   <RowConstraints minHeight="10.0" prefHeight="15.0" vgrow="ALWAYS" />
               </rowConstraints>
                <children>
-                  <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#eeff00" height="575.0" stroke="BLACK" strokeType="INSIDE" width="725.0" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.hgrow="SOMETIMES" GridPane.rowIndex="3" GridPane.vgrow="SOMETIMES" />
+                  <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#eeff00" height="575.0" stroke="BLACK" strokeType="INSIDE" width="775.0" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.hgrow="SOMETIMES" GridPane.rowIndex="3" GridPane.vgrow="SOMETIMES" />
                   <Rectangle fx:id="H12" accessibleRole="BUTTON" arcHeight="5.0" arcWidth="5.0" fill="#a71fff" height="90.0" onMouseClicked="#h12Clicked" stroke="BLACK" strokeType="INSIDE" width="50.0" GridPane.columnIndex="5" GridPane.halignment="CENTER" GridPane.rowIndex="4" />
                   <Rectangle fx:id="H9" accessibleRole="BUTTON" arcHeight="5.0" arcWidth="5.0" fill="#a71fff" height="90.0" onMouseClicked="#h9Clicked" stroke="BLACK" strokeType="INSIDE" width="50.0" GridPane.columnIndex="5" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
                   <Rectangle fx:id="H8" accessibleRole="BUTTON" arcHeight="5.0" arcWidth="5.0" fill="#a71fff" height="90.0" onMouseClicked="#h8Clicked" stroke="BLACK" strokeType="INSIDE" width="50.0" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
