@@ -16,10 +16,11 @@ public class Main extends Application {
         Pane gameBoardPane = fxmlLoader.load();
         Stage stage = new Stage();
         stage.setTitle("Clue-Less Suggestion");
-        stage.setScene(new Scene(gameBoardPane, 1000, 750));
+        stage.setScene(new Scene(gameBoardPane, 1200, 750));
         stage.show();
         GameboardController gameboardController = fxmlLoader.getController();
         gameboardController.initialize();
+        gameboardController.setCharacters();
 
         Thread thread = new Thread(() -> {
             int num = 1;

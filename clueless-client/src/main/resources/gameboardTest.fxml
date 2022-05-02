@@ -15,13 +15,13 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.jhu.espresso.client.fx.GameboardController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.jhu.espresso.client.fx.GameboardController">
    <right>
-      <VBox alignment="TOP_CENTER" prefHeight="439.0" prefWidth="139.0" spacing="6.0" style="-fx-background-color: #00000033;" BorderPane.alignment="CENTER">
+      <VBox alignment="TOP_CENTER" prefHeight="676.0" prefWidth="240.0" spacing="4.0" style="-fx-background-color: #00000033;" BorderPane.alignment="CENTER">
          <children>
             <Text boundsType="LOGICAL_VERTICAL_CENTER" lineSpacing="2.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Notebook" textAlignment="CENTER" wrappingWidth="136.02093505859375">
                <font>
-                  <Font name="Times New Roman Bold" size="18.0" />
+                  <Font name="Times New Roman Bold" size="24.0" />
                </font>
                <VBox.margin>
                   <Insets bottom="20.0" top="20.0" />
@@ -34,7 +34,7 @@
             </Line>
             <Text fx:id="textMustard" boundsType="LOGICAL_VERTICAL_CENTER" lineSpacing="2.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Colonel Mustard" textAlignment="CENTER" wrappingWidth="136.02093505859375">
                <font>
-                  <Font name="Times New Roman" size="14.0" />
+                  <Font name="Times New Roman" size="18.0" />
                </font>
                <VBox.margin>
                   <Insets top="10.0" />
@@ -42,27 +42,27 @@
             </Text>
             <Text fx:id="textScarlet" boundsType="LOGICAL_VERTICAL_CENTER" strokeType="OUTSIDE" strokeWidth="0.0" text="Miss Scarlet" textAlignment="CENTER" wrappingWidth="136.02093505859375">
                <font>
-                  <Font name="Times New Roman" size="14.0" />
+                  <Font name="Times New Roman" size="18.0" />
                </font>
             </Text>
             <Text fx:id="textPlum" boundsType="LOGICAL_VERTICAL_CENTER" strokeType="OUTSIDE" strokeWidth="0.0" text="Professor Plum" textAlignment="CENTER" wrappingWidth="136.02093505859375">
                <font>
-                  <Font name="Times New Roman" size="14.0" />
+                  <Font name="Times New Roman" size="18.0" />
                </font>
             </Text>
             <Text fx:id="textWhite" boundsType="LOGICAL_VERTICAL_CENTER" strokeType="OUTSIDE" strokeWidth="0.0" text="Mr. White" textAlignment="CENTER" wrappingWidth="136.02093505859375">
                <font>
-                  <Font name="Times New Roman" size="14.0" />
+                  <Font name="Times New Roman" size="18.0" />
                </font>
             </Text>
             <Text fx:id="textGreen" boundsType="LOGICAL_VERTICAL_CENTER" strokeType="OUTSIDE" strokeWidth="0.0" text="Mr. Green" textAlignment="CENTER" wrappingWidth="136.02093505859375">
                <font>
-                  <Font name="Times New Roman" size="14.0" />
+                  <Font name="Times New Roman" size="18.0" />
                </font>
             </Text>
             <Text fx:id="textPeacock" boundsType="LOGICAL_VERTICAL_CENTER" strokeType="OUTSIDE" strokeWidth="0.0" text="Mrs. Peacock" textAlignment="CENTER" wrappingWidth="136.02093505859375">
                <font>
-                  <Font name="Times New Roman" size="14.0" />
+                  <Font name="Times New Roman" size="18.0" />
                </font>
                <VBox.margin>
                   <Insets bottom="20.0" />
@@ -75,7 +75,7 @@
             </Line>
             <Text fx:id="textCandlestick" boundsType="LOGICAL_VERTICAL_CENTER" strokeType="OUTSIDE" strokeWidth="0.0" text="Candlestick" textAlignment="CENTER" wrappingWidth="136.02093505859375">
                <font>
-                  <Font name="Times New Roman" size="14.0" />
+                  <Font name="Times New Roman" size="18.0" />
                </font>
                <VBox.margin>
                   <Insets top="10.0" />
@@ -83,27 +83,27 @@
             </Text>
             <Text fx:id="textRope" boundsType="LOGICAL_VERTICAL_CENTER" strokeType="OUTSIDE" strokeWidth="0.0" text="Rope" textAlignment="CENTER" wrappingWidth="136.02093505859375">
                <font>
-                  <Font name="Times New Roman" size="14.0" />
+                  <Font name="Times New Roman" size="18.0" />
                </font>
             </Text>
             <Text fx:id="textDagger" boundsType="LOGICAL_VERTICAL_CENTER" strokeType="OUTSIDE" strokeWidth="0.0" text="Dagger" textAlignment="CENTER" wrappingWidth="136.02093505859375">
                <font>
-                  <Font name="Times New Roman" size="14.0" />
+                  <Font name="Times New Roman" size="18.0" />
                </font>
             </Text>
             <Text fx:id="textRevolver" boundsType="LOGICAL_VERTICAL_CENTER" strokeType="OUTSIDE" strokeWidth="0.0" text="Revolver" textAlignment="CENTER" wrappingWidth="136.02093505859375">
                <font>
-                  <Font name="Times New Roman" size="14.0" />
+                  <Font name="Times New Roman" size="18.0" />
                </font>
             </Text>
             <Text fx:id="textWrench" boundsType="LOGICAL_VERTICAL_CENTER" strokeType="OUTSIDE" strokeWidth="0.0" text="Wrench" textAlignment="CENTER" wrappingWidth="136.02093505859375">
                <font>
-                  <Font name="Times New Roman" size="14.0" />
+                  <Font name="Times New Roman" size="18.0" />
                </font>
             </Text>
             <Text fx:id="textLeadPipe" boundsType="LOGICAL_VERTICAL_CENTER" strokeType="OUTSIDE" strokeWidth="0.0" text="Lead Pipe" textAlignment="CENTER" wrappingWidth="136.02093505859375">
                <font>
-                  <Font name="Times New Roman" size="14.0" />
+                  <Font name="Times New Roman" size="18.0" />
                </font>
                <VBox.margin>
                   <Insets bottom="20.0" />
@@ -116,7 +116,7 @@
             </Line>
             <Text fx:id="textStudy" boundsType="LOGICAL_VERTICAL_CENTER" strokeType="OUTSIDE" strokeWidth="0.0" text="Study" textAlignment="CENTER" wrappingWidth="136.02093505859375">
                <font>
-                  <Font name="Times New Roman" size="14.0" />
+                  <Font name="Times New Roman" size="18.0" />
                </font>
                <VBox.margin>
                   <Insets top="10.0" />
@@ -124,42 +124,42 @@
             </Text>
             <Text fx:id="textHall" boundsType="LOGICAL_VERTICAL_CENTER" strokeType="OUTSIDE" strokeWidth="0.0" text="Hall" textAlignment="CENTER" wrappingWidth="136.02093505859375">
                <font>
-                  <Font name="Times New Roman" size="14.0" />
+                  <Font name="Times New Roman" size="18.0" />
                </font>
             </Text>
             <Text fx:id="textLounge" boundsType="LOGICAL_VERTICAL_CENTER" strokeType="OUTSIDE" strokeWidth="0.0" text="Lounge" textAlignment="CENTER" wrappingWidth="136.02093505859375">
                <font>
-                  <Font name="Times New Roman" size="14.0" />
+                  <Font name="Times New Roman" size="18.0" />
                </font>
             </Text>
             <Text fx:id="textLibrary" boundsType="LOGICAL_VERTICAL_CENTER" strokeType="OUTSIDE" strokeWidth="0.0" text="Library" textAlignment="CENTER" wrappingWidth="136.02093505859375">
                <font>
-                  <Font name="Times New Roman" size="14.0" />
+                  <Font name="Times New Roman" size="18.0" />
                </font>
             </Text>
             <Text fx:id="textBillard" boundsType="LOGICAL_VERTICAL_CENTER" strokeType="OUTSIDE" strokeWidth="0.0" text="Billard Room" textAlignment="CENTER" wrappingWidth="136.02093505859375">
                <font>
-                  <Font name="Times New Roman" size="14.0" />
+                  <Font name="Times New Roman" size="18.0" />
                </font>
             </Text>
             <Text fx:id="textDining" boundsType="LOGICAL_VERTICAL_CENTER" strokeType="OUTSIDE" strokeWidth="0.0" text="Dining Room" textAlignment="CENTER" wrappingWidth="136.02093505859375">
                <font>
-                  <Font name="Times New Roman" size="14.0" />
+                  <Font name="Times New Roman" size="18.0" />
                </font>
             </Text>
             <Text fx:id="textConservatory" boundsType="LOGICAL_VERTICAL_CENTER" strokeType="OUTSIDE" strokeWidth="0.0" text="Conservatory" textAlignment="CENTER" wrappingWidth="136.02093505859375">
                <font>
-                  <Font name="Times New Roman" size="14.0" />
+                  <Font name="Times New Roman" size="18.0" />
                </font>
             </Text>
             <Text fx:id="textBallroom" boundsType="LOGICAL_VERTICAL_CENTER" strokeType="OUTSIDE" strokeWidth="0.0" text="Ballroom" textAlignment="CENTER" wrappingWidth="136.02093505859375">
                <font>
-                  <Font name="Times New Roman" size="14.0" />
+                  <Font name="Times New Roman" size="18.0" />
                </font>
             </Text>
             <Text fx:id="textKitchen" boundsType="LOGICAL_VERTICAL_CENTER" strokeType="OUTSIDE" strokeWidth="0.0" text="Kitchen" textAlignment="CENTER" wrappingWidth="136.02093505859375">
                <font>
-                  <Font name="Times New Roman" size="14.0" />
+                  <Font name="Times New Roman" size="18.0" />
                </font>
             </Text>
          </children>
@@ -169,22 +169,40 @@
       <HBox prefHeight="74.0" prefWidth="714.0" style="-fx-background-color: green;" BorderPane.alignment="CENTER" />
    </bottom>
    <left>
-      <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" spacing="10.0" style="-fx-background-color: #00000033;" BorderPane.alignment="CENTER">
+      <VBox alignment="TOP_CENTER" prefHeight="676.0" prefWidth="206.0" spacing="10.0" style="-fx-background-color: #00000033;" BorderPane.alignment="CENTER">
          <children>
             <Text boundsType="LOGICAL_VERTICAL_CENTER" strokeType="OUTSIDE" strokeWidth="0.0" text="Players" textAlignment="CENTER" wrappingWidth="104.82566833496094">
                <font>
-                  <Font name="Times New Roman Bold" size="18.0" />
+                  <Font name="Times New Roman Bold" size="24.0" />
                </font>
                <VBox.margin>
                   <Insets top="20.0" />
                </VBox.margin>
             </Text>
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
+            <Text fx:id="player1" strokeType="OUTSIDE" strokeWidth="0.0" text="Text">
+               <font>
+                  <Font name="Times New Roman" size="15.0" />
+               </font></Text>
+            <Text fx:id="player2" strokeType="OUTSIDE" strokeWidth="0.0" text="Text">
+               <font>
+                  <Font name="Times New Roman" size="15.0" />
+               </font></Text>
+            <Text fx:id="player3" strokeType="OUTSIDE" strokeWidth="0.0" text="Text">
+               <font>
+                  <Font name="Times New Roman" size="15.0" />
+               </font></Text>
+            <Text fx:id="player4" strokeType="OUTSIDE" strokeWidth="0.0" text="Text">
+               <font>
+                  <Font name="Times New Roman" size="15.0" />
+               </font></Text>
+            <Text fx:id="player5" strokeType="OUTSIDE" strokeWidth="0.0" text="Text">
+               <font>
+                  <Font name="Times New Roman" size="15.0" />
+               </font></Text>
+            <Text fx:id="player6" strokeType="OUTSIDE" strokeWidth="0.0" text="Text">
+               <font>
+                  <Font name="Times New Roman" size="15.0" />
+               </font></Text>
          </children></VBox>
    </left>
    <center>

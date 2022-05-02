@@ -104,6 +104,24 @@ public class GameboardController {
     @FXML public Text textBallroom;
     @FXML public Text textKitchen;
 
+    @FXML
+    private Text player1;
+
+    @FXML
+    private Text player2;
+
+    @FXML
+    private Text player3;
+
+    @FXML
+    private Text player4;
+
+    @FXML
+    private Text player5;
+
+    @FXML
+    private Text player6;
+
     private final ObjectProperty<Font> mustardFontObservable = new ReadOnlyObjectWrapper<>(statusForCard(notebook, "COLONEL_MUSTARD").getFont());
     private final ObjectProperty<Font> scarletFontObservable = new ReadOnlyObjectWrapper<>(statusForCard(notebook, "MISS_SCARLET").getFont());
     private final ObjectProperty<Font> plumFontObservable = new ReadOnlyObjectWrapper<>(statusForCard(notebook, "PROFESSOR_PLUM").getFont());
@@ -512,6 +530,11 @@ public class GameboardController {
                 .orElseThrow(IllegalStateException::new); // called
 
         return map.get(cardWithName);
+    }
+
+    public void setCharacters(){
+        player.setCharacter(CharacterNames.MISS_SCARLET);
+        player1.setText("Player1: " + player.getCharacter());
     }
 
 }
