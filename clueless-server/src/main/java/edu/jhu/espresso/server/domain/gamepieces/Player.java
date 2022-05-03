@@ -8,25 +8,28 @@ import java.util.Objects;
 import java.util.concurrent.CompletableFuture;
 
 public class Player {
-    private final Character character;
+    private Character character;
     private boolean activeStatus;
     public Notebook notebook;
     private final int playerID;
-    private final int gameID;
+    private int gameID;
     private final ClueLessClientHandler clueLessClientHandler;
     private Player nextPlayer;
 
-    public Player(int gID, int pID, Character ch, ClueLessClientHandler clueLessClientHandler) {
-        this.playerID = pID;
-        this.character = ch;
-        this.gameID = gID;
+    public Player(int pid, ClueLessClientHandler clueLessClientHandler) {
         this.clueLessClientHandler = Objects.requireNonNull(clueLessClientHandler);
         this.activeStatus = true;
         notebook = new Notebook(new CardDeck());
+        playerID = pid;
     }
 
     public void makeNotebook(CardDeck c) {
       this.notebook = new Notebook(c);
+    }
+
+    
+    public void setCharacter(Character character) {
+        this.character = character;
     }
 
     public Notebook getNotebook() {
@@ -55,6 +58,10 @@ public class Player {
 
     public void setNextPlayer(Player nextPlayer) {
         this.nextPlayer = nextPlayer;
+    }
+
+    public void setGameID(int gameID) {
+        this.gameID = gameID;
     }
 
     public ClueLessClientHandler getClueLessClientHandler()

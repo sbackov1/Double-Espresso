@@ -19,10 +19,13 @@ public class App
 {
     public static void main( String[] args ) throws IOException
     {
+
+        //TODO: Change clueLessServer to new class.
         ClueLessServer clueLessServer = new ClueLessServer();
 
         List<CharacterNames> characterNames = new ArrayList<>(Arrays.asList(CharacterNames.values()));
 
+        //TODO: Remove this later.
         ArrayList<Player> players = new ArrayList<>();
         for(int i = 0; i < 3; i++)
         {
@@ -33,7 +36,7 @@ public class App
         Game game = new Game(0, players);
 
         ClueLessServerGameProtocol clueLessServerGameProtocol = new ClueLessServerGameProtocol(players, game);
-       clueLessServerGameProtocol.playGame();
+        clueLessServerGameProtocol.playGame();
     }
 
     public static boolean log = true;
