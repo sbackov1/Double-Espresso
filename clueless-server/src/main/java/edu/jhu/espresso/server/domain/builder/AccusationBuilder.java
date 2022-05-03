@@ -1,9 +1,12 @@
 package edu.jhu.espresso.server.domain.builder;
 
-import edu.jhu.espresso.server.domain.*;
-import edu.jhu.espresso.server.domain.Character;
+import edu.jhu.espresso.server.domain.gameEvents.Accusation;
+import edu.jhu.espresso.server.domain.gameEvents.AccusationStatus;
+import edu.jhu.espresso.server.domain.gamepieces.CaseDetails;
+import edu.jhu.espresso.server.domain.gamepieces.CharacterNames;
+import edu.jhu.espresso.server.domain.gamepieces.RoomNames;
+import edu.jhu.espresso.server.domain.gamepieces.Weapon;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public final class AccusationBuilder

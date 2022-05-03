@@ -1,10 +1,6 @@
-
 package edu.jhu.espresso.client.protocol;
 
-import edu.jhu.espresso.client.domain.Accusation;
-import edu.jhu.espresso.client.domain.MoveChoice;
-import edu.jhu.espresso.client.domain.Suggestion;
-import edu.jhu.espresso.client.domain.SuggestionResponse;
+import edu.jhu.espresso.client.domain.GameEvents.*;
 
 public class ActivePlayerProtocolSelector {
 
@@ -12,7 +8,9 @@ public class ActivePlayerProtocolSelector {
     private Suggestion suggestion;
     private Accusation accusation;
 
-    private ActivePlayerProtocolSelector(MoveChoice moveChoice, Suggestion suggestion, Accusation accusation){
+    public ActivePlayerProtocolSelector(){}
+
+    public ActivePlayerProtocolSelector(MoveChoice moveChoice, Suggestion suggestion, Accusation accusation) {
         this.moveChoice = moveChoice;
         this.accusation = accusation;
         this.suggestion = suggestion;
@@ -29,6 +27,23 @@ public class ActivePlayerProtocolSelector {
     public static ActivePlayerProtocolSelector FromSuggestion(Suggestion sg) {
         return new ActivePlayerProtocolSelector(null, sg, null);
     }
+    public static ActivePlayerProtocolSelector EndTurn(Suggestion sg) {
+        return new ActivePlayerProtocolSelector(null, null, null);
+    }
 
+    /**
+     *Public getters are necessary for JSON object to transmit properly.
+     * */
+    public MoveChoice getMoveChoice() {
+        return moveChoice;
+    }
+    public Suggestion getSuggestion() {
+        return suggestion;
+    }
+    public Accusation getAccusation() {
+        return accusation;
+    }
 
 }
+
+

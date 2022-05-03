@@ -1,7 +1,10 @@
 package edu.jhu.espresso.client.protocol;
 
 import edu.jhu.espresso.client.ClueLessClient;
-import edu.jhu.espresso.client.domain.*;
+import edu.jhu.espresso.client.domain.GameEvents.Suggestion;
+import edu.jhu.espresso.client.domain.GameEvents.SuggestionResponse;
+import edu.jhu.espresso.client.domain.GameEvents.TurnStart;
+import edu.jhu.espresso.client.domain.GamePieces.*;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -23,9 +26,11 @@ class ClientSuggestionTestimonyProtocol implements ClueLessProtocol
 
         ArrayList<Card> clientHandCards = client.getPlayer().getNotebook().getHandCards();
 
-        clientHandCards.retainAll(buildCardsFromCaseDetails(suggestion.getCaseDetails()));
+        ArrayList<Card> possibleDisproveCards = new ArrayList<>(clientHandCards);
 
-        suggestionResponse.setValidCards(clientHandCards);
+        possibleDisproveCards.retainAll(buildCardsFromCaseDetails(suggestion.getCaseDetails()));
+
+        suggestionResponse.setValidCards(possibleDisproveCards);
         suggestionResponse.mainSugMenu();
 
         suggestion.setSuggestionStatus(suggestionResponse.getSuggestionAction());

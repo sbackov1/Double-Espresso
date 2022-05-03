@@ -1,4 +1,8 @@
 package edu.jhu.espresso.server.domain;
+import edu.jhu.espresso.server.domain.gameEvents.GameTimer;
+import edu.jhu.espresso.server.domain.gameEvents.MoveChoice;
+import edu.jhu.espresso.server.domain.gamepieces.*;
+
 import java.util.*;
 public class Game {
 

@@ -1,9 +1,9 @@
 package edu.jhu.espresso.server.domain.builder;
 
-import edu.jhu.espresso.server.domain.CharacterNames;
-import edu.jhu.espresso.server.domain.GameStart;
-import edu.jhu.espresso.server.domain.RoomNames;
-import edu.jhu.espresso.server.domain.Weapon;
+import edu.jhu.espresso.server.domain.gamepieces.CharacterNames;
+import edu.jhu.espresso.server.domain.gameEvents.GameStart;
+import edu.jhu.espresso.server.domain.gamepieces.RoomNames;
+import edu.jhu.espresso.server.domain.gamepieces.Weapon;
 
 import java.util.List;
 

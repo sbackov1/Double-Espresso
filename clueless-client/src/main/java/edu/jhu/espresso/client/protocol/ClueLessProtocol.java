@@ -1,7 +1,6 @@
 package edu.jhu.espresso.client.protocol;
 
-import edu.jhu.espresso.client.domain.GameBoard;
-import edu.jhu.espresso.client.domain.TurnStart;
+import edu.jhu.espresso.client.domain.GameEvents.TurnStart;
 
 /**
  * represents some protocol the client will run on a game state, presumably

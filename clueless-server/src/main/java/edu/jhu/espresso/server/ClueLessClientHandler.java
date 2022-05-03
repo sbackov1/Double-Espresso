@@ -8,6 +8,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.Socket;
+import java.time.LocalDateTime;
 import java.util.concurrent.CompletableFuture;
 
 public class ClueLessClientHandler
@@ -57,8 +58,11 @@ public class ClueLessClientHandler
         O response;
         try
         {
+            String message = OBJECT_MAPPER.writeValueAsString(input);
+            App.logMessage("Writing " + message + " at " + LocalDateTime.now());
             printWriter.println(OBJECT_MAPPER.writeValueAsString(input));
             response = waitForClientResponse(responseClass);
+            App.logMessage("Reading " + response + " at " + LocalDateTime.now());
         }
         catch (JsonProcessingException e)
         {

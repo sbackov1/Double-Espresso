@@ -1,9 +1,10 @@
 package edu.jhu.espresso.server;
 
-import edu.jhu.espresso.server.domain.Character;
-import edu.jhu.espresso.server.domain.CharacterNames;
+import edu.jhu.espresso.server.domain.PreGame.GameFoyer;
+import edu.jhu.espresso.server.domain.gamepieces.Character;
+import edu.jhu.espresso.server.domain.gamepieces.CharacterNames;
 import edu.jhu.espresso.server.domain.Game;
-import edu.jhu.espresso.server.domain.Player;
+import edu.jhu.espresso.server.domain.gamepieces.Player;
 import edu.jhu.espresso.server.protocol.ClueLessServerGameProtocol;
 
 import java.io.IOException;
@@ -17,22 +18,19 @@ import java.util.List;
  */
 public class App 
 {
+
     public static void main( String[] args ) throws IOException
     {
-        ClueLessServer clueLessServer = new ClueLessServer();
+        GameFoyer.makeGameFoyer();
+    }
 
-        List<CharacterNames> characterNames = new ArrayList<>(Arrays.asList(CharacterNames.values()));
+    public static boolean log = true;
 
-        ArrayList<Player> players = new ArrayList<>();
-        for(int i = 0; i < 6; i++)
+    public static void logMessage(String message)
+    {
+        if(log)
         {
-            ClueLessClientHandler handler = clueLessServer.accept();
-            players.add(new Player(0, i, new Character(characterNames.get(i)), handler));
+            System.out.println(message);
         }
-
-        Game game = new Game(0, players);
-
-        ClueLessServerGameProtocol clueLessServerGameProtocol = new ClueLessServerGameProtocol(players, game);
-        clueLessServerGameProtocol.playGame();
     }
 }

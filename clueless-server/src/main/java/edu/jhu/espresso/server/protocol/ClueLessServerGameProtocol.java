@@ -1,8 +1,9 @@
 package edu.jhu.espresso.server.protocol;
 
 import edu.jhu.espresso.server.domain.*;
-import edu.jhu.espresso.server.domain.builder.CaseDetailsBuilder;
 import edu.jhu.espresso.server.domain.builder.GameStartBuilder;
+import edu.jhu.espresso.server.domain.gameEvents.GameStart;
+import edu.jhu.espresso.server.domain.gamepieces.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -35,7 +36,13 @@ public class ClueLessServerGameProtocol
                     .collect(Collectors.toList());
 
             playing = new ClueLessTurnProtocol(waitingPlayers, activePlayer, game).executeTurn();
-            activePlayerIndex = (activePlayerIndex + 1) % players.size();
+
+            //Increment active player index using do/while to skip inactive players.
+            do {
+                activePlayerIndex = (activePlayerIndex + 1) % players.size();
+            }
+            while(!players.get(activePlayerIndex).getActiveStatus());
+
         }
     }
 

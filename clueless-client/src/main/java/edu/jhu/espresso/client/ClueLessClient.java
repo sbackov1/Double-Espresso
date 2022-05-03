@@ -1,10 +1,12 @@
 package edu.jhu.espresso.client;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import edu.jhu.espresso.client.domain.*;
-import edu.jhu.espresso.client.domain.Character;
+import edu.jhu.espresso.client.domain.GameEvents.GameStart;
+import edu.jhu.espresso.client.domain.GameEvents.TurnStart;
+import edu.jhu.espresso.client.domain.GamePieces.CardDeck;
+import edu.jhu.espresso.client.domain.GamePieces.CharacterNames;
+import edu.jhu.espresso.client.domain.GamePieces.Player;
 import edu.jhu.espresso.client.protocol.ProtocolFactory;
 
 import java.io.BufferedReader;
@@ -12,6 +14,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.Socket;
+import java.time.LocalDateTime;
 import java.util.concurrent.CompletableFuture;
 
 public class ClueLessClient implements Runnable
@@ -48,7 +51,12 @@ public class ClueLessClient implements Runnable
     {
         try
         {
-            printWriter.println(OBJECT_MAPPER.writeValueAsString(message));
+            String messageString = OBJECT_MAPPER.writeValueAsString(message);
+            App.logMessage("Writing " + messageString + " at " + LocalDateTime.now());
+            printWriter.println(messageString);
+
+            //Add a menu kill switch here.
+
         }
         catch (JsonProcessingException e)
         {
@@ -115,6 +123,7 @@ public class ClueLessClient implements Runnable
                 throw new IllegalStateException(e);
             }
         }
+        App.logMessage("Reading " + response + " at " + LocalDateTime.now());
         return response;
     }
 

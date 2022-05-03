@@ -1,12 +1,11 @@
 package edu.jhu.espresso.server.protocol;
 
-import edu.jhu.espresso.server.domain.Accusation;
-import edu.jhu.espresso.server.domain.Card;
+import edu.jhu.espresso.server.domain.gameEvents.Accusation;
+import edu.jhu.espresso.server.domain.gamepieces.Card;
 import edu.jhu.espresso.server.domain.Game;
-import edu.jhu.espresso.server.domain.Player;
+import edu.jhu.espresso.server.domain.gamepieces.Player;
 
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -54,6 +53,10 @@ public class ServerAccusationProtocol
                     activePlayerHandler.getCharacter().getName() + " has made an incorrect accusation!",
                     waitingPlayerHandlers
             );
+
+            //Change active status to false.
+            activePlayerHandler.setActiveStatus(false);
+
         }
     }
 }

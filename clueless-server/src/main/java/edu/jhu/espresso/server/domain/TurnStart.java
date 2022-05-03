@@ -2,6 +2,8 @@ package edu.jhu.espresso.server.domain;
 
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import edu.jhu.espresso.server.domain.builder.TurnStartBuilder;
+import edu.jhu.espresso.server.domain.gamepieces.CharacterNames;
+import edu.jhu.espresso.server.domain.gamepieces.LocationNames;
 
 import java.util.Map;
 
