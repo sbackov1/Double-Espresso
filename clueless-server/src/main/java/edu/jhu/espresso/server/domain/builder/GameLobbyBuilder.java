@@ -56,10 +56,6 @@ public final class GameLobbyBuilder {
 
     public GameLobby build() {
         GameLobby gameLobby = new GameLobby(gameNumber, server, host);
-
-
-
-
         return gameLobby;
     }
 }

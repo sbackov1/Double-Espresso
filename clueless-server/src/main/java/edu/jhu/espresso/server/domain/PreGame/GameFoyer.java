@@ -10,7 +10,7 @@ import java.util.ArrayList;
 public class GameFoyer {
 
     private static GameFoyer gameFoyer = null;
-    private ArrayList<GameLobby> gameLobbyList;
+    public ArrayList<GameLobby> gameLobbyList;
 
     ClueLessServer clueLessServer;
 
