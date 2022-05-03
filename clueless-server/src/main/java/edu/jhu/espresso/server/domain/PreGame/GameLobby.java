@@ -5,6 +5,8 @@ import edu.jhu.espresso.server.domain.Game;
 import edu.jhu.espresso.server.domain.gamepieces.Character;
 import edu.jhu.espresso.server.domain.gamepieces.CharacterNames;
 import edu.jhu.espresso.server.domain.gamepieces.Player;
+import edu.jhu.espresso.server.protocol.ClueLessServerGameProtocol;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.concurrent.CompletableFuture;
@@ -75,6 +77,10 @@ public class GameLobby {
         }
 
         this.thisGame = new Game(gameNumber, this.thisGamePlayerList);
+
+        ClueLessServerGameProtocol clueLessServerGameProtocol = new ClueLessServerGameProtocol(this.thisGamePlayerList, this.thisGame);
+
+        clueLessServerGameProtocol.playGame();
 
     }
 

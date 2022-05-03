@@ -38,7 +38,12 @@ public class GameFoyer {
                 if(gameLobbyList.contains(gameLobbyChoice)) {
                     gameLobbyChoice.addPlayer(newPlayer);
                 }
-                else addToGameLobbyList(newPlayer);
+
+                else {
+                    addToGameLobbyList(newPlayer);
+                    gameLobbyList.get(gameLobbyList.size()-1).execute();
+                }
+
             }
             catch(IOException ie){
                 System.out.println("IO Exception");
