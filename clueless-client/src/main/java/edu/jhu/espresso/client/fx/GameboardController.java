@@ -323,13 +323,11 @@ public class GameboardController
         {
             room.setStroke(Color.BLACK);
             room.setStrokeWidth(1);
-            for(RoomNames roomNames : locationRooms) {
-                if(String.valueOf(roomNames).equals(room.getId())) {
-                    room.setFill(Color.BLANCHEDALMOND);
-                }
-                else {
-                    room.setFill(Color.DARKORCHID);
-                }
+            if(String.valueOf(locationRooms).contains(room.getId())) {
+                room.setFill(Color.BLANCHEDALMOND);
+            }
+            else {
+                room.setFill(Color.DARKORCHID);
             }
         }
     }
