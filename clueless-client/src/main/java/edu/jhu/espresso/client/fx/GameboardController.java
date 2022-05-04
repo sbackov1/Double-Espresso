@@ -323,6 +323,14 @@ public class GameboardController
         {
             room.setStroke(Color.BLACK);
             room.setStrokeWidth(1);
+            for(RoomNames roomNames : locationRooms) {
+                if(String.valueOf(roomNames).equals(room.getId())) {
+                    room.setFill(Color.BLANCHEDALMOND);
+                }
+                else {
+                    room.setFill(Color.DARKORCHID);
+                }
+            }
         }
     }
 
@@ -345,8 +353,8 @@ public class GameboardController
                 .collect(Collectors.toList());
 
         validRectangles.forEach(rectangle -> {
-            rectangle.setStroke(Color.DARKMAGENTA);
             rectangle.setStrokeWidth(5);
+            rectangle.setFill(Color.YELLOW);
         });
     }
 
