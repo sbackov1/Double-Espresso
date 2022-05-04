@@ -109,7 +109,7 @@
               <archive>
                 <manifest>
                   <mainClass>
-                    edu.jhu.espresso.client.App
+                      edu.jhu.espresso.client.ClientApplication
                   </mainClass>
                 </manifest>
               </archive>

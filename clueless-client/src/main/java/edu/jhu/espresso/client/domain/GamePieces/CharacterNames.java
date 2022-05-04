@@ -1,15 +1,36 @@
 package edu.jhu.espresso.client.domain.GamePieces;
 
 
+import javafx.geometry.HPos;
+import javafx.geometry.VPos;
+
 public enum CharacterNames
 {
-    PROFESSOR_PLUM,
-    MRS_WHITE,
-    MR_GREEN,
-    MRS_PEACOCK,
-    MISS_SCARLET,
-    COLONEL_MUSTARD;
+    PROFESSOR_PLUM(HPos.LEFT, VPos.BOTTOM),
+    MRS_WHITE(HPos.CENTER, VPos.BOTTOM),
+    MR_GREEN(HPos.CENTER, VPos.TOP),
+    MRS_PEACOCK(HPos.RIGHT, VPos.TOP),
+    MISS_SCARLET(HPos.LEFT, VPos.TOP),
+    COLONEL_MUSTARD(HPos.RIGHT, VPos.BOTTOM);
 
+    private final HPos horizontalPosition;
+    private final VPos verticalPosition;
+
+    public HPos getHorizontalPosition()
+    {
+        return horizontalPosition;
+    }
+
+    public VPos getVerticalPosition()
+    {
+        return verticalPosition;
+    }
+
+    CharacterNames(HPos horizontalPosition, VPos verticalPosition)
+    {
+        this.horizontalPosition = horizontalPosition;
+        this.verticalPosition = verticalPosition;
+    }
 
     public String toString() {
 

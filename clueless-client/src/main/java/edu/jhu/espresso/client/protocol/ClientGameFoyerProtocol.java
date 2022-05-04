@@ -1,8 +1,8 @@
 package edu.jhu.espresso.client.protocol;
 
 import edu.jhu.espresso.client.ClueLessClient;
-import edu.jhu.espresso.server.domain.PreGame.GameFoyer;
-import edu.jhu.espresso.server.domain.PreGame.GameLobby;
+import edu.jhu.espresso.client.domain.GameEvents.GameLobby;
+import edu.jhu.espresso.client.GameFoyer;
 
 import java.util.ArrayList;
 
@@ -18,7 +18,7 @@ public class ClientGameFoyerProtocol {
 
     public void execute() {
 
-       gf = client.waitForResponse(GameFoyer);
+       gf = client.waitForResponse(GameFoyer.class);
 
        gameLobbies = gf.getGameLobbyList();
 

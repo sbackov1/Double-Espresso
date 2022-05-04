@@ -137,7 +137,7 @@
                   <Font name="Times New Roman" size="18.0" />
                </font>
             </Text>
-            <Text fx:id="textBillard" boundsType="LOGICAL_VERTICAL_CENTER" strokeType="OUTSIDE" strokeWidth="0.0" text="Billard Room" textAlignment="CENTER" wrappingWidth="136.02093505859375">
+            <Text fx:id="textBilliard" boundsType="LOGICAL_VERTICAL_CENTER" strokeType="OUTSIDE" strokeWidth="0.0" text="Billiard Room" textAlignment="CENTER" wrappingWidth="136.02093505859375">
                <font>
                   <Font name="Times New Roman" size="18.0" />
                </font>
@@ -273,7 +273,7 @@
                   <Rectangle fx:id="LOUNGE" accessibleRole="BUTTON" arcHeight="5.0" arcWidth="5.0" fill="#eee8c6" height="110.0" layoutX="10.0" layoutY="7.0" onMouseClicked="#loungeClicked" stroke="BLACK" strokeType="INSIDE" width="150.0" GridPane.columnIndex="5" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
                   <Rectangle fx:id="HALL" accessibleRole="BUTTON" arcHeight="5.0" arcWidth="5.0" fill="#eee8c6" height="110.0" layoutX="229.0" layoutY="7.0" onMouseClicked="#hallClicked" stroke="BLACK" strokeType="INSIDE" width="150.0" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
                   <Rectangle fx:id="LIBRARY" accessibleRole="BUTTON" arcHeight="5.0" arcWidth="5.0" fill="#eee8c6" height="110.0" layoutX="10.0" layoutY="7.0" onMouseClicked="#libraryClicked" stroke="BLACK" strokeType="INSIDE" width="150.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="3" />
-                  <Rectangle fx:id="BILLARD_ROOM" accessibleRole="BUTTON" arcHeight="5.0" arcWidth="5.0" fill="#eee8c6" height="110.0" layoutX="10.0" layoutY="7.0" onMouseClicked="#billardClicked" stroke="BLACK" strokeType="INSIDE" width="150.0" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="3" />
+                  <Rectangle fx:id="BILLIARD_ROOM" accessibleRole="BUTTON" arcHeight="5.0" arcWidth="5.0" fill="#eee8c6" height="110.0" layoutX="10.0" layoutY="7.0" onMouseClicked="#billiardClicked" stroke="BLACK" strokeType="INSIDE" width="150.0" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="3" />
                   <Rectangle fx:id="DINING_ROOM" accessibleRole="BUTTON" arcHeight="5.0" arcWidth="5.0" fill="#eee8c6" height="110.0" layoutX="10.0" layoutY="7.0" onMouseClicked="#diningClicked" stroke="BLACK" strokeType="INSIDE" width="150.0" GridPane.columnIndex="5" GridPane.halignment="CENTER" GridPane.rowIndex="3" />
                   <Rectangle fx:id="BALLROOM" accessibleRole="BUTTON" arcHeight="5.0" arcWidth="5.0" fill="#eee8c6" height="110.0" layoutX="10.0" layoutY="7.0" onMouseClicked="#ballroomClicked" stroke="BLACK" strokeType="INSIDE" width="150.0" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="5" />
                   <Rectangle fx:id="CONSERVATORY" accessibleRole="BUTTON" arcHeight="5.0" arcWidth="5.0" fill="#eee8c6" height="110.0" layoutX="10.0" layoutY="7.0" onMouseClicked="#conservatoryClicked" stroke="BLACK" strokeType="INSIDE" width="150.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="5" />
@@ -295,7 +295,7 @@
                         <Font name="Times New Roman Bold" size="18.0" />
                      </font>
                   </Text>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Billard Room" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="3">
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Billiard Room" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="3">
                      <font>
                         <Font name="Times New Roman Bold" size="18.0" />
                      </font>

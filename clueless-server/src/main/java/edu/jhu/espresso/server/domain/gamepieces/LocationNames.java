@@ -17,18 +17,18 @@ public enum LocationNames
     LIBRARY,
     LOUNGE,
     STUDY,
-    HALLWAY1,
-    HALLWAY2,
-    HALLWAY3,
-    HALLWAY4,
-    HALLWAY5,
-    HALLWAY6,
-    HALLWAY7,
-    HALLWAY8,
-    HALLWAY9,
-    HALLWAY10,
-    HALLWAY11,
-    HALLWAY12;
+    H1,
+    H2,
+    H3,
+    H4,
+    H5,
+    H6,
+    H7,
+    H8,
+    H9,
+    H10,
+    H11,
+    H12;
 
     public static LocationNames fromStringName(String name)
     {
@@ -36,40 +36,40 @@ public enum LocationNames
         switch (name)
         {
             case "H1":
-                result = HALLWAY1;
+                result = H1;
                 break;
             case "H2":
-                result = HALLWAY2;
+                result = H2;
                 break;
             case "H3":
-                result = HALLWAY3;
+                result = H3;
                 break;
             case "H4":
-                result = HALLWAY4;
+                result = H4;
                 break;
             case "H5":
-                result = HALLWAY5;
+                result = H5;
                 break;
             case "H6":
-                result = HALLWAY6;
+                result = H6;
                 break;
             case "H7":
-                result = HALLWAY7;
+                result = H7;
                 break;
             case "H8":
-                result = HALLWAY8;
+                result = H8;
                 break;
             case "H9":
-                result = HALLWAY9;
+                result = H9;
                 break;
             case "H10":
-                result = HALLWAY10;
+                result = H10;
                 break;
             case "H11":
-                result = HALLWAY11;
+                result = H11;
                 break;
             case "H12":
-                result = HALLWAY12;
+                result = H12;
                 break;
             case "LOUNGE":
                 result = LOUNGE;

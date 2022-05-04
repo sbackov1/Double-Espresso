@@ -103,7 +103,7 @@ public class GameLobby {
     }
 
     public void setPlayerCharacter(Player p){
-        p.setCharacter(p.writeInstanceAndExpectType(getUnusedCharacters(), Character.class));
+//        p.setCharacter(p.writeInstanceAndExpectType(getUnusedCharacters(), Character.class));
     }
 
     public void setThisGamePlayerList(ArrayList<Player> thisGamePlayerList) {

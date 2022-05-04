@@ -29,7 +29,7 @@ public class GameFoyer {
             try {
                 ClueLessClientHandler handler = clueLessServer.accept();
 
-                Player newPlayer = new Player(nextPlayerID, handler);
+                Player newPlayer = new Player(nextPlayerID, 0, null, handler);
 
                 nextPlayerID += 1;
 

@@ -1,17 +1,14 @@
 package edu.jhu.espresso.client.domain.GamePieces;
 
-import edu.jhu.espresso.client.domain.GamePieces.Card;
-import edu.jhu.espresso.client.domain.GamePieces.CardDeck;
+
+import edu.jhu.espresso.client.domain.CardNotebookStatus;
+import edu.jhu.espresso.client.domain.NotebookStatus;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableMap;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-
-import javafx.collections.ObservableList;
-import javafx.collections.ListChangeListener;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableMap;
 
 public class Notebook {
     private ArrayList<Card> handCards;

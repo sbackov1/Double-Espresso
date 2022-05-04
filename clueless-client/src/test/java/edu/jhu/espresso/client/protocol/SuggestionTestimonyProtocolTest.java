@@ -21,9 +21,7 @@ class SuggestionTestimonyProtocolTest {
             .withWeapon(Weapon.REVOLVER)
             .withCharacter(CharacterNames.COLONEL_MUSTARD)
             .withSuggestionStatus(SuggestionStatus.MAKING_SUGGESTION)
-            .withRoomNames(RoomNames.BILLIARD_ROOM)
-
-
+            .withRoomNames(RoomNames.BILLIARD_ROOM);
 
     ArrayList<Player> waitingPlayers = new ArrayList<>(Arrays.asList(pl1, pl2));
 

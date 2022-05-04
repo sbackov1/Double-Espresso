@@ -49,29 +49,29 @@ public interface Location
                 return new Room(RoomNames.LOUNGE);
             case STUDY:
                 return new Room(RoomNames.STUDY);
-            case HALLWAY1:
+            case H1:
                 return new Hallway("H1");
-            case HALLWAY2:
+            case H2:
                 return new Hallway("H2");
-            case HALLWAY3:
+            case H3:
                 return new Hallway("H3");
-            case HALLWAY4:
+            case H4:
                 return new Hallway("H4");
-            case HALLWAY5:
+            case H5:
                 return new Hallway("H5");
-            case HALLWAY6:
+            case H6:
                 return new Hallway("H6");
-            case HALLWAY7:
+            case H7:
                 return new Hallway("H7");
-            case HALLWAY8:
+            case H8:
                 return new Hallway("H8");
-            case HALLWAY9:
+            case H9:
                 return new Hallway("H9");
-            case HALLWAY10:
+            case H10:
                 return new Hallway("H10");
-            case HALLWAY11:
+            case H11:
                 return new Hallway("H11");
-            case HALLWAY12:
+            case H12:
                 return new Hallway("H12");
             default:
                 throw new IllegalArgumentException(locationNames + " is not a valid Location Name");

@@ -1,5 +1,8 @@
 package edu.jhu.espresso.client.domain.GamePieces;
 
+import edu.jhu.espresso.client.fx.GameboardController;
+import javafx.scene.shape.Rectangle;
+
 public enum LocationNames
 {
     PROFESSOR_PLUM_HS,
@@ -18,18 +21,69 @@ public enum LocationNames
     LIBRARY,
     LOUNGE,
     STUDY,
-    HALLWAY1,
-    HALLWAY2,
-    HALLWAY3,
-    HALLWAY4,
-    HALLWAY5,
-    HALLWAY6,
-    HALLWAY7,
-    HALLWAY8,
-    HALLWAY9,
-    HALLWAY10,
-    HALLWAY11,
-    HALLWAY12;
+    H1,
+    H2,
+    H3,
+    H4,
+    H5,
+    H6,
+    H7,
+    H8,
+    H9,
+    H10,
+    H11,
+    H12;
+
+    public boolean isRoom()
+    {
+        boolean isRoom;
+        switch (this)
+        {
+            case PROFESSOR_PLUM_HS:
+            case MRS_PEACOCK_HS:
+            case MR_GREEN_HS:
+            case MRS_WHITE_HS:
+            case COLONEL_MUSTARD_HS:
+            case MISS_SCARLET_HS:
+            case H1:
+            case H2:
+            case H3:
+            case H4:
+            case H5:
+            case H6:
+            case H7:
+            case H8:
+            case H9:
+            case H10:
+            case H11:
+            case H12:
+                isRoom = false;
+                break;
+            case KITCHEN:
+            case HALL:
+            case BALLROOM:
+            case CONSERVATORY:
+            case DINING_ROOM:
+            case CELLAR:
+            case BILLIARD_ROOM:
+            case LIBRARY:
+            case LOUNGE:
+            case STUDY:
+                isRoom = true;
+                break;
+            default:
+                throw new IllegalArgumentException(this.name() + " not supported");
+        }
+        return isRoom;
+    }
+
+    public Rectangle getBoardRectangle(GameboardController gameboardController)
+    {
+        return gameboardController.getRectangles().stream()
+                .filter(rectangle -> rectangle.getId().equals(this.name()))
+                .findFirst()
+                .orElseThrow(() -> new IllegalArgumentException(this.name() + " does not have a board rectangle"));
+    }
 
     public static LocationNames fromStringName(String name)
     {
@@ -37,40 +91,40 @@ public enum LocationNames
         switch (name)
         {
             case "H1":
-                result = HALLWAY1;
+                result = H1;
                 break;
             case "H2":
-                result = HALLWAY2;
+                result = H2;
                 break;
             case "H3":
-                result = HALLWAY3;
+                result = H3;
                 break;
             case "H4":
-                result = HALLWAY4;
+                result = H4;
                 break;
             case "H5":
-                result = HALLWAY5;
+                result = H5;
                 break;
             case "H6":
-                result = HALLWAY6;
+                result = H6;
                 break;
             case "H7":
-                result = HALLWAY7;
+                result = H7;
                 break;
             case "H8":
-                result = HALLWAY8;
+                result = H8;
                 break;
             case "H9":
-                result = HALLWAY9;
+                result = H9;
                 break;
             case "H10":
-                result = HALLWAY10;
+                result = H10;
                 break;
             case "H11":
-                result = HALLWAY11;
+                result = H11;
                 break;
             case "H12":
-                result = HALLWAY12;
+                result = H12;
                 break;
             case "LOUNGE":
                 result = LOUNGE;

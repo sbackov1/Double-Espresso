@@ -1,14 +1,15 @@
 package edu.jhu.espresso.client.fx;
 
-import edu.jhu.espresso.client.domain.*;
+import edu.jhu.espresso.client.domain.AllCardEnums;
+import edu.jhu.espresso.client.domain.GameEvents.SuggestionResponse;
+import edu.jhu.espresso.client.domain.GamePieces.Card;
+import edu.jhu.espresso.client.domain.GamePieces.CardDeck;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.RadioButton;
-import javafx.scene.control.Toggle;
 import javafx.scene.control.ToggleGroup;
 import javafx.stage.Stage;
-import org.apache.commons.lang3.EnumUtils;
 
 import java.util.ArrayList;
 import java.util.Arrays;

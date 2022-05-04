@@ -1,7 +1,8 @@
 package edu.jhu.espresso.client.fx;
 
-import edu.jhu.espresso.client.domain.*;
-import edu.jhu.espresso.client.domain.Character;
+import edu.jhu.espresso.client.domain.GameEvents.Accusation;
+import edu.jhu.espresso.client.domain.GamePieces.Character;
+import edu.jhu.espresso.client.domain.GamePieces.*;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;

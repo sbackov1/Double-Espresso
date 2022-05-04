@@ -2,6 +2,7 @@ package edu.jhu.espresso.client.protocol;
 
 import edu.jhu.espresso.client.ClueLessClient;
 import edu.jhu.espresso.client.domain.ClueLessProtocolType;
+import edu.jhu.espresso.client.fx.GameboardController;
 
 /**
  * Protocol factory is responsible for finding the next protocol type for each player, whether active, waiting,
@@ -10,13 +11,20 @@ import edu.jhu.espresso.client.domain.ClueLessProtocolType;
 
 public class ProtocolFactory
 {
+    private final GameboardController gameboardController;
+
+    public ProtocolFactory(GameboardController gameboardController)
+    {
+        this.gameboardController = gameboardController;
+    }
+
     public ClueLessProtocol determineNextProtocol(ClueLessProtocolType clueLessProtocolType, ClueLessClient client)
     {
         ClueLessProtocol protocol;
         switch (clueLessProtocolType)
         {
             case ACTIVE_PLAYER:
-                protocol = new ActivePlayerProtocol(client);
+                protocol = new ActivePlayerProtocol(gameboardController, client);
                 break;
             case WAITING_PLAYER:
                 protocol = new WaitingPlayerProtocol(client);

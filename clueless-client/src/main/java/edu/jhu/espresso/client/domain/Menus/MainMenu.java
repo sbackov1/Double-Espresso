@@ -73,9 +73,9 @@ public class MainMenu {
     public void moveCharacter()
     {
         ArrayList<LocationNames> ValidMoves = new ArrayList<>();
-        ValidMoves.add(LocationNames.HALLWAY5);
-        ValidMoves.add(LocationNames.HALLWAY6);
-        ValidMoves.add(LocationNames.HALLWAY11);
+        ValidMoves.add(LocationNames.H5);
+        ValidMoves.add(LocationNames.H6);
+        ValidMoves.add(LocationNames.H11);
         moveOptions.setValidMoves(ValidMoves);
         moveOptions.mainMoveMenu();
     }

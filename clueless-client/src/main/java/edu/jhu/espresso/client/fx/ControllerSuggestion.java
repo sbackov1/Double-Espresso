@@ -1,9 +1,9 @@
 package edu.jhu.espresso.client.fx;
 
-import edu.jhu.espresso.client.domain.CharacterNames;
-import edu.jhu.espresso.client.domain.RoomNames;
-import edu.jhu.espresso.client.domain.Suggestion;
-import edu.jhu.espresso.client.domain.Weapon;
+import edu.jhu.espresso.client.domain.GameEvents.Suggestion;
+import edu.jhu.espresso.client.domain.GamePieces.CharacterNames;
+import edu.jhu.espresso.client.domain.GamePieces.RoomNames;
+import edu.jhu.espresso.client.domain.GamePieces.Weapon;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;

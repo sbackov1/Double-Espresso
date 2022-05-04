@@ -7,6 +7,7 @@ import edu.jhu.espresso.client.domain.GameEvents.TurnStart;
 import edu.jhu.espresso.client.domain.GamePieces.CardDeck;
 import edu.jhu.espresso.client.domain.GamePieces.CharacterNames;
 import edu.jhu.espresso.client.domain.GamePieces.Player;
+import edu.jhu.espresso.client.fx.GameboardController;
 import edu.jhu.espresso.client.protocol.ProtocolFactory;
 
 import java.io.BufferedReader;
@@ -20,18 +21,23 @@ import java.util.concurrent.CompletableFuture;
 public class ClueLessClient implements Runnable
 {
     private static final ObjectMapper OBJECT_MAPPER = new ObjectMapper();
-    private static final ProtocolFactory PROTOCOL_FACTORY = new ProtocolFactory();
+    private final ProtocolFactory protocolFactory;
 
     private final String host;
     private final int port;
     private final Socket socket;
     private final PrintWriter printWriter;
     private final BufferedReader bufferedReader;
+    private final GameboardController gameboardController;
     private Player player = new Player(0, 0);
 
-    public ClueLessClient(String host, int port)
+    public ClueLessClient(String host, int port, GameboardController gameboardController)
     {
+        this.gameboardController = gameboardController;
         player.makeNotebook(new CardDeck());
+        gameboardController.setPlayer(player);
+
+        protocolFactory = new ProtocolFactory(gameboardController);
 
         this.host = host;
         this.port = port;
@@ -52,7 +58,7 @@ public class ClueLessClient implements Runnable
         try
         {
             String messageString = OBJECT_MAPPER.writeValueAsString(message);
-            App.logMessage("Writing " + messageString + " at " + LocalDateTime.now());
+            ClientApplication.logMessage("Writing " + messageString + " at " + LocalDateTime.now());
             printWriter.println(messageString);
 
             //Add a menu kill switch here.
@@ -77,10 +83,10 @@ public class ClueLessClient implements Runnable
             {
                 TurnStart turnStart = waitForResponse(TurnStart.class);
 
-                displayGameInfo(turnStart);
+                updateCharactersOnBoard(turnStart);
                 write(turnStart);
 
-                PROTOCOL_FACTORY.determineNextProtocol(
+                protocolFactory.determineNextProtocol(
                         turnStart.getClueLessProtocolType(),
                         this
                 ).execute(turnStart);
@@ -92,16 +98,9 @@ public class ClueLessClient implements Runnable
         }
     }
 
-    private void displayGameInfo(TurnStart turnStart) throws JsonProcessingException
+    private void updateCharactersOnBoard(TurnStart turnStart) throws JsonProcessingException
     {
-        System.out.println(
-                OBJECT_MAPPER.writerWithDefaultPrettyPrinter()
-                        .writeValueAsString(
-                                turnStart.getLocationNamesMap()
-                        )
-        );
-
-        System.out.println(player.getNotebook());
+        turnStart.getLocationNamesMap().forEach(gameboardController::updateCharacterLocation);
     }
 
     public <T> T waitForResponse(Class<T> clazz)
@@ -123,7 +122,7 @@ public class ClueLessClient implements Runnable
                 throw new IllegalStateException(e);
             }
         }
-        App.logMessage("Reading " + response + " at " + LocalDateTime.now());
+        ClientApplication.logMessage("Reading " + response + " at " + LocalDateTime.now());
         return response;
     }
 
@@ -165,5 +164,6 @@ public class ClueLessClient implements Runnable
         CharacterNames playerCharacter = gameStart.getCharacterNames();
         System.out.println("You are playing as " + playerCharacter);
         player.setCharacter(playerCharacter);
+        gameboardController.setNotebookObservables();
     }
 }
