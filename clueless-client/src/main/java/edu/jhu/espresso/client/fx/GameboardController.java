@@ -234,13 +234,7 @@ public class GameboardController
                 H3,
                 H2,
                 H1,
-                H7,
-                HomeSquareMS,
-                HomeSquareMW,
-                HomeSquareCM,
-                HomeSquareMP,
-                HomeSquareMG,
-                HomeSquarePP
+                H7
         )));
     }
 
