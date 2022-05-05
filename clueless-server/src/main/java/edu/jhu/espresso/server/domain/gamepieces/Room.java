@@ -46,7 +46,7 @@ public class Room implements Location {
                 this.possibleDestinations = new ArrayList<String>(Arrays.asList("H5", "H6", "H11"));
                 break;
             case KITCHEN:
-                this.possibleDestinations = new ArrayList<String>(Arrays.asList("STUDY", "H8", "H12"));
+                this.possibleDestinations = new ArrayList<String>(Arrays.asList("STUDY", "H6", "H12"));
                 break;
         }
 
