@@ -164,6 +164,9 @@ public class ClueLessClient implements Runnable
         CharacterNames playerCharacter = gameStart.getCharacterNames();
         System.out.println("You are playing as " + playerCharacter);
         player.setCharacter(playerCharacter);
+
+        player.setCircle(playerCharacter.getCircleFromBoard(gameboardController));
+
         gameboardController.setNotebookObservables();
     }
 }

@@ -73,7 +73,11 @@ public class ClueLessTurnProtocol
             ActivePlayerProtocolSelector activePlayerChoice = activePlayer.writeInstanceAndExpectType(gameOptions, ActivePlayerProtocolSelector.class);
 
             //Run through and get the move choice, and execute the command in the server.
-            activePlayerChoice.getMoveChoice().ifPresent(moveChoice -> game.applyMoveChoice(moveChoice, activePlayer.getCharacter().getName()));
+            activePlayerChoice.getMoveChoice().ifPresent(moveChoice -> {
+                game.applyMoveChoice(moveChoice, activePlayer.getCharacter().getName());
+                ClueLessServerGameProtocol.broadcast(game, "move has been made", waitingPlayers);
+            });
+
             activePlayerChoice.getAccusation().ifPresent(accusation -> new ServerAccusationProtocol(activePlayer, waitingPlayers, accusation, game).execute());
             activePlayerChoice.getSuggestion().ifPresent(this::launchSuggestionTestimony);
 
@@ -90,11 +94,7 @@ public class ClueLessTurnProtocol
             if (!activePlayerChoice.getMoveChoice().isPresent() && !activePlayerChoice.getSuggestion().isPresent() && !activePlayerChoice.getAccusation().isPresent()){
                 endTurn = true;
             }
-
-
         }
-
-
 
         System.out.println("Moving to the next player");
         System.out.println();

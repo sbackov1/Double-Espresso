@@ -28,7 +28,7 @@ class ClientSuggestionTestimonyProtocol implements ClueLessProtocol
 
         ArrayList<Card> possibleDisproveCards = new ArrayList<>(clientHandCards);
 
-        possibleDisproveCards.retainAll(buildCardsFromCaseDetails(suggestion.getCaseDetails()));
+        possibleDisproveCards.retainAll(buildCardsFromCaseDetails(suggestion));
 
         suggestionResponse.setValidCards(possibleDisproveCards);
         suggestionResponse.mainSugMenu();
@@ -38,11 +38,11 @@ class ClientSuggestionTestimonyProtocol implements ClueLessProtocol
         client.write(suggestion);
     }
 
-    ArrayList<Card> buildCardsFromCaseDetails(CaseDetails caseDetails)
+    ArrayList<Card> buildCardsFromCaseDetails(Suggestion suggestion)
     {
-        RoomCard roomCard = new RoomCard(caseDetails.getRoom().name());
-        WeaponCard weaponCard = new WeaponCard(caseDetails.getWeapon().name());
-        CharacterCard characterCard = new CharacterCard(caseDetails.getCharacterNames().name());
+        RoomCard roomCard = new RoomCard(suggestion.getRoomNames().name());
+        WeaponCard weaponCard = new WeaponCard(suggestion.getWeapon().name());
+        CharacterCard characterCard = new CharacterCard(suggestion.getCharacter().name());
 
         return new ArrayList<>(
                 Arrays.asList(

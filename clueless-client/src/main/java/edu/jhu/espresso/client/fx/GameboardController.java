@@ -2,6 +2,7 @@ package edu.jhu.espresso.client.fx;
 
 import edu.jhu.espresso.client.domain.CardNotebookStatus;
 import edu.jhu.espresso.client.domain.GameEvents.MoveOptions;
+import edu.jhu.espresso.client.domain.GameEvents.Suggestion;
 import edu.jhu.espresso.client.domain.GamePieces.*;
 import javafx.application.Platform;
 import javafx.beans.property.ObjectProperty;
@@ -23,12 +24,10 @@ import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
-import org.apache.commons.lang3.EnumUtils;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
+import java.util.concurrent.CompletableFuture;
 import java.util.stream.Collectors;
 
 public class GameboardController
@@ -39,6 +38,10 @@ public class GameboardController
     private int rowIndex;
     MoveOptions moveOptions;
     List<RoomNames> locationRooms = Arrays.asList(RoomNames.values());
+    private GameboardControllerStatus status = GameboardControllerStatus.WAITING;
+    private CompletableFuture<GameboardControllerStatus> futureStatus = CompletableFuture.supplyAsync(() -> {while (true) {}});
+    private Map<CharacterNames, LocationNames> characterLocations = new EnumMap<>(CharacterNames.class);
+    private Suggestion suggestion;
 
     @FXML
     public GridPane gameBoard;
@@ -319,15 +322,15 @@ public class GameboardController
 
     public void resetRectangleColors()
     {
-        for (Rectangle room : rooms)
+        for (Rectangle rectangle : rectangles)
         {
-            room.setStroke(Color.BLACK);
-            room.setStrokeWidth(1);
-            if(String.valueOf(locationRooms).contains(room.getId())) {
-                room.setFill(Color.BLANCHEDALMOND);
+            rectangle.setStroke(Color.BLACK);
+            rectangle.setStrokeWidth(1);
+            if(String.valueOf(locationRooms).contains(rectangle.getId())) {
+                rectangle.setFill(Color.BLANCHEDALMOND);
             }
             else {
-                room.setFill(Color.DARKORCHID);
+                rectangle.setFill(Color.DARKORCHID);
             }
         }
     }
@@ -650,15 +653,14 @@ public class GameboardController
             Stage stage = new Stage();
             stage.setTitle("Clue-Less Suggestion");
             stage.setScene(new Scene(suggestionPane, 1000, 364));
-            stage.show();
-            ControllerSuggestion suggest = fxml.getController();
+            ControllerSuggestion controllerSuggestion = fxml.getController();
             String test = "IWHBYD";
             // suggest.suggestRoom.setText(test);
-            suggest.suggestRoom.setText("       " + String.valueOf(moveOptions.getLocation()));
-            //suggest.setFXMLLoader(fxml);
-            //columnIndex = GridPane.getColumnIndex(MISS_SCARLET);
-            //rowIndex = GridPane.getRowIndex(MISS_SCARLET);
-            //moveSuggested(MR_GREEN, columnIndex, rowIndex);
+            controllerSuggestion.setGameboardController(this);
+            controllerSuggestion.suggestRoom.setText("       " + getPlayerLocation());
+            stage.showAndWait();
+            suggestion = controllerSuggestion.getSuggestion();
+            futureStatus.complete(GameboardControllerStatus.SUGGESTION);
         }
         catch (IOException e)
         {
@@ -712,36 +714,24 @@ public class GameboardController
             GridPane.setHalignment(characterCircleAvatar, HPos.CENTER);
             GridPane.setValignment(characterCircleAvatar, VPos.CENTER);
         }
+
+        characterLocations.put(characterNames, locationNames);
     }
 
     @FXML
     public void sendMove(ActionEvent event)
     {  // send move selected on gameboard to server
         moveOptions.printToString();
-        GridPane.setColumnIndex(MISS_SCARLET, columnIndex);
-        GridPane.setRowIndex(MISS_SCARLET, rowIndex);
+        GridPane.setColumnIndex(player.getCircle(), columnIndex);
+        GridPane.setRowIndex(player.getCircle(), rowIndex);
         resetRectangleColors();
 
-        for (RoomNames location : locationRooms)
-        {
-            if (EnumUtils.isValidEnum(RoomNames.class, String.valueOf(moveOptions.getLocation())))
-            {
-                if (location.equals(RoomNames.valueOf(String.valueOf(moveOptions.getLocation()))))
-                {
-                    GridPane.setHalignment(MISS_SCARLET, HPos.LEFT);
-                    GridPane.setValignment(MISS_SCARLET, VPos.TOP);
-                }
-            } else
-            {
-                GridPane.setHalignment(MISS_SCARLET, HPos.CENTER);
-                GridPane.setValignment(MISS_SCARLET, VPos.CENTER);
-            }
-        }
+        updateCharacterLocation(player.getCharacter(), moveOptions.getLocation());
 
+        futureStatus.complete(GameboardControllerStatus.MOVE);
     }
 
-    @FXML
-    void endTurn(ActionEvent event)
+    public void disproveSuggestionWindow()
     {
         // drop a method in endTurn to end active player turn
         try
@@ -761,6 +751,12 @@ public class GameboardController
         {
             e.printStackTrace();
         }
+    }
+
+    @FXML
+    void endTurn(ActionEvent event)
+    {
+        futureStatus.complete(GameboardControllerStatus.END_TURN);
     }
 
     public void setNotebookObservables() {
@@ -804,4 +800,33 @@ public class GameboardController
         player1.setText("Player1: " + player.getCharacter());
     }
 
+    public CompletableFuture<GameboardControllerStatus> getStatusFuture()
+    {
+        return futureStatus;
+    }
+
+    public MoveOptions getMoveOptions()
+    {
+        return moveOptions;
+    }
+
+    public void resetStatus()
+    {
+        futureStatus = CompletableFuture.supplyAsync(() -> {while (true){}});
+    }
+
+    public Player getPlayer()
+    {
+        return player;
+    }
+
+    public LocationNames getPlayerLocation()
+    {
+        return characterLocations.get(player.getCharacter());
+    }
+
+    public Suggestion getSuggestion()
+    {
+        return suggestion;
+    }
 }

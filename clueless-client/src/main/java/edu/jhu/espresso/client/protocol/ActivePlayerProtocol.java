@@ -3,12 +3,11 @@ package edu.jhu.espresso.client.protocol;
 import edu.jhu.espresso.client.ClueLessClient;
 import edu.jhu.espresso.client.domain.GameEvents.*;
 import edu.jhu.espresso.client.domain.GamePieces.CaseDetails;
-import edu.jhu.espresso.client.domain.Menus.Menu;
-import edu.jhu.espresso.client.domain.Menus.MenuItem;
 import edu.jhu.espresso.client.domain.GameEvents.Accusation;
 import edu.jhu.espresso.client.domain.GameEvents.Suggestion;
 import edu.jhu.espresso.client.domain.GameEvents.MoveOptions;
 import edu.jhu.espresso.client.fx.GameboardController;
+import edu.jhu.espresso.client.fx.GameboardControllerStatus;
 
 
 public class ActivePlayerProtocol implements ClueLessProtocol
@@ -47,6 +46,34 @@ public class ActivePlayerProtocol implements ClueLessProtocol
             this.setCanMove(false);
 
             this.unPackProtocolOffer(gameOptions);
+            GameboardControllerStatus status = gameboardController.getStatusFuture().join();
+
+            System.out.println("here");
+
+            ActivePlayerProtocolSelector selector;
+            switch (status)
+            {
+                case MOVE:
+                    selector = ActivePlayerProtocolSelector.FromMoveChoice(
+                            new MoveChoice(gameboardController.getMoveOptions().getLocation())
+                    );
+                    break;
+                case SUGGESTION:
+                    selector = ActivePlayerProtocolSelector.FromSuggestion(
+                            gameboardController.getSuggestion()
+                    );
+                    break;
+                case END_TURN:
+                    endTurn = true;
+                    selector = ActivePlayerProtocolSelector.EndTurn();
+                    break;
+                default:
+                    throw new IllegalStateException();
+            }
+
+            client.write(selector);
+
+            gameboardController.resetStatus();
         }
     }
 

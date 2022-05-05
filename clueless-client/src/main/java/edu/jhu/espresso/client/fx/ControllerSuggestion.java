@@ -7,21 +7,20 @@ import edu.jhu.espresso.client.domain.GamePieces.Weapon;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.ToggleGroup;
-import javafx.scene.layout.GridPane;
-import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
-import java.io.IOException;
+import java.util.concurrent.CompletableFuture;
 
-public class ControllerSuggestion {
+public class ControllerSuggestion extends Thread {
     Suggestion suggestion = new Suggestion();
     private int columnIndex;
     private int rowIndex;
+    private GameboardController gameboardController;
+    boolean suggestionMade = false;
 
     @FXML public ToggleGroup sugWeap1;
     @FXML public ToggleGroup sugChar1;
@@ -123,13 +122,26 @@ public class ControllerSuggestion {
 
     @FXML
     void sendSuggestion(ActionEvent event) { // confirm suggestion action button
-        suggestion.setRoomNames(RoomNames.BALLROOM); // temporary, set location here with EnumMap
-        suggestion.printToString();
-        //GameboardController board = getFXMLLoader().getController(); // throws NullPointerException
-        //getFXMLLoader().setLocation(getClass().getResource("gameboardTest.fxml"));
-        //columnIndex = GridPane.getColumnIndex(board.MISS_SCARLET);
-        //rowIndex = GridPane.getRowIndex(board.MISS_SCARLET);
-        //board.moveSuggested(board.MR_GREEN, columnIndex, rowIndex);
+        suggestion.setRoomNames(RoomNames.valueOf(gameboardController.getPlayerLocation().name())); // temporary, set location here with EnumMap
+        suggestionMade = true;
+        exitWindow(event);
     }
 
+    public void setGameboardController(GameboardController gameboardController)
+    {
+        this.gameboardController = gameboardController;
+    }
+
+    public Suggestion getSuggestion()
+    {
+        return suggestion;
+    }
+
+    @Override
+    public void run()
+    {
+        while(!suggestionMade)
+        {
+        }
+    }
 }

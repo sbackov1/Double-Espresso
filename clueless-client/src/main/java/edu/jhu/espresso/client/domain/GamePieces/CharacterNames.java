@@ -1,8 +1,10 @@
 package edu.jhu.espresso.client.domain.GamePieces;
 
 
+import edu.jhu.espresso.client.fx.GameboardController;
 import javafx.geometry.HPos;
 import javafx.geometry.VPos;
+import javafx.scene.shape.Circle;
 
 public enum CharacterNames
 {
@@ -30,6 +32,27 @@ public enum CharacterNames
     {
         this.horizontalPosition = horizontalPosition;
         this.verticalPosition = verticalPosition;
+    }
+
+    public Circle getCircleFromBoard(GameboardController gameboardController)
+    {
+        switch (this)
+        {
+            case MISS_SCARLET:
+                return gameboardController.MISS_SCARLET;
+            case PROFESSOR_PLUM:
+                return gameboardController.PROFESSOR_PLUM;
+            case MRS_PEACOCK:
+                return gameboardController.MRS_PEACOCK;
+            case MR_GREEN:
+                return gameboardController.MR_GREEN;
+            case COLONEL_MUSTARD:
+                return gameboardController.COLONEL_MUSTARD;
+            case MRS_WHITE:
+                return gameboardController.MRS_WHITE;
+            default:
+                throw new IllegalArgumentException(this + " does not have a cirle on the gameboard");
+        }
     }
 
     public String toString() {
