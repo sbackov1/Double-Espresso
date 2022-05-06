@@ -63,7 +63,9 @@ public class HomeSquare implements Location {
     }
 
     @Override
-    public void setFull(boolean set){};
+    public void setFull(){};
+
+    public void setEmpty(){};
 
     @Override
     public boolean isFull(){return true;}

@@ -124,14 +124,18 @@ public class ClueLessTurnProtocol
     private MoveOptions determineValidMoveOptions(GameBoard gameBoard)
     {
         MoveOptions moveOptions = new MoveOptions();
+
         ArrayList<Location> legalMoveLocations = gameBoard.getLegalMoves(activePlayer.getCharacter().getName());
+
         List<LocationNames> locationNames = legalMoveLocations.stream()
                 .map(Location::getLocationName)
                 .map(LocationNames::fromStringName)
                 .collect(Collectors.toList());
 
         moveOptions.setValidMoves(locationNames);
+
         moveOptions.setTurnIndicator(ClueLessProtocolType.ACTIVE_PLAYER);
+
         return moveOptions;
     }
 

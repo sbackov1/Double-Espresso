@@ -13,7 +13,11 @@ public interface Location
     ArrayList<String> getPossibleDestinations();
     String getLocationName();
     boolean isFull();
-    void setFull(boolean set);
+    void setFull();
+
+    void setEmpty();
+
+
 
     static Location fromLocationName(LocationNames locationNames)
     {
