@@ -3,7 +3,6 @@ package edu.jhu.espresso.client.fx;
 import edu.jhu.espresso.client.domain.AllCardEnums;
 import edu.jhu.espresso.client.domain.GameEvents.SuggestionResponse;
 import edu.jhu.espresso.client.domain.GamePieces.Card;
-import edu.jhu.espresso.client.domain.GamePieces.CardDeck;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -16,7 +15,7 @@ import java.util.Arrays;
 import java.util.List;
 
 public class ControllerDisprove {
-    SuggestionResponse response = new SuggestionResponse();
+    private final SuggestionResponse response = new SuggestionResponse();
 
     @FXML public ToggleGroup disproveGroup;
 
@@ -60,24 +59,23 @@ public class ControllerDisprove {
         response.printToString();
         ((Stage)(((Button)event.getSource()).getScene().getWindow())).close();
     }
-    private final CardDeck cd = new CardDeck();
-    public void activeCards() {
-        ArrayList<Card> validCards = new ArrayList<>();
-        validCards.add(cd.getCard(cd.getCardsList(), "PROFESSOR_PLUM"));
-        validCards.add(cd.getCard(cd.getCardsList(), "DAGGER"));
-        validCards.add(cd.getCard(cd.getCardsList(), "MISS_SCARLET"));
-        response.setValidCards(validCards);
+
+    public void initialize(List<Card> handCards, List<Card> suggestionCards) {
+        response.setValidCards(handCards);
       /*  for(AllCardEnums cardEnums : allCards) {
             RadioButton radioButton = new RadioButton();
             radioButton.setId(String.valueOf(cardEnums));
             buttons.add(radioButton);
         }*/
 
+        List<Card> enabledCards = new ArrayList<>(handCards);
+        enabledCards.retainAll(suggestionCards);
+
         for(AllCardEnums enums : allCards) {
             //System.out.println("loop one");
 
             returnRadioButton(String.valueOf(enums)).setDisable(true);
-            for(Card card : validCards) {
+            for(Card card : enabledCards) {
                 //System.out.println("loop two");
                 if(card.getName().equals(String.valueOf(enums))) {
                     //System.out.println("if statement");
@@ -269,4 +267,8 @@ public class ControllerDisprove {
         response.setCardString("WRENCH");
     }
 
+    public SuggestionResponse getResponse()
+    {
+        return response;
+    }
 }

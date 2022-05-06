@@ -31,7 +31,8 @@ public class CardPlayer {
     //DealCards finds the number of shared cards, shows them to all players, and generates a random hand for each player
     public void dealCards(List<Player> playerList){
         int numPlayers = playerList.size();
-        int commonCardNumber = 18 % numPlayers;
+        int commonCardNumber = cardsPerPlayer(playerList.size());
+        int cardsLeftOver = 18 - commonCardNumber * playerList.size();
 
         //Deal common cards
         for(int i = 0; i < commonCardNumber; i++) {
@@ -57,7 +58,26 @@ public class CardPlayer {
         return caseFile;
     }
 
-
+    public int cardsPerPlayer(int numberOfPlayers)
+    {
+        int cardsPerPlayer;
+        switch (numberOfPlayers)
+        {
+            case 3:
+                cardsPerPlayer = 6;
+                break;
+            case 4:
+                cardsPerPlayer = 4;
+                break;
+            case 5:
+            case 6:
+                cardsPerPlayer = 3;
+                break;
+            default:
+                throw new IllegalArgumentException(numberOfPlayers + " is not a valid number of players");
+        }
+        return cardsPerPlayer;
+    }
 }
 
 

@@ -1,8 +1,10 @@
 package edu.jhu.espresso.client.fx;
 
 import edu.jhu.espresso.client.domain.CardNotebookStatus;
+import edu.jhu.espresso.client.domain.GameEvents.Accusation;
 import edu.jhu.espresso.client.domain.GameEvents.MoveOptions;
 import edu.jhu.espresso.client.domain.GameEvents.Suggestion;
+import edu.jhu.espresso.client.domain.GameEvents.SuggestionResponse;
 import edu.jhu.espresso.client.domain.GamePieces.*;
 import javafx.application.Platform;
 import javafx.beans.property.ObjectProperty;
@@ -23,6 +25,7 @@ import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -42,6 +45,7 @@ public class GameboardController
     private CompletableFuture<GameboardControllerStatus> futureStatus = CompletableFuture.supplyAsync(() -> {while (true) {}});
     private Map<CharacterNames, LocationNames> characterLocations = new EnumMap<>(CharacterNames.class);
     private Suggestion suggestion;
+    private SuggestionResponse suggestionResponse;
 
     @FXML
     public GridPane gameBoard;
@@ -210,32 +214,18 @@ public class GameboardController
     private ObjectProperty<Font> conservatoryFontObservable;
     private ObjectProperty<Font> ballRoomFontObservable;
     private ObjectProperty<Font> kitchenFontObservable;
+    private Accusation accusation;
 
     public void initialize()
     {
-        rectangles.addAll(new ArrayList<>(Arrays.asList(
-                STUDY,
-                LOUNGE,
-                HALL,
-                LIBRARY,
-                BILLIARD_ROOM,
-                DINING_ROOM,
-                BALLROOM,
-                CONSERVATORY,
-                KITCHEN,
-                H12,
-                H9,
-                H8,
-                H10,
-                H11,
-                H6,
-                H5,
-                H4,
-                H3,
-                H2,
-                H1,
-                H7
-        )));
+        rectangles.addAll(new ArrayList<>(Arrays.asList(STUDY, LOUNGE, HALL, LIBRARY, BILLIARD_ROOM, DINING_ROOM, BALLROOM, CONSERVATORY, KITCHEN, H12, H9, H8, H10, H11, H6, H5, H4, H3, H2, H1, H7)));
+
+        player1.setText(CharacterNames.MISS_SCARLET.name());
+        player2.setText(CharacterNames.COLONEL_MUSTARD.name());
+        player3.setText(CharacterNames.MRS_WHITE.name());
+        player4.setText(CharacterNames.MR_GREEN.name());
+        player5.setText(CharacterNames.MRS_PEACOCK.name());
+        player6.setText(CharacterNames.PROFESSOR_PLUM.name());
     }
 
     public void setPlayer(Player player)
@@ -287,7 +277,7 @@ public class GameboardController
         textBallroom.fontProperty().bind(ballRoomFontObservable);
         textKitchen.fontProperty().bind(kitchenFontObservable);
 
-        setNotebookObservables();
+        updateNotebookObservables();
     }
 
     public List<Rectangle> getRectangles()
@@ -628,7 +618,13 @@ public class GameboardController
             Stage stage = new Stage();
             stage.setTitle("Clue-Less Accusation");
             stage.setScene(new Scene(accusationPane, 1000, 364));
-            stage.show();
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.initOwner(makeAccusation.getScene().getWindow());
+            stage.showAndWait();
+
+            ControllerAccusation controllerAccusation = fxml.getController();
+            accusation = controllerAccusation.getAccusation();
+            futureStatus.complete(GameboardControllerStatus.ACCUSATION);
         }
         catch (IOException e)
         {
@@ -652,7 +648,10 @@ public class GameboardController
             // suggest.suggestRoom.setText(test);
             controllerSuggestion.setGameboardController(this);
             controllerSuggestion.suggestRoom.setText("       " + getPlayerLocation());
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.initOwner(makeSuggestion.getScene().getWindow());
             stage.showAndWait();
+
             suggestion = controllerSuggestion.getSuggestion();
             futureStatus.complete(GameboardControllerStatus.SUGGESTION);
         }
@@ -725,7 +724,7 @@ public class GameboardController
         futureStatus.complete(GameboardControllerStatus.MOVE);
     }
 
-    public void disproveSuggestionWindow()
+    public void disproveSuggestionWindow(List<Card> suggestedCards)
     {
         // drop a method in endTurn to end active player turn
         try
@@ -736,10 +735,12 @@ public class GameboardController
             Stage stage = new Stage();
             stage.setTitle("Clue-Less Suggestion");
             stage.setScene(new Scene(disprovePane, 1000, 364));
-            stage.show();
-            ControllerDisprove disprove = fxml.getController();
-            disprove.activeCards();
-            //((Stage)(((Button)event.getSource()).getScene().getWindow())).close();
+            ControllerDisprove controllerDisprove = fxml.getController();
+            controllerDisprove.initialize(player.getNotebook().getHandCards(), suggestedCards);
+            stage.showAndWait();
+
+            suggestionResponse = controllerDisprove.getResponse();
+            futureStatus.complete(GameboardControllerStatus.SUGGESTION_RESPONSE);
         }
         catch (IOException e)
         {
@@ -753,7 +754,7 @@ public class GameboardController
         futureStatus.complete(GameboardControllerStatus.END_TURN);
     }
 
-    public void setNotebookObservables() {
+    public void updateNotebookObservables() {
         mustardFontObservable.set(statusForCard(notebook, "COLONEL_MUSTARD").getFont());
         scarletFontObservable.set(statusForCard(notebook, "MISS_SCARLET").getFont());
         plumFontObservable.set(statusForCard(notebook, "PROFESSOR_PLUM").getFont());
@@ -822,5 +823,38 @@ public class GameboardController
     public Suggestion getSuggestion()
     {
         return suggestion;
+    }
+
+    public SuggestionResponse getSuggestionResponse()
+    {
+        return suggestionResponse;
+    }
+
+    public Accusation getAccusation()
+    {
+        return accusation;
+    }
+
+    public void setNumberOfPlayers(int numberOfPlayers)
+    {
+        player1.setText("player1:" + player1.getText());
+        player2.setText("player2:" + player2.getText());
+        player3.setText("player3:" + player3.getText());
+
+        switch (numberOfPlayers)
+        {
+            case 4:
+                player4.setText("player4:" + player4.getText());
+                break;
+            case 5:
+                player4.setText("player4:" + player4.getText());
+                player5.setText("player5:" + player5.getText());
+                break;
+            case 6:
+                player4.setText("player4:" + player4.getText());
+                player5.setText("player5:" + player5.getText());
+                player6.setText("player6:" + player6.getText());
+                break;
+        }
     }
 }

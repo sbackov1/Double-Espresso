@@ -1,6 +1,7 @@
 package edu.jhu.espresso.client.domain.GameEvents;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import edu.jhu.espresso.client.domain.GamePieces.*;
 import edu.jhu.espresso.client.domain.Menus.Menu;
@@ -14,10 +15,10 @@ public class SuggestionResponse {
 
     private SuggestionStatus suggestionStatus;
     private Card responseCard;
-    private ArrayList<Card> validCards;
+    private List<Card> validCards;
     private boolean selected = false;
 
-    public void setValidCards(ArrayList<Card> validCards) {
+    public void setValidCards(List<Card> validCards) {
         this.validCards = validCards;
     }
 
@@ -30,7 +31,7 @@ public class SuggestionResponse {
         this.suggestionStatus = suggestionStatus;
     }
 
-    public ArrayList<Card> getValidCards() {
+    public List<Card> getValidCards() {
         return validCards;
     }
 

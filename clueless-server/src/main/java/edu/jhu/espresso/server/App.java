@@ -28,7 +28,7 @@ public class App
 
         //TODO: Remove this later.
         ArrayList<Player> players = new ArrayList<>();
-        for(int i = 0; i < 2; i++)
+        for(int i = 0; i < 3; i++)
         {
             ClueLessClientHandler handler = clueLessServer.accept();
             players.add(new Player(0, i, new Character(characterNames.get(i)), handler));

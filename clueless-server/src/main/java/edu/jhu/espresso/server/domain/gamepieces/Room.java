@@ -22,31 +22,31 @@ public class Room implements Location {
 
         switch(name) {
             case LOUNGE:
-                this.possibleDestinations = new ArrayList<String>(Arrays.asList("CONSERVATORY", "H2", "H9"));
+                this.possibleDestinations = new ArrayList<>(Arrays.asList("CONSERVATORY", "H2", "H9"));
                 break;
             case STUDY:
-                this.possibleDestinations = new ArrayList<String>(Arrays.asList("KITCHEN", "H1", "H7"));
+                this.possibleDestinations = new ArrayList<>(Arrays.asList("KITCHEN", "H1", "H7"));
                 break;
             case HALL:
-                this.possibleDestinations = new ArrayList<String>(Arrays.asList("H1", "H2", "H8"));
+                this.possibleDestinations = new ArrayList<>(Arrays.asList("H1", "H2", "H8"));
                 break;
             case LIBRARY:
-                this.possibleDestinations = new ArrayList<String>(Arrays.asList("H3", "H7", "H10"));
+                this.possibleDestinations = new ArrayList<>(Arrays.asList("H3", "H7", "H10"));
                 break;
             case BILLIARD_ROOM:
-                this.possibleDestinations = new ArrayList<String>(Arrays.asList("H3", "H4", "H8", "H11"));
+                this.possibleDestinations = new ArrayList<>(Arrays.asList("H3", "H4", "H8", "H11"));
                 break;
             case DINING_ROOM:
-                this.possibleDestinations = new ArrayList<String>(Arrays.asList("H4", "H9", "H12"));
+                this.possibleDestinations = new ArrayList<>(Arrays.asList("H4", "H9", "H12"));
                 break;
             case CONSERVATORY:
-                this.possibleDestinations = new ArrayList<String>(Arrays.asList("LOUNGE", "H5", "H10"));
+                this.possibleDestinations = new ArrayList<>(Arrays.asList("LOUNGE", "H5", "H10"));
                 break;
             case BALLROOM:
-                this.possibleDestinations = new ArrayList<String>(Arrays.asList("H5", "H6", "H11"));
+                this.possibleDestinations = new ArrayList<>(Arrays.asList("H5", "H6", "H11"));
                 break;
             case KITCHEN:
-                this.possibleDestinations = new ArrayList<String>(Arrays.asList("STUDY", "H8", "H12"));
+                this.possibleDestinations = new ArrayList<>(Arrays.asList("STUDY", "H6", "H12"));
                 break;
         }
 

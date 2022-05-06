@@ -7,6 +7,6 @@ public enum GameboardControllerStatus
     END_TURN,
     SUGGESTION,
     ACCUSATION,
-    DISPROVE_SUGGESTION,
-    EXIT_GAME
+    SUGGESTION_RESPONSE,
+    EXIT_GAME;
 }

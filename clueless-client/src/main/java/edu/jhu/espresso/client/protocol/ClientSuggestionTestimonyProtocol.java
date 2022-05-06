@@ -5,6 +5,9 @@ import edu.jhu.espresso.client.domain.GameEvents.Suggestion;
 import edu.jhu.espresso.client.domain.GameEvents.SuggestionResponse;
 import edu.jhu.espresso.client.domain.GameEvents.TurnStart;
 import edu.jhu.espresso.client.domain.GamePieces.*;
+import edu.jhu.espresso.client.fx.GameboardController;
+import edu.jhu.espresso.client.fx.GameboardControllerStatus;
+import javafx.application.Platform;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -12,26 +15,28 @@ import java.util.Arrays;
 class ClientSuggestionTestimonyProtocol implements ClueLessProtocol
 {
     private final ClueLessClient client;
+    private final GameboardController gameboardController;
 
-    public ClientSuggestionTestimonyProtocol(ClueLessClient client)
+    public ClientSuggestionTestimonyProtocol(ClueLessClient client, GameboardController gameboardController)
     {
         this.client = client;
+        this.gameboardController = gameboardController;
     }
 
     @Override
     public void execute(TurnStart turnStart)
     {
         Suggestion suggestion = client.waitForResponse(Suggestion.class);
-        SuggestionResponse suggestionResponse = new SuggestionResponse();
 
-        ArrayList<Card> clientHandCards = client.getPlayer().getNotebook().getHandCards();
+        Platform.runLater(() -> gameboardController.disproveSuggestionWindow(buildCardsFromCaseDetails(suggestion)));
 
-        ArrayList<Card> possibleDisproveCards = new ArrayList<>(clientHandCards);
+        GameboardControllerStatus status = gameboardController.getStatusFuture().join();
+        if(status != GameboardControllerStatus.SUGGESTION_RESPONSE)
+        {
+            throw new IllegalStateException("Expected a suggestion response");
+        }
 
-        possibleDisproveCards.retainAll(buildCardsFromCaseDetails(suggestion));
-
-        suggestionResponse.setValidCards(possibleDisproveCards);
-        suggestionResponse.mainSugMenu();
+        SuggestionResponse suggestionResponse = gameboardController.getSuggestionResponse();
 
         suggestion.setSuggestionStatus(suggestionResponse.getSuggestionAction());
         suggestion.setResponseValue(suggestionResponse.getResponseValue());

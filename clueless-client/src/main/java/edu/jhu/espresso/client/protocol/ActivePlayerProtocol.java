@@ -9,6 +9,8 @@ import edu.jhu.espresso.client.domain.GameEvents.MoveOptions;
 import edu.jhu.espresso.client.fx.GameboardController;
 import edu.jhu.espresso.client.fx.GameboardControllerStatus;
 
+import java.util.Collections;
+
 
 public class ActivePlayerProtocol implements ClueLessProtocol
 {
@@ -63,6 +65,11 @@ public class ActivePlayerProtocol implements ClueLessProtocol
                             gameboardController.getSuggestion()
                     );
                     break;
+                case ACCUSATION:
+                    selector = ActivePlayerProtocolSelector.FromAccusation(
+                            gameboardController.getAccusation()
+                    );
+                    break;
                 case END_TURN:
                     endTurn = true;
                     selector = ActivePlayerProtocolSelector.EndTurn();
@@ -72,6 +79,29 @@ public class ActivePlayerProtocol implements ClueLessProtocol
             }
 
             client.write(selector);
+
+            if(status == GameboardControllerStatus.SUGGESTION)
+            {
+                TurnStart gameUpdateTurnStart = client.waitForResponse(TurnStart.class);
+                client.updateCharactersOnBoard(gameUpdateTurnStart);
+                client.write(gameUpdateTurnStart);
+                SuggestionTestimonyResponse suggestionTestimonyResponse = client.waitForResponse(SuggestionTestimonyResponse.class);
+                System.out.println("testimony response: " + suggestionTestimonyResponse);
+                updateNotebook(suggestionTestimonyResponse);
+                gameboardController.updateNotebookObservables();
+            }
+
+            if(status == GameboardControllerStatus.ACCUSATION)
+            {
+                TurnStart gameUpdateTurnStart = client.waitForResponse(TurnStart.class);
+                if(gameUpdateTurnStart.getAnnouncement().contains("incorrect"))
+                {
+                    endTurn = true;
+                    gameboardController.getMoveOptions().setValidMoves(Collections.emptyList());
+                }
+                System.out.println(gameUpdateTurnStart.getAnnouncement());
+                client.write(gameUpdateTurnStart);
+            }
 
             gameboardController.resetStatus();
         }
@@ -104,18 +134,6 @@ public class ActivePlayerProtocol implements ClueLessProtocol
     {
         options.mainMoveMenu();
         return ActivePlayerProtocolSelector.FromMoveChoice(new MoveChoice(options.getLocation()));
-    }
-
-    private void sleep(int millis)
-    {
-        try
-        {
-            Thread.sleep(millis);
-        }
-        catch (InterruptedException e)
-        {
-            throw new IllegalStateException(e);
-        }
     }
 
     private void updateNotebook(SuggestionTestimonyResponse response)

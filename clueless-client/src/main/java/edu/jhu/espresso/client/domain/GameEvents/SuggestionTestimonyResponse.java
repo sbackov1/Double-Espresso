@@ -20,4 +20,12 @@ public class SuggestionTestimonyResponse
     {
         return Optional.ofNullable(response);
     }
+
+    @Override
+    public String toString()
+    {
+        return "SuggestionTestimonyResponse{" +
+                "response='" + response + '\'' +
+                '}';
+    }
 }

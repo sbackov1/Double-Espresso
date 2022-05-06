@@ -33,7 +33,7 @@ public class ProtocolFactory
                 protocol = new ClientAccusationProtocol(client);
                 break;
             case SUGGESTION:
-                protocol = new ClientSuggestionTestimonyProtocol(client);
+                protocol = new ClientSuggestionTestimonyProtocol(client, gameboardController);
                 break;
             case INFORMATIONAL:
                 protocol = new InformationalProtocol();

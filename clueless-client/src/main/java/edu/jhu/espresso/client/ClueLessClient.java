@@ -74,31 +74,25 @@ public class ClueLessClient implements Runnable
     public void run()
     {
         GameStart gameStart = waitForResponse(GameStart.class);
+        gameboardController.setNumberOfPlayers(gameStart.getNumberOfPlayers());
         initializePlayer(gameStart);
         write(gameStart);
 
         while (true)
         {
-            try
-            {
-                TurnStart turnStart = waitForResponse(TurnStart.class);
+            TurnStart turnStart = waitForResponse(TurnStart.class);
 
-                updateCharactersOnBoard(turnStart);
-                write(turnStart);
+            updateCharactersOnBoard(turnStart);
+            write(turnStart);
 
-                protocolFactory.determineNextProtocol(
-                        turnStart.getClueLessProtocolType(),
-                        this
-                ).execute(turnStart);
-            }
-            catch (IOException e)
-            {
-                throw new IllegalStateException(e);
-            }
+            protocolFactory.determineNextProtocol(
+                    turnStart.getClueLessProtocolType(),
+                    this
+            ).execute(turnStart);
         }
     }
 
-    private void updateCharactersOnBoard(TurnStart turnStart) throws JsonProcessingException
+    public void updateCharactersOnBoard(TurnStart turnStart)
     {
         turnStart.getLocationNamesMap().forEach(gameboardController::updateCharacterLocation);
     }
@@ -167,6 +161,6 @@ public class ClueLessClient implements Runnable
 
         player.setCircle(playerCharacter.getCircleFromBoard(gameboardController));
 
-        gameboardController.setNotebookObservables();
+        gameboardController.updateNotebookObservables();
     }
 }

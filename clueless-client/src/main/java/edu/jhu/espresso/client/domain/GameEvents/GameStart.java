@@ -12,16 +12,7 @@ public class GameStart
     private List<Weapon> weapons;
     private List<CharacterNames> characterNamesList;
     private CharacterNames characterNames;
-
-    public CharacterNames getCharacterNames()
-    {
-        return characterNames;
-    }
-
-    public void setCharacterNames(CharacterNames characterNames)
-    {
-        this.characterNames = characterNames;
-    }
+    private int numberOfPlayers;
 
     public List<RoomNames> getRoomNamesList()
     {
@@ -51,5 +42,25 @@ public class GameStart
     public void setCharacterNamesList(List<CharacterNames> characterNamesList)
     {
         this.characterNamesList = characterNamesList;
+    }
+
+    public CharacterNames getCharacterNames()
+    {
+        return characterNames;
+    }
+
+    public void setCharacterNames(CharacterNames characterNames)
+    {
+        this.characterNames = characterNames;
+    }
+
+    public int getNumberOfPlayers()
+    {
+        return numberOfPlayers;
+    }
+
+    public void setNumberOfPlayers(int numberOfPlayers)
+    {
+        this.numberOfPlayers = numberOfPlayers;
     }
 }

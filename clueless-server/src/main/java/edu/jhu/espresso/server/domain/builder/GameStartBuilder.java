@@ -1,7 +1,7 @@
 package edu.jhu.espresso.server.domain.builder;
 
-import edu.jhu.espresso.server.domain.gamepieces.CharacterNames;
 import edu.jhu.espresso.server.domain.gameEvents.GameStart;
+import edu.jhu.espresso.server.domain.gamepieces.CharacterNames;
 import edu.jhu.espresso.server.domain.gamepieces.RoomNames;
 import edu.jhu.espresso.server.domain.gamepieces.Weapon;
 
@@ -13,6 +13,7 @@ public final class GameStartBuilder
     private List<Weapon> weapons;
     private List<CharacterNames> characterNamesList;
     private CharacterNames characterNames;
+    private int numberOfPlayers;
 
     private GameStartBuilder()
     {
@@ -47,8 +48,14 @@ public final class GameStartBuilder
         return this;
     }
 
+    public GameStartBuilder withNumberOfPlayers(int numberOfPlayers)
+    {
+        this.numberOfPlayers = numberOfPlayers;
+        return this;
+    }
+
     public GameStart build()
     {
-        return new GameStart(roomNamesList, weapons, characterNamesList, characterNames);
+        return new GameStart(roomNamesList, weapons, characterNamesList, characterNames, numberOfPlayers);
     }
 }

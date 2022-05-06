@@ -90,7 +90,6 @@ public class ClueLessTurnProtocol
                 endTurn = true;
             }
 
-
             if (!activePlayerChoice.getMoveChoice().isPresent() && !activePlayerChoice.getSuggestion().isPresent() && !activePlayerChoice.getAccusation().isPresent()){
                 endTurn = true;
             }
@@ -173,11 +172,14 @@ public class ClueLessTurnProtocol
             game.getGameBoard().moveCharacter(suggestion.getCharacter(), Location.fromRoomNames(suggestion.getRoomNames()));
         }
 
+        List<Player> allPlayers = new ArrayList<>(waitingPlayers);
+        allPlayers.add(activePlayer);
+
         ClueLessServerGameProtocol.broadcast(
                 game,
                 activePlayer.getCharacter().getName() + " suggested " + character + " in the " + room +
                         " with the " + weapon,
-                waitingPlayers
+                allPlayers
         );
 
         new SuggestionTestimonyProtocol(waitingPlayers, activePlayer, suggestion, game).execute();
