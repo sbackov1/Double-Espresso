@@ -12,6 +12,8 @@ import javafx.geometry.HPos;
 import javafx.geometry.VPos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.ScrollPane;
+import javafx.scene.control.TextArea;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
@@ -19,6 +21,8 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
+import javafx.scene.text.FontPosture;
+import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import org.apache.commons.lang3.EnumUtils;
@@ -44,6 +48,7 @@ public class GameboardController {
     @FXML public Button makeAccusation;
     @FXML public Button move;
     @FXML public Button EndTurn;
+    @FXML public TextArea statusBar;
 
     @FXML public Circle MISS_SCARLET;
     @FXML public Circle MRS_PEACOCK;
@@ -535,6 +540,12 @@ public class GameboardController {
     public void setCharacters(){
         player.setCharacter(CharacterNames.MISS_SCARLET);
         player1.setText("Player1: " + player.getCharacter());
+    }
+
+    public void updateStatusBar(String s){
+        statusBar.setFont(Font.font("Times New Roman", FontWeight.NORMAL, FontPosture.REGULAR, 18));
+        statusBar.appendText(s);
+        statusBar.appendText("\n");
     }
 
 }
