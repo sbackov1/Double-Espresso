@@ -25,6 +25,9 @@ import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
+import javafx.scene.control.TextArea;
+import javafx.scene.text.FontPosture;
+import javafx.scene.text.FontWeight;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
@@ -60,6 +63,7 @@ public class GameboardController
     public Button move;
     @FXML
     public Button EndTurn;
+    @FXML public TextArea statusBar;
 
     @FXML
     public Circle MISS_SCARLET;
@@ -226,6 +230,12 @@ public class GameboardController
         player4.setText(CharacterNames.MR_GREEN.name());
         player5.setText(CharacterNames.MRS_PEACOCK.name());
         player6.setText(CharacterNames.PROFESSOR_PLUM.name());
+    }
+
+    public void updateStatusBar(String s){ // use whenever a game state change occurs
+        statusBar.setFont(Font.font("Times New Roman", FontWeight.NORMAL, FontPosture.REGULAR, 18));
+        statusBar.appendText(s);
+        statusBar.appendText("\n");
     }
 
     public void setPlayer(Player player)

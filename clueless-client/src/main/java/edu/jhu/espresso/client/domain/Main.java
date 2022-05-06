@@ -12,7 +12,7 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
         FXMLLoader fxmlLoader = new FXMLLoader();
-        fxmlLoader.setLocation(getClass().getClassLoader().getResource("gameboardTest.fxml"));
+        fxmlLoader.setLocation(getClass().getClassLoader().getResource("Gameboard.fxml"));
         Pane gameBoardPane = fxmlLoader.load();
         Stage stage = new Stage();
         stage.setScene(new Scene(gameBoardPane, 1200, 750));

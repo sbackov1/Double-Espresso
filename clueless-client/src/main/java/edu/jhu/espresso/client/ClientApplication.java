@@ -23,13 +23,14 @@ public class ClientApplication extends Application
     public void start(Stage primaryStage) throws Exception
     {
         FXMLLoader fxmlLoader = new FXMLLoader();
-        fxmlLoader.setLocation(getClass().getClassLoader().getResource("gameboardTest.fxml"));
+        fxmlLoader.setLocation(getClass().getClassLoader().getResource("Gameboard.fxml"));
         Pane gameBoardPane = fxmlLoader.load();
         primaryStage.setTitle("Clue-Less");
-        primaryStage.setScene(new Scene(gameBoardPane, 1200, 750));
+        primaryStage.setScene(new Scene(gameBoardPane, 1200, 800));
         primaryStage.show();
         GameboardController gameboardController = fxmlLoader.getController();
         gameboardController.initialize();
+        gameboardController.statusBar.setEditable(false);
 
         new Thread(new ClueLessClient("localhost", 8080, gameboardController)).start();
     }
