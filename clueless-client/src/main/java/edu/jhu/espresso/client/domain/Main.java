@@ -21,6 +21,7 @@ public class Main extends Application {
         GameboardController gameboardController = fxmlLoader.getController();
         gameboardController.initialize();
         gameboardController.setCharacters();
+        gameboardController.statusBar.setEditable(false);
         gameboardController.updateStatusBar("Test line 1");
         gameboardController.updateStatusBar("Test line 2");
 
