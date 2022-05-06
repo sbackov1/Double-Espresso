@@ -86,7 +86,8 @@ public class ActivePlayerProtocol implements ClueLessProtocol
                 client.updateCharactersOnBoard(gameUpdateTurnStart);
                 client.write(gameUpdateTurnStart);
                 SuggestionTestimonyResponse suggestionTestimonyResponse = client.waitForResponse(SuggestionTestimonyResponse.class);
-                System.out.println("testimony response: " + suggestionTestimonyResponse);
+                gameboardController.updateStatusBar("testimony response: " + suggestionTestimonyResponse);
+                //System.out.println("testimony response: " + suggestionTestimonyResponse);
                 updateNotebook(suggestionTestimonyResponse);
                 gameboardController.updateNotebookObservables();
             }
@@ -99,7 +100,8 @@ public class ActivePlayerProtocol implements ClueLessProtocol
                     endTurn = true;
                     gameboardController.getMoveOptions().setValidMoves(Collections.emptyList());
                 }
-                System.out.println(gameUpdateTurnStart.getAnnouncement());
+                gameboardController.updateStatusBar(gameUpdateTurnStart.getAnnouncement());
+               // System.out.println(gameUpdateTurnStart.getAnnouncement());
                 client.write(gameUpdateTurnStart);
             }
 

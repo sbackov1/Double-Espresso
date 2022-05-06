@@ -1,5 +1,6 @@
 package edu.jhu.espresso.client.fx;
 
+import edu.jhu.espresso.client.domain.AllCardEnums;
 import edu.jhu.espresso.client.domain.GameEvents.Accusation;
 import edu.jhu.espresso.client.domain.GamePieces.Character;
 import edu.jhu.espresso.client.domain.GamePieces.*;
@@ -14,11 +15,14 @@ import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.util.Arrays;
+import java.util.List;
 
 public class ControllerAccusation {
     Accusation accusation = new Accusation();
     CaseDetails file = new CaseDetails(); // dummy case file
     Player player = new Player(1, 1); // dummy player
+    List<AllCardEnums> allCards = Arrays.asList(AllCardEnums.values());
 
     @FXML public ToggleGroup charGroup;
     @FXML public ToggleGroup roomGroup;
@@ -47,6 +51,91 @@ public class ControllerAccusation {
     @FXML public RadioButton STUDY;
     @FXML public Button accuse;
     @FXML public Button exit;
+
+    public void initialize(List<Card> extraCards) {
+        for(AllCardEnums enums : allCards) {
+            for(Card card : extraCards) {
+                if(card.getName().equals(String.valueOf(enums))) {
+                    returnRadioButton(String.valueOf(enums)).setDisable(true);
+                }
+            }
+        }
+    }
+
+    public RadioButton returnRadioButton(String rb){
+
+        RadioButton btn;
+        switch (rb) {
+
+            case "PROFESSOR_PLUM":
+                btn = PROFESSOR_PLUM;
+                break;
+            case "MRS_WHITE":
+                btn = MRS_WHITE;
+                break;
+            case "MR_GREEN":
+                btn = MR_GREEN;
+                break;
+            case "MRS_PEACOCK":
+                btn = MRS_PEACOCK;
+                break;
+            case "MISS_SCARLET":
+                btn = MISS_SCARLET;
+                break;
+            case "COLONEL_MUSTARD":
+                btn = COLONEL_MUSTARD;
+                break;
+            case "KITCHEN":
+                btn = KITCHEN;
+                break;
+            case "HALL":
+                btn = HALL;
+                break;
+            case "BALLROOM":
+                btn = BALLROOM;
+                break;
+            case "CONSERVATORY":
+                btn = CONSERVATORY;
+                break;
+            case "DINING_ROOM":
+                btn = DINING_ROOM;
+                break;
+            case "BILLIARD_ROOM":
+                btn = BILLIARD_ROOM;
+                break;
+            case "LIBRARY":
+                btn = LIBRARY;
+                break;
+            case "LOUNGE":
+                btn = LOUNGE;
+                break;
+            case "STUDY":
+                btn = STUDY;
+                break;
+            case "REVOLVER":
+                btn = REVOLVER;
+                break;
+            case "DAGGER":
+                btn = DAGGER;
+                break;
+            case "LEAD_PIPE":
+                btn = LEAD_PIPE;
+                break;
+            case "ROPE":
+                btn = ROPE;
+                break;
+            case "CANDLESTICK":
+                btn = CANDLESTICK;
+                break;
+            case "WRENCH":
+                btn = WRENCH;
+                break;
+            default:
+                throw new IllegalArgumentException(this + "not mapped to button");
+        }
+
+        return btn;
+    }
 
     @FXML
     void ballroomClicked(ActionEvent event) {

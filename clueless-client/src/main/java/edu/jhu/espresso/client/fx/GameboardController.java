@@ -633,6 +633,7 @@ public class GameboardController
             stage.showAndWait();
 
             ControllerAccusation controllerAccusation = fxml.getController();
+            //controllerAccusation.initialize(); --> needs extraCards list!
             accusation = controllerAccusation.getAccusation();
             futureStatus.complete(GameboardControllerStatus.ACCUSATION);
         }
@@ -658,6 +659,7 @@ public class GameboardController
             // suggest.suggestRoom.setText(test);
             controllerSuggestion.setGameboardController(this);
             controllerSuggestion.suggestRoom.setText("       " + getPlayerLocation());
+            //controllerSuggestion.initialize(); --> needs extraCards list!
             stage.initModality(Modality.APPLICATION_MODAL);
             stage.initOwner(makeSuggestion.getScene().getWindow());
             stage.showAndWait();

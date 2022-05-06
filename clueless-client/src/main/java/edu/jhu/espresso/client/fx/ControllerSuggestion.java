@@ -1,6 +1,8 @@
 package edu.jhu.espresso.client.fx;
 
+import edu.jhu.espresso.client.domain.AllCardEnums;
 import edu.jhu.espresso.client.domain.GameEvents.Suggestion;
+import edu.jhu.espresso.client.domain.GamePieces.Card;
 import edu.jhu.espresso.client.domain.GamePieces.CharacterNames;
 import edu.jhu.espresso.client.domain.GamePieces.RoomNames;
 import edu.jhu.espresso.client.domain.GamePieces.Weapon;
@@ -13,6 +15,8 @@ import javafx.scene.control.ToggleGroup;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
+import java.util.Arrays;
+import java.util.List;
 import java.util.concurrent.CompletableFuture;
 
 public class ControllerSuggestion extends Thread {
@@ -21,6 +25,7 @@ public class ControllerSuggestion extends Thread {
     private int rowIndex;
     private GameboardController gameboardController;
     boolean suggestionMade = false;
+    List<AllCardEnums> allCards = Arrays.asList(AllCardEnums.values());
 
     @FXML public ToggleGroup sugWeap1;
     @FXML public ToggleGroup sugChar1;
@@ -47,13 +52,63 @@ public class ControllerSuggestion extends Thread {
         suggestRoom.setText("text");
     }
 
- /*   public void setFXMLLoader(FXMLLoader fxmlLoader) {
-        this.fxmlLoader = fxmlLoader;
+    public void initialize(List<Card> extraCards) {
+        for(AllCardEnums enums : allCards) {
+            for(Card card : extraCards) {
+                if(card.getName().equals(String.valueOf(enums))) {
+                    returnRadioButton(String.valueOf(enums)).setDisable(true);
+                }
+            }
+        }
     }
 
-    public FXMLLoader getFXMLLoader() {
-        return fxmlLoader;
-    }*/
+    public RadioButton returnRadioButton(String rb){
+
+        RadioButton btn;
+        switch (rb) {
+
+            case "PROFESSOR_PLUM":
+                btn = PROFESSOR_PLUM;
+                break;
+            case "MRS_WHITE":
+                btn = MRS_WHITE;
+                break;
+            case "MR_GREEN":
+                btn = MR_GREEN;
+                break;
+            case "MRS_PEACOCK":
+                btn = MRS_PEACOCK;
+                break;
+            case "MISS_SCARLET":
+                btn = MISS_SCARLET;
+                break;
+            case "COLONEL_MUSTARD":
+                btn = COLONEL_MUSTARD;
+                break;
+            case "REVOLVER":
+                btn = REVOLVER;
+                break;
+            case "DAGGER":
+                btn = DAGGER;
+                break;
+            case "LEAD_PIPE":
+                btn = LEAD_PIPE;
+                break;
+            case "ROPE":
+                btn = ROPE;
+                break;
+            case "CANDLESTICK":
+                btn = CANDLESTICK;
+                break;
+            case "WRENCH":
+                btn = WRENCH;
+                break;
+            default:
+                throw new IllegalArgumentException(this + "not mapped to button");
+        }
+
+        return btn;
+    }
 
     @FXML
     void greenClicked(ActionEvent event) {

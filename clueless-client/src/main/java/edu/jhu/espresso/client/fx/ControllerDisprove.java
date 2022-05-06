@@ -55,30 +55,26 @@ public class ControllerDisprove {
 
     @FXML
     void sendDisprove(ActionEvent event) { // show card to suggesting player
-        //response.setCardString(String.valueOf(disproveGroup.getSelectedToggle()));
         response.printToString();
         ((Stage)(((Button)event.getSource()).getScene().getWindow())).close();
     }
 
     public void initialize(List<Card> handCards, List<Card> suggestionCards) {
         response.setValidCards(handCards);
-      /*  for(AllCardEnums cardEnums : allCards) {
-            RadioButton radioButton = new RadioButton();
-            radioButton.setId(String.valueOf(cardEnums));
-            buttons.add(radioButton);
-        }*/
-
         List<Card> enabledCards = new ArrayList<>(handCards);
         enabledCards.retainAll(suggestionCards);
 
-        for(AllCardEnums enums : allCards) {
-            //System.out.println("loop one");
+        if (enabledCards.isEmpty()) {
+            disprove.setDisable(true);
+        }
+        else {
+            cancelDisprove.setDisable(true);
+        }
 
+        for(AllCardEnums enums : allCards) {
             returnRadioButton(String.valueOf(enums)).setDisable(true);
             for(Card card : enabledCards) {
-                //System.out.println("loop two");
                 if(card.getName().equals(String.valueOf(enums))) {
-                    //System.out.println("if statement");
                     returnRadioButton(String.valueOf(enums)).setDisable(false);
                 }
 
