@@ -75,7 +75,7 @@ public class ActivePlayerProtocol implements ClueLessProtocol
                     selector = ActivePlayerProtocolSelector.EndTurn();
                     break;
                 default:
-                    throw new IllegalStateException();
+                    throw new IllegalStateException("cannot handle game board status " + status);
             }
 
             client.write(selector);
@@ -83,10 +83,10 @@ public class ActivePlayerProtocol implements ClueLessProtocol
             if(status == GameboardControllerStatus.SUGGESTION)
             {
                 TurnStart gameUpdateTurnStart = client.waitForResponse(TurnStart.class);
+                gameboardController.updateStatusBar(gameUpdateTurnStart.getAnnouncement());
                 client.updateCharactersOnBoard(gameUpdateTurnStart);
                 client.write(gameUpdateTurnStart);
                 SuggestionTestimonyResponse suggestionTestimonyResponse = client.waitForResponse(SuggestionTestimonyResponse.class);
-                gameboardController.updateStatusBar("testimony response: " + suggestionTestimonyResponse);
                 //System.out.println("testimony response: " + suggestionTestimonyResponse);
                 updateNotebook(suggestionTestimonyResponse);
                 gameboardController.updateNotebookObservables();

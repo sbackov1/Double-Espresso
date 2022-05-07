@@ -36,7 +36,7 @@ public class ProtocolFactory
                 protocol = new ClientSuggestionTestimonyProtocol(client, gameboardController);
                 break;
             case INFORMATIONAL:
-                protocol = new InformationalProtocol();
+                protocol = new InformationalProtocol(gameboardController);
                 break;
             default:
                 throw new IllegalArgumentException(clueLessProtocolType + " not supported!");
