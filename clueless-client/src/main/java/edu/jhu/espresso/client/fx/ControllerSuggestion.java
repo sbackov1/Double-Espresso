@@ -17,7 +17,7 @@ import javafx.stage.Stage;
 
 import java.util.Arrays;
 import java.util.List;
-import java.util.concurrent.CompletableFuture;
+import java.util.Optional;
 
 public class ControllerSuggestion extends Thread {
     Suggestion suggestion = new Suggestion();
@@ -52,19 +52,19 @@ public class ControllerSuggestion extends Thread {
         suggestRoom.setText("text");
     }
 
-    public void initialize(List<Card> extraCards) {
+    public void disableExtraCards(List<String> extraCards) {
         for(AllCardEnums enums : allCards) {
-            for(Card card : extraCards) {
-                if(card.getName().equals(String.valueOf(enums))) {
-                    returnRadioButton(String.valueOf(enums)).setDisable(true);
+            for(String cardName : extraCards) {
+                if(cardName.equals(String.valueOf(enums))) {
+                    returnRadioButton(String.valueOf(enums)).ifPresent(button -> button.setDisable(true));
                 }
             }
         }
     }
 
-    public RadioButton returnRadioButton(String rb){
+    private Optional<RadioButton> returnRadioButton(String rb){
 
-        RadioButton btn;
+        RadioButton btn = null;
         switch (rb) {
 
             case "PROFESSOR_PLUM":
@@ -103,11 +103,9 @@ public class ControllerSuggestion extends Thread {
             case "WRENCH":
                 btn = WRENCH;
                 break;
-            default:
-                throw new IllegalArgumentException(this + "not mapped to button");
         }
 
-        return btn;
+        return Optional.ofNullable(btn);
     }
 
     @FXML

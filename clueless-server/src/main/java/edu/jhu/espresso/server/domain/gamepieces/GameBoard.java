@@ -86,14 +86,16 @@ public class GameBoard
 
             Optional<Hallway> thisHall = this.getUniqueHallwayByName(loc);
 
-            if (thisHall.isPresent()) {
-                if(!thisHall.get().isFull()){
-                    locationList.add(stringLocationHashMap.get(loc));
-            }
-
-            else if (!thisHall.isPresent()){
+            if (thisHall.isPresent())
+            {
+                if (!thisHall.get().isFull())
+                {
                     locationList.add(stringLocationHashMap.get(loc));
                 }
+            }
+            else
+            {
+                locationList.add(stringLocationHashMap.get(loc));
             }
         }
         return locationList;

@@ -16,6 +16,7 @@ import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.Socket;
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.concurrent.CompletableFuture;
 
 public class ClueLessClient implements Runnable
@@ -154,6 +155,11 @@ public class ClueLessClient implements Runnable
         gameStart.getWeapons().forEach(
                 weapon -> player.getNotebook().makeHandCard(weapon.name())
         );
+
+        List<String> extraCardsNames = gameStart.getExtraCardsNames();
+        extraCardsNames.forEach(name -> player.getNotebook().makeKnownCard(name));
+
+        gameboardController.setExtraCardsNames(extraCardsNames);
 
         CharacterNames playerCharacter = gameStart.getCharacterNames();
         gameboardController.updateStatusBar("You are playing as " + playerCharacter);

@@ -12,6 +12,7 @@ public final class GameStartBuilder
     private List<RoomNames> roomNamesList;
     private List<Weapon> weapons;
     private List<CharacterNames> characterNamesList;
+    private List<String> extraCardsNames;
     private CharacterNames characterNames;
     private int numberOfPlayers;
 
@@ -42,6 +43,12 @@ public final class GameStartBuilder
         return this;
     }
 
+    public GameStartBuilder withExtraCardsNames(List<String> extraCardsNames)
+    {
+        this.extraCardsNames = extraCardsNames;
+        return this;
+    }
+
     public GameStartBuilder withCharacterNames(CharacterNames characterNames)
     {
         this.characterNames = characterNames;
@@ -56,6 +63,6 @@ public final class GameStartBuilder
 
     public GameStart build()
     {
-        return new GameStart(roomNamesList, weapons, characterNamesList, characterNames, numberOfPlayers);
+        return new GameStart(roomNamesList, weapons, characterNamesList, extraCardsNames, characterNames, numberOfPlayers);
     }
 }

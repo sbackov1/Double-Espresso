@@ -91,11 +91,19 @@ public class ClueLessServerGameProtocol
             card.getCharacterName().ifPresent(characterNamesList::add);
         }
 
+        List<String> extraCardsNames = new ArrayList<>();
+        for(Card card : notebook.getKnownCards())
+        {
+            extraCardsNames.add(card.getName());
+        }
+
         return GameStartBuilder.aGameStart()
                 .withCharacterNamesList(characterNamesList)
                 .withRoomNamesList(roomNamesList)
                 .withWeapons(weapons)
                 .withCharacterNames(player.getCharacter().getName())
+                .withExtraCardsNames(extraCardsNames)
+                .withNumberOfPlayers(players.size())
                 .build();
     }
 }

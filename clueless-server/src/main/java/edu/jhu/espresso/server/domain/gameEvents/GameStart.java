@@ -14,14 +14,16 @@ public class GameStart
     private final List<RoomNames> roomNamesList;
     private final List<Weapon> weapons;
     private final List<CharacterNames> characterNamesList;
+    private final List<String> extraCardsNames;
     private final CharacterNames characterNames;
     private final int numberOfPlayers;
 
-    public GameStart(List<RoomNames> roomNamesList, List<Weapon> weapons, List<CharacterNames> characterNamesList, CharacterNames characterNames, int numberOfPlayers)
+    public GameStart(List<RoomNames> roomNamesList, List<Weapon> weapons, List<CharacterNames> characterNamesList, List<String> extraCardsNames, CharacterNames characterNames, int numberOfPlayers)
     {
         this.roomNamesList = roomNamesList;
         this.weapons = weapons;
         this.characterNamesList = characterNamesList;
+        this.extraCardsNames = extraCardsNames;
         this.characterNames = characterNames;
         this.numberOfPlayers = numberOfPlayers;
     }
@@ -49,5 +51,10 @@ public class GameStart
     public int getNumberOfPlayers()
     {
         return numberOfPlayers;
+    }
+
+    public List<String> getExtraCardsNames()
+    {
+        return extraCardsNames;
     }
 }

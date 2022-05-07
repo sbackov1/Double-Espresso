@@ -52,10 +52,10 @@ public class ControllerAccusation {
     @FXML public Button accuse;
     @FXML public Button exit;
 
-    public void initialize(List<Card> extraCards) {
+    public void disableExtraCards(List<String> extraCards) {
         for(AllCardEnums enums : allCards) {
-            for(Card card : extraCards) {
-                if(card.getName().equals(String.valueOf(enums))) {
+            for(String cardName : extraCards) {
+                if(cardName.equals(String.valueOf(enums))) {
                     returnRadioButton(String.valueOf(enums)).setDisable(true);
                 }
             }
@@ -131,7 +131,7 @@ public class ControllerAccusation {
                 btn = WRENCH;
                 break;
             default:
-                throw new IllegalArgumentException(this + "not mapped to button");
+                throw new IllegalArgumentException(rb + "not mapped to button");
         }
 
         return btn;

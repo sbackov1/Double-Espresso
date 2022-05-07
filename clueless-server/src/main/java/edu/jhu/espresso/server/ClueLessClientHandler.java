@@ -59,10 +59,10 @@ public class ClueLessClientHandler
         try
         {
             String message = OBJECT_MAPPER.writeValueAsString(input);
-            App.logMessage("Writing " + message + " at " + LocalDateTime.now());
+            ClueLessServerApplication.logMessage("Writing " + message + " at " + LocalDateTime.now());
             printWriter.println(OBJECT_MAPPER.writeValueAsString(input));
             response = waitForClientResponse(responseClass);
-            App.logMessage("Reading " + response + " at " + LocalDateTime.now());
+            ClueLessServerApplication.logMessage("Reading " + response + " at " + LocalDateTime.now());
         }
         catch (JsonProcessingException e)
         {

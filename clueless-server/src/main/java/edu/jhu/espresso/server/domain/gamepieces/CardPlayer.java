@@ -31,8 +31,8 @@ public class CardPlayer {
     //DealCards finds the number of shared cards, shows them to all players, and generates a random hand for each player
     public void dealCards(List<Player> playerList){
         int numPlayers = playerList.size();
-        int commonCardNumber = cardsPerPlayer(playerList.size());
-        int cardsLeftOver = 18 - commonCardNumber * playerList.size();
+        int cardsPerPlayer = cardsPerPlayer(numPlayers);
+        int commonCardNumber = 18 - cardsPerPlayer * numPlayers;
 
         //Deal common cards
         for(int i = 0; i < commonCardNumber; i++) {
@@ -41,6 +41,7 @@ public class CardPlayer {
                 pl.notebook.makeKnownCard(thisCard);
             }
         }
+
         //While cards are remaining, deal hands sequentially.
         while (this.cardDeck.getCardsListCopy().size() > 0){
             for (Player pl : playerList) {

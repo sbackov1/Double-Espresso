@@ -11,6 +11,7 @@ public class GameStart
     private List<RoomNames> roomNamesList;
     private List<Weapon> weapons;
     private List<CharacterNames> characterNamesList;
+    private List<String> extraCardsNames;
     private CharacterNames characterNames;
     private int numberOfPlayers;
 
@@ -42,6 +43,16 @@ public class GameStart
     public void setCharacterNamesList(List<CharacterNames> characterNamesList)
     {
         this.characterNamesList = characterNamesList;
+    }
+
+    public List<String> getExtraCardsNames()
+    {
+        return extraCardsNames;
+    }
+
+    public void setExtraCardsNames(List<String> extraCardsNames)
+    {
+        this.extraCardsNames = extraCardsNames;
     }
 
     public CharacterNames getCharacterNames()

@@ -26,6 +26,7 @@ public class ClueLessTurnProtocol
     private boolean canSuggest;
 
     private Location activePlayerLoc;
+    private Location activePlayerStartingLoc;
 
     List<String> validCharacters;
 
@@ -42,6 +43,7 @@ public class ClueLessTurnProtocol
         this.moveOptions = determineValidMoveOptions(game.getGameBoard());
 
         activePlayerLoc = this.game.getGameBoard().getCharacterLocation(this.activePlayer.getCharacter().getName());
+        activePlayerStartingLoc = activePlayerLoc;
 
         validCharacters = Arrays.stream(CharacterNames.values())
                 .map(Enum::name)
@@ -74,8 +76,11 @@ public class ClueLessTurnProtocol
 
             //Run through and get the move choice, and execute the command in the server.
             activePlayerChoice.getMoveChoice().ifPresent(moveChoice -> {
-                game.applyMoveChoice(moveChoice, activePlayer.getCharacter().getName());
-                ClueLessServerGameProtocol.broadcast(game, "move has been made", waitingPlayers);
+                CharacterNames characterName = activePlayer.getCharacter().getName();
+                game.applyMoveChoice(moveChoice, characterName);
+                game.getGameBoard().setHallwayEmptyByName(activePlayerStartingLoc.getLocationName());
+
+                ClueLessServerGameProtocol.broadcast(game, characterName.name()  + " moved to " + moveChoice.getMove(), waitingPlayers);
             });
 
             activePlayerChoice.getAccusation().ifPresent(accusation -> new ServerAccusationProtocol(activePlayer, waitingPlayers, accusation, game).execute());

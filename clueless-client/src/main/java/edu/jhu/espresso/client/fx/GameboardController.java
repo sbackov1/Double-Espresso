@@ -45,10 +45,15 @@ public class GameboardController
     MoveOptions moveOptions;
     List<RoomNames> locationRooms = Arrays.asList(RoomNames.values());
     private GameboardControllerStatus status = GameboardControllerStatus.WAITING;
-    private CompletableFuture<GameboardControllerStatus> futureStatus = CompletableFuture.supplyAsync(() -> {while (true) {}});
+    private CompletableFuture<GameboardControllerStatus> futureStatus = CompletableFuture.supplyAsync(() -> {
+        while (true)
+        {
+        }
+    });
     private Map<CharacterNames, LocationNames> characterLocations = new EnumMap<>(CharacterNames.class);
     private Suggestion suggestion;
     private SuggestionResponse suggestionResponse;
+    private List<String> extraCardsNames;
 
     @FXML
     public GridPane gameBoard;
@@ -63,7 +68,8 @@ public class GameboardController
     public Button move;
     @FXML
     public Button EndTurn;
-    @FXML public TextArea statusBar;
+    @FXML
+    public TextArea statusBar;
 
     @FXML
     public Circle MISS_SCARLET;
@@ -124,17 +130,17 @@ public class GameboardController
     private Rectangle H7;
 
     @FXML
-    public Rectangle HomeSquareMS;
+    public Rectangle MISS_SCARLET_HS;
     @FXML
-    public Rectangle HomeSquareMW;
+    public Rectangle MRS_WHITE_HS;
     @FXML
-    public Rectangle HomeSquareCM;
+    public Rectangle COLONEL_MUSTARD_HS;
     @FXML
-    public Rectangle HomeSquareMP;
+    public Rectangle MRS_PEACOCK_HS;
     @FXML
-    public Rectangle HomeSquareMG;
+    public Rectangle MR_GREEN_HS;
     @FXML
-    public Rectangle HomeSquarePP;
+    public Rectangle PROFESSOR_PLUM_HS;
 
     @FXML
     public Text textMustard;
@@ -222,7 +228,34 @@ public class GameboardController
 
     public void initialize()
     {
-        rectangles.addAll(new ArrayList<>(Arrays.asList(STUDY, LOUNGE, HALL, LIBRARY, BILLIARD_ROOM, DINING_ROOM, BALLROOM, CONSERVATORY, KITCHEN, H12, H9, H8, H10, H11, H6, H5, H4, H3, H2, H1, H7)));
+        rectangles.addAll(new ArrayList<>(Arrays.asList(STUDY,
+                LOUNGE,
+                HALL,
+                LIBRARY,
+                BILLIARD_ROOM,
+                DINING_ROOM,
+                BALLROOM,
+                CONSERVATORY,
+                KITCHEN,
+                H12,
+                H9,
+                H8,
+                H10,
+                H11,
+                H6,
+                H5,
+                H4,
+                H3,
+                H2,
+                H1,
+                H7,
+                MISS_SCARLET_HS,
+                MRS_WHITE_HS,
+                COLONEL_MUSTARD_HS,
+                MRS_PEACOCK_HS,
+                MR_GREEN_HS,
+                PROFESSOR_PLUM_HS
+        )));
 
         player1.setText(CharacterNames.MISS_SCARLET.name());
         player2.setText(CharacterNames.COLONEL_MUSTARD.name());
@@ -232,7 +265,8 @@ public class GameboardController
         player6.setText(CharacterNames.PROFESSOR_PLUM.name());
     }
 
-    public void updateStatusBar(String s){ // use whenever a game state change occurs
+    public void updateStatusBar(String s)
+    { // use whenever a game state change occurs
         statusBar.setFont(Font.font("Times New Roman", FontWeight.NORMAL, FontPosture.REGULAR, 18));
         statusBar.appendText(s);
         statusBar.appendText("\n");
@@ -320,10 +354,12 @@ public class GameboardController
         {
             rectangle.setStroke(Color.BLACK);
             rectangle.setStrokeWidth(1);
-            if(String.valueOf(locationRooms).contains(rectangle.getId())) {
+            if (String.valueOf(locationRooms).contains(rectangle.getId()))
+            {
                 rectangle.setFill(Color.BLANCHEDALMOND);
             }
-            else {
+            else
+            {
                 rectangle.setFill(Color.DARKORCHID);
             }
         }
@@ -630,9 +666,12 @@ public class GameboardController
             stage.setScene(new Scene(accusationPane, 1000, 364));
             stage.initModality(Modality.APPLICATION_MODAL);
             stage.initOwner(makeAccusation.getScene().getWindow());
-            stage.showAndWait();
 
             ControllerAccusation controllerAccusation = fxml.getController();
+            controllerAccusation.disableExtraCards(extraCardsNames);
+
+            stage.showAndWait();
+
             //controllerAccusation.initialize(); --> needs extraCards list!
             accusation = controllerAccusation.getAccusation();
             futureStatus.complete(GameboardControllerStatus.ACCUSATION);
@@ -659,6 +698,7 @@ public class GameboardController
             // suggest.suggestRoom.setText(test);
             controllerSuggestion.setGameboardController(this);
             controllerSuggestion.suggestRoom.setText("       " + getPlayerLocation());
+            controllerSuggestion.disableExtraCards(extraCardsNames);
             //controllerSuggestion.initialize(); --> needs extraCards list!
             stage.initModality(Modality.APPLICATION_MODAL);
             stage.initOwner(makeSuggestion.getScene().getWindow());
@@ -714,7 +754,8 @@ public class GameboardController
         {
             GridPane.setHalignment(characterCircleAvatar, characterNames.getHorizontalPosition());
             GridPane.setValignment(characterCircleAvatar, characterNames.getVerticalPosition());
-        } else
+        }
+        else
         {
             GridPane.setHalignment(characterCircleAvatar, HPos.CENTER);
             GridPane.setValignment(characterCircleAvatar, VPos.CENTER);
@@ -766,7 +807,8 @@ public class GameboardController
         futureStatus.complete(GameboardControllerStatus.END_TURN);
     }
 
-    public void updateNotebookObservables() {
+    public void updateNotebookObservables()
+    {
         mustardFontObservable.set(statusForCard(notebook, "COLONEL_MUSTARD").getFont());
         scarletFontObservable.set(statusForCard(notebook, "MISS_SCARLET").getFont());
         plumFontObservable.set(statusForCard(notebook, "PROFESSOR_PLUM").getFont());
@@ -819,7 +861,11 @@ public class GameboardController
 
     public void resetStatus()
     {
-        futureStatus = CompletableFuture.supplyAsync(() -> {while (true){}});
+        futureStatus = CompletableFuture.supplyAsync(() -> {
+            while (true)
+            {
+            }
+        });
     }
 
     public Player getPlayer()
@@ -868,5 +914,10 @@ public class GameboardController
                 player6.setText("player6:" + player6.getText());
                 break;
         }
+    }
+
+    public void setExtraCardsNames(List<String> extraCardsNames)
+    {
+        this.extraCardsNames = extraCardsNames;
     }
 }

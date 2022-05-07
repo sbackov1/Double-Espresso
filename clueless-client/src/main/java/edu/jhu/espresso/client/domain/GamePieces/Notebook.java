@@ -14,6 +14,7 @@ public class Notebook {
     private ArrayList<Card> handCards;
     private ArrayList<Card> knownCards;
     private ArrayList<Card> unknownCards;
+    private List<Card> commonCards;
 
     private ObservableMap<Card, CardNotebookStatus> cardNotebookStatusMap = FXCollections.observableMap(new HashMap<>());
 
@@ -45,6 +46,16 @@ public class Notebook {
         {
             cardNotebookStatusMap.get(card).setNotebookStatus(NotebookStatus.UNKNOWN);
         }
+    }
+
+    public void setCommonCards(List<Card> commonCards)
+    {
+
+    }
+
+    public List<Card> getCommonCards()
+    {
+        return commonCards;
     }
 
     public void makeKnownCard(String cardName)
