@@ -97,6 +97,16 @@ public class Game {
     public void applyMoveChoice(MoveChoice moveChoice, CharacterNames characterNames)
     {
         gameBoard.moveCharacter(characterNames, Location.fromLocationName(moveChoice.getMove()));
+
+        Location thisLoc = gameBoard.getCharacterLocation(characterNames);
+
+        this.gameBoard.setHallwayFullByName(thisLoc.getLocationName());
+
     }
+
+
 }
+
+
+
 

@@ -60,7 +60,8 @@ public class Room implements Location {
         return isFull;
     }
 
-    public void setFull(boolean set){};
+    public void setFull(){};
+    public void setEmpty(){};
 
     public ArrayList<String> getPossibleDestinations() {
         return possibleDestinations;
