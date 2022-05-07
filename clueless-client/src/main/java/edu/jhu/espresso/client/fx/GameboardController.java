@@ -829,6 +829,7 @@ public class GameboardController
     @FXML
     void endTurn(ActionEvent event)
     {
+        resetRectangleColors();
         futureStatus.complete(GameboardControllerStatus.END_TURN);
     }
 

@@ -1,10 +1,16 @@
 package edu.jhu.espresso.server.protocol;
 
 import edu.jhu.espresso.server.domain.*;
+import edu.jhu.espresso.server.domain.gameEvents.MoveOptions;
+import edu.jhu.espresso.server.domain.gameEvents.Suggestion;
+import edu.jhu.espresso.server.domain.gameEvents.Accusation;
+import edu.jhu.espresso.server.domain.gamepieces.Weapon;
+import edu.jhu.espresso.server.domain.gameEvents.SuggestionStatus;
+import edu.jhu.espresso.server.domain.gameEvents.AccusationStatus;
+import edu.jhu.espresso.server.domain.gamepieces.Room;
 import edu.jhu.espresso.server.domain.builder.AccusationBuilder;
 import edu.jhu.espresso.server.domain.builder.ServerActivePlayerProtocolOffererBuilder;
 import edu.jhu.espresso.server.domain.builder.SuggestionBuilder;
-import edu.jhu.espresso.server.domain.gameEvents.*;
 import edu.jhu.espresso.server.domain.gamepieces.*;
 
 import java.util.*;
