@@ -176,6 +176,7 @@ public class ControllerSuggestion extends Thread {
     @FXML
     void sendSuggestion(ActionEvent event) { // confirm suggestion action button
         suggestion.setRoomNames(RoomNames.valueOf(gameboardController.getPlayerLocation().name())); // temporary, set location here with EnumMap
+        gameboardController.move.setDisable(true);
         suggestionMade = true;
         exitWindow(event);
     }

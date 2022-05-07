@@ -30,6 +30,7 @@ import javafx.scene.text.FontPosture;
 import javafx.scene.text.FontWeight;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import org.apache.commons.lang3.EnumUtils;
 
 import java.io.IOException;
 import java.util.*;
@@ -265,6 +266,23 @@ public class GameboardController
         player6.setText(CharacterNames.PROFESSOR_PLUM.name());
     }
 
+    ArrayList<LocationNames> validMoves = new ArrayList();
+    public void setButtonStatus() { // not currently connected
+        makeSuggestion.setDisable(isHallway());
+
+        validMoves.add(LocationNames.CONSERVATORY);
+        moveOptions.setValidMoves(validMoves);
+
+        if(moveOptions.getValidMoves().isEmpty()){
+            EndTurn.setDisable(false);
+            move.setDisable(true);
+        }
+        else {
+            EndTurn.setDisable(true);
+            move.setDisable(false);
+        }
+    }
+
     public void updateStatusBar(String s)
     {
         statusBar.setWrapText(true);
@@ -341,7 +359,6 @@ public class GameboardController
             stage.setTitle("Clue-Less Suggestion");
             stage.setScene(new Scene(disprovePane, 1000, 364));
             stage.show();
-            //((Stage)(((Button)event.getSource()).getScene().getWindow())).close();
         }
         catch (IOException e)
         {
@@ -673,7 +690,6 @@ public class GameboardController
 
             stage.showAndWait();
 
-            //controllerAccusation.initialize(); --> needs extraCards list!
             accusation = controllerAccusation.getAccusation();
             futureStatus.complete(GameboardControllerStatus.ACCUSATION);
         }
@@ -696,11 +712,9 @@ public class GameboardController
             stage.setScene(new Scene(suggestionPane, 1000, 364));
             ControllerSuggestion controllerSuggestion = fxml.getController();
             String test = "IWHBYD";
-            // suggest.suggestRoom.setText(test);
             controllerSuggestion.setGameboardController(this);
             controllerSuggestion.suggestRoom.setText("       " + getPlayerLocation());
             controllerSuggestion.disableExtraCards(extraCardsNames);
-            //controllerSuggestion.initialize(); --> needs extraCards list!
             stage.initModality(Modality.APPLICATION_MODAL);
             stage.initOwner(makeSuggestion.getScene().getWindow());
             stage.showAndWait();
@@ -773,7 +787,8 @@ public class GameboardController
         GridPane.setRowIndex(player.getCircle(), rowIndex);
         resetRectangleColors();
         move.setDisable(true);
-        EndTurn.setDisable(false);
+        makeSuggestion.setDisable(isHallway());
+        EndTurn.setDisable(!isHallway());
 
         updateCharacterLocation(player.getCharacter(), moveOptions.getLocation());
 
@@ -782,7 +797,6 @@ public class GameboardController
 
     public void disproveSuggestionWindow(List<Card> suggestedCards)
     {
-        // drop a method in endTurn to end active player turn
         try
         {
             FXMLLoader fxml = new FXMLLoader(); // for DisproveSuggestion.fxml
@@ -922,5 +936,17 @@ public class GameboardController
     public void setExtraCardsNames(List<String> extraCardsNames)
     {
         this.extraCardsNames = extraCardsNames;
+    }
+
+    public boolean isHallway(){
+
+        boolean hallway = true;
+
+        for (RoomNames location : locationRooms){
+            if (EnumUtils.isValidEnum(RoomNames.class, String.valueOf(moveOptions.getLocation()))){
+                hallway = false;
+            }
+        }
+        return hallway;
     }
 }
