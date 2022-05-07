@@ -266,7 +266,8 @@ public class GameboardController
     }
 
     public void updateStatusBar(String s)
-    { // use whenever a game state change occurs
+    {
+        statusBar.setWrapText(true);
         statusBar.setFont(Font.font("Times New Roman", FontWeight.NORMAL, FontPosture.REGULAR, 18));
         statusBar.appendText(s);
         statusBar.appendText("\n");
@@ -771,6 +772,8 @@ public class GameboardController
         GridPane.setColumnIndex(player.getCircle(), columnIndex);
         GridPane.setRowIndex(player.getCircle(), rowIndex);
         resetRectangleColors();
+        move.setDisable(true);
+        EndTurn.setDisable(false);
 
         updateCharacterLocation(player.getCharacter(), moveOptions.getLocation());
 
