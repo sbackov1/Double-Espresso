@@ -267,10 +267,15 @@ public class GameboardController
     }
 
     ArrayList<LocationNames> validMoves = new ArrayList();
-    public void setButtonStatus() { // not currently connected
+    public void setButtonStatus() {
+
+        /***Needs to follow the following:
+         If a player can move, they must move and cannot end turn.
+         If a player has already moved AND is in a room, they can suggest, accuse, or endTurn
+         If a player is in a room and has not moved, they cannot suggest or end turn, they must move
+        ***/
         makeSuggestion.setDisable(isHallway());
 
-        validMoves.add(LocationNames.CONSERVATORY);
         moveOptions.setValidMoves(validMoves);
 
         if(moveOptions.getValidMoves().isEmpty()){
@@ -281,6 +286,9 @@ public class GameboardController
             EndTurn.setDisable(true);
             move.setDisable(false);
         }
+
+
+
     }
 
     public void updateStatusBar(String s)

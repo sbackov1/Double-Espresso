@@ -52,6 +52,8 @@ public class ActivePlayerProtocol implements ClueLessProtocol
 
             System.out.println("here");
 
+            gameboardController.setButtonStatus();
+
             ActivePlayerProtocolSelector selector;
             switch (status)
             {
