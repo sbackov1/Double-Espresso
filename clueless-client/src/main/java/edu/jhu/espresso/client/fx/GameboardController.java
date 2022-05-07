@@ -38,6 +38,7 @@ public class GameboardController {
     private int columnIndex;
     private int rowIndex;
     MoveOptions moveOptions = new MoveOptions();
+    ArrayList<LocationNames> validMoves = new ArrayList();
     List<RoomNames> locationRooms = Arrays.asList(RoomNames.values());
 
 
@@ -173,6 +174,20 @@ public class GameboardController {
         textConservatory.fontProperty().bind(conservatoryFontObservable);
         textBallroom.fontProperty().bind(ballRoomFontObservable);
         textKitchen.fontProperty().bind(kitchenFontObservable);
+
+        makeSuggestion.setDisable(isHallway());
+
+        validMoves.add(LocationNames.CONSERVATORY);
+        moveOptions.setValidMoves(validMoves);
+
+        if(moveOptions.getValidMoves().isEmpty()){
+            EndTurn.setDisable(false);
+            move.setDisable(true);
+        }
+        else {
+            EndTurn.setDisable(true);
+            move.setDisable(false);
+        }
 
 
     }
@@ -438,6 +453,8 @@ public class GameboardController {
         moveOptions.printToString();
         GridPane.setColumnIndex(MISS_SCARLET, columnIndex);
         GridPane.setRowIndex(MISS_SCARLET, rowIndex);
+        makeSuggestion.setDisable(isHallway());
+        EndTurn.setDisable(false);
         resetRooms();
 
         for(RoomNames location : locationRooms) {
@@ -452,6 +469,9 @@ public class GameboardController {
                 GridPane.setValignment(MISS_SCARLET, VPos.CENTER);
             }
         }
+
+        makeSuggestion.setDisable(isHallway());
+        EndTurn.setDisable(!isHallway());
 
     }
 
@@ -544,8 +564,21 @@ public class GameboardController {
 
     public void updateStatusBar(String s){
         statusBar.setFont(Font.font("Times New Roman", FontWeight.NORMAL, FontPosture.REGULAR, 18));
+        statusBar.setWrapText(true);
         statusBar.appendText(s);
         statusBar.appendText("\n");
+    }
+
+    public boolean isHallway(){
+
+        boolean hallway = true;
+
+        for (RoomNames location : locationRooms){
+            if (EnumUtils.isValidEnum(RoomNames.class, String.valueOf(moveOptions.getLocation()))){
+                hallway = false;
+            }
+        }
+        return hallway;
     }
 
 }
