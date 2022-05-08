@@ -14,9 +14,8 @@ public class Player {
     private Circle circle;
 
     private boolean hasMoved;
-
     private boolean hasSuggested;
-
+    private boolean pulledFromSuggestion;
 
     public Player(int gID, int pID) {
         this.playerID = pID;
@@ -91,5 +90,15 @@ public class Player {
 
     public void setHasSuggested(boolean hasSuggested) {
         this.hasSuggested = hasSuggested;
+    }
+
+    public boolean isPulledFromSuggestion()
+    {
+        return pulledFromSuggestion;
+    }
+
+    public void setPulledFromSuggestion(boolean pulledFromSuggestion)
+    {
+        this.pulledFromSuggestion = pulledFromSuggestion;
     }
 }

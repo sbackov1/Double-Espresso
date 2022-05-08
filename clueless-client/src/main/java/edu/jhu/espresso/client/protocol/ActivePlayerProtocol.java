@@ -43,6 +43,8 @@ public class ActivePlayerProtocol implements ClueLessProtocol
         this.turnStart = turnStart;
         this.endTurn = false;
 
+        gameboardController.setDisableForAllButtons(false);
+
         while (!endTurn)
         {
             gameOptions = client.waitForResponse(ServerActivePlayerProtocolOfferer.class);
@@ -53,11 +55,8 @@ public class ActivePlayerProtocol implements ClueLessProtocol
 
             this.unPackProtocolOffer(gameOptions);
 
-            gameboardController.setButtonStatus();
-
+            gameboardController.updateActivePlayerButtons();
             GameboardControllerStatus status = gameboardController.getStatusFuture().join();
-
-            System.out.println("here");
 
             ActivePlayerProtocolSelector selector;
             switch (status)
@@ -117,6 +116,8 @@ public class ActivePlayerProtocol implements ClueLessProtocol
 
             gameboardController.resetStatus();
         }
+
+        client.getPlayer().setPulledFromSuggestion(false);
     }
 
     private ActivePlayerProtocolSelector makeAccusationChoice(Accusation options)

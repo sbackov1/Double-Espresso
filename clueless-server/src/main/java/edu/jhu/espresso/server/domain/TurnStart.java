@@ -13,12 +13,14 @@ public class TurnStart
     private final ClueLessProtocolType clueLessProtocolType;
     private final Map<CharacterNames, LocationNames> locationNamesMap;
     private final String announcement;
+    private final CharacterNames characterMovedFromSuggestion;
 
-    public TurnStart(ClueLessProtocolType clueLessProtocolType, Map<CharacterNames, LocationNames> locationNamesMap, String announcement)
+    public TurnStart(ClueLessProtocolType clueLessProtocolType, Map<CharacterNames, LocationNames> locationNamesMap, String announcement, CharacterNames characterMovedFromSuggestion)
     {
         this.clueLessProtocolType = clueLessProtocolType;
         this.locationNamesMap = locationNamesMap;
         this.announcement = announcement;
+        this.characterMovedFromSuggestion = characterMovedFromSuggestion;
     }
 
     public ClueLessProtocolType getClueLessProtocolType()
@@ -34,5 +36,10 @@ public class TurnStart
     public String getAnnouncement()
     {
         return announcement;
+    }
+
+    public CharacterNames getCharacterMovedFromSuggestion()
+    {
+        return characterMovedFromSuggestion;
     }
 }

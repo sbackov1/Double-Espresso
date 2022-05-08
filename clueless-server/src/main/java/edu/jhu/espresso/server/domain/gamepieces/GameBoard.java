@@ -50,14 +50,6 @@ public class GameBoard
             this.homeSquareList.add(thisHomeSquare);
             this.characterLocationMap.put(cn, (Location) thisHomeSquare);
         }
-
-        this.moveCharacter(CharacterNames.COLONEL_MUSTARD, roomList.get(0));
-        this.moveCharacter(CharacterNames.MISS_SCARLET , roomList.get(1));
-        this.moveCharacter(CharacterNames.MR_GREEN , roomList.get(2));
-        this.moveCharacter(CharacterNames.MRS_PEACOCK, roomList.get(3));
-        this.moveCharacter(CharacterNames.MRS_WHITE , roomList.get(4));
-        this.moveCharacter(CharacterNames.PROFESSOR_PLUM , roomList.get(5));
-
     }
 
     public void moveCharacter(CharacterNames ch, Location newLoc)

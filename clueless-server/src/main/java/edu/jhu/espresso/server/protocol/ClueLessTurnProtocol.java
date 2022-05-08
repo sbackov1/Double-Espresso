@@ -115,8 +115,8 @@ public class ClueLessTurnProtocol
     private void notifyPlayersOfStatus()
     {
         Map<CharacterNames, LocationNames> locationNamesMap = game.getLocations();
-        TurnStart activePlayerTurnStart = new TurnStart(ClueLessProtocolType.ACTIVE_PLAYER, locationNamesMap, "");
-        TurnStart waitingPlayerTurnStart = new TurnStart(ClueLessProtocolType.WAITING_PLAYER, locationNamesMap, "");
+        TurnStart activePlayerTurnStart = new TurnStart(ClueLessProtocolType.ACTIVE_PLAYER, locationNamesMap, "", null);
+        TurnStart waitingPlayerTurnStart = new TurnStart(ClueLessProtocolType.WAITING_PLAYER, locationNamesMap, "", null);
 
         CompletableFuture<TurnStart> activeResponseFuture = activePlayer.asyncWriteInstanceAndExpectType(
                 activePlayerTurnStart,
@@ -185,6 +185,12 @@ public class ClueLessTurnProtocol
         if(suggestion.getCharacter() != null && suggestion.getRoomNames() != null)
         {
             game.getGameBoard().moveCharacter(suggestion.getCharacter(), Location.fromRoomNames(suggestion.getRoomNames()));
+            ClueLessServerGameProtocol.broadcastSuggestedPlayer(
+                    game,
+                    suggestion.getCharacter().name() + " was suggested in the " + suggestion.getRoomNames().name(),
+                    waitingPlayers,
+                    suggestion.getCharacter()
+            );
         }
 
         List<Player> allPlayers = new ArrayList<>(waitingPlayers);

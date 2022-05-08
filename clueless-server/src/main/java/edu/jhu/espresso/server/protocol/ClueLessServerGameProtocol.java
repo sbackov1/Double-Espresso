@@ -67,15 +67,20 @@ public class ClueLessServerGameProtocol
         responses.forEach(CompletableFuture::join);
     }
 
-    public static void broadcast(Game game, String announcement, List<Player> players)
+    public static void broadcastSuggestedPlayer(Game game, String announcement, List<Player> players, CharacterNames characterNames)
     {
-        TurnStart turnStart = new TurnStart(ClueLessProtocolType.INFORMATIONAL, game.getLocations(), announcement);
+        TurnStart turnStart = new TurnStart(ClueLessProtocolType.INFORMATIONAL, game.getLocations(), announcement, characterNames);
         players.stream().map(player -> player.asyncWriteInstanceAndExpectType(
-                                turnStart,
+                        turnStart,
                         TurnStart.class)
                 )
                 .map(CompletableFuture::join)
                 .collect(Collectors.toList());
+    }
+
+    public static void broadcast(Game game, String announcement, List<Player> players)
+    {
+        broadcastSuggestedPlayer(game, announcement, players, null);
     }
 
     public GameStart gameStartForPlayer(Player player)

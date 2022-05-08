@@ -91,7 +91,7 @@ public class SuggestionTestimonyProtocol
 
     private Suggestion activePlayerQuery(){
         currentWaitingPlayer.writeInstanceAndExpectType(
-                new TurnStart(ClueLessProtocolType.SUGGESTION, game.getLocations(), ""),
+                new TurnStart(ClueLessProtocolType.SUGGESTION, game.getLocations(), "", null),
                 TurnStart.class
         );
 
