@@ -52,7 +52,7 @@
                   <Font name="Times New Roman" size="18.0" />
                </font>
             </Text>
-            <Text fx:id="textWhite" boundsType="LOGICAL_VERTICAL_CENTER" strokeType="OUTSIDE" strokeWidth="0.0" text="Mr. White" textAlignment="CENTER" wrappingWidth="136.02093505859375">
+            <Text fx:id="textWhite" boundsType="LOGICAL_VERTICAL_CENTER" strokeType="OUTSIDE" strokeWidth="0.0" text="Mrs. White" textAlignment="CENTER" wrappingWidth="136.02093505859375">
                <font>
                   <Font name="Times New Roman" size="18.0" />
                </font>
