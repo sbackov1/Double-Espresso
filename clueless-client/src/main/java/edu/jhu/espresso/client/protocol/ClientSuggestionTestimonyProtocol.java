@@ -36,6 +36,8 @@ class ClientSuggestionTestimonyProtocol implements ClueLessProtocol
             throw new IllegalStateException("Expected a suggestion response");
         }
 
+        gameboardController.resetStatus();
+
         SuggestionResponse suggestionResponse = gameboardController.getSuggestionResponse();
 
         suggestion.setSuggestionStatus(suggestionResponse.getSuggestionAction());

@@ -13,6 +13,9 @@ public class Player {
     private Player previousPlayer;
     private Circle circle;
 
+    private boolean hasMoved;
+    private boolean hasSuggested;
+    private boolean pulledFromSuggestion;
 
     public Player(int gID, int pID) {
         this.playerID = pID;
@@ -71,5 +74,31 @@ public class Player {
     public void setCharacter(CharacterNames character)
     {
         this.character = character;
+    }
+
+    public boolean isHasMoved() {
+        return hasMoved;
+    }
+
+    public void setHasMoved(boolean hasMoved) {
+        this.hasMoved = hasMoved;
+    }
+
+    public boolean isHasSuggested() {
+        return hasSuggested;
+    }
+
+    public void setHasSuggested(boolean hasSuggested) {
+        this.hasSuggested = hasSuggested;
+    }
+
+    public boolean isPulledFromSuggestion()
+    {
+        return pulledFromSuggestion;
+    }
+
+    public void setPulledFromSuggestion(boolean pulledFromSuggestion)
+    {
+        this.pulledFromSuggestion = pulledFromSuggestion;
     }
 }
