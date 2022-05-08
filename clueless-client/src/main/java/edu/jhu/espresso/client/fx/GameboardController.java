@@ -9,6 +9,8 @@ import edu.jhu.espresso.client.domain.GamePieces.*;
 import javafx.application.Platform;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.ReadOnlyObjectWrapper;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.ObservableMap;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -17,6 +19,7 @@ import javafx.geometry.HPos;
 import javafx.geometry.VPos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Toggle;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
@@ -728,6 +731,27 @@ public class GameboardController
             stage.showAndWait();
 
             suggestion = controllerSuggestion.getSuggestion();
+
+            final boolean[] buttonSelectStatus = {false, false};
+            controllerSuggestion.suggest.setDisable(true);
+            controllerSuggestion.sugWeap1.selectedToggleProperty().addListener((new ChangeListener<Toggle>() {
+                @Override
+                public void changed(ObservableValue<? extends Toggle> ov, Toggle oldvalue, Toggle newvalue) {
+                    if (controllerSuggestion.sugWeap1.getSelectedToggle() != null) {
+                        buttonSelectStatus[0] = true;
+                        if (buttonSelectStatus[0] && buttonSelectStatus[1]) controllerSuggestion.suggest.setDisable(true);
+                    }
+                }
+            }));
+            controllerSuggestion.sugChar1.selectedToggleProperty().addListener((new ChangeListener<Toggle>() {
+                @Override
+                public void changed(ObservableValue<? extends Toggle> ov, Toggle oldvalue, Toggle newvalue) {
+                    if (controllerSuggestion.sugChar1.getSelectedToggle() != null) {
+                        buttonSelectStatus[1] = true;
+                        if (buttonSelectStatus[0] && buttonSelectStatus[1]) controllerSuggestion.suggest.setDisable(false);
+                    }
+                }
+            }));
             futureStatus.complete(GameboardControllerStatus.SUGGESTION);
         }
         catch (IOException e)
