@@ -132,4 +132,15 @@ public class ControllerSuggestion {
         //board.moveSuggested(board.MR_GREEN, columnIndex, rowIndex);
     }
 
+    public boolean allTogglesSelected(){
+
+        boolean isSelected = false;
+
+        if (sugWeap1.getSelectedToggle() == null || sugChar1.getSelectedToggle() == null)
+            isSelected = true;
+
+        return isSelected;
+
+    }
+
 }

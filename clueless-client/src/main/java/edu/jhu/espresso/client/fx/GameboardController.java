@@ -4,6 +4,8 @@ import edu.jhu.espresso.client.domain.*;
 import javafx.application.Platform;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.ReadOnlyObjectWrapper;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.ObservableMap;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -14,6 +16,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextArea;
+import javafx.scene.control.Toggle;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
@@ -440,6 +443,26 @@ public class GameboardController {
             String test = "IWHBYD";
            // suggest.suggestRoom.setText(test);
             suggest.suggestRoom.setText("       " + String.valueOf(moveOptions.getLocation()));
+            final boolean[] buttonSelectStatus = {false, false};
+            suggest.suggest.setDisable(true);
+            suggest.sugWeap1.selectedToggleProperty().addListener((new ChangeListener<Toggle>() {
+                @Override
+                public void changed(ObservableValue<? extends Toggle> ov, Toggle oldvalue, Toggle newvalue) {
+                    if (suggest.sugWeap1.getSelectedToggle() != null) {
+                        buttonSelectStatus[0] = true;
+                        if (buttonSelectStatus[0] && buttonSelectStatus[1]) suggest.suggest.setDisable(false);
+                    }
+                }
+            }));
+            suggest.sugChar1.selectedToggleProperty().addListener((new ChangeListener<Toggle>() {
+                @Override
+                public void changed(ObservableValue<? extends Toggle> ov, Toggle oldvalue, Toggle newvalue) {
+                    if (suggest.sugChar1.getSelectedToggle() != null) {
+                        buttonSelectStatus[1] = true;
+                        if (buttonSelectStatus[0] && buttonSelectStatus[1]) suggest.suggest.setDisable(false);
+                    }
+                }
+            }));
             //suggest.setFXMLLoader(fxml);
             //columnIndex = GridPane.getColumnIndex(MISS_SCARLET);
             //rowIndex = GridPane.getRowIndex(MISS_SCARLET);
