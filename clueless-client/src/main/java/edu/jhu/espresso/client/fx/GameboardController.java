@@ -266,29 +266,51 @@ public class GameboardController
         player6.setText(CharacterNames.PROFESSOR_PLUM.name());
     }
 
-    ArrayList<LocationNames> validMoves = new ArrayList();
-    public void setButtonStatus() {
+    private boolean isRoom()
+    {
+        return !isHallway();
+    }
+
+    public void setDisableForAllButtons(boolean disable)
+    {
+        move.setDisable(disable);
+        EndTurn.setDisable(disable);
+        makeSuggestion.setDisable(disable);
+        makeAccusation.setDisable(disable);
+    }
+
+    public void updateActivePlayerButtons() {
 
         /***Needs to follow the following:
          If a player can move, they must move and cannot end turn.
          If a player has already moved AND is in a room, they can suggest, accuse, or endTurn
          If a player is in a room and has not moved, they cannot suggest or end turn, they must move
         ***/
-        makeSuggestion.setDisable(isHallway());
-
-        moveOptions.setValidMoves(validMoves);
-
-        if(moveOptions.getValidMoves().isEmpty()){
-            EndTurn.setDisable(false);
-            move.setDisable(true);
+        boolean disableMakeSuggestion;
+        if(player.isPulledFromSuggestion())
+        {
+            disableMakeSuggestion = player.isHasSuggested();
         }
-        else {
-            EndTurn.setDisable(true);
-            move.setDisable(false);
+        else
+        {
+            disableMakeSuggestion = isHallway() || player.isHasSuggested() || !player.isHasMoved();
         }
 
+        makeSuggestion.setDisable(disableMakeSuggestion);
 
+        boolean disableEndTurn;
+        if (player.isPulledFromSuggestion())
+        {
+            disableEndTurn = !player.isHasSuggested();
+        }
+        else
+        {
+            disableEndTurn = (!player.isHasMoved() && !moveOptions.getValidMoves().isEmpty()) ||
+                    (isRoom() && !player.isHasSuggested());
+        }
 
+        EndTurn.setDisable(disableEndTurn);
+        move.setDisable(moveOptions.getValidMoves().isEmpty() || player.isHasSuggested());
     }
 
     public void updateStatusBar(String s)
@@ -800,6 +822,7 @@ public class GameboardController
 
         updateCharacterLocation(player.getCharacter(), moveOptions.getLocation());
 
+        moveOptions.getValidMoves().clear();
         futureStatus.complete(GameboardControllerStatus.MOVE);
     }
 

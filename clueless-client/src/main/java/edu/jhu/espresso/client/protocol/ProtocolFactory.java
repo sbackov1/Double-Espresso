@@ -27,7 +27,7 @@ public class ProtocolFactory
                 protocol = new ActivePlayerProtocol(gameboardController, client);
                 break;
             case WAITING_PLAYER:
-                protocol = new WaitingPlayerProtocol(client);
+                protocol = new WaitingPlayerProtocol(gameboardController);
                 break;
             case ACCUSATION:
                 protocol = new ClientAccusationProtocol(client);
@@ -36,7 +36,7 @@ public class ProtocolFactory
                 protocol = new ClientSuggestionTestimonyProtocol(client, gameboardController);
                 break;
             case INFORMATIONAL:
-                protocol = new InformationalProtocol(gameboardController);
+                protocol = new InformationalProtocol(gameboardController, client);
                 break;
             default:
                 throw new IllegalArgumentException(clueLessProtocolType + " not supported!");

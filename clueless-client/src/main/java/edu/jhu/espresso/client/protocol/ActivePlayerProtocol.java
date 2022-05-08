@@ -31,6 +31,10 @@ public class ActivePlayerProtocol implements ClueLessProtocol
     {
         this.client = client;
         this.gameboardController = gameboardController;
+
+        this.client.getPlayer().setHasSuggested(false);
+        this.client.getPlayer().setHasMoved(false);
+
     }
 
     @Override
@@ -38,6 +42,8 @@ public class ActivePlayerProtocol implements ClueLessProtocol
     {
         this.turnStart = turnStart;
         this.endTurn = false;
+
+        gameboardController.setDisableForAllButtons(false);
 
         while (!endTurn)
         {
@@ -48,11 +54,9 @@ public class ActivePlayerProtocol implements ClueLessProtocol
             this.setCanMove(false);
 
             this.unPackProtocolOffer(gameOptions);
+
+            gameboardController.updateActivePlayerButtons();
             GameboardControllerStatus status = gameboardController.getStatusFuture().join();
-
-            System.out.println("here");
-
-            gameboardController.setButtonStatus();
 
             ActivePlayerProtocolSelector selector;
             switch (status)
@@ -82,8 +86,11 @@ public class ActivePlayerProtocol implements ClueLessProtocol
 
             client.write(selector);
 
+            if(status == GameboardControllerStatus.MOVE){this.client.getPlayer().setHasMoved(true);}
+
             if(status == GameboardControllerStatus.SUGGESTION)
             {
+                this.client.getPlayer().setHasSuggested(true);
                 TurnStart gameUpdateTurnStart = client.waitForResponse(TurnStart.class);
                 gameboardController.updateStatusBar(gameUpdateTurnStart.getAnnouncement());
                 client.updateCharactersOnBoard(gameUpdateTurnStart);
@@ -109,6 +116,8 @@ public class ActivePlayerProtocol implements ClueLessProtocol
 
             gameboardController.resetStatus();
         }
+
+        client.getPlayer().setPulledFromSuggestion(false);
     }
 
     private ActivePlayerProtocolSelector makeAccusationChoice(Accusation options)
@@ -143,33 +152,6 @@ public class ActivePlayerProtocol implements ClueLessProtocol
     private void updateNotebook(SuggestionTestimonyResponse response)
     {
         response.optionalResponse().ifPresent(value -> client.getPlayer().getNotebook().makeKnownCard(value));
-    }
-
-    /**
-     * goToSuggestionMenu, goToMovementMenu, and goToAccusationMenu create menus for their respective classes.
-     */
-
-    public void goToSuggestionMenu()
-    {
-
-        client.write(makeSuggestionChoice(suggestion));
-        SuggestionTestimonyResponse response = client.waitForResponse(SuggestionTestimonyResponse.class);
-        updateNotebook(response);
-
-    }
-
-    public void goToMovementMenu()
-    {
-        client.write(makeMoveChoice(moveOptions));
-    }
-
-    public void goToAccusationMenu()
-    {
-        client.write(makeAccusationChoice(accusation));
-
-        //End the turn if you have made an accusation.
-        this.endTurn = true;
-
     }
 
 
